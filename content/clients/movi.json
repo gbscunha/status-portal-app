@@ -1,0 +1,25 @@
+{
+  "id": "movi",
+  "name": "Movi Solutions",
+  "contact": "Matheus",
+  "slug": "movi-3xubgjr",
+  "brandColor": "#FF0E10",
+  "vendor": "MOOV Consultoria",
+  "projects": [
+    {
+      "id": "movi-web",
+      "name": "Painel Administrativo",
+      "platform": "Painel Web"
+    },
+    {
+      "id": "movi-app",
+      "name": "App dos Motoristas",
+      "platform": "Aplicativo (iOS e Android)"
+    },
+    {
+      "id": "movi-exporter",
+      "name": "Movi Exporter",
+      "platform": "App Desktop (Windows)"
+    }
+  ]
+}

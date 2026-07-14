@@ -1,0 +1,110 @@
+{
+  "date": "2026-07-10",
+  "phase": "Checklists (Fase 4)",
+  "title": { "text": "Status do Projeto", "highlight": "Projeto" },
+  "subtitle": "Visão geral do que já está entregue, o que está em desenvolvimento e o que ainda falta para o lançamento do sistema de gestão de frotas e checklists veiculares.",
+  "progress": [
+    { "label": "Acesso e segurança", "percent": 92, "state": "done" },
+    { "label": "Cadastros base", "percent": 100, "state": "done" },
+    { "label": "Checklists", "percent": 78, "state": "prog" },
+    { "label": "Relatórios e painéis", "percent": 5, "state": "plan" },
+    { "label": "Preparação p/ lançamento", "percent": 40, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Concluir a fase de Checklists",
+    "intro": "Com a tela de detalhes entregue, o foco agora é a última peça dos checklists:",
+    "items": [
+      {
+        "label": "Fotos e assinaturas",
+        "desc": "anexar imagens de avarias e assinaturas digitais (motorista e gestor) a cada checklist."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Acesso ao sistema",
+          "status": "done",
+          "description": "Login seguro, níveis de permissão (administrador, gestor, motorista) e suporte a múltiplas empresas no mesmo painel."
+        },
+        {
+          "title": "Gestão de empresas",
+          "status": "done",
+          "description": "Cadastro, edição e exclusão de empresas, com validação de CNPJ e isolamento total de dados entre clientes."
+        },
+        {
+          "title": "Gestão de frota",
+          "status": "done",
+          "description": "Cadastro de veículos com placa, modelo, marca, cor e ano. Listagem com busca, filtros e controle de status."
+        },
+        {
+          "title": "Gestão de usuários",
+          "status": "done",
+          "description": "Cadastro de motoristas e gestores, com papéis e permissões definidos por empresa."
+        },
+        {
+          "title": "Registro de checklists",
+          "status": "done",
+          "description": "O app dos motoristas registra entrada e saída dos veículos, com pareamento automático entre as duas etapas da viagem."
+        },
+        {
+          "title": "Listagem de checklists",
+          "status": "done",
+          "description": "Painel com todos os checklists, filtros por tipo, veículo, motorista, período e situação (em aberto / finalizado)."
+        },
+        {
+          "title": "Tela de detalhes do checklist",
+          "status": "done",
+          "description": "Visualização completa de um checklist: itens vistoriados, entrada e saída pareadas, observações e mapa de localização."
+        },
+        {
+          "title": "Base de login do app mobile",
+          "status": "done",
+          "description": "A autenticação que o aplicativo dos motoristas usa para entrar no sistema ficou pronta e segura, liberando o desenvolvimento do app em paralelo ao painel."
+        },
+        {
+          "title": "Rastreabilidade e auditoria",
+          "status": "done",
+          "description": "Mesmo quando um veículo ou motorista é removido da operação, o histórico de checklists permanece preservado e sinalizado visualmente — atendendo às exigências de auditoria e fiscalização.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Fotos e assinaturas",
+          "status": "prog",
+          "description": "Anexar imagens de avarias e assinaturas digitais aos checklists, com galeria organizada por categoria."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Exportação para Excel",
+          "status": "plan",
+          "description": "Exportar checklists filtrados em planilha, para relatórios e prestação de contas."
+        },
+        {
+          "title": "Painel de indicadores",
+          "status": "plan",
+          "description": "Dashboard com gráficos e estatísticas: volume de checklists, veículos com pendências, atividade por período."
+        },
+        {
+          "title": "Preparação para lançamento",
+          "status": "plan",
+          "description": "Camada final de segurança, backups automáticos, domínio próprio (.com.br) e testes de ponta a ponta antes da abertura ao público. Parte já implementada (proteções de acesso); restante planejado para a reta final.",
+          "fullWidth": true
+        }
+      ]
+    }
+  ]
+}

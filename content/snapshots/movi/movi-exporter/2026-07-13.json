@@ -1,0 +1,79 @@
+{
+  "date": "2026-07-13",
+  "phase": "Em produção · v1.4.0",
+  "title": { "text": "Movi Exporter", "highlight": "Exporter" },
+  "subtitle": "Aplicativo que extrai os dados mensais de rastreamento dos veículos e gera as planilhas de relatório, com envio automático ao Google Drive. Em uso em produção.",
+  "progress": [
+    { "label": "Extração de dados de rastreamento", "percent": 100, "state": "done" },
+    { "label": "Exportação em planilha", "percent": 100, "state": "done" },
+    { "label": "Envio ao Google Drive", "percent": 100, "state": "done" },
+    { "label": "Motorista e localização", "percent": 100, "state": "done" },
+    { "label": "Manual do usuário", "percent": 80, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Finalizar o manual do usuário",
+    "intro": "Com todas as funções em produção, o foco agora é a documentação para o cliente:",
+    "items": [
+      {
+        "label": "Manual embarcado",
+        "desc": "guia passo a passo dentro do próprio aplicativo, cobrindo relatório, localização e envio ao Google Drive."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Extração mensal de rastreamento",
+          "status": "done",
+          "description": "Puxa automaticamente os dados de quilometragem e uso dos veículos do sistema de rastreamento."
+        },
+        {
+          "title": "Exportação em planilha",
+          "status": "done",
+          "description": "Gera relatórios em CSV e Excel prontos para prestação de contas."
+        },
+        {
+          "title": "Envio ao Google Drive",
+          "status": "done",
+          "description": "Sobe as planilhas geradas direto para o Google Drive, sem trabalho manual."
+        },
+        {
+          "title": "Motorista e endereço no relatório",
+          "status": "done",
+          "description": "Identifica o motorista de cada viagem e traduz a localização em endereço legível."
+        },
+        {
+          "title": "Base sólida e testada",
+          "status": "done",
+          "description": "Aplicativo revisado e reforçado por dentro, mantendo exatamente o mesmo funcionamento para o usuário.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Manual do usuário",
+          "status": "prog",
+          "description": "Guia completo, dentro do aplicativo, para o cliente operar sozinho com autonomia."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Melhorias conforme o uso",
+          "status": "plan",
+          "description": "Ajustes e novos campos de relatório de acordo com o retorno do cliente em produção."
+        }
+      ]
+    }
+  ]
+}

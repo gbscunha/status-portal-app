@@ -1,0 +1,77 @@
+{
+  "date": "2026-07-13",
+  "phase": "Fase 0 — Fundação",
+  "title": { "text": "App dos Motoristas", "highlight": "Motoristas" },
+  "subtitle": "O aplicativo que os motoristas vão usar em campo para preencher os checklists dos veículos. Fase inicial de fundação.",
+  "progress": [
+    { "label": "Estrutura do aplicativo", "percent": 90, "state": "done" },
+    { "label": "Acesso dos motoristas (login)", "percent": 5, "state": "plan" },
+    { "label": "Preenchimento de checklists", "percent": 0, "state": "plan" },
+    { "label": "Funcionamento offline", "percent": 0, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Primeira tela no aparelho e início do login",
+    "intro": "Com a base montada, os próximos passos preparam o app para as telas de verdade:",
+    "items": [
+      {
+        "label": "Primeira execução no aparelho",
+        "desc": "colocar o app para rodar e validar o ambiente antes das telas do dia a dia."
+      },
+      {
+        "label": "Login dos motoristas",
+        "desc": "a tela de acesso, reaproveitando a autenticação já pronta no painel."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Base do aplicativo criada",
+          "status": "done",
+          "description": "Aplicativo iniciado com nome, identidade visual e testes automatizados — uma fundação sólida para crescer com segurança.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Primeira tela no aparelho",
+          "status": "prog",
+          "description": "Colocando o aplicativo para rodar pela primeira vez — o marco visual antes de iniciar as telas do dia a dia."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Login dos motoristas",
+          "status": "plan",
+          "description": "Tela de acesso ao aplicativo, conectada com segurança à mesma conta do painel."
+        },
+        {
+          "title": "Seleção de veículo",
+          "status": "plan",
+          "description": "O motorista escolhe o veículo antes de iniciar a vistoria."
+        },
+        {
+          "title": "Preenchimento de checklists em campo",
+          "status": "plan",
+          "description": "Registro de entrada e saída dos veículos direto pelo celular, funcionando mesmo sem internet."
+        },
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Anexar fotos de avarias e assinaturas digitais a cada checklist."
+        }
+      ]
+    }
+  ]
+}
