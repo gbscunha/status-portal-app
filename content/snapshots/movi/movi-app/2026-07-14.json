@@ -1,0 +1,85 @@
+{
+  "date": "2026-07-14",
+  "phase": "Acesso dos motoristas concluído",
+  "title": { "text": "App dos Motoristas", "highlight": "Motoristas" },
+  "subtitle": "O aplicativo que os motoristas vão usar em campo para preencher os checklists dos veículos. O acesso ao app está completo e funcionando.",
+  "progress": [
+    { "label": "Estrutura do aplicativo", "percent": 100, "state": "done" },
+    { "label": "Acesso dos motoristas (login)", "percent": 100, "state": "done" },
+    { "label": "Seleção de veículo", "percent": 0, "state": "plan" },
+    { "label": "Preenchimento de checklists", "percent": 0, "state": "plan" },
+    { "label": "Funcionamento offline", "percent": 0, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Escolha do veículo antes da vistoria",
+    "intro": "Com o acesso pronto, o próximo passo traz os primeiros dados reais para dentro do app:",
+    "items": [
+      {
+        "label": "Seleção de veículo",
+        "desc": "o motorista vê a lista de veículos da empresa e escolhe qual vai vistoriar."
+      },
+      {
+        "label": "Preparo para o preenchimento em campo",
+        "desc": "organizar a tela onde o checklist será respondido, ainda nas próximas etapas."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Login dos motoristas funcionando",
+          "status": "done",
+          "description": "O motorista entra no app com o mesmo e-mail e senha do painel. A sessão fica guardada com segurança no aparelho e se renova sozinha — ele continua conectado por dias sem precisar logar de novo. Também é possível sair a qualquer momento.",
+          "fullWidth": true
+        },
+        {
+          "title": "Base do aplicativo criada",
+          "status": "done",
+          "description": "Aplicativo com nome, identidade visual da Movi e testes automatizados — uma fundação sólida para crescer com segurança.",
+          "fullWidth": false
+        },
+        {
+          "title": "Rodando no aparelho com a cara da Movi",
+          "status": "done",
+          "description": "O app abre com a logo da Movi na tela de entrada, tipografia e cores da marca — a mesma identidade do painel, agora no celular.",
+          "fullWidth": false
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Seleção de veículo",
+          "status": "prog",
+          "description": "Próxima etapa a começar: o motorista vê a lista de veículos da empresa e escolhe qual vai vistoriar — os primeiros dados reais aparecendo dentro do app."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Preenchimento de checklists em campo",
+          "status": "plan",
+          "description": "Registro de entrada e saída dos veículos direto pelo celular, funcionando mesmo sem internet."
+        },
+        {
+          "title": "Funcionamento offline",
+          "status": "plan",
+          "description": "Checklists preenchidos sem sinal ficam guardados no aparelho e são enviados sozinhos assim que a conexão volta."
+        },
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Anexar fotos de avarias e assinaturas digitais a cada checklist."
+        }
+      ]
+    }
+  ]
+}
