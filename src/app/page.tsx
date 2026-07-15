@@ -3,7 +3,7 @@
 export default function Home() {
   return (
     <main className="wrap" style={{ paddingTop: 40 }}>
-      <div className="kicker">MOOV Consultoria</div>
+      <div className="kicker">ITGraph</div>
       <h1>
         Portal de <span className="accent">Status</span>
       </h1>

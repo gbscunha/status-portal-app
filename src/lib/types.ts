@@ -23,7 +23,7 @@ export const clientSchema = z.object({
   brandColor: z
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/, "brandColor deve ser hex #RRGGBB"),
-  vendor: z.string().default("MOOV Consultoria"),
+  vendor: z.string().default("ITGraph"),
   projects: z.array(projectSchema).min(1),
 });
 

@@ -1,0 +1,199 @@
+# Diário de bordo — decisões do Portal de Status
+
+Registro do **porquê** das escolhas de arquitetura, e do que foi **descartado**.
+O CLAUDE.md diz *o que fazer*; este doc diz *por que é assim*. Ordem aproximada
+em que as decisões apareceram.
+
+---
+
+## 1. Sem login — acesso por slug não-adivinhável
+
+**Decisão:** cada cliente acessa `/r/<slug>`, onde `slug = <prefixo>-<sufixo
+aleatório>` (ex: `movi-3xubgjr`). Sem autenticação.
+
+**Por quê:** o pedido era "cada cliente vê só a URL dele, sem login". A ideia
+inicial era usar o nome na URL (`/movi-projects`, `/ellementi-projects`), mas isso
+é **enumerável**: quem recebe o link da Movi chuta o da Ellementi e vê o status,
+o roadmap e os atrasos de outro cliente. O slug com sufixo aleatório mantém a UX
+"é só abrir o link" e remove a enumeração cruzada.
+
+**Descartamos:** nome literal na URL (enumerável); login/senha (fricção
+desnecessária para o caso de uso); hash determinístico do nome (se o seed vaza,
+todos os slugs viram reproduzíveis — aleatório fixado é mais seguro).
+
+---
+
+## 2. Conteúdo como dado (JSON), não HTML
+
+**Decisão:** o design é fixo em componentes; cada atualização de status é um
+arquivo JSON em `content/`.
+
+**Por quê:** antes, cada relatório era um HTML escrito à mão por dia — não escala e
+não tem histórico. Separando **conteúdo de design**, a skill consegue gerar/atualizar
+status programaticamente e o histórico sai de graça (um arquivo por data).
+
+**Descartamos:** seguir com HTML manual; CMS/banco (overkill — adicionaria backend
+a um site que é essencialmente estático).
+
+---
+
+## 3. Modelo cliente → projeto(s) → snapshots datados
+
+**Decisão:** `content/clients/<id>.json` (config estável) + `content/snapshots/
+<cliente>/<projeto>/<AAAA-MM-DD>.json` (status imutável, um por data).
+
+**Por quê:** a URL é `/movi-projects` (plural) — um cliente pode ter **vários
+projetos** (a Movi tem 3: Painel, App dos Motoristas, Movi Exporter). Snapshot
+datado e imutável dá histórico, evita merge conflict e deixa a skill só *adicionar*
+arquivos, nunca reescrever.
+
+**Descartamos:** um relatório único por cliente; sobrescrever o status (perde
+histórico).
+
+---
+
+## 4. SSG puro + `dynamicParams = false`
+
+**Decisão:** páginas estáticas geradas no build (`generateStaticParams`), com
+`dynamicParams = false`.
+
+**Por quê:** o conteúdo só muda por `git push`, então SSG é o mais rápido e barato.
+E `dynamicParams = false` faz um slug desconhecido cair em **404** em vez de tentar
+renderizar on-demand — fecha a porta pra alguém ficar chutando slugs.
+
+**Descartamos:** SSR/ISR (desnecessário; ISR ainda abriria a brecha de render
+on-demand). **Atenção:** Cache Components desliga o `dynamicParams` — por isso NÃO
+é habilitado.
+
+---
+
+## 5. `noindex` em 3 camadas + sem OpenGraph
+
+**Decisão:** `noindex` via metadata (layout+página), `robots.ts` e header
+`X-Robots-Tag`. Nenhuma tag OpenGraph rica em `/r/[slug]`.
+
+**Por quê:** `noindex` mantém o portal fora do Google (é privado por link). E OG
+rico faria o **preview do link** (WhatsApp/Slack) exibir o nome do cliente — vazando
+identidade mesmo sem ninguém abrir a página.
+
+**Nota honesta:** `noindex` **não é segurança**. Sem auth, quem tem o link vê. Por
+isso: entregar ao cliente só o domínio de produção (os previews `*.vercel.app` de
+cada deploy também servem o conteúdo) e nunca expor o slug em canal público.
+
+---
+
+## 6. Repo separado, Vercel, deploy por push — humano publica
+
+**Decisão:** o portal é um repo próprio (não dentro de `movi-solutions/`), na Vercel,
+com deploy automático a cada push. Quem commita e publica é o humano.
+
+**Por quê:** é um produto **cross-cliente** da ITGraph, não um projeto "da Movi".
+Gitops sem backend, com revisão antes de publicar — casa com o fluxo do mantenedor
+(criar repo no GitHub → versionar → conectar na Vercel).
+
+---
+
+## 7. Skill global + `.status-portal.json` por repo
+
+**Decisão:** a skill `atualizar-status-portal` vive uma vez em `~/.claude/skills/`;
+cada repo de cliente tem um `.status-portal.json` apontando `clientId`/`projectId`/
+caminho do portal.
+
+**Por quê:** a lógica é genérica — escrita uma vez, disponível em todos os projetos.
+O que muda por repo é só o config leve.
+
+**Descartamos:** copiar a skill em cada repo (duplicação e manutenção).
+
+---
+
+## 8. A skill para no preview (não commita)
+
+**Decisão:** a skill gera o snapshot, mostra o preview e **para**. Não commita nem
+pusha.
+
+**Por quê:** é conteúdo que o cliente lê — precisa de revisão humana da linguagem
+antes de publicar. Também casa com a preferência do mantenedor de commitar ele mesmo.
+
+---
+
+## 9. Sem Tailwind — CSS puro portado
+
+**Decisão:** o design foi portado 1:1 do HTML existente para `globals.css` (CSS puro),
+sem Tailwind e sem shadcn.
+
+**Por quê:** o design já existia como CSS pronto; reexpressá-lo em Tailwind seria
+retrabalho. shadcn não faz sentido num site read-only, sem formulários.
+
+**Descartamos:** manter Tailwind/shadcn (padrão do `movi-web`) só por consistência —
+não compensava o retrabalho aqui.
+
+---
+
+## 10. Reaproveitar a base do `movi-web`, sem o peso
+
+**Decisão:** mesma stack (Next 16, React 19, TS, pnpm) e configs equivalentes
+(tsconfig strict, alias `@/*`, eslint flat). Zod para validação.
+
+**Por quê:** o `movi-web` já é Next — alinhar reduz surpresa. Mas **não** trouxemos
+Prisma/pg (sem banco), shadcn (sem forms), nem os `pnpm.overrides` (específicos de
+Prisma/msw).
+
+---
+
+## 11. App mobile virou projeto próprio; Painel foi enxugado
+
+**Decisão:** quando ficou claro que a Movi tem 3 projetos, o app dos motoristas
+saiu de "área dentro do Painel" para **projeto separado**. O relatório do Painel foi
+enxugado (removida a barra "App mobile" e o card do app), mantendo só "Base de login
+do app mobile" — que é trabalho de backend do próprio Painel.
+
+**Por quê:** evitar o mesmo status aparecer duplicado em dois relatórios.
+
+---
+
+## 12. Cor de marca por cliente, via `--brand`
+
+**Decisão:** a cor da marca é uma CSS var `--brand`, setada uma vez no `ProjectStack`
+(inline, por cliente); todo o CSS usa `var(--brand)`.
+
+**Por quê:** evita cascatear props de cor por toda a árvore de componentes; cada
+cliente troca uma variável.
+
+---
+
+## 13. Data TZ-safe
+
+**Decisão:** datas em `America/Sao_Paulo`; a formatação opera sobre a string ISO
+(`YYYY-MM-DD`) sem construir `Date`.
+
+**Por quê:** `new Date("2026-07-10")` é meia-noite UTC e, no fuso local, exibiria
+09/07 — off-by-one clássico. Formatar a partir das partes da string elimina isso.
+
+---
+
+## Pegadinhas encontradas (para a próxima pessoa)
+
+- **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".
+  `params` virou **`Promise`** (dar `await`). Sempre consultar
+  `node_modules/next/dist/docs/` da versão instalada antes de usar uma API.
+- **`pnpm add` no diretório errado.** Um `pnpm add zod` rodado a partir de `~/dev`
+  criou `package.json`/`pnpm-lock.yaml`/`node_modules` órfãos lá, e o Next passou a
+  inferir a raiz do workspace errada. Correção: limpar `~/dev` e instalar de dentro
+  do portal. Fixamos `turbopack.root` no diretório do portal em `next.config.ts` pra
+  travar a raiz.
+- **CSS var inline em TS.** `style={{ "--brand": cor }}` precisa de cast
+  `as CSSProperties` — o tipo padrão não aceita custom properties.
+- **JSON quebrado não pode derrubar tudo.** Deploy único = todos os clientes juntos.
+  Por isso `content.ts` valida com Zod e **pula** o arquivo inválido (com aviso), em
+  vez de crashar o build.
+
+---
+
+## Decisões adiadas / backlog
+
+- **Melhorias de UI/UX** — várias identificadas, adiadas de propósito para não segurar
+  o primeiro deploy.
+- **Ellementi** — cliente ainda sem projeto; foi removida do portal até começar. Slug
+  reservado: `ellementi-emkr3tn` (ou gerar um novo).
+- **Fora do v1:** navegação para snapshots antigos (a `Timeline` só lista), seletor de
+  projeto client-side (hoje empilha), domínio próprio, analytics.
