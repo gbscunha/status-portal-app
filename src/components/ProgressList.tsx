@@ -4,7 +4,7 @@ import { ProgressBar } from "./ProgressBar";
 export function ProgressList({ items }: { items: ProgressItem[] }) {
   return (
     <div className="overview">
-      <h2>Progresso por área</h2>
+      <h3 className="block-title">Progresso por área</h3>
       <div className="bars">
         {items.map((item) => (
           <ProgressBar key={item.label} {...item} />
