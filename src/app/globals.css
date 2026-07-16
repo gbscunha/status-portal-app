@@ -689,6 +689,11 @@ h1 .accent {
   display: flex;
   gap: 8px;
 }
+/* No mast os CTAs são texto puro — sem contorno em repouso (o foco de
+   teclado continua com outline via :focus-visible) */
+.contact-compact .cta {
+  border-color: transparent;
+}
 .contact-footer {
   margin-top: 8px;
   background: var(--ink);
