@@ -1,0 +1,13 @@
+import path from "node:path";
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  resolve: {
+    // Mirrors the "@/*" path alias from tsconfig.json.
+    alias: { "@": path.resolve(__dirname, "src") },
+  },
+  test: {
+    include: ["src/**/*.test.ts"],
+    environment: "node",
+  },
+});

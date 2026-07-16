@@ -39,4 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# personal AI-dev files (not versioned by owner's choice)
 AI-DEV-SETUP.md
+CHECKLIST.md
+JOURNAL.md
+.claude/settings.local.json

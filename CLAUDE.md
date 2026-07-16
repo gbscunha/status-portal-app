@@ -33,8 +33,29 @@ scripts/gen-slug.mjs — gera slug não-adivinhável (roda 1x por cliente)
 pnpm dev            # dev server :3000
 pnpm build          # build SSG + typecheck
 pnpm lint           # ESLint
+pnpm test           # Vitest (src/lib/*.test.ts)
 node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 ```
+
+## Ciclo de desenvolvimento
+
+- Sessão abre lendo **"Onde estou"** no `CHECKLIST.md` (arquivo local,
+  gitignorado; histórico datado no `JOURNAL.md`, também local).
+- Feature/bug/refactor segue `.claude/skills/xp-cycle/SKILL.md`: Plan → Red →
+  Green → Refactor → Commit → Documentar. `/new-feature` dispara o ciclo;
+  `/verify` roda a verificação independente (subagent `code-reviewer`).
+- Convenções de código: `.claude/rules/code-conventions.md`. Skills externas:
+  `.claude/rules/skills-policy.md`. Specs: `docs/specs/` (template incluso).
+  Decisões arquiteturais (o "porquê"): `docs/DECISOES.md`.
+
+## Git
+
+- **Conventional Commits** (`feat:`, `fix:`, `docs:`, `status:`…), commits
+  pequenos e específicos.
+- `git add` **seletivo por arquivo** — NUNCA `git add .`. Nunca commitar
+  segredos/`.env`/build.
+- Mudança de **código**: branch por feature. Snapshot/conteúdo pode ir direto
+  na `main` (fluxo real de publicação). Quem pusha é o humano.
 
 ## Modelo de dados
 
@@ -98,9 +119,10 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Verificação
 
-1. `pnpm build` — SSG + typecheck passam.
-2. `pnpm lint` — zero.
-3. `/r/<slug>` renderiza; `/r/<inexistente>` → 404; raiz não vaza cliente; `<meta
+1. `pnpm test` — Vitest verde.
+2. `pnpm build` — SSG + typecheck passam.
+3. `pnpm lint` — zero.
+4. `/r/<slug>` renderiza; `/r/<inexistente>` → 404; raiz não vaza cliente; `<meta
    robots noindex>` + header `X-Robots-Tag` presentes.
 
 ## Estado atual
@@ -111,3 +133,10 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** melhorias de UI/UX (adiadas de propósito no 1º deploy). **Ellementi:**
   criar quando o projeto começar (slug reservado `ellementi-emkr3tn`).
+
+## Compactação
+
+Ao resumir o contexto, preservar: decisões explícitas do usuário na sessão; as
+invariantes de Segurança/privacidade e a lista "Não faça"; a etapa atual do
+ciclo xp-cycle (e o passo corrente do CHECKLIST); comandos/arquivos ainda não
+commitados.
