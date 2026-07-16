@@ -13,9 +13,17 @@ type Props = {
   snapshot: Snapshot;
   /** Datas de todos os snapshots do projeto, mais recente primeiro. */
   history: string[];
+  /** Só o 1º report da página usa h1 (hierarquia de headings). */
+  titleAs?: "h1" | "h2";
 };
 
-export function StatusReport({ client, project, snapshot, history }: Props) {
+export function StatusReport({
+  client,
+  project,
+  snapshot,
+  history,
+  titleAs = "h1",
+}: Props) {
   return (
     <article className="report wrap">
       <ReportHeader
@@ -25,6 +33,7 @@ export function StatusReport({ client, project, snapshot, history }: Props) {
         date={snapshot.date}
         platform={project.platform}
         phase={snapshot.phase}
+        titleAs={titleAs}
       />
       <ProgressList items={snapshot.progress} />
       <Legend />

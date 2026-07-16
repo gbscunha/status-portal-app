@@ -8,6 +8,8 @@ type Props = {
   date: string;
   platform?: string;
   phase?: string;
+  /** Heading tag for the report title; only the first report on a page is h1. */
+  titleAs?: "h1" | "h2";
 };
 
 function TitleText({ text, highlight }: Snapshot["title"]) {
@@ -33,13 +35,16 @@ export function ReportHeader({
   date,
   platform,
   phase,
+  titleAs: Title = "h1",
 }: Props) {
   return (
     <header>
-      <div className="kicker">{kicker}</div>
-      <h1>
+      <div className="kicker" translate="no">
+        {kicker}
+      </div>
+      <Title className="report-title">
         <TitleText {...title} />
-      </h1>
+      </Title>
       {subtitle && <p className="sub">{subtitle}</p>}
       <div className="meta">
         <span>

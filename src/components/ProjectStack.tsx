@@ -22,17 +22,37 @@ export function ProjectStack({ client }: { client: Client }) {
 
   const brandStyle = { "--brand": client.brandColor } as CSSProperties;
 
+  if (reports.length === 0) {
+    return (
+      <main className="client wrap" style={brandStyle}>
+        <header>
+          <div className="kicker" translate="no">
+            {client.name}
+          </div>
+          <h1>
+            Estamos preparando o seu <span className="accent">relatório</span>
+          </h1>
+          <p className="sub">
+            O primeiro relatório de acompanhamento está sendo elaborado e
+            aparecerá aqui em breve. Guarde este link.
+          </p>
+        </header>
+      </main>
+    );
+  }
+
   return (
-    <div className="client" style={brandStyle}>
-      {reports.map(({ project, snapshot, history }) => (
+    <main className="client" style={brandStyle}>
+      {reports.map(({ project, snapshot, history }, index) => (
         <StatusReport
           key={project.id}
           client={client}
           project={project}
           snapshot={snapshot}
           history={history}
+          titleAs={index === 0 ? "h1" : "h2"}
         />
       ))}
-    </div>
+    </main>
   );
 }
