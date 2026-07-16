@@ -2,10 +2,12 @@ import type { CSSProperties } from "react";
 import type { Client } from "@/lib/types";
 import { getProjectSnapshots } from "@/lib/content";
 import { StatusReport } from "./StatusReport";
+import { ProjectSwitcher } from "./ProjectSwitcher";
+import { ContactCta } from "./ContactCta";
 
-// Empilha todos os projetos do cliente na mesma página (v1: sem seletor).
-// Cada projeto renderiza seu snapshot mais recente. A cor da marca é injetada
-// uma vez, como CSS var --brand, no wrapper do cliente.
+// Page shell for a client: mast (vendor + contact) → client name (the only
+// h1) → one report per project behind the ProjectSwitcher tabs. Reports are
+// Server Components rendered here; the switcher island only toggles panels.
 export function ProjectStack({ client }: { client: Client }) {
   const reports = client.projects
     .map((project) => {
@@ -15,7 +17,7 @@ export function ProjectStack({ client }: { client: Client }) {
       return {
         project,
         snapshot: latest,
-        history: snapshots.map((s) => s.date),
+        history: snapshots.map((s) => ({ date: s.date, title: s.title.text })),
       };
     })
     .filter((r): r is NonNullable<typeof r> => r !== null);
@@ -25,11 +27,11 @@ export function ProjectStack({ client }: { client: Client }) {
   if (reports.length === 0) {
     return (
       <main className="client wrap" style={brandStyle}>
-        <header>
+        <header className="report-head empty-head">
           <div className="kicker" translate="no">
             {client.name}
           </div>
-          <h1>
+          <h1 className="report-title">
             Estamos preparando o seu <span className="accent">relatório</span>
           </h1>
           <p className="sub">
@@ -43,16 +45,35 @@ export function ProjectStack({ client }: { client: Client }) {
 
   return (
     <main className="client" style={brandStyle}>
-      {reports.map(({ project, snapshot, history }, index) => (
-        <StatusReport
-          key={project.id}
-          client={client}
-          project={project}
-          snapshot={snapshot}
-          history={history}
-          titleAs={index === 0 ? "h1" : "h2"}
-        />
-      ))}
+      <header className="mast">
+        <div className="wrap mast-row">
+          <span className="mast-vendor mono" translate="no">
+            {client.vendor} · Portal de acompanhamento
+          </span>
+          <ContactCta client={client} variant="compact" />
+        </div>
+      </header>
+      <div className="wrap client-head">
+        <h1 className="client-name" translate="no">
+          {client.name}
+        </h1>
+      </div>
+      <ProjectSwitcher
+        tabs={reports.map(({ project }) => ({
+          id: project.id,
+          name: project.name,
+        }))}
+      >
+        {reports.map(({ project, snapshot, history }) => (
+          <StatusReport
+            key={project.id}
+            client={client}
+            project={project}
+            snapshot={snapshot}
+            history={history}
+          />
+        ))}
+      </ProjectSwitcher>
     </main>
   );
 }
