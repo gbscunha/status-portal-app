@@ -689,10 +689,17 @@ h1 .accent {
   display: flex;
   gap: 8px;
 }
-/* No mast os CTAs são texto puro — sem contorno em repouso (o foco de
-   teclado continua com outline via :focus-visible) */
+/* No mast os CTAs vêm preenchidos (ink); hover puxa a cor da marca.
+   O foco de teclado continua com outline via :focus-visible. */
 .contact-compact .cta {
-  border-color: transparent;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.contact-compact .cta:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
 }
 .contact-footer {
   margin-top: 8px;
