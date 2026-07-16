@@ -24,6 +24,12 @@ export const clientSchema = z.object({
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/, "brandColor deve ser hex #RRGGBB"),
   vendor: z.string().default("ITGraph"),
+  // Contact channels shown to the client (ITGraph's own, never the client's).
+  whatsapp: z
+    .string()
+    .regex(/^\+[1-9]\d{7,14}$/, "whatsapp deve ser E.164 (+5511999999999)")
+    .optional(),
+  email: z.string().email().optional(),
   projects: z.array(projectSchema).min(1),
 });
 
@@ -64,6 +70,16 @@ export const titleSchema = z.object({
   highlight: z.string().optional(),
 });
 
+// Item que depende de ação do CLIENTE (bloco "Aguardando você").
+export const pendingItemSchema = z.object({
+  label: z.string().min(1),
+  desc: z.string().min(1),
+  since: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "since deve ser YYYY-MM-DD")
+    .optional(),
+});
+
 export const snapshotSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "date deve ser YYYY-MM-DD"),
   phase: z.string().optional(),
@@ -71,6 +87,7 @@ export const snapshotSchema = z.object({
   subtitle: z.string().optional(),
   progress: z.array(progressItemSchema),
   nextSteps: nextStepsSchema.optional(),
+  pending: z.array(pendingItemSchema).optional(),
   sections: z.array(sectionSchema),
 });
 
@@ -80,6 +97,7 @@ export type Client = z.infer<typeof clientSchema>;
 export type ProgressItem = z.infer<typeof progressItemSchema>;
 export type NextStepItem = z.infer<typeof nextStepItemSchema>;
 export type NextSteps = z.infer<typeof nextStepsSchema>;
+export type PendingItem = z.infer<typeof pendingItemSchema>;
 export type StatusCard = z.infer<typeof cardSchema>;
 export type Section = z.infer<typeof sectionSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;
