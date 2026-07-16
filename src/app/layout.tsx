@@ -1,17 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// v2 type voices: Archivo variable (wdth axis — expanded display, normal
+// body) and IBM Plex Mono for data/labels ("technical document" register).
+const archivo = Archivo({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  axes: ["wdth"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500"],
 });
 
 // Título genérico de propósito: nenhuma página deve revelar o cliente
@@ -22,9 +26,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Matches --bg in globals.css (mobile browser chrome color).
+// Matches --wash in globals.css (mobile browser chrome color).
 export const viewport: Viewport = {
-  themeColor: "#fafafa",
+  themeColor: "#f4f5f7",
 };
 
 export default function RootLayout({
@@ -33,10 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${bricolage.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="pt-BR" className={`${archivo.variable} ${plexMono.variable}`}>
       <body>{children}</body>
     </html>
   );
