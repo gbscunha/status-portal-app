@@ -171,6 +171,28 @@ cliente troca uma variável.
 
 ---
 
+## 14. Redesign v2 — "rastreio de entrega", com uma única ilha client
+
+**Decisão:** o design deixou de ser o HTML portado 1:1 e virou um design system
+próprio ("rastreio de entrega": trilho vertical na cor da marca, manifesto,
+tabs-etiqueta). Tipografia trocada para Archivo variable (eixo `wdth`) + IBM
+Plex Mono. O seletor de projetos é a **única** ilha `"use client"`
+(`ProjectSwitcher`): os relatórios seguem Server Components passados como
+children; o hash da URL é a fonte de verdade das tabs (deep-link + voltar).
+
+**Por quê:** com 3 projetos empilhados o cliente se perdia; tabs client-side
+eram o item de backlog com melhor custo-benefício e não exigem rotas novas nem
+dependência. Hash em vez de query string: funciona em página 100% estática sem
+roteador. Visual novo (e não evolução) foi escolha explícita do dono em
+2026-07-16; direção guiada pela skill `frontend-design` (metáfora específica do
+sujeito — a Movi é de logística; a ITGraph "entrega" software rastreável).
+
+**Rejeitado:** rota por projeto (`/r/<slug>/<projeto>`) — multiplicaria URLs
+secretas a gerenciar; biblioteca de tabs/estado — dependência proibida sem
+necessidade.
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".
@@ -191,9 +213,10 @@ cliente troca uma variável.
 
 ## Decisões adiadas / backlog
 
-- **Melhorias de UI/UX** — várias identificadas, adiadas de propósito para não segurar
-  o primeiro deploy.
 - **Ellementi** — cliente ainda sem projeto; foi removida do portal até começar. Slug
   reservado: `ellementi-emkr3tn` (ou gerar um novo).
-- **Fora do v1:** navegação para snapshots antigos (a `Timeline` só lista), seletor de
-  projeto client-side (hoje empilha), domínio próprio, analytics.
+- **v3 (exige sair do SSG puro):** aprovações clicáveis pelo cliente (Functions +
+  KV), notificação automática ao publicar snapshot (e-mail/WhatsApp), snapshot
+  semi-automático via GitHub Action no repo do cliente.
+- **Fora do v2:** navegação para snapshots antigos (a timeline mostra, não navega),
+  domínio próprio, analytics, botão "Salvar PDF" (print CSS já existe).

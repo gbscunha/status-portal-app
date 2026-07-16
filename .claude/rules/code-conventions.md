@@ -7,12 +7,14 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
 
 - `src/app/` = rotas (App Router). `src/components/` = componentes de
   apresentação. `src/lib/` = lógica pura (schemas, loaders, formatação).
-- **Server Components por padrão.** Nada de `"use client"`, estado ou handlers
-  no v1 — o site é read-only.
+- **Server Components por padrão.** Ilha `"use client"` só com justificativa
+  forte, mínima e recebendo conteúdo server como `children` — hoje existe UMA
+  (`ProjectSwitcher`; tabs com hash como fonte de verdade).
 - Um componente por arquivo, PascalCase, props tipadas com `type` inline ou
   importado de `@/lib/types`.
-- Composição segue a hierarquia `ProjectStack → StatusReport → (ReportHeader,
-  ProgressList, NextSteps, Section, Timeline, Legend, Footer)`.
+- Composição segue a hierarquia `ProjectStack → ProjectSwitcher → StatusReport
+  → (ReportHeader, SummaryStrip, PendingList, ProgressList, Legend, NextSteps,
+  Section, Timeline, ContactCta, Footer)`.
 
 ## Estilo
 
