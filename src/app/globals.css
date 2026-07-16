@@ -58,6 +58,12 @@ summary:focus-visible {
   outline-offset: 2px;
   border-radius: 4px;
 }
+a,
+button,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* Etiquetas mono que abrem blocos */
 .kicker {

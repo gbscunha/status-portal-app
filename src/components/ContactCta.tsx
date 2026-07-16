@@ -25,6 +25,8 @@ export function ContactCta({ client, projectName, variant = "compact" }: Props) 
         <a
           className="cta cta-wa"
           href={`https://wa.me/${whatsapp.slice(1)}?text=${encodeURIComponent(message)}`}
+          target="_blank"
+          rel="noopener"
         >
           WhatsApp
         </a>
