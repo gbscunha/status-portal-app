@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: "Status do Projeto",
   description: "Acompanhamento de projeto.",
   robots: { index: false, follow: false },
+};
+
+// Matches --bg in globals.css (mobile browser chrome color).
+export const viewport: Viewport = {
+  themeColor: "#fafafa",
 };
 
 export default function RootLayout({
