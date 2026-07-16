@@ -26,19 +26,31 @@ export function ProjectStack({ client }: { client: Client }) {
 
   if (reports.length === 0) {
     return (
-      <main className="client wrap" style={brandStyle}>
-        <header className="report-head empty-head">
-          <div className="kicker" translate="no">
-            {client.name}
+      <main className="client" style={brandStyle}>
+        <header className="mast">
+          <div className="wrap mast-row">
+            <span className="mast-vendor mono" translate="no">
+              {client.vendor} · Portal de acompanhamento
+            </span>
+            <ContactCta client={client} variant="compact" />
           </div>
-          <h1 className="report-title">
-            Estamos preparando o seu <span className="accent">relatório</span>
-          </h1>
-          <p className="sub">
-            O primeiro relatório de acompanhamento está sendo elaborado e
-            aparecerá aqui em breve. Guarde este link.
-          </p>
         </header>
+        <div className="wrap">
+          <header className="report-head empty-head">
+            <div className="kicker" translate="no">
+              {client.name}
+            </div>
+            <h1 className="report-title">
+              Estamos preparando o seu{" "}
+              <span className="accent">relatório</span>
+            </h1>
+            <p className="sub">
+              O primeiro relatório de acompanhamento está sendo elaborado e
+              aparecerá aqui em breve. Guarde este link.
+            </p>
+          </header>
+          <ContactCta client={client} variant="footer" />
+        </div>
       </main>
     );
   }
