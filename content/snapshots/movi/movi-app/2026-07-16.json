@@ -1,0 +1,91 @@
+{
+  "date": "2026-07-16",
+  "phase": "Seleção de veículo concluída",
+  "title": { "text": "App dos Motoristas", "highlight": "Motoristas" },
+  "subtitle": "O aplicativo que os motoristas vão usar em campo para preencher os checklists dos veículos. O motorista já entra no app e escolhe o veículo que vai vistoriar.",
+  "progress": [
+    { "label": "Estrutura do aplicativo", "percent": 100, "state": "done" },
+    { "label": "Acesso dos motoristas (login)", "percent": 100, "state": "done" },
+    { "label": "Seleção de veículo", "percent": 100, "state": "done" },
+    { "label": "Preenchimento de checklists", "percent": 0, "state": "plan" },
+    { "label": "Funcionamento offline", "percent": 0, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Preparar o app para o campo sem sinal",
+    "intro": "Com o acesso e a escolha do veículo prontos, a próxima etapa é a base que faz o app funcionar em qualquer lugar:",
+    "items": [
+      {
+        "label": "Funcionamento offline",
+        "desc": "o que o motorista fizer sem internet fica guardado no aparelho e é enviado sozinho quando o sinal volta."
+      },
+      {
+        "label": "Definição da ficha de vistoria",
+        "desc": "alinhamento dos campos do checklist com a equipe, para o preenchimento nascer do jeito certo."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Seleção de veículo funcionando",
+          "status": "done",
+          "description": "Ao entrar no app, o motorista vê a lista dos veículos que a empresa designou para ele — e apenas esses. Escolhe o veículo com um toque e já entra na área da vistoria. Se estiver sem internet, o app avisa e permite tentar de novo.",
+          "fullWidth": true
+        },
+        {
+          "title": "Cada motorista vê só o que é dele",
+          "status": "done",
+          "description": "Nasceu o vínculo entre motorista e veículo: a empresa define quem dirige o quê, e o app respeita isso automaticamente. Mais segurança e menos chance de vistoria no veículo errado.",
+          "fullWidth": false
+        },
+        {
+          "title": "Login dos motoristas funcionando",
+          "status": "done",
+          "description": "O motorista entra com o mesmo e-mail e senha do painel. A sessão fica guardada com segurança no aparelho e se renova sozinha — e agora isso está comprovado em uso real dentro do app.",
+          "fullWidth": false
+        },
+        {
+          "title": "Base do aplicativo com a cara da Movi",
+          "status": "done",
+          "description": "Logo, cores e tipografia da marca, testes automatizados a cada mudança — uma fundação sólida para crescer com segurança.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Funcionamento offline",
+          "status": "prog",
+          "description": "Próxima etapa a começar: checklists preenchidos sem sinal ficam guardados no aparelho e são enviados sozinhos assim que a conexão volta — essencial para o trabalho em campo."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Preenchimento de checklists em campo",
+          "status": "plan",
+          "description": "Registro de entrada e saída dos veículos direto pelo celular, na tela do veículo escolhido."
+        },
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Anexar fotos de avarias e assinaturas digitais a cada checklist."
+        },
+        {
+          "title": "Painel de designações",
+          "status": "plan",
+          "description": "Tela no painel administrativo para o gestor definir e ajustar quais motoristas dirigem quais veículos."
+        }
+      ]
+    }
+  ]
+}
