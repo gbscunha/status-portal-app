@@ -6,9 +6,22 @@ import {
   formatPtDateLong,
   todayIso,
 } from "@/lib/format";
+import { dailyPhrase } from "@/lib/greeting";
 import { overallPercent } from "@/lib/summary";
 
 const STALE_DAYS = 14;
+
+function PhraseTitle({ text, highlight }: { text: string; highlight: string }) {
+  const idx = text.indexOf(highlight);
+  if (idx === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <span className="admin-accent">{highlight}</span>
+      {text.slice(idx + highlight.length)}
+    </>
+  );
+}
 
 // Internal cockpit (owner only, never linked from anywhere). Direct wording
 // is fine here — this is not a client-facing page.
@@ -22,9 +35,10 @@ export function AdminDashboard() {
         <div className="kicker" translate="no">
           ITGraph · Painel interno
         </div>
-        {/* Greeting must work at any hour (static page) — no "bom dia". */}
+        {/* Greeting must work at any hour (static page) — no "bom dia".
+            The phrase rotates with the build date (src/lib/greeting.ts). */}
         <h1 className="report-title">
-          Olá, <span className="admin-accent">Gabriel</span>
+          <PhraseTitle {...dailyPhrase(today)} />
         </h1>
         <p className="admin-today">{formatPtDateLong(today)}</p>
         <p className="sub">
