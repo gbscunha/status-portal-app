@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { daysBetween, formatPtDate, formatPtDateLong, todayIso } from "./format";
+import {
+  daysBetween,
+  formatPtDate,
+  formatPtDateLong,
+  formatPtDateFull,
+  todayIso,
+} from "./format";
 
 describe("formatPtDate", () => {
   it("formats an ISO date in pt-BR without timezone drift", () => {
@@ -18,6 +24,18 @@ describe("formatPtDateLong", () => {
   it("formats an ISO date in full pt-BR", () => {
     expect(formatPtDateLong("2026-07-17")).toBe("17 de Julho de 2026");
     expect(formatPtDateLong("2026-01-01")).toBe("1 de Janeiro de 2026");
+  });
+});
+
+describe("formatPtDateFull", () => {
+  it("prepends the weekday to the long date", () => {
+    // 2026-07-17 is a Friday; 2026-07-19 a Sunday.
+    expect(formatPtDateFull("2026-07-17")).toBe(
+      "Sexta-feira, 17 de Julho de 2026",
+    );
+    expect(formatPtDateFull("2026-07-19")).toBe(
+      "Domingo, 19 de Julho de 2026",
+    );
   });
 });
 

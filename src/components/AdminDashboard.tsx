@@ -1,27 +1,10 @@
 import type { CSSProperties } from "react";
 import { getAllClients, getProjectSnapshots } from "@/lib/content";
-import {
-  daysBetween,
-  formatPtDate,
-  formatPtDateLong,
-  todayIso,
-} from "@/lib/format";
-import { dailyPhrase } from "@/lib/greeting";
+import { daysBetween, formatPtDate, todayIso } from "@/lib/format";
 import { overallPercent } from "@/lib/summary";
+import { AdminGreeting } from "./AdminGreeting";
 
 const STALE_DAYS = 14;
-
-function PhraseTitle({ text, highlight }: { text: string; highlight: string }) {
-  const idx = text.indexOf(highlight);
-  if (idx === -1) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, idx)}
-      <span className="admin-accent">{highlight}</span>
-      {text.slice(idx + highlight.length)}
-    </>
-  );
-}
 
 // Internal cockpit (owner only, never linked from anywhere). Direct wording
 // is fine here — this is not a client-facing page.
@@ -35,12 +18,7 @@ export function AdminDashboard() {
         <div className="kicker" translate="no">
           ITGraph · Painel interno
         </div>
-        {/* Greeting must work at any hour (static page) — no "bom dia".
-            The phrase rotates with the build date (src/lib/greeting.ts). */}
-        <h1 className="report-title">
-          <PhraseTitle {...dailyPhrase(today)} />
-        </h1>
-        <p className="admin-today">{formatPtDateLong(today)}</p>
+        <AdminGreeting buildDateIso={today} />
         <p className="sub">
           Visão consolidada dos projetos. Um card por cliente, com a última
           atualização, o progresso e as pendências de cada projeto. Uso

@@ -77,7 +77,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - Código e comentários em **inglês**; conteúdo (UI e snapshots) em **pt-BR**, em
   **linguagem de cliente** — foco em benefício, ZERO jargão técnico.
 - **Server Components** por padrão. Ilhas `"use client"` só com justificativa
-  forte e mínimas — hoje existe UMA (`ProjectSwitcher`, tabs via hash).
+  forte e mínimas — hoje existem DUAS (`ProjectSwitcher`, tabs via hash;
+  `AdminGreeting`, data da visita em página estática).
 - Cor da marca via CSS var `--brand`, setada por cliente no `ProjectStack`
   (`style={{ "--brand": brandColor }}`); o CSS usa `var(--brand)`.
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,
