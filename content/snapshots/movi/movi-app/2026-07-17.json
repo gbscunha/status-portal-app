@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-17",
+  "phase": "Ficha de inspeção funcionando",
+  "title": { "text": "Checklist App", "highlight": "App" },
+  "subtitle": "O aplicativo que os motoristas usam em campo para preencher os checklists dos veículos. O motorista entra, escolhe o veículo e preenche a ficha de inspeção — com ou sem internet.",
+  "progress": [
+    { "label": "Estrutura do aplicativo", "percent": 100, "state": "done" },
+    { "label": "Acesso dos motoristas (login)", "percent": 100, "state": "done" },
+    { "label": "Seleção de veículo", "percent": 100, "state": "done" },
+    { "label": "Funcionamento offline", "percent": 100, "state": "done" },
+    { "label": "Preenchimento de checklists", "percent": 90, "state": "prog" },
+    { "label": "Fotos e assinaturas", "percent": 5, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Últimos ajustes da ficha e depois as fotos",
+    "intro": "A ficha já funciona de ponta a ponta — do celular do motorista até o painel da empresa. Faltam os retoques finais:",
+    "items": [
+      {
+        "label": "Ficha 100% sem sinal",
+        "desc": "hoje o preenchimento já funciona offline; falta cobrir também a abertura da ficha em áreas totalmente sem sinal."
+      },
+      {
+        "label": "Fotos e assinaturas",
+        "desc": "registrar imagens dos itens com problema e a assinatura do motorista — os espaços já estão reservados na ficha."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Ficha de inspeção completa no celular",
+          "status": "done",
+          "description": "A ficha oficial da operação, direto no app: condições do veículo (faróis, freios, direção e mais 12 itens), equipamentos obrigatórios (extintor, triângulo, estepe), níveis de óleo, água, ARLA e combustível, quilometragem e observações. Preenchimento rápido: um toque marca tudo como 'em ordem' e o motorista ajusta só as exceções.",
+          "fullWidth": true
+        },
+        {
+          "title": "Entrada e saída inteligentes",
+          "status": "done",
+          "description": "O app sabe sozinho se o veículo está saindo ou voltando: a primeira ficha abre a rota (km inicial) e a segunda fecha (km final, conferido contra o inicial). As duas ficam vinculadas no painel automaticamente."
+        },
+        {
+          "title": "Observação onde importa",
+          "status": "done",
+          "description": "Marcou um item com problema? O campo de observação aparece na hora, ali mesmo — o gestor recebe o contexto junto com o apontamento."
+        },
+        {
+          "title": "Funciona sem internet",
+          "status": "done",
+          "description": "A ficha preenchida sem sinal fica guardada no aparelho — sobrevive até a fechar e reabrir o app — e é enviada sozinha assim que a conexão volta. Comprovado em teste real: nada se perde.",
+          "fullWidth": true
+        },
+        {
+          "title": "Confirmação antes de enviar",
+          "status": "done",
+          "description": "Antes de gravar, o motorista revisa um resumo (veículo, km, itens com problema) e confirma — proteção contra toques acidentais."
+        },
+        {
+          "title": "Cada motorista vê só o que é dele",
+          "status": "done",
+          "description": "A empresa define quem dirige o quê e o app respeita isso automaticamente. Login seguro com a mesma conta do painel."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Ficha 100% sem sinal",
+          "status": "prog",
+          "description": "O preenchimento e o envio já funcionam offline; o próximo ajuste cobre também a abertura da ficha em áreas totalmente sem cobertura, além de exibir o nome do motorista no cabeçalho."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Fotografar itens com problema e colher a assinatura do motorista na própria ficha — os espaços já aparecem no app, marcados como 'em breve'."
+        },
+        {
+          "title": "Refinamento visual",
+          "status": "plan",
+          "description": "Rodada de polimento na aparência e na fluidez das telas, com base no uso real do dia a dia."
+        }
+      ]
+    }
+  ]
+}

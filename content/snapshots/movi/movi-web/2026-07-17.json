@@ -1,0 +1,127 @@
+{
+  "date": "2026-07-17",
+  "phase": "Designações e ficha nova",
+  "title": { "text": "Painel Web", "highlight": "Web" },
+  "subtitle": "Visão geral do que já está entregue, o que está em desenvolvimento e o que ainda falta para o lançamento do sistema de gestão de frotas e checklists veiculares.",
+  "progress": [
+    { "label": "Acesso e segurança", "percent": 92, "state": "done" },
+    { "label": "Cadastros base", "percent": 100, "state": "done" },
+    { "label": "Designação de motoristas", "percent": 100, "state": "done" },
+    { "label": "Checklists", "percent": 85, "state": "prog" },
+    { "label": "Relatórios e painéis", "percent": 5, "state": "plan" },
+    { "label": "Preparação p/ lançamento", "percent": 40, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Mostrar a ficha nova por completo e partir para as fotos",
+    "intro": "O painel já recebe e guarda a ficha de inspeção nova que os motoristas preenchem no app. Na sequência:",
+    "items": [
+      {
+        "label": "Detalhes da ficha nova no painel",
+        "desc": "exibir na tela de detalhes tudo o que o motorista respondeu: condições, equipamentos, níveis de líquidos e observações item a item."
+      },
+      {
+        "label": "Fotos e assinaturas",
+        "desc": "anexar imagens de avarias e assinaturas digitais a cada checklist."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Designação de motoristas por veículo",
+          "status": "done",
+          "description": "O gestor agora define, direto na tela de veículos, quem pode dirigir cada um — inclusive marcando ou desmarcando todos de uma vez. O app dos motoristas obedece na hora: cada um vê apenas os veículos designados a ele.",
+          "fullWidth": true
+        },
+        {
+          "title": "Painel pronto para a ficha oficial",
+          "status": "done",
+          "description": "O sistema recebe e guarda a ficha de inspeção definida pela operação: condições do veículo, equipamentos obrigatórios, níveis de líquidos e observações por item — tudo enviado pelo app, mesmo quando preenchido sem internet.",
+          "fullWidth": true
+        },
+        {
+          "title": "Acesso ao sistema",
+          "status": "done",
+          "description": "Login seguro, níveis de permissão (administrador, gestor, motorista) e suporte a múltiplas empresas no mesmo painel."
+        },
+        {
+          "title": "Gestão de empresas",
+          "status": "done",
+          "description": "Cadastro, edição e exclusão de empresas, com validação de CNPJ e isolamento total de dados entre clientes."
+        },
+        {
+          "title": "Gestão de frota",
+          "status": "done",
+          "description": "Cadastro de veículos com placa, modelo, marca, cor e ano. Listagem com busca, filtros, controle de status e a nova coluna de motoristas designados."
+        },
+        {
+          "title": "Gestão de usuários",
+          "status": "done",
+          "description": "Cadastro de motoristas e gestores, com papéis e permissões definidos por empresa."
+        },
+        {
+          "title": "Registro de checklists",
+          "status": "done",
+          "description": "O app dos motoristas registra entrada e saída dos veículos, com pareamento automático entre as duas etapas da viagem."
+        },
+        {
+          "title": "Listagem e detalhes de checklists",
+          "status": "done",
+          "description": "Painel com todos os checklists, filtros por tipo, veículo, motorista, período e situação, e tela de detalhes com itens vistoriados, pareamento e mapa."
+        },
+        {
+          "title": "Rastreabilidade e auditoria",
+          "status": "done",
+          "description": "Toda ação importante fica registrada — inclusive quem designou ou removeu cada motorista de um veículo. Histórico preservado mesmo quando veículos ou motoristas saem da operação.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Detalhes da ficha nova no painel",
+          "status": "prog",
+          "description": "As respostas da ficha nova já chegam e ficam guardadas; a tela de detalhes vai passar a exibi-las por completo: condições, equipamentos, níveis e observações de cada item."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Anexar imagens de avarias e assinaturas digitais aos checklists, com galeria organizada por categoria."
+        },
+        {
+          "title": "Exportação para Excel",
+          "status": "plan",
+          "description": "Exportar checklists filtrados em planilha, para relatórios e prestação de contas."
+        },
+        {
+          "title": "Painel de indicadores",
+          "status": "plan",
+          "description": "Dashboard com gráficos e estatísticas: volume de checklists, veículos com pendências, atividade por período."
+        },
+        {
+          "title": "Refinamento visual",
+          "status": "plan",
+          "description": "Rodada de polimento na aparência e usabilidade das telas, com base no uso real."
+        },
+        {
+          "title": "Preparação para lançamento",
+          "status": "plan",
+          "description": "Camada final de segurança, backups automáticos, domínio próprio (.com.br) e testes de ponta a ponta antes da abertura ao público. Parte já implementada (proteções de acesso); restante planejado para a reta final.",
+          "fullWidth": true
+        }
+      ]
+    }
+  ]
+}
