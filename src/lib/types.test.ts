@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clientSchema, snapshotSchema } from "./types";
+import { adminSchema, clientSchema, snapshotSchema } from "./types";
 
 const baseClient = {
   id: "acme",
@@ -65,5 +65,15 @@ describe("snapshotSchema pending items", () => {
       pending: [{ label: "x", desc: "y", since: "10/07/2026" }],
     });
     expect(parsed.success).toBe(false);
+  });
+});
+
+describe("adminSchema", () => {
+  it("accepts a valid admin config", () => {
+    expect(adminSchema.safeParse({ slug: "admin-abc1234" }).success).toBe(true);
+  });
+
+  it("rejects an empty slug", () => {
+    expect(adminSchema.safeParse({ slug: "" }).success).toBe(false);
   });
 });
