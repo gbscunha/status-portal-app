@@ -15,7 +15,7 @@ const plexMono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
 });
 
 // Título genérico de propósito: nenhuma página deve revelar o cliente

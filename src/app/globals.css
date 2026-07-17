@@ -69,6 +69,7 @@ summary {
 .kicker {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -107,9 +108,10 @@ summary {
 }
 .mast-vendor {
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -150,6 +152,7 @@ summary {
 .tab {
   font-family: var(--font-mono), monospace;
   font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -227,6 +230,7 @@ h1 .accent {
 .manifest-item dt {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -323,6 +327,7 @@ h1 .accent {
   display: inline-block;
   margin-left: 8px;
   font-size: 10.5px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--prog);
@@ -403,6 +408,7 @@ h1 .accent {
   margin: -24px 0 40px;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -486,6 +492,7 @@ h1 .accent {
 .section-head .num,
 .section-done .num {
   font-size: 12px;
+  font-weight: 600;
   color: var(--brand);
   letter-spacing: 0.1em;
 }
@@ -508,6 +515,7 @@ h1 .accent {
 .section-badge {
   margin-left: auto;
   font-size: 10.5px;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--done);
@@ -638,6 +646,7 @@ h1 .accent {
 }
 .rail-date {
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -667,6 +676,7 @@ h1 .accent {
 .cta {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -749,6 +759,7 @@ footer {
   border-top: 1px solid var(--line);
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
