@@ -133,12 +133,13 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Estado atual
 
-- **Live na Vercel** (repo GitHub privado próprio). Cliente **Movi** (`movi-3xubgjr`)
-  com 3 projetos: Painel Administrativo, App dos Motoristas (Fase 0), Movi Exporter
-  (produção v1.4.0).
+- **Live na Vercel**, domínio de produção **https://portal.itgraph.com.br**
+  (CNAME no Cloudflare, proxy DNS-only; repo GitHub privado próprio). Cliente
+  **Movi** (`movi-3xubgjr`) com 3 projetos: Painel Web, Checklist App, Movi
+  Exporter. Painel admin interno em `/a/` (slug em `content/admin.json`).
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
-- **Backlog:** melhorias de UI/UX (adiadas de propósito no 1º deploy). **Ellementi:**
-  criar quando o projeto começar (slug reservado `ellementi-emkr3tn`).
+- **Backlog:** ver CHECKLIST local (cron de rebuild diário, Ellementi
+  `ellementi-emkr3tn`, analytics, v3).
 
 ## Compactação
 
