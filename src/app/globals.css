@@ -738,6 +738,125 @@ h1 .accent {
   border-color: var(--paper);
 }
 
+/* ---- Painel admin (interno, /a/<slug>) ---- */
+
+.admin {
+  padding-top: clamp(36px, 7vw, 72px);
+}
+.admin-head {
+  margin-bottom: 32px;
+}
+.admin-accent {
+  color: var(--ink);
+  border-bottom: 4px solid var(--ink);
+}
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+.admin-card {
+  display: block;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+.admin-card:hover {
+  border-color: var(--brand);
+}
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.admin-chip {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+.admin-client {
+  font-size: 16px;
+  font-weight: 650;
+  font-stretch: 110%;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.admin-open {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.admin-card:hover .admin-open {
+  color: var(--brand);
+}
+.admin-projects {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-projects li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+}
+.admin-project {
+  font-weight: 500;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.admin-meta {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.admin-note {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+.admin-note.plan {
+  color: var(--plan);
+  background: var(--plan-bg);
+}
+.admin-note.prog {
+  color: var(--prog);
+  background: var(--prog-bg);
+}
+.admin-note.stale {
+  color: var(--paper);
+  background: var(--prog);
+}
+.admin-foot {
+  margin-top: 28px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.admin-foot code {
+  font-family: inherit;
+  font-weight: 600;
+}
+
 /* ---- Rodapé ---- */
 
 footer {
