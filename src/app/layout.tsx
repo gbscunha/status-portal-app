@@ -15,7 +15,7 @@ const archivo = Archivo({
 // fora da URL secreta. O noindex por página fica em generateMetadata.
 export const metadata: Metadata = {
   title: "Status do Projeto",
-  description: "Acompanhamento de projeto.",
+  description: "Visão consolidada dos projetos da ITGraph",
   robots: { index: false, follow: false },
 };
 
