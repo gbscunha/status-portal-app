@@ -43,6 +43,25 @@ export function formatPtDateLong(iso: string): string {
   return `${d} de ${month} de ${y}`;
 }
 
+const WEEKDAYS_PT = [
+  "Domingo",
+  "Segunda-feira",
+  "Terça-feira",
+  "Quarta-feira",
+  "Quinta-feira",
+  "Sexta-feira",
+  "Sábado",
+];
+
+/** Weekday + full pt-BR date, e.g. "Sexta-feira, 17 de Julho de 2026".
+ *  TZ-safe: weekday comes from Date.UTC over the ISO parts. */
+export function formatPtDateFull(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const weekday =
+    WEEKDAYS_PT[new Date(Date.UTC(y ?? 0, (m ?? 1) - 1, d ?? 1)).getUTCDay()];
+  return `${weekday}, ${formatPtDateLong(iso)}`;
+}
+
 /** Whole days from a to b (negative when b precedes a). TZ-safe: built from
  *  the ISO parts with Date.UTC, never parsing the string as a Date. */
 export function daysBetween(aIso: string, bIso: string): number {
