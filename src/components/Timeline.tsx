@@ -29,7 +29,7 @@ export function Timeline({
             >
               <span className="rail-dot" aria-hidden="true" />
               <div className="rail-body">
-                <span className="rail-date mono">
+                <span className="rail-date">
                   {formatPtDate(entry.date)}
                   {current && <span className="rail-here">Você está aqui</span>}
                 </span>

@@ -12,7 +12,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
   diferenciação é por **slug não-adivinhável** + `noindex`.
 - Conteúdo é **dado** (JSON em `content/`), não código. Design system próprio
   v2 "**rastreio de entrega**" (trilho na cor da marca, manifesto, tabs):
-  Archivo variable (eixo `wdth`) + IBM Plex Mono, CSS puro. Ver DECISOES §14.
+  família única Archivo variable (eixo `wdth`), CSS puro. Ver DECISOES §14.
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 

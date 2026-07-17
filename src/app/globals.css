@@ -3,8 +3,8 @@
   O cliente acompanha o produto sob medida como acompanha uma encomenda:
   trilho, checkpoints, etiquetas, manifesto. Assinatura visual: o trilho
   vertical na cor da marca (--brand, setada por cliente no wrapper .client).
-  Fontes via next/font no layout: Archivo variable (eixo wdth — display
-  expanded) e IBM Plex Mono (dados/etiquetas).
+  Fonte via next/font no layout: Archivo variable (eixo wdth) — display
+  expanded nos títulos, largura normal no corpo e nas etiquetas uppercase.
 */
 
 :root {
@@ -46,10 +46,6 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
-.mono {
-  font-family: var(--font-mono), monospace;
-}
-
 /* Foco visível padrão para tudo que é interativo */
 a:focus-visible,
 button:focus-visible,
@@ -65,9 +61,8 @@ summary {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Etiquetas mono que abrem blocos */
+/* Etiquetas uppercase que abrem blocos */
 .kicker {
-  font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -75,7 +70,6 @@ summary {
   color: var(--muted);
 }
 .block-title {
-  font-family: var(--font-mono), monospace;
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -150,7 +144,6 @@ summary {
   scrollbar-width: none;
 }
 .tab {
-  font-family: var(--font-mono), monospace;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -228,7 +221,6 @@ h1 .accent {
   min-width: 0;
 }
 .manifest-item dt {
-  font-family: var(--font-mono), monospace;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -379,7 +371,6 @@ h1 .accent {
   background: var(--plan-track);
 }
 .pct {
-  font-family: var(--font-mono), monospace;
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   color: var(--muted);
@@ -406,7 +397,6 @@ h1 .accent {
   gap: 22px;
   flex-wrap: wrap;
   margin: -24px 0 40px;
-  font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -526,7 +516,6 @@ h1 .accent {
 }
 .section-done summary::after {
   content: "+";
-  font-family: var(--font-mono), monospace;
   color: var(--muted);
   font-size: 15px;
 }
@@ -567,7 +556,6 @@ h1 .accent {
 }
 
 .pill {
-  font-family: var(--font-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -674,7 +662,6 @@ h1 .accent {
 /* ---- Contato ---- */
 
 .cta {
-  font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -757,7 +744,6 @@ footer {
   margin-top: 40px;
   padding-top: 22px;
   border-top: 1px solid var(--line);
-  font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;

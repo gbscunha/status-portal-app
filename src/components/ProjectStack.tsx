@@ -29,7 +29,7 @@ export function ProjectStack({ client }: { client: Client }) {
       <main className="client" style={brandStyle}>
         <header className="mast">
           <div className="wrap mast-row">
-            <span className="mast-vendor mono" translate="no">
+            <span className="mast-vendor" translate="no">
               {client.vendor} · Portal de acompanhamento
             </span>
             <ContactCta client={client} variant="compact" />
@@ -59,7 +59,7 @@ export function ProjectStack({ client }: { client: Client }) {
     <main className="client" style={brandStyle}>
       <header className="mast">
         <div className="wrap mast-row">
-          <span className="mast-vendor mono" translate="no">
+          <span className="mast-vendor" translate="no">
             {client.vendor} · Portal de acompanhamento
           </span>
           <ContactCta client={client} variant="compact" />

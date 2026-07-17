@@ -175,8 +175,10 @@ cliente troca uma variável.
 
 **Decisão:** o design deixou de ser o HTML portado 1:1 e virou um design system
 próprio ("rastreio de entrega": trilho vertical na cor da marca, manifesto,
-tabs-etiqueta). Tipografia trocada para Archivo variable (eixo `wdth`) + IBM
-Plex Mono. O seletor de projetos é a **única** ilha `"use client"`
+tabs-etiqueta). Tipografia de família única: Archivo variable (eixo `wdth`) —
+expanded nos títulos, normal no corpo e nas etiquetas uppercase (o IBM Plex
+Mono entrou e saiu no mesmo dia: o dono achou frágil/deslocado nos tamanhos
+pequenos). O seletor de projetos é a **única** ilha `"use client"`
 (`ProjectSwitcher`): os relatórios seguem Server Components passados como
 children; o hash da URL é a fonte de verdade das tabs (deep-link + voltar).
 

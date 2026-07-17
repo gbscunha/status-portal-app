@@ -17,7 +17,7 @@ export function PendingList({ items }: { items: PendingItem[] }) {
           <li key={item.label}>
             <b>{item.label}</b> — {item.desc}
             {item.since && (
-              <span className="pending-since mono">
+              <span className="pending-since">
                 desde {formatPtDate(item.since)}
               </span>
             )}

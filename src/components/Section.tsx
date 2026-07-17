@@ -18,9 +18,9 @@ export function Section({ number, title, cards }: SectionData) {
     return (
       <details className="section section-done">
         <summary>
-          <span className="num mono">{number}</span>
+          <span className="num">{number}</span>
           <h3>{title}</h3>
-          <span className="section-badge mono">
+          <span className="section-badge">
             {cards.length} {cards.length === 1 ? "entrega" : "entregas"} ✓
           </span>
         </summary>
@@ -32,7 +32,7 @@ export function Section({ number, title, cards }: SectionData) {
   return (
     <section className="section">
       <div className="section-head">
-        <span className="num mono">{number}</span>
+        <span className="num">{number}</span>
         <h3>{title}</h3>
       </div>
       {grid}
