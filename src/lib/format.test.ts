@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { daysBetween, formatPtDate, todayIso } from "./format";
+import { daysBetween, formatPtDate, formatPtDateLong, todayIso } from "./format";
 
 describe("formatPtDate", () => {
   it("formats an ISO date in pt-BR without timezone drift", () => {
@@ -11,6 +11,13 @@ describe("formatPtDate", () => {
   it("formats the first and last day of the year", () => {
     expect(formatPtDate("2026-01-01")).toBe("1 Jan 2026");
     expect(formatPtDate("2026-12-31")).toBe("31 Dez 2026");
+  });
+});
+
+describe("formatPtDateLong", () => {
+  it("formats an ISO date in full pt-BR", () => {
+    expect(formatPtDateLong("2026-07-17")).toBe("17 de Julho de 2026");
+    expect(formatPtDateLong("2026-01-01")).toBe("1 de Janeiro de 2026");
   });
 });
 

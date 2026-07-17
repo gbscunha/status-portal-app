@@ -15,10 +15,32 @@ const MONTHS_PT = [
   "Dez",
 ];
 
+const MONTHS_PT_LONG = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
+];
+
 export function formatPtDate(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);
   const month = MONTHS_PT[(m ?? 1) - 1] ?? "";
   return `${d} ${month} ${y}`;
+}
+
+/** Full pt-BR date, e.g. "17 de Julho de 2026". */
+export function formatPtDateLong(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const month = MONTHS_PT_LONG[(m ?? 1) - 1] ?? "";
+  return `${d} de ${month} de ${y}`;
 }
 
 /** Whole days from a to b (negative when b precedes a). TZ-safe: built from

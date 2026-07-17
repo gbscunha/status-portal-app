@@ -1,6 +1,11 @@
 import type { CSSProperties } from "react";
 import { getAllClients, getProjectSnapshots } from "@/lib/content";
-import { daysBetween, formatPtDate, todayIso } from "@/lib/format";
+import {
+  daysBetween,
+  formatPtDate,
+  formatPtDateLong,
+  todayIso,
+} from "@/lib/format";
 import { overallPercent } from "@/lib/summary";
 
 const STALE_DAYS = 14;
@@ -17,9 +22,11 @@ export function AdminDashboard() {
         <div className="kicker" translate="no">
           ITGraph · Painel interno
         </div>
+        {/* Greeting must work at any hour (static page) — no "bom dia". */}
         <h1 className="report-title">
-          Todos os <span className="admin-accent">clientes</span>
+          Olá, <span className="admin-accent">Gabriel</span>
         </h1>
+        <p className="admin-today">{formatPtDateLong(today)}</p>
         <p className="sub">
           Um card por cliente, com o pulso de cada projeto. Esta página é só
           sua — não passe este link adiante.
@@ -83,7 +90,7 @@ export function AdminDashboard() {
         ))}
       </div>
 
-      <p className="admin-foot">Dados do último deploy ({formatPtDate(today)}).</p>
+      <p className="admin-foot">Dados do último deploy - {formatPtDate(today)}.</p>
     </main>
   );
 }

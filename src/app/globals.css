@@ -750,6 +750,14 @@ h1 .accent {
   color: var(--ink);
   border-bottom: 4px solid var(--ink);
 }
+.admin-today {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .admin-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
