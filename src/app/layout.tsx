@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// Single-family system: Archivo variable (wdth axis) covers display
+// (expanded), body and the small uppercase labels.
+const archivo = Archivo({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
+  axes: ["wdth"],
 });
 
 // Título genérico de propósito: nenhuma página deve revelar o cliente
@@ -22,16 +19,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Matches --wash in globals.css (mobile browser chrome color).
+export const viewport: Viewport = {
+  themeColor: "#f4f5f7",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${bricolage.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="pt-BR" className={archivo.variable}>
       <body>{children}</body>
     </html>
   );

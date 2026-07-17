@@ -5,15 +5,17 @@
   "slug": "movi-3xubgjr",
   "brandColor": "#FF0E10",
   "vendor": "ITGraph",
+  "whatsapp": "+5521995890014",
+  "email": "gabriel@itgraph.com.br",
   "projects": [
     {
       "id": "movi-web",
-      "name": "Painel Administrativo",
+      "name": "Painel Web",
       "platform": "Painel Web"
     },
     {
       "id": "movi-app",
-      "name": "App dos Motoristas",
+      "name": "Checklist App",
       "platform": "Aplicativo (iOS e Android)"
     },
     {

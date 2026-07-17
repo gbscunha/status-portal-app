@@ -10,9 +10,9 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 - Cada cliente acessa `/r/<slug>` e vê **só os projetos dele**. Sem auth — a
   diferenciação é por **slug não-adivinhável** + `noindex`.
-- Conteúdo é **dado** (JSON em `content/`), não código. O design é fixo, portado
-  1:1 de um HTML de status ("operational precision": Bricolage Grotesque +
-  JetBrains Mono + cor de marca).
+- Conteúdo é **dado** (JSON em `content/`), não código. Design system próprio
+  v2 "**rastreio de entrega**" (trilho na cor da marca, manifesto, tabs):
+  família única Archivo variable (eixo `wdth`), CSS puro. Ver DECISOES §14.
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 
@@ -20,7 +20,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 ```
 src/app/            — App Router. r/[slug]/ = página do cliente; robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
-src/components/     — design portado em Server Components (ProjectStack → StatusReport → …)
+src/components/     — Server Components (ProjectStack → ProjectSwitcher* → StatusReport → …); *única ilha "use client"
 src/lib/            — types.ts (schema Zod), status.ts (estados), content.ts (loaders fs), format.ts (data TZ-safe)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
@@ -60,10 +60,12 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 ## Modelo de dados
 
 - **Cliente** (`content/clients/<id>.json`): `id`, `name`, `contact?`, `slug`,
-  `brandColor` (hex `#RRGGBB`), `vendor`, `projects[]` (`id`, `name`, `platform?`).
+  `brandColor` (hex `#RRGGBB`), `vendor`, `whatsapp?` (E.164, canal da ITGraph),
+  `email?`, `projects[]` (`id`, `name`, `platform?`).
 - **Snapshot** (`content/snapshots/<clientId>/<projectId>/<data>.json`): `date`
   (YYYY-MM-DD), `phase?`, `title{text,highlight?}`, `subtitle?`,
   `progress[]{label,percent,state}`, `nextSteps?{title,intro?,items[]{label,desc}}`,
+  `pending?[]{label,desc,since?}` (ações do CLIENTE — bloco "Aguardando você"),
   `sections[]{number,title,cards[]{title,status,description,fullWidth?}}`.
 - **Estados** (`state`/`status`): só `done` (verde) · `prog` (âmbar) · `plan`
   (cinza). Fonte única: `src/lib/status.ts`. Cores vivem no CSS (`globals.css`).
@@ -74,7 +76,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - Código e comentários em **inglês**; conteúdo (UI e snapshots) em **pt-BR**, em
   **linguagem de cliente** — foco em benefício, ZERO jargão técnico.
-- **Server Components** por padrão (sem estado/interação no v1).
+- **Server Components** por padrão. Ilhas `"use client"` só com justificativa
+  forte e mínimas — hoje existe UMA (`ProjectSwitcher`, tabs via hash).
 - Cor da marca via CSS var `--brand`, setada por cliente no `ProjectStack`
   (`style={{ "--brand": brandColor }}`); o CSS usa `var(--brand)`.
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,

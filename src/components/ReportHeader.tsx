@@ -1,13 +1,11 @@
 import type { Snapshot } from "@/lib/types";
-import { formatPtDate } from "@/lib/format";
 
 type Props = {
   kicker: string;
   title: Snapshot["title"];
   subtitle?: string;
-  date: string;
-  platform?: string;
-  phase?: string;
+  /** Heading tag for the report title; the page h1 lives in the mast. */
+  titleAs?: "h1" | "h2";
 };
 
 function TitleText({ text, highlight }: Snapshot["title"]) {
@@ -26,36 +24,16 @@ function TitleText({ text, highlight }: Snapshot["title"]) {
   return <>{text}</>;
 }
 
-export function ReportHeader({
-  kicker,
-  title,
-  subtitle,
-  date,
-  platform,
-  phase,
-}: Props) {
+export function ReportHeader({ kicker, title, subtitle, titleAs: Title = "h2" }: Props) {
   return (
-    <header>
-      <div className="kicker">{kicker}</div>
-      <h1>
-        <TitleText {...title} />
-      </h1>
-      {subtitle && <p className="sub">{subtitle}</p>}
-      <div className="meta">
-        <span>
-          Atualizado · <b>{formatPtDate(date)}</b>
-        </span>
-        {platform && (
-          <span>
-            Plataforma · <b>{platform}</b>
-          </span>
-        )}
-        {phase && (
-          <span>
-            Fase atual · <b>{phase}</b>
-          </span>
-        )}
+    <header className="report-head">
+      <div className="kicker" translate="no">
+        {kicker}
       </div>
+      <Title className="report-title">
+        <TitleText {...title} />
+      </Title>
+      {subtitle && <p className="sub">{subtitle}</p>}
     </header>
   );
 }

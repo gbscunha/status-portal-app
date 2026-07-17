@@ -1,7 +1,7 @@
 {
   "date": "2026-07-10",
   "phase": "Checklists (Fase 4)",
-  "title": { "text": "Status do Projeto", "highlight": "Projeto" },
+  "title": { "text": "Painel Web", "highlight": "Web" },
   "subtitle": "Visão geral do que já está entregue, o que está em desenvolvimento e o que ainda falta para o lançamento do sistema de gestão de frotas e checklists veiculares.",
   "progress": [
     { "label": "Acesso e segurança", "percent": 92, "state": "done" },

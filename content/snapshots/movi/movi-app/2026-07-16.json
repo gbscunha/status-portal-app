@@ -1,7 +1,7 @@
 {
   "date": "2026-07-16",
   "phase": "Seleção de veículo concluída",
-  "title": { "text": "App dos Motoristas", "highlight": "Motoristas" },
+  "title": { "text": "Checklist App", "highlight": "App" },
   "subtitle": "O aplicativo que os motoristas vão usar em campo para preencher os checklists dos veículos. O motorista já entra no app e escolhe o veículo que vai vistoriar.",
   "progress": [
     { "label": "Estrutura do aplicativo", "percent": 100, "state": "done" },
