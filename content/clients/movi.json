@@ -10,12 +10,12 @@
   "projects": [
     {
       "id": "movi-web",
-      "name": "Painel Administrativo",
+      "name": "Painel Web",
       "platform": "Painel Web"
     },
     {
       "id": "movi-app",
-      "name": "App dos Motoristas",
+      "name": "Checklist App",
       "platform": "Aplicativo (iOS e Android)"
     },
     {
