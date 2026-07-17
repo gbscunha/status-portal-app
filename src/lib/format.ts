@@ -15,8 +15,48 @@ const MONTHS_PT = [
   "Dez",
 ];
 
+const MONTHS_PT_LONG = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
+];
+
 export function formatPtDate(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);
   const month = MONTHS_PT[(m ?? 1) - 1] ?? "";
   return `${d} ${month} ${y}`;
+}
+
+/** Full pt-BR date, e.g. "17 de Julho de 2026". */
+export function formatPtDateLong(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const month = MONTHS_PT_LONG[(m ?? 1) - 1] ?? "";
+  return `${d} de ${month} de ${y}`;
+}
+
+/** Whole days from a to b (negative when b precedes a). TZ-safe: built from
+ *  the ISO parts with Date.UTC, never parsing the string as a Date. */
+export function daysBetween(aIso: string, bIso: string): number {
+  const toUtcDays = (iso: string) => {
+    const [y, m, d] = iso.split("-").map(Number);
+    return Date.UTC(y ?? 0, (m ?? 1) - 1, d ?? 1) / 86_400_000;
+  };
+  return toUtcDays(bIso) - toUtcDays(aIso);
+}
+
+/** Today's date (YYYY-MM-DD) in America/Sao_Paulo. Under SSG this is the
+ *  BUILD date — acceptable because every push redeploys. */
+export function todayIso(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date());
 }

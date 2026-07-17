@@ -33,6 +33,14 @@ export const clientSchema = z.object({
   projects: z.array(projectSchema).min(1),
 });
 
+// ---- Painel admin (content/admin.json) ----
+
+// O slug secreto do cockpit do dono (/a/<slug>). Mesma segurança das páginas
+// de cliente; se vazar, gerar outro com scripts/gen-slug.mjs e trocar aqui.
+export const adminSchema = z.object({
+  slug: z.string().min(1),
+});
+
 // ---- Snapshot temporal (content/snapshots/<client>/<project>/<data>.json) ----
 
 export const progressItemSchema = z.object({

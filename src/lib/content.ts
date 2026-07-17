@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  adminSchema,
   clientSchema,
   snapshotSchema,
   type Client,
@@ -30,6 +31,28 @@ function readJsonFiles(dir: string): { file: string; data: unknown }[] {
       }
     })
     .filter((x): x is { file: string; data: unknown } => x !== null);
+}
+
+// ---- Painel admin ----
+
+// Slug secreto do cockpit (/a/<slug>). Sem arquivo ou inválido → null e o
+// build segue sem a rota (parse defensivo, como todo o conteúdo).
+export function getAdminSlug(): string | null {
+  const file = path.join(CONTENT_DIR, "admin.json");
+  if (!fs.existsSync(file)) return null;
+  try {
+    const parsed = adminSchema.safeParse(
+      JSON.parse(fs.readFileSync(file, "utf-8")),
+    );
+    if (!parsed.success) {
+      console.warn("[content] admin.json inválido, ignorando:", parsed.error.issues);
+      return null;
+    }
+    return parsed.data.slug;
+  } catch (err) {
+    console.warn("[content] admin.json ilegível, ignorando:", err);
+    return null;
+  }
 }
 
 // ---- Clientes ----

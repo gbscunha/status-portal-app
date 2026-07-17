@@ -195,6 +195,26 @@ necessidade.
 
 ---
 
+## 15. Painel admin (`/a/<slug>`) — exceção consciente ao "não listar slugs"
+
+**Decisão:** existe UMA rota que lista todos os clientes e seus slugs: o
+painel interno `/a/<slug-admin>` (slug em `content/admin.json`, gerado pelo
+`gen-slug`). Cockpit do dono: card por cliente com link, última atualização,
+progresso, pendências e alerta de "parado há N dias" (>14 sem snapshot,
+referência = data do build).
+
+**Por quê:** sem visão consolidada, o dono precisava guardar cada URL. O
+painel usa o MESMO modelo de segurança das páginas de cliente (slug forte +
+noindex 3 camadas + 404 via `dynamicParams=false` + nunca linkado). O risco
+novo é ser ponto único: se ESTE slug vazar, vazam todos — mitigação é a
+rotação barata (rodar `gen-slug` de novo e trocar o `admin.json`; o link
+antigo passa a dar 404 no próximo deploy).
+
+**Rejeitado:** auth de verdade (quebraria o "SSG puro sem backend" por um
+usuário só); listar na raiz (indexável/adivinhável).
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".
