@@ -42,9 +42,13 @@ export function AdminDashboard() {
         </h1>
         <p className="admin-today">{formatPtDateLong(today)}</p>
         <p className="sub">
-          Visão consolidada da operação: um card por cliente, com a última
+          Visão consolidada dos projetos. Um card por cliente, com a última
           atualização, o progresso e as pendências de cada projeto. Uso
-          interno da equipe ITGraph — este link não sai daqui.
+          interno da equipe{" "}
+          <b className="semibold" translate="no">
+            ITGraph
+          </b>
+          .
         </p>
       </header>
 

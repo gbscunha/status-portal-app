@@ -46,6 +46,9 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+.semibold {
+  font-weight: 600;
+}
 /* Foco visível padrão para tudo que é interativo */
 a:focus-visible,
 button:focus-visible,
