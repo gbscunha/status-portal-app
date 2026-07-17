@@ -54,7 +54,8 @@ Verificação manual das rotas: `pnpm dev` → `/r/<slug>` renderiza; `/r/<inexi
 - [ ] `noindex` nas 3 camadas: metadata (layout + page), `app/robots.ts`,
       header `X-Robots-Tag` (`next.config.ts`).
 - [ ] Nenhum OpenGraph rico ou título que revele o cliente em `/r/[slug]`.
-- [ ] Nenhuma rota pública lista clientes ou slugs (a raiz é institucional).
+- [ ] Nenhuma rota de cliente (nem a raiz) lista clientes ou slugs; exceção
+      única e consciente: painel admin `/a/<slug>` (DECISOES §15).
 - [ ] Snapshots são imutáveis: novo status = novo arquivo `YYYY-MM-DD[-N].json`,
       nunca sobrescrever.
 - [ ] Estados de status são só `done | prog | plan` (`src/lib/status.ts` é a

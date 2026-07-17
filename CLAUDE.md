@@ -19,7 +19,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 ## Estrutura
 
 ```
-src/app/            — App Router. r/[slug]/ = página do cliente; robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
+src/app/            — App Router. r/[slug]/ = página do cliente; a/[slug]/ = painel admin (interno); robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
 src/components/     — Server Components (ProjectStack → ProjectSwitcher* → StatusReport → …); *única ilha "use client"
 src/lib/            — types.ts (schema Zod), status.ts (estados), content.ts (loaders fs), format.ts (data TZ-safe)
 content/clients/    — <id>.json: config estável do cliente
@@ -92,8 +92,11 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - `noindex` em **3 camadas**: metadata (`layout` + `page`), `app/robots.ts`, e header
   `X-Robots-Tag` (`next.config.ts`).
 - **SEM OpenGraph rico** em `/r/[slug]` — o unfurl do link não pode vazar o cliente.
-- `page.tsx` raiz **nunca** lista clientes/slugs. Entregar ao cliente só o domínio de
-  produção (previews `*.vercel.app` também servem o conteúdo).
+- Nenhuma rota **de cliente** (nem a raiz) lista clientes/slugs. Exceção única:
+  o painel interno `/a/<slug-admin>` (`content/admin.json`, mesmo modelo de
+  segurança; se vazar, rodar `gen-slug` e trocar o slug — DECISOES §15). O slug
+  admin NUNCA vai para cliente. Entregar ao cliente só o domínio de produção
+  (previews `*.vercel.app` também servem o conteúdo).
 
 ## Atualização de status (a skill)
 
