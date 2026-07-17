@@ -83,10 +83,7 @@ export function AdminDashboard() {
         ))}
       </div>
 
-      <p className="admin-foot">
-        Dados do último deploy ({formatPtDate(today)}). Slug vazou? Gere outro
-        com <code>gen-slug</code> e troque o <code>content/admin.json</code>.
-      </p>
+      <p className="admin-foot">Dados do último deploy ({formatPtDate(today)}).</p>
     </main>
   );
 }
