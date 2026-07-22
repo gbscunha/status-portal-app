@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-22",
+  "phase": "Preparação",
+  "title": {
+    "text": "Projeto em preparação",
+    "highlight": "em preparação"
+  },
+  "subtitle": "O Diagnóstico Personalizado está em fase de preparação. As primeiras novidades aparecerão aqui em breve.",
+  "progress": [],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Ponto de partida",
+      "cards": [
+        {
+          "title": "Kickoff em preparação",
+          "status": "plan",
+          "description": "Estamos organizando o início do projeto. Assim que os trabalhos começarem, cada avanço será registrado nesta página."
+        }
+      ]
+    }
+  ]
+}
