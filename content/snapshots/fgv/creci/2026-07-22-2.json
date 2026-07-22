@@ -1,0 +1,47 @@
+{
+  "date": "2026-07-22",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "O cabeçalho e o rodapé — presentes em todas as páginas — já estão prontos. Seguimos agora para as páginas de conteúdo.",
+  "progress": [
+    { "label": "Estrutura base das páginas", "percent": 60, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "items": [
+      { "label": "Primeiras páginas", "desc": "Começar a montar as páginas de conteúdo sobre a base visual já pronta." }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do site será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Cabeçalho e rodapé prontos",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) já estão construídos e aparecem em todas as páginas — a fundação visual do site. Ajustam-se automaticamente para telas de celular."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Páginas de conteúdo",
+          "status": "prog",
+          "description": "Com a base visual pronta, começam a ser montadas as páginas que o candidato irá navegar."
+        }
+      ]
+    }
+  ]
+}
