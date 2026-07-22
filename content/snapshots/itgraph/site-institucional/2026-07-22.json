@@ -1,0 +1,30 @@
+{
+  "date": "2026-07-22",
+  "phase": "Planejamento",
+  "title": {
+    "text": "Novo site institucional em planejamento",
+    "highlight": "em planejamento"
+  },
+  "subtitle": "Um novo site da ITGraph será criado do zero, com identidade e conteúdo repensados.",
+  "progress": [
+    { "label": "Definição de escopo e identidade", "percent": 10, "state": "plan" }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Ponto de partida",
+      "cards": [
+        {
+          "title": "Projeto cadastrado",
+          "status": "done",
+          "description": "O acompanhamento do novo site começa aqui. Cada etapa do projeto será registrada nesta página."
+        },
+        {
+          "title": "Escopo em definição",
+          "status": "plan",
+          "description": "Estrutura, conteúdo e identidade visual do novo site ainda serão definidos antes do início do desenvolvimento."
+        }
+      ]
+    }
+  ]
+}

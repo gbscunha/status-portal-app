@@ -1,0 +1,30 @@
+{
+  "date": "2026-07-22",
+  "phase": "Início do desenvolvimento",
+  "title": {
+    "text": "Estética App saindo do papel",
+    "highlight": "saindo do papel"
+  },
+  "subtitle": "Plataforma para profissionais de estética gerenciarem seus atendimentos, em fase inicial de construção.",
+  "progress": [
+    { "label": "Fundação do sistema", "percent": 15, "state": "prog" }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Andamento atual",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento da plataforma será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Estrutura inicial",
+          "status": "prog",
+          "description": "As bases da plataforma estão sendo montadas — o alicerce que vai sustentar as funcionalidades para os profissionais."
+        }
+      ]
+    }
+  ]
+}
