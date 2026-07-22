@@ -1,0 +1,30 @@
+{
+  "date": "2026-07-22",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Prepona mais estável e monitorado",
+    "highlight": "estável e monitorado"
+  },
+  "subtitle": "O serviço vem recebendo melhorias de confiabilidade, com monitoramento automático da saúde do sistema.",
+  "progress": [
+    { "label": "Monitoramento de saúde do serviço", "percent": 80, "state": "prog" }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Andamento atual",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do Prepona será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Verificação automática de saúde",
+          "status": "prog",
+          "description": "O serviço agora avisa automaticamente quando algum componente essencial fica indisponível, permitindo resposta rápida."
+        }
+      ]
+    }
+  ]
+}

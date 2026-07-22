@@ -1,0 +1,30 @@
+{
+  "date": "2026-07-22",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "A estrutura visual do site está sendo montada, começando pelos elementos comuns a todas as páginas.",
+  "progress": [
+    { "label": "Estrutura base das páginas", "percent": 40, "state": "prog" }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Andamento atual",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do site será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Base visual das páginas",
+          "status": "prog",
+          "description": "Cabeçalho, rodapé e a estrutura comum das páginas estão sendo construídos — a fundação de todo o site."
+        }
+      ]
+    }
+  ]
+}

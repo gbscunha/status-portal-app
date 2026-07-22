@@ -1,0 +1,26 @@
+{
+  "id": "fgv",
+  "name": "FGV",
+  "slug": "fgv-hu5v1ev",
+  "brandColor": "#003A70",
+  "vendor": "ITGraph",
+  "whatsapp": "+5521995890014",
+  "email": "gabriel@itgraph.com.br",
+  "projects": [
+    {
+      "id": "ct",
+      "name": "CT",
+      "platform": "Sistema Web"
+    },
+    {
+      "id": "creci",
+      "name": "CRECI",
+      "platform": "Site"
+    },
+    {
+      "id": "prepona",
+      "name": "Prepona",
+      "platform": "Serviço de Integração"
+    }
+  ]
+}

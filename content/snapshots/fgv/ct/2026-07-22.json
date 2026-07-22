@@ -1,0 +1,31 @@
+{
+  "date": "2026-07-22",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "CT em evolução contínua",
+    "highlight": "evolução contínua"
+  },
+  "subtitle": "O sistema está em desenvolvimento ativo, com melhorias recentes na consulta e na segurança da plataforma.",
+  "progress": [
+    { "label": "Consulta com novos filtros", "percent": 70, "state": "prog" },
+    { "label": "Reforço de segurança da plataforma", "percent": 60, "state": "prog" }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "Andamento atual",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do CT será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Melhorias na consulta",
+          "status": "prog",
+          "description": "As opções de filtro da consulta estão sendo reformuladas para tornar a busca mais precisa e rápida."
+        }
+      ]
+    }
+  ]
+}
