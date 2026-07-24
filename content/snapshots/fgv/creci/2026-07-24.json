@@ -1,0 +1,68 @@
+{
+  "date": "2026-07-24",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "A página inicial está construída e aguarda aprovação. O site começa a ganhar as páginas de conteúdo.",
+  "progress": [
+    { "label": "Base visual (cabeçalho e rodapé)", "percent": 100, "state": "done" },
+    { "label": "Página inicial", "percent": 90, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "items": [
+      { "label": "Fechar a página inicial", "desc": "Aplicar os ajustes que surgirem na aprovação e dar a página por concluída." },
+      { "label": "Demais páginas de conteúdo", "desc": "Montar as páginas que a página inicial anuncia: certificação, cursos, passo a passo e locais de prova." }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Aprovar o visual da página inicial",
+      "desc": "A página inicial foi enviada para revisão e aguarda o OK do Régis para ser dada por concluída.",
+      "since": "2026-07-24"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do site será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Cabeçalho e rodapé prontos",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) foram revisados, refinados e já fazem parte da versão oficial do site — presentes em todas as páginas e ajustados para telas de celular."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Página inicial em aprovação",
+          "status": "prog",
+          "description": "A porta de entrada do site está construída: apresentação da certificação com foto de destaque, números do CRECI-RJ, o caminho em três passos até o registro profissional e chamadas diretas para a inscrição. Aguarda aprovação final.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Páginas de certificação, cursos e locais de prova",
+          "status": "plan",
+          "description": "Na sequência, as páginas de conteúdo que orientam o candidato: como funciona a certificação, cursos disponíveis, passo a passo e onde fazer a prova."
+        }
+      ]
+    }
+  ]
+}
