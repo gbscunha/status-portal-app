@@ -5,22 +5,29 @@
     "text": "Site CRECI em construção",
     "highlight": "em construção"
   },
-  "subtitle": "A página inicial está construída e aguarda aprovação. O site começa a ganhar as páginas de conteúdo.",
+  "subtitle": "As páginas Início e Certificação estão construídas e aguardam aprovação. O site avança para as próximas páginas de conteúdo.",
+  "milestone": "Páginas Início e Certificação entregues para aprovação",
   "progress": [
     { "label": "Base visual (cabeçalho e rodapé)", "percent": 100, "state": "done" },
-    { "label": "Página inicial", "percent": 90, "state": "prog" }
+    { "label": "Página inicial", "percent": 90, "state": "prog" },
+    { "label": "Página de certificação", "percent": 90, "state": "prog" }
   ],
   "nextSteps": {
     "title": "Próximos passos",
     "items": [
-      { "label": "Fechar a página inicial", "desc": "Aplicar os ajustes que surgirem na aprovação e dar a página por concluída." },
-      { "label": "Demais páginas de conteúdo", "desc": "Montar as páginas que a página inicial anuncia: certificação, cursos, passo a passo e locais de prova." }
+      { "label": "Fechar as páginas construídas", "desc": "Aplicar os ajustes que surgirem na aprovação da página inicial e da certificação e dá-las por concluídas." },
+      { "label": "Próximas páginas de conteúdo", "desc": "Seguir para cursos, passo a passo e locais de prova — as demais páginas que o menu anuncia." }
     ]
   },
   "pending": [
     {
       "label": "Aprovar o visual da página inicial",
       "desc": "A página inicial foi enviada para revisão e aguarda o OK do Régis para ser dada por concluída.",
+      "since": "2026-07-24"
+    },
+    {
+      "label": "Aprovar o visual da página de certificação",
+      "desc": "A página que apresenta as modalidades de certificação também foi enviada para revisão e aguarda o OK do Régis.",
       "since": "2026-07-24"
     }
   ],
@@ -50,6 +57,12 @@
           "status": "prog",
           "description": "A porta de entrada do site está construída: apresentação da certificação com foto de destaque, números do CRECI-RJ, o caminho em três passos até o registro profissional e chamadas diretas para a inscrição. Aguarda aprovação final.",
           "fullWidth": true
+        },
+        {
+          "title": "Página de certificação em aprovação",
+          "status": "prog",
+          "description": "Nova página que apresenta as modalidades de certificação e habilitação — técnica, avaliação imobiliária, inscrição profissional e registro de imobiliárias — cada uma com seus requisitos e um caminho direto para a inscrição. Já ligada ao menu do site. Aguarda aprovação.",
+          "fullWidth": true
         }
       ]
     },
@@ -58,9 +71,9 @@
       "title": "Planejado",
       "cards": [
         {
-          "title": "Páginas de certificação, cursos e locais de prova",
+          "title": "Páginas de cursos, passo a passo e locais de prova",
           "status": "plan",
-          "description": "Na sequência, as páginas de conteúdo que orientam o candidato: como funciona a certificação, cursos disponíveis, passo a passo e onde fazer a prova."
+          "description": "Na sequência, as demais páginas que orientam o candidato: cursos disponíveis, o passo a passo da certificação e onde fazer a prova."
         }
       ]
     }
