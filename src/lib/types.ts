@@ -93,6 +93,9 @@ export const snapshotSchema = z.object({
   phase: z.string().optional(),
   title: titleSchema,
   subtitle: z.string().optional(),
+  // Frase curta do que aconteceu neste checkpoint — vira o texto da entrada
+  // na linha do tempo (fallback: subtitle → title.text).
+  milestone: z.string().optional(),
   progress: z.array(progressItemSchema),
   nextSteps: nextStepsSchema.optional(),
   pending: z.array(pendingItemSchema).optional(),

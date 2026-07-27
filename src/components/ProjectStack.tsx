@@ -17,7 +17,10 @@ export function ProjectStack({ client }: { client: Client }) {
       return {
         project,
         snapshot: latest,
-        history: snapshots.map((s) => ({ date: s.date, title: s.title.text })),
+        history: snapshots.map((s) => ({
+          date: s.date,
+          title: s.milestone ?? s.subtitle ?? s.title.text,
+        })),
       };
     })
     .filter((r): r is NonNullable<typeof r> => r !== null);

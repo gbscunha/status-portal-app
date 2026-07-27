@@ -646,6 +646,11 @@ h1 .accent {
   gap: 10px;
   flex-wrap: wrap;
 }
+.rail-ago {
+  text-transform: none;
+  letter-spacing: normal;
+  color: color-mix(in srgb, var(--muted) 75%, transparent);
+}
 .rail-here {
   color: var(--brand);
   font-weight: 500;
@@ -660,6 +665,11 @@ h1 .accent {
 }
 .rail li.current .rail-title {
   font-weight: 600;
+}
+.rail-more {
+  margin: 10px 0 0 26px;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 /* ---- Contato ---- */

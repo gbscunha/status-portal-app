@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   daysBetween,
+  relativeDaysPt,
   formatPtDate,
   formatPtDateLong,
   formatPtDateFull,
@@ -57,5 +58,17 @@ describe("daysBetween", () => {
 describe("todayIso", () => {
   it("returns a YYYY-MM-DD string", () => {
     expect(todayIso()).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});
+
+describe("relativeDaysPt", () => {
+  it("says hoje, ontem and há N dias", () => {
+    expect(relativeDaysPt("2026-07-24", "2026-07-24")).toBe("hoje");
+    expect(relativeDaysPt("2026-07-23", "2026-07-24")).toBe("ontem");
+    expect(relativeDaysPt("2026-07-22", "2026-07-24")).toBe("há 2 dias");
+  });
+
+  it("clamps future dates to hoje", () => {
+    expect(relativeDaysPt("2026-07-25", "2026-07-24")).toBe("hoje");
   });
 });

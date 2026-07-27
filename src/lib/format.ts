@@ -72,6 +72,15 @@ export function daysBetween(aIso: string, bIso: string): number {
   return toUtcDays(bIso) - toUtcDays(aIso);
 }
 
+/** Relative day distance in pt-BR ("hoje", "ontem", "há N dias"). Both args
+ *  are ISO dates; clamps future/negative diffs to "hoje". */
+export function relativeDaysPt(iso: string, today: string): string {
+  const days = daysBetween(iso, today);
+  if (days <= 0) return "hoje";
+  if (days === 1) return "ontem";
+  return `há ${days} dias`;
+}
+
 /** Today's date (YYYY-MM-DD) in America/Sao_Paulo. Under SSG this is the
  *  BUILD date — acceptable because every push redeploys. */
 export function todayIso(): string {
