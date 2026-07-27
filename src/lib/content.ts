@@ -98,30 +98,60 @@ export function getClientBySlug(slug: string): Client | null {
 
 // ---- Snapshots ----
 
+// Chave cronológica do nome do arquivo (YYYY-MM-DD[-N].json). Comparação
+// lexicográfica pura falha no mesmo dia — "2026-07-24.json" venceria
+// "2026-07-24-2.json" porque "." > "-" — então data e sequência são
+// comparadas em separado, a sequência como número (senão "-10" < "-2").
+// Arquivo sem sufixo conta como sequência 1.
+export function compareSnapshotFiles(a: string, b: string): number {
+  const parse = (f: string): [string, number] => {
+    const m = /^(\d{4}-\d{2}-\d{2})(?:-(\d+))?\.json$/.exec(f);
+    return m ? [m[1]!, m[2] ? Number(m[2]) : 1] : [f, 0];
+  };
+  const [dateA, seqA] = parse(a);
+  const [dateB, seqB] = parse(b);
+  return dateA === dateB ? seqA - seqB : dateA < dateB ? -1 : 1;
+}
+
+// Do mais recente para o mais antigo, com NO MÁXIMO UM arquivo por dia (o de
+// maior sequência vence). A UI assume data única por snapshot (key e "Você
+// está aqui" da Timeline) — a convenção é um snapshot por dia, e este filtro
+// mantém o invariante mesmo se um sufixo -N legado aparecer.
+export function latestSnapshotFilesPerDay(files: string[]): string[] {
+  const seen = new Set<string>();
+  return [...files]
+    .sort((a, b) => compareSnapshotFiles(b, a))
+    .filter((f) => {
+      const date = /^\d{4}-\d{2}-\d{2}/.exec(f)?.[0] ?? f;
+      if (seen.has(date)) return false;
+      seen.add(date);
+      return true;
+    });
+}
+
 // Todos os snapshots de um projeto, do mais recente para o mais antigo.
-// Ordena pelo nome do arquivo (ISO YYYY-MM-DD[-N].json), que é lexicográfica
-// e cronologicamente ordenável; sufixo -N desempata no mesmo dia.
 export function getProjectSnapshots(
   clientId: string,
   projectId: string,
 ): Snapshot[] {
   const dir = path.join(SNAPSHOTS_DIR, clientId, projectId);
 
-  return readJsonFiles(dir)
-    .map(({ file, data }) => {
-      const parsed = snapshotSchema.safeParse(data);
-      if (!parsed.success) {
-        console.warn(
-          `[content] snapshot inválido, pulando ${clientId}/${projectId}/${file}:`,
-          parsed.error.issues,
-        );
-        return null;
-      }
-      return { file, snapshot: parsed.data };
-    })
-    .filter((x): x is { file: string; snapshot: Snapshot } => x !== null)
-    .sort((a, b) => b.file.localeCompare(a.file))
-    .map((x) => x.snapshot);
+  const byFile = new Map<string, Snapshot>();
+  for (const { file, data } of readJsonFiles(dir)) {
+    const parsed = snapshotSchema.safeParse(data);
+    if (!parsed.success) {
+      console.warn(
+        `[content] snapshot inválido, pulando ${clientId}/${projectId}/${file}:`,
+        parsed.error.issues,
+      );
+      continue;
+    }
+    byFile.set(file, parsed.data);
+  }
+
+  return latestSnapshotFilesPerDay([...byFile.keys()]).map(
+    (file) => byFile.get(file)!,
+  );
 }
 
 export function getLatestSnapshot(
