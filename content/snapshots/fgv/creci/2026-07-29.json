@@ -1,0 +1,97 @@
+{
+  "date": "2026-07-29",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "Cinco páginas do novo site já estão construídas e aguardando aprovação: Início, Certificação, Cursos, Passo a passo e Locais de Prova.",
+  "milestone": "Cursos, Passo a passo e Locais de Prova entregues para aprovação",
+  "progress": [
+    { "label": "Base visual (cabeçalho e rodapé)", "percent": 100, "state": "done" },
+    { "label": "Página inicial", "percent": 90, "state": "prog" },
+    { "label": "Página de certificação", "percent": 90, "state": "prog" },
+    { "label": "Página de cursos", "percent": 90, "state": "prog" },
+    { "label": "Página de passo a passo", "percent": 90, "state": "prog" },
+    { "label": "Página de locais de prova", "percent": 90, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "items": [
+      { "label": "Fechar as páginas construídas", "desc": "Aplicar os ajustes que surgirem na aprovação das cinco páginas e dá-las por concluídas." },
+      { "label": "Seguir para as próximas páginas", "desc": "Avançar para as demais páginas de conteúdo do site conforme as prioridades forem definidas." }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Aprovar as páginas construídas",
+      "desc": "As cinco páginas prontas — Início, Certificação, Cursos, Passo a passo e Locais de Prova — foram enviadas para revisão e aguardam o OK do Régis para serem dadas por concluídas.",
+      "since": "2026-07-24"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do site será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Cabeçalho e rodapé prontos",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) foram revisados, refinados e já fazem parte da versão oficial do site — presentes em todas as páginas e ajustados para telas de celular."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Página inicial em aprovação",
+          "status": "prog",
+          "description": "A porta de entrada do site está construída: apresentação da certificação com foto de destaque, números do CRECI-RJ, o caminho em três passos até o registro profissional e chamadas diretas para a inscrição. Aguarda aprovação final.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de certificação em aprovação",
+          "status": "prog",
+          "description": "Página que apresenta as modalidades de certificação e habilitação — técnica, avaliação imobiliária, inscrição profissional e registro de imobiliárias — cada uma com seus requisitos e um caminho direto para a inscrição. Já ligada ao menu do site. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de cursos em aprovação",
+          "status": "prog",
+          "description": "Nova página com o catálogo de cursos disponíveis, cada um com sua descrição e um caminho direto para a inscrição, além de um canal de contato para dúvidas. Já ligada ao menu do site. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de passo a passo em aprovação",
+          "status": "prog",
+          "description": "Guia que conduz o candidato do início ao fim da certificação, organizado em fases com os passos de cada etapa e um espaço para tirar dúvidas. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de locais de prova em aprovação",
+          "status": "prog",
+          "description": "Nova página com um mapa interativo do Brasil onde o candidato encontra, de forma visual, as cidades e bairros com locais de prova — usando os dados reais do sistema. Aguarda aprovação.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Demais páginas do site",
+          "status": "plan",
+          "description": "Com as principais páginas de conteúdo já construídas, os próximos trechos do site entram conforme as prioridades forem definidas."
+        }
+      ]
+    }
+  ]
+}
