@@ -1,0 +1,117 @@
+{
+  "date": "2026-08-04",
+  "phase": "Acabamento para o uso em campo",
+  "title": { "text": "Checklist App", "highlight": "App" },
+  "subtitle": "O aplicativo que os motoristas usam em campo para preencher os checklists dos veículos. O motorista entra, escolhe o veículo e preenche a ficha de inspeção — com ou sem internet.",
+  "milestone": "App refinado para o uso no dia a dia",
+  "progress": [
+    { "label": "Estrutura do aplicativo", "percent": 100, "state": "done" },
+    { "label": "Acesso dos motoristas (login)", "percent": 100, "state": "done" },
+    { "label": "Seleção de veículo", "percent": 100, "state": "done" },
+    { "label": "Funcionamento offline", "percent": 100, "state": "done" },
+    { "label": "Conforto de uso no dia a dia", "percent": 85, "state": "prog" },
+    { "label": "Preenchimento de checklists", "percent": 90, "state": "prog" },
+    { "label": "Fotos e assinaturas", "percent": 5, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Fechar a ficha e partir para as fotos",
+    "intro": "O app já está confortável de usar. O que falta para dar a ficha por encerrada:",
+    "items": [
+      {
+        "label": "Ficha 100% sem sinal",
+        "desc": "hoje o preenchimento e o envio já funcionam offline; falta cobrir também a abertura da ficha em áreas totalmente sem cobertura."
+      },
+      {
+        "label": "Saber o que está em rota antes de abrir",
+        "desc": "mostrar na lista quais veículos estão com rota aberta esperando o fechamento, e o nome do motorista no topo da ficha."
+      },
+      {
+        "label": "Fotos e assinaturas",
+        "desc": "registrar imagens dos itens com problema e a assinatura do motorista — os espaços já estão reservados na ficha."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Ficha de inspeção completa no celular",
+          "status": "done",
+          "description": "A ficha oficial da operação, direto no app: condições do veículo (faróis, freios, direção e mais 12 itens), equipamentos obrigatórios (extintor, triângulo, estepe), níveis de óleo, água, ARLA e combustível, quilometragem e observações. Preenchimento rápido: um toque marca tudo como 'em ordem' e o motorista ajusta só as exceções.",
+          "fullWidth": true
+        },
+        {
+          "title": "Feito para a mão do motorista",
+          "status": "done",
+          "description": "Duas rodadas de acabamento pensando em quem usa de pé, com pressa e às vezes de luva: todo botão responde na hora ao toque (com uma vibração leve de confirmação), os alvos ficaram maiores e mais espaçados, o botão de enviar mora fixo na base da tela, sempre ao alcance do polegar, e o teclado não cobre mais o campo que está sendo preenchido.",
+          "fullWidth": true
+        },
+        {
+          "title": "Difícil errar, difícil perder",
+          "status": "done",
+          "description": "Tentou enviar com algo faltando? A tela leva direto ao item pendente, com um aviso no aparelho. Saiu da ficha pela metade? O app pergunta antes de descartar. Salvou? Confirmação verde, clara e imediata."
+        },
+        {
+          "title": "Legível no sol, com a cara da Movi",
+          "status": "done",
+          "description": "Textos maiores e cores com contraste reforçado para leitura em ambiente externo. As esperas mostram a logo da Movi animada — e quem prefere menos movimento na tela tem essa escolha respeitada pelo app."
+        },
+        {
+          "title": "Entrada e saída inteligentes",
+          "status": "done",
+          "description": "O app sabe sozinho se o veículo está saindo ou voltando: a primeira ficha abre a rota (km inicial) e a segunda fecha (km final, conferido contra o inicial). As duas ficam vinculadas no painel automaticamente."
+        },
+        {
+          "title": "Observação onde importa",
+          "status": "done",
+          "description": "Marcou um item com problema? O campo de observação aparece na hora, ali mesmo — o gestor recebe o contexto junto com o apontamento."
+        },
+        {
+          "title": "Funciona sem internet",
+          "status": "done",
+          "description": "A ficha preenchida sem sinal fica guardada no aparelho — sobrevive até a fechar e reabrir o app — e é enviada sozinha assim que a conexão volta. Comprovado em teste real: nada se perde.",
+          "fullWidth": true
+        },
+        {
+          "title": "Lista de veículos sempre à mão",
+          "status": "done",
+          "description": "Basta puxar a lista para baixo para atualizá-la. Se a atualização falhar por falta de sinal, o app avisa e mantém a lista que já estava na tela — nunca troca informação boa por tela de erro."
+        },
+        {
+          "title": "Cada motorista vê só o que é dele",
+          "status": "done",
+          "description": "A empresa define quem dirige o quê e o app respeita isso automaticamente. Login seguro com a mesma conta do painel."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Ficha 100% sem sinal",
+          "status": "prog",
+          "description": "O preenchimento e o envio já funcionam offline; o próximo ajuste cobre também a abertura da ficha em áreas totalmente sem cobertura, além de exibir o nome do motorista no cabeçalho e sinalizar na lista os veículos com rota aberta."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Fotografar itens com problema e colher a assinatura do motorista na própria ficha — os espaços já aparecem no app, marcados como 'em breve'."
+        },
+        {
+          "title": "Tela inicial repensada",
+          "status": "plan",
+          "description": "Abrir o app e entender a situação num relance: quais veículos estão em rota, o que falta fechar e o que já foi enviado — sem precisar abrir ficha por ficha."
+        }
+      ]
+    }
+  ]
+}
