@@ -1,0 +1,117 @@
+{
+  "date": "2026-08-04",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "Com as cinco páginas de conteúdo aguardando aprovação, o trabalho avançou para a área do candidato: a tela de acesso ao portal já está construída.",
+  "milestone": "Tela de acesso do candidato construída",
+  "progress": [
+    { "label": "Base visual (cabeçalho e rodapé)", "percent": 100, "state": "done" },
+    { "label": "Página inicial", "percent": 90, "state": "prog" },
+    { "label": "Página de certificação", "percent": 90, "state": "prog" },
+    { "label": "Página de cursos", "percent": 90, "state": "prog" },
+    { "label": "Página de passo a passo", "percent": 90, "state": "prog" },
+    { "label": "Página de locais de prova", "percent": 90, "state": "prog" },
+    { "label": "Tela de acesso do candidato", "percent": 80, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "items": [
+      { "label": "Aplicar a correção das telas internas", "desc": "Colocar em prática o conserto já preparado, para que as telas antigas voltem a abrir normalmente enquanto a migração avança." },
+      { "label": "Concluir a tela de acesso", "desc": "Testar a entrada no portal no ambiente do sistema e enviar a tela para revisão." },
+      { "label": "Fechar as páginas construídas", "desc": "Aplicar os ajustes que surgirem na aprovação das cinco páginas e dá-las por concluídas." },
+      { "label": "Seguir para as demais telas de conta", "desc": "Recuperação e troca de senha, na sequência, reaproveitando o padrão de formulário definido na tela de acesso." }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Aprovar as páginas construídas",
+      "desc": "As cinco páginas prontas — Início, Certificação, Cursos, Passo a passo e Locais de Prova — foram enviadas para revisão e aguardam o OK do Régis para serem dadas por concluídas.",
+      "since": "2026-07-24"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "A partir de agora, o andamento do site será publicado nesta página a cada avanço relevante."
+        },
+        {
+          "title": "Cabeçalho e rodapé prontos",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) foram revisados, refinados e já fazem parte da versão oficial do site — presentes em todas as páginas e ajustados para telas de celular."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Tela de acesso do candidato construída",
+          "status": "prog",
+          "description": "A porta de entrada do portal foi refeita no novo visual: entrada por usuário ou CPF, senha com opção de exibir o que foi digitado, atalho para recuperar a senha e, ao lado, um resumo do que o candidato encontra depois de entrar — inscrição, pagamentos, agendamentos, cursos e documentos. Avisos como senha incorreta ou conta bloqueada voltam a aparecer de forma clara na tela. Primeira tela com formulário no novo padrão: ela define o modelo que as demais telas de conta vão seguir.",
+          "fullWidth": true
+        },
+        {
+          "title": "Telas internas voltando a funcionar",
+          "status": "prog",
+          "description": "Durante o trabalho na tela de acesso, identificamos que telas antigas do portal — recuperação de senha, avisos e consulta de horários — haviam deixado de abrir na versão em desenvolvimento depois de uma mudança na base do site. A correção já está preparada e entra em seguida, para que nada fique indisponível enquanto a migração avança.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página inicial em aprovação",
+          "status": "prog",
+          "description": "A porta de entrada do site está construída: apresentação da certificação com foto de destaque, números do CRECI-RJ, o caminho em três passos até o registro profissional e chamadas diretas para a inscrição. Aguarda aprovação final.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de certificação em aprovação",
+          "status": "prog",
+          "description": "Página que apresenta as modalidades de certificação e habilitação — técnica, avaliação imobiliária, inscrição profissional e registro de imobiliárias — cada uma com seus requisitos e um caminho direto para a inscrição. Já ligada ao menu do site. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de cursos em aprovação",
+          "status": "prog",
+          "description": "Nova página com o catálogo de cursos disponíveis, cada um com sua descrição e um caminho direto para a inscrição, além de um canal de contato para dúvidas. Já ligada ao menu do site. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de passo a passo em aprovação",
+          "status": "prog",
+          "description": "Guia que conduz o candidato do início ao fim da certificação, organizado em fases com os passos de cada etapa e um espaço para tirar dúvidas. Aguarda aprovação.",
+          "fullWidth": true
+        },
+        {
+          "title": "Página de locais de prova em aprovação",
+          "status": "prog",
+          "description": "Nova página com um mapa interativo do Brasil onde o candidato encontra, de forma visual, as cidades e bairros com locais de prova — usando os dados reais do sistema. Aguarda aprovação.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Recuperação e troca de senha",
+          "status": "plan",
+          "description": "As telas de esqueci minha senha, redefinição e troca de senha entram na sequência, seguindo o mesmo padrão visual da tela de acesso."
+        },
+        {
+          "title": "Demais páginas do site",
+          "status": "plan",
+          "description": "Com as principais páginas de conteúdo já construídas, os próximos trechos do site entram conforme as prioridades forem definidas."
+        }
+      ]
+    }
+  ]
+}
