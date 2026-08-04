@@ -1,0 +1,143 @@
+{
+  "date": "2026-08-04",
+  "phase": "Migração do sistema legado",
+  "title": {
+    "text": "Mapa da migração do CT",
+    "highlight": "Mapa da migração"
+  },
+  "subtitle": "O sistema de certificação está sendo reconstruído do zero em tecnologia moderna. Este é o retrato consolidado: o que já vive na plataforma nova, o que está em migração agora e o que ainda roda no sistema antigo.",
+  "milestone": "Painel de vagas agora alerta pelo prazo da próxima vaga",
+  "progress": [
+    { "label": "Notas fiscais", "percent": 90, "state": "done" },
+    { "label": "Notificações e comunicados", "percent": 80, "state": "done" },
+    { "label": "Disponibilidade e vagas", "percent": 100, "state": "done" },
+    { "label": "Acesso e login unificado", "percent": 100, "state": "done" },
+    { "label": "Consulta geral de agendamentos", "percent": 95, "state": "done" },
+    { "label": "Painel analítico de vagas (novidade)", "percent": 100, "state": "done" },
+    { "label": "Cadastro do centro de testes", "percent": 95, "state": "prog" },
+    { "label": "Provas: confirmados, consolidados e envio de arquivos", "percent": 85, "state": "prog" },
+    { "label": "Administração e pauta do dia", "percent": 80, "state": "prog" },
+    { "label": "Treinamento: vídeos, manuais e avaliações", "percent": 60, "state": "prog" },
+    { "label": "Documentos LGPD (termos e cookies)", "percent": 20, "state": "plan" },
+    { "label": "Área do candidato: inscrição, agendamento e pagamento", "percent": 0, "state": "plan" },
+    { "label": "Integrações com parceiros (ANAC, Anbima, provas)", "percent": 0, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "Com a segunda rodada do painel de vagas concluída e aguardando aprovação, o foco volta para as áreas ainda em migração.",
+    "items": [
+      {
+        "label": "Acompanhar o painel com dados reais",
+        "desc": "Observar como os novos alertas de disponibilidade se comportam no dia a dia e calibrar os prazos se necessário."
+      },
+      {
+        "label": "Pessoas do centro de testes",
+        "desc": "Finalizar os últimos ajustes no cadastro de pessoas, perfis e habilitações."
+      },
+      {
+        "label": "Manuais de treinamento",
+        "desc": "Ligar a tela de manuais (já pronta) ao armazenamento definitivo de arquivos."
+      }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Aprovar os ajustes do painel de vagas",
+      "desc": "A segunda rodada de melhorias está pronta e aguarda seu aval para entrar no ar.",
+      "since": "2026-08-04"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O tamanho do desafio",
+      "cards": [
+        {
+          "title": "De onde partimos",
+          "status": "done",
+          "description": "O sistema original soma 17 áreas de negócio, mais de 130 telas e 8 integrações com parceiros externos, construído em tecnologia de mais de uma década atrás. A plataforma nova já cobre a maior parte da operação diária dos centros de teste — com visual moderno, mais segurança e base pronta para evoluir.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Já migrado — funcionando na plataforma nova",
+      "cards": [
+        {
+          "title": "Painel analítico de vagas — novidade",
+          "status": "done",
+          "description": "Recurso que não existia no sistema antigo: visão consolidada da saúde das vagas, com totais por período, centros com baixa disponibilidade, demanda de agendamentos do dia e distribuição por estado e região. Nesta segunda rodada o painel passou a classificar cada centro pelo tempo que o candidato espera até a próxima vaga — e não mais pelo volume de vagas livres, que escondia centros com agenda cheia no curto prazo. Um centro sem nenhuma vaga no período agora é sinalizado como urgente, em destaque próprio.",
+          "fullWidth": true
+        },
+        {
+          "title": "Consulta geral de agendamentos",
+          "status": "done",
+          "description": "Busca cruzada de candidatos e agendamentos concluída: filtros encadeados por organização, certificação e exame, busca dentro das listas, chips dos filtros ativos e consulta por situação e ocorrência — mais precisa e rápida que a do sistema antigo."
+        },
+        {
+          "title": "Notas fiscais",
+          "status": "done",
+          "description": "Ciclo completo: os centros enviam suas notas, a equipe aprova ou devolve com justificativa, com estatísticas, avisos automáticos de pendência e exportação de relatórios."
+        },
+        {
+          "title": "Notificações e comunicados",
+          "status": "done",
+          "description": "Criação e disparo de comunicados por e-mail para centros de teste e organizações, com editor de texto, prévia dos destinatários e histórico de envios."
+        },
+        {
+          "title": "Disponibilidade e vagas",
+          "status": "done",
+          "description": "Grade semanal de horários, janelas especiais por data, habilitações por exame e eventos que indisponibilizam o centro (feriados, manutenções) — tudo na plataforma nova."
+        },
+        {
+          "title": "Acesso e login unificado",
+          "status": "done",
+          "description": "Entrada única e segura na plataforma, com controle de perfis por pessoa e integração com o servidor central de identidade."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Em migração agora",
+      "cards": [
+        {
+          "title": "Cadastro do centro de testes",
+          "status": "prog",
+          "description": "Dados gerais, contrato, financeiro, fotos, estrutura técnica e equipe do centro já estão na plataforma nova. A ficha de estrutura técnica — computadores, rede e câmeras — passou a guardar todos os dados dos equipamentos, incluindo a identificação e a configuração das câmeras de monitoramento, e o formulário agora avisa na hora quando algum dado é preenchido fora do padrão. Faltam os ajustes finais no cadastro de pessoas e perfis."
+        },
+        {
+          "title": "Administração e pauta do dia",
+          "status": "prog",
+          "description": "A operação diária — pauta de candidatos, ocorrências e preços por exame — já roda na plataforma nova e vem recebendo refinamentos semanais."
+        },
+        {
+          "title": "Treinamento da equipe",
+          "status": "prog",
+          "description": "Vídeos de treinamento com acompanhamento de progresso já funcionam; manuais e certificados de avaliação estão em construção."
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Ainda no sistema antigo — próximas fronteiras",
+      "cards": [
+        {
+          "title": "Área do candidato",
+          "status": "plan",
+          "description": "Inscrição, agendamento de prova e pagamento (boletos e PagTesouro) seguem no sistema antigo. É o maior bloco restante da migração e envolve os fluxos mais críticos do negócio."
+        },
+        {
+          "title": "Integrações com parceiros",
+          "status": "plan",
+          "description": "As trocas automáticas com ANAC, Anbima e o fornecedor de provas continuam operando no sistema antigo até que a nova plataforma assuma esses fluxos com segurança."
+        },
+        {
+          "title": "Documentos LGPD",
+          "status": "plan",
+          "description": "As telas de termos de uso e aviso de cookies já existem na plataforma nova; falta o mecanismo de publicação e atualização dos documentos."
+        }
+      ]
+    }
+  ]
+}
