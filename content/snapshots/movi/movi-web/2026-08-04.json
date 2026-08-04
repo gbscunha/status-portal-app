@@ -1,0 +1,170 @@
+{
+  "date": "2026-08-04",
+  "phase": "Rumo ao lançamento",
+  "title": { "text": "Painel Web", "highlight": "Web" },
+  "subtitle": "Visão geral do que já está entregue, o que está em desenvolvimento e o que ainda falta para o lançamento do sistema de gestão de frotas e checklists veiculares.",
+  "milestone": "Ficha completa no painel e plano de lançamento definido",
+  "progress": [
+    { "label": "Acesso e segurança", "percent": 95, "state": "done" },
+    { "label": "Cadastros base", "percent": 100, "state": "done" },
+    { "label": "Designação de motoristas", "percent": 100, "state": "done" },
+    { "label": "Checklists", "percent": 95, "state": "prog" },
+    { "label": "Relatórios e painéis", "percent": 5, "state": "plan" },
+    { "label": "Preparação p/ lançamento", "percent": 50, "state": "prog" }
+  ],
+  "nextSteps": {
+    "title": "Fechar o caminho do celular até o painel e preparar o ambiente definitivo",
+    "intro": "A ficha oficial já aparece por completo no painel e a listagem passou a mostrar viagens em vez de registros soltos. O plano de lançamento do aplicativo nas lojas está definido, com entrega comprometida para a primeira semana de setembro. Na sequência:",
+    "items": [
+      {
+        "label": "Ficha saindo do celular e chegando ao painel",
+        "desc": "concluir o envio automático das fichas preenchidas em campo, com a garantia de que nenhuma se perca quando o motorista estiver sem internet."
+      },
+      {
+        "label": "Proteção contra entrada duplicada",
+        "desc": "impedir que um mesmo veículo receba duas entradas em aberto quando o motorista preenche a ficha duas vezes por falta de sinal."
+      },
+      {
+        "label": "Ambiente definitivo de produção",
+        "desc": "plano comercial de hospedagem e banco de dados, backup automático com teste de restauração e política de privacidade publicada — exigência das duas lojas de aplicativos."
+      },
+      {
+        "label": "Publicação nas lojas",
+        "desc": "primeira versão do aplicativo na App Store e no Google Play, com uma etapa de teste antes em que você recebe o app no seu celular."
+      }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Confirmar como a ficha funciona no dia a dia",
+      "desc": "Precisamos da confirmação do Matheus: a ficha é uma folha única do dia (quilometragem inicial e final na mesma folha) ou são duas etapas separadas, entrada e saída? O sistema hoje está construído em duas etapas. Se for folha única, precisamos ajustar antes de seguir.",
+      "since": "2026-08-04"
+    },
+    {
+      "label": "Decidir sobre fotos e assinatura na primeira versão",
+      "desc": "Nossa recomendação é lançar sem elas e entregá-las cerca de duas semanas depois. A primeira versão já substitui o papel na coleta de dados. Incluí-las agora adiciona aproximadamente uma semana ao prazo de lançamento.",
+      "since": "2026-08-04"
+    },
+    {
+      "label": "Liberar acesso às contas das lojas",
+      "desc": "Acesso de administrador na conta da Apple e na do Google Play, para criarmos o aplicativo e enviarmos as versões. Sem isso a publicação não avança.",
+      "since": "2026-08-04"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Ficha oficial completa no painel",
+          "status": "done",
+          "description": "Tudo o que o motorista responde no celular agora aparece na tela de detalhes: condições do veículo, equipamentos obrigatórios, níveis de líquidos e as observações escritas item a item. O gestor lê a inspeção inteira sem depender do papel.",
+          "fullWidth": true
+        },
+        {
+          "title": "Listagem organizada por viagem",
+          "status": "done",
+          "description": "A tela de checklists deixou de mostrar registros soltos e passou a mostrar viagens: entrada e saída lado a lado, situação da viagem (em aberto ou concluída) e a quilometragem rodada calculada automaticamente. Fica evidente qual veículo saiu e ainda não voltou.",
+          "fullWidth": true
+        },
+        {
+          "title": "Designação de motoristas por veículo",
+          "status": "done",
+          "description": "O gestor define, direto na tela de veículos, quem pode dirigir cada um — inclusive marcando ou desmarcando todos de uma vez. O app dos motoristas obedece na hora: cada um vê apenas os veículos designados a ele."
+        },
+        {
+          "title": "Telas de espera e mensagens de erro",
+          "status": "done",
+          "description": "O painel deixou de ficar em branco enquanto carrega e passou a explicar o que houve quando algo falha ou quando o endereço não existe, sempre com um caminho de volta."
+        },
+        {
+          "title": "Acesso ao sistema",
+          "status": "done",
+          "description": "Login seguro, níveis de permissão (administrador, gestor, motorista) e suporte a múltiplas empresas no mesmo painel."
+        },
+        {
+          "title": "Gestão de empresas",
+          "status": "done",
+          "description": "Cadastro, edição e exclusão de empresas, com validação de CNPJ e isolamento total de dados entre clientes."
+        },
+        {
+          "title": "Gestão de frota",
+          "status": "done",
+          "description": "Cadastro de veículos com placa, modelo, marca, cor e ano. Listagem com busca, filtros, controle de status e coluna de motoristas designados."
+        },
+        {
+          "title": "Gestão de usuários",
+          "status": "done",
+          "description": "Cadastro de motoristas e gestores, com papéis e permissões definidos por empresa."
+        },
+        {
+          "title": "Revisão de segurança das bibliotecas",
+          "status": "done",
+          "description": "Rodada de atualização e correção nos componentes de terceiros que o sistema utiliza: todos os alertas de risco alto foram zerados e a verificação passou a rodar sozinha a cada alteração de código.",
+          "fullWidth": true
+        },
+        {
+          "title": "Rastreabilidade e auditoria",
+          "status": "done",
+          "description": "Toda ação importante fica registrada — inclusive quem designou ou removeu cada motorista de um veículo. Histórico preservado mesmo quando veículos ou motoristas saem da operação.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Ficha do celular chegando ao painel",
+          "status": "prog",
+          "description": "Última etapa do caminho completo: o motorista preenche em campo, mesmo sem internet, e a ficha aparece no painel assim que o sinal volta — com aviso claro caso alguma não consiga ser enviada.",
+          "fullWidth": true
+        },
+        {
+          "title": "Proteção contra entrada duplicada",
+          "status": "prog",
+          "description": "Sem sinal, o motorista pode preencher a entrada duas vezes sem perceber. O painel passará a recusar a segunda, evitando que o veículo fique preso em uma viagem que nunca fecha."
+        },
+        {
+          "title": "Preparação do ambiente definitivo",
+          "status": "prog",
+          "description": "Migração para os planos comerciais de hospedagem e banco de dados, backup automático com teste de restauração e política de privacidade publicada, exigida pelas duas lojas de aplicativos."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Aplicativo nas lojas",
+          "status": "plan",
+          "description": "Publicação da primeira versão na App Store e no Google Play. Antes disso, você recebe o aplicativo no seu celular por um canal de teste, cerca de duas semanas antes da publicação. Entrega comprometida para a primeira semana de setembro.",
+          "fullWidth": true
+        },
+        {
+          "title": "Fotos e assinaturas",
+          "status": "plan",
+          "description": "Anexar imagens de avarias e assinaturas digitais aos checklists, com galeria organizada por categoria. Previsto para cerca de duas semanas após o lançamento, salvo decisão contrária."
+        },
+        {
+          "title": "Exportação para Excel",
+          "status": "plan",
+          "description": "Exportar checklists filtrados em planilha, para relatórios e prestação de contas."
+        },
+        {
+          "title": "Painel de indicadores",
+          "status": "plan",
+          "description": "Dashboard com gráficos e estatísticas: volume de checklists, veículos com pendências, atividade por período."
+        },
+        {
+          "title": "Refinamento visual",
+          "status": "plan",
+          "description": "Rodada de polimento na aparência e usabilidade das telas, com base no uso real."
+        }
+      ]
+    }
+  ]
+}
