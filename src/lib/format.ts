@@ -49,6 +49,13 @@ export function formatPtDateLong(iso: string): string {
   return `${d} de ${MONTHS_PT_LONG[m - 1]} de ${y}`;
 }
 
+/** Month-only label from YYYY-MM, e.g. "Set 2026". Delivery estimates are
+ *  months on purpose — see isoMonthSchema in types.ts. */
+export function formatPtMonth(isoMonth: string): string {
+  const [y, m] = isoMonth.split("-").map(Number);
+  return `${MONTHS_PT[m - 1]} ${y}`;
+}
+
 const WEEKDAYS_PT = [
   "Domingo",
   "Segunda-feira",

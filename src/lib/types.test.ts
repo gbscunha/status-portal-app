@@ -178,6 +178,38 @@ describe("scopeSchema", () => {
   });
 });
 
+describe("progressItemSchema eta", () => {
+  const bar = { label: "Notas fiscais", percent: 90, state: "done" };
+
+  it("accepts a progress item without eta (backward compatible)", () => {
+    const parsed = snapshotSchema.safeParse({
+      ...baseSnapshot,
+      progress: [bar],
+    });
+    expect(parsed.success).toBe(true);
+  });
+
+  it("accepts a YYYY-MM estimate", () => {
+    for (const good of ["2026-01", "2026-09", "2026-12"]) {
+      const parsed = snapshotSchema.safeParse({
+        ...baseSnapshot,
+        progress: [{ ...bar, eta: good }],
+      });
+      expect(parsed.success).toBe(true);
+    }
+  });
+
+  it("rejects anything that is not a real YYYY-MM month", () => {
+    for (const bad of ["2026-13", "2026-00", "2026-1", "2026-09-01", "set/2026"]) {
+      const parsed = snapshotSchema.safeParse({
+        ...baseSnapshot,
+        progress: [{ ...bar, eta: bad }],
+      });
+      expect(parsed.success).toBe(false);
+    }
+  });
+});
+
 describe("progressItemSchema scopeId", () => {
   it("accepts a progress item without scopeId (backward compatible)", () => {
     const parsed = snapshotSchema.safeParse({

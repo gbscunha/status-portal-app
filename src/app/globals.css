@@ -455,6 +455,17 @@ h1 .accent {
 .fill.plan {
   background: var(--plan-track);
 }
+/* Previsão de entrega: linha secundária DENTRO da célula do rótulo, para não
+   mexer nas 3 colunas fixas do .barrow (nem na variante do responsivo). */
+.label-eta {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .pct {
   font-size: 12px;
   font-variant-numeric: tabular-nums;
