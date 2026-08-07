@@ -44,7 +44,7 @@ export function StatusReport({ client, project, snapshot, history }: Props) {
         )}
       </div>
       <ContactCta client={client} projectName={project.name} variant="footer" />
-      <Footer client={client} />
+      <Footer client={client} project={project} />
     </article>
   );
 }

@@ -969,6 +969,17 @@ h1 .accent {
 
 /* ---- Rodapé ---- */
 
+.footer-link {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+}
+.footer-link:hover {
+  color: var(--brand);
+  text-decoration-color: var(--brand);
+}
+
 footer {
   margin-top: 40px;
   padding-top: 22px;
