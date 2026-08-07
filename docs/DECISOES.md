@@ -215,6 +215,44 @@ usuário só); listar na raiz (indexável/adivinhável).
 
 ---
 
+## 16. Sem banco de dados — arquivo e git continuam sendo a verdade
+
+**Decisão (2026-08-07):** avaliado adotar Prisma + Postgres (Neon) e
+**descartado**. O conteúdo — status, escopo, contrato e o futuro módulo
+financeiro — continua em JSON no repo, publicado por push. Confirma e reforça
+o §10, que já havia deixado Prisma/pg de fora.
+
+**Por quê:** o volume não pede banco (fechamento mensal são ~12 registros por
+ano; recebíveis, algumas dezenas — toda métrica é um `reduce` em build time), e
+o banco custaria as quatro propriedades que sustentam o projeto:
+
+- **histórico de graça** — hoje é o git (imutável, diffável, revisável em PR);
+  em banco, `UPDATE` apaga o passado em silêncio (§3);
+- **portão de revisão humana** — publicar deixaria de ser um diff revisado e
+  viraria um UPDATE sem revisão (§8);
+- **404 por inexistência** — slug desconhecido hoje falha por construção
+  (`generateStaticParams` + `dynamicParams = false`); lendo de banco, viraria um
+  `if` correto por teste, não por estrutura (§4);
+- **operação trivial** — arquivo estático em CDN não tem o que cair; Postgres
+  serverless somaria cold start a um padrão de acesso de duas visitas por
+  semana por cliente.
+
+**Descartamos também o meio-termo pior:** ter banco e continuar publicando por
+git — paga-se a infraestrutura inteira sem receber o benefício dela.
+
+**Sobre o motivo real da dúvida:** a fricção de entrada de dados (principalmente
+do financeiro) se resolve com CLI/skill que pergunta e escreve o JSON — mesmo
+padrão do `atualizar-status-portal`, sem infra nova.
+
+**Reabrir quando:** (a) houver formulário de verdade, aceitando o pacote
+completo com autenticação; (b) aprovação clicável pelo cliente (v3) sair do
+papel — única escrita vinda de quem não é o dono, e ainda assim há saída sem
+banco (Function registrando o aceite como commit via API do GitHub); (c) o build
+ficar lento ou surgir consulta que não dê para pré-calcular. Analytics de
+leitura **não** é gatilho (Vercel Analytics resolve).
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".

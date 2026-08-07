@@ -41,6 +41,8 @@ Bloco gerado automaticamente no build comparando o snapshot atual com o
 anterior: barras que subiram (60% → 85%), cards que viraram `done`, itens
 novos. Zero trabalho de escrita — os dados para o diff já existem, imutáveis,
 um arquivo por data.
+_Fica correto por construção se A11 existir; sem escopo referenciado, o diff
+compara rótulos de texto livre._
 
 ### A3. Previsão de entrega (ETA) por frente — SSG
 
@@ -87,6 +89,59 @@ trocando de aba.
 Cliente clica "Aprovado" numa pendência e fica registrado com data. Vira prova
 de aceite formal — hoje o aceite mora num áudio de WhatsApp.
 _Já listado como v3 em `DECISOES.md`._
+
+### A11. Escopo do projeto como eixo — SSG
+
+Hoje o portal mostra o numerador sem o denominador: o cliente lê "78%" e não
+tem como saber 78% **de quê**. Uma visão do escopo — o que será desenvolvido,
+por área — dá sentido ao número.
+
+O ganho maior, porém, é de modelagem. Hoje cada snapshot **redeclara** os
+rótulos em `progress[]`; nada garante que "Cadastro do centro de testes" em
+29/07 seja o mesmo item de 04/08 — é texto livre repetido. Se o escopo virar
+lista estável (junto do projeto, em `content/clients/<id>.json`) e o
+`progress[]` passar a **referenciar** os itens dela por id, três coisas saem de
+graça:
+
+- o diff de A2 fica correto por construção, em vez de comparar strings;
+- **mudança de escopo vira evento datado e visível** — o registro que sustenta
+  a conversa de prazo (é a matéria-prima de A8);
+- C2 (contratado × entregue) deixa de ser bloco escrito à mão e passa a ser
+  calculado.
+
+**Forma visual — mapa, não quadro.** O escopo inteiro num grid, cada item
+colorido pelos três estados que já existem (`done`/`prog`/`plan`), agrupado por
+área: uma olhada responde "isto é o todo, isto já é meu, isto está em obra". É
+o que o snapshot do CT já faz em texto nas seções 02/03/04, em forma de imagem
+— dado novo nenhum. Complementa (não substitui) o trilho, que pode ganhar as
+fases do projeto como estações — Descoberta → Construção → Homologação →
+Entrega — reusando o "Você está aqui" que a `Timeline` já sabe desenhar.
+
+**Rejeitado: quadro kanban.** (a) Exige uma verdade em tempo real que o modelo
+de snapshot revisado por humano não tem — quadro desatualizado informa errado e
+parece abandonado, além de duplicar à mão o tracker já usado; (b) é ferramenta
+de quem move o card, e o cliente nunca vai mover um card — ele quer "onde está"
+e "quando chega", que um quadro obriga a deduzir lendo dezenas de cartões;
+(c) custaria dependência nova e uma segunda ilha `"use client"` com
+drag-and-drop, contra a disciplina atual de duas ilhas justificadas.
+
+### A12. Contrato acessível ao cliente — SSG
+
+Acesso ao contrato do projeto a partir da página do cliente. Recomendação:
+**linkar, não hospedar**.
+
+**Por quê.** (a) `public/` **não** tem o modelo de segurança do resto do portal
+— arquivo ali é servido em caminho adivinhável, sem `dynamicParams` nem 404
+anti-fishing; hospedar exigiria caminho derivado do slug
+(`public/<slug>/contrato.pdf`) como exceção consciente, e o PDF carrega CNPJ,
+valores e assinatura de pessoa física. (b) Binário em git é permanente — commit
+errado não sai do histórico com `git rm`. (c) Cópia hospedada envelhece: feito
+um aditivo, passam a existir duas versões e o cliente lê a errada.
+
+A plataforma de assinatura já guarda a versão autoritativa, com trilha de
+auditoria e permissão de verdade. Um link "Ver contrato assinado" entrega mais
+garantia, custa zero infra e não põe documento assinado dentro do repo.
+Hospedar fica como evolução possível, nunca como ponto de partida.
 
 ---
 
@@ -157,6 +212,7 @@ que sustenta o preço.
 Bloco ligando o escopo acordado ao que já foi entregue. Deixa visível quando o
 cliente pediu além do combinado — a conversa mais difícil da consultoria,
 resolvida com um link.
+_Vira cálculo em vez de texto escrito à mão se A11 existir._
 
 ### C3. Marcos financeiros vinculados a entregas — SSG (visível) / sai do SSG (com cobrança)
 
@@ -194,13 +250,18 @@ custa "o cliente perdeu o acesso e não sabe por quê".
 
 ---
 
-## Recomendação — os 5 primeiros
+## Recomendação — por onde começar
 
-1. **B1 (analytics de leitura)** e **B4 (aviso ao publicar)** — medem e
+1. **A11 (escopo como eixo)** — é o item que barateia os outros: dá o
+   denominador do progresso, torna o diff de A2 correto por construção,
+   transforma C2 em cálculo, é a matéria-prima de A8 e é onde marcos de
+   pagamento se penduram depois. Fazer primeiro muda o custo de tudo que vem
+   atrás.
+2. **B1 (analytics de leitura)** e **B4 (aviso ao publicar)** — medem e
    garantem que o portal _é lido_; sem isso, todo o resto é esforço no vazio.
-2. **A2 (o que mudou)** e **A3 (ETA)** — máximo valor percebido por unidade de
+3. **A2 (o que mudou)** e **A3 (ETA)** — máximo valor percebido por unidade de
    código, ambos dentro do SSG puro.
-3. **D1 (validação em CI)** — o único item cuja ausência pode fazer um cliente
+4. **D1 (validação em CI)** — o único item cuja ausência pode fazer um cliente
    ver uma página errada sem que ninguém saiba.
 
 ## Invariantes a preservar em qualquer um destes itens
@@ -213,7 +274,10 @@ Nenhum item deste estudo pode custar:
 - ausência de OpenGraph rico em `/r/[slug]`;
 - nenhuma rota **de cliente** listando clientes ou slugs (a exceção única
   continua sendo `/a/`, `DECISOES.md` §15);
-- snapshot imutável — status novo é arquivo novo, nunca sobrescrita.
+- snapshot imutável — status novo é arquivo novo, nunca sobrescrita;
+- arquivos em `public/` **não** herdam `dynamicParams=false` nem o 404
+  anti-fishing: qualquer anexo servido dali precisa de caminho derivado do slug
+  e de decisão registrada (ver A12).
 
 Os itens marcados "sai do SSG" (A10, B1, B2, B4) mudam o modelo de deploy e
 exigem decisão registrada em `DECISOES.md` antes de virar spec.
