@@ -257,19 +257,16 @@ h1 .accent {
   width: var(--rail-w);
   background: color-mix(in srgb, var(--brand) 32%, var(--line));
 }
-.flow > .pending,
-.flow > .overview,
-.flow > .next,
-.flow > .section,
-.flow > .timeline {
+/* Bloco do trilho: quem leva a classe .flow-block ganha losango e espaçamento.
+   Antes cada tipo de bloco era enumerado à mão em listas paralelas de
+   seletores — bloco novo nascia sem losango e sem erro nenhum. A classe é
+   explícita (e não .flow > *) porque a .legend também é filha do .flow e,
+   de propósito, NÃO tem losango. */
+.flow > .flow-block {
   position: relative;
   margin-bottom: 40px;
 }
-.flow > .pending::before,
-.flow > .overview::before,
-.flow > .next::before,
-.flow > .section::before,
-.flow > .timeline::before {
+.flow > .flow-block::before {
   content: "";
   position: absolute;
   left: -26px;
@@ -278,6 +275,91 @@ h1 .accent {
   height: 10px;
   background: var(--brand);
   transform: rotate(45deg);
+}
+
+/* ---- Escopo do projeto (o mapa) ---- */
+
+.scope {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px 26px;
+}
+.scope-count {
+  font-size: 13px;
+  color: var(--muted);
+  margin: -6px 0 20px;
+}
+.scope-count-strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.scope-group + .scope-group {
+  margin-top: 22px;
+}
+.scope-group-name {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+/* Hairline por gap sobre a cor da linha — mesma técnica do .manifest. */
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  list-style: none;
+}
+.scope-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--paper);
+  padding: 13px 15px;
+  min-width: 0;
+}
+.scope-item-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.scope-item-label {
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+.scope-state {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+.scope-item-desc {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.scope-tag {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--brand);
+}
+.scope-item.removed {
+  opacity: 0.6;
+}
+.scope-item.removed .scope-item-label {
+  text-decoration: line-through;
 }
 
 /* ---- Aguardando você ---- */
@@ -903,14 +985,13 @@ footer {
   .flow {
     padding-left: 20px;
   }
-  .flow > .pending::before,
-  .flow > .overview::before,
-  .flow > .next::before,
-  .flow > .section::before,
-  .flow > .timeline::before {
+  .flow > .flow-block::before {
     left: -20px;
     width: 8px;
     height: 8px;
+  }
+  .scope-grid {
+    grid-template-columns: 1fr;
   }
   .rail {
     padding-left: 22px;
@@ -942,10 +1023,13 @@ footer {
   .section-done:not([open]) .cards {
     display: grid;
   }
+  /* Lista própria de propósito: nem todo .flow-block evita quebra de página
+     (.section e .timeline são longos demais para isso). */
   .card,
   .overview,
   .next,
-  .pending {
+  .pending,
+  .scope-item {
     break-inside: avoid;
   }
 }

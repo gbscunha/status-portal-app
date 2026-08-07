@@ -7,12 +7,53 @@ import { STATUS_STATES } from "./status";
 
 export const statusStateSchema = z.enum(STATUS_STATES);
 
+// Data ISO que existe de verdade no calendário. Só o regex aceita "2026-02-30"
+// e "2026-13-45", que passariam pelo parse defensivo e chegariam à tela do
+// cliente como lixo ("45  2026"). Validar na fronteira sai mais barato do que
+// tratar no meio: quem consome já pode confiar nas partes da string.
+export const isoDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "deve ser YYYY-MM-DD")
+  .refine((s) => {
+    const [y, m, d] = s.split("-").map(Number);
+    const utc = new Date(Date.UTC(y, m - 1, d));
+    return (
+      utc.getUTCFullYear() === y &&
+      utc.getUTCMonth() === m - 1 &&
+      utc.getUTCDate() === d
+    );
+  }, "data inexistente no calendário");
+
 // ---- Config estável do cliente (content/clients/<id>.json) ----
+
+// O escopo é o denominador do progresso: sem ele, "78%" não diz de quê. Vive na
+// config ESTÁVEL (não no snapshot) porque é a linha de base acordada. O que
+// muda com o tempo entra em addedAt/removedAt — item removido é MARCADO, nunca
+// apagado, porque a mudança de escopo é a conversa que sustenta o prazo.
+export const scopeItemSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  desc: z.string().min(1),
+  group: z.string().optional(),
+  addedAt: isoDateSchema.optional(),
+  removedAt: isoDateSchema.optional(),
+});
+
+export const scopeSchema = z
+  .object({
+    baseline: isoDateSchema,
+    items: z.array(scopeItemSchema),
+  })
+  .refine(
+    (s) => new Set(s.items.map((i) => i.id)).size === s.items.length,
+    "ids do escopo devem ser únicos (são a chave do vínculo com os snapshots)",
+  );
 
 export const projectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   platform: z.string().optional(),
+  scope: scopeSchema.optional(),
 });
 
 export const clientSchema = z.object({
@@ -47,6 +88,9 @@ export const progressItemSchema = z.object({
   label: z.string().min(1),
   percent: z.number().min(0).max(100),
   state: statusStateSchema,
+  // Vínculo opcional com um item do escopo do projeto. Ausente = o item é
+  // texto livre, como antes; presente = o mapa do escopo herda este estado.
+  scopeId: z.string().min(1).optional(),
 });
 
 export const nextStepItemSchema = z.object({
@@ -82,14 +126,11 @@ export const titleSchema = z.object({
 export const pendingItemSchema = z.object({
   label: z.string().min(1),
   desc: z.string().min(1),
-  since: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "since deve ser YYYY-MM-DD")
-    .optional(),
+  since: isoDateSchema.optional(),
 });
 
 export const snapshotSchema = z.object({
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "date deve ser YYYY-MM-DD"),
+  date: isoDateSchema,
   phase: z.string().optional(),
   title: titleSchema,
   subtitle: z.string().optional(),
@@ -102,7 +143,9 @@ export const snapshotSchema = z.object({
   sections: z.array(sectionSchema),
 });
 
-export type StatusState = z.infer<typeof statusStateSchema>;
+export type { StatusState } from "./status";
+export type ScopeItem = z.infer<typeof scopeItemSchema>;
+export type Scope = z.infer<typeof scopeSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Client = z.infer<typeof clientSchema>;
 export type ProgressItem = z.infer<typeof progressItemSchema>;

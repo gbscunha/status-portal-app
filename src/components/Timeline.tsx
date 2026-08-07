@@ -24,7 +24,7 @@ export function Timeline({
   const hidden = entries.length - visible.length;
 
   return (
-    <section className="timeline" aria-label="Linha do tempo do projeto">
+    <section className="timeline flow-block" aria-label="Linha do tempo do projeto">
       <h3 className="block-title">Linha do tempo</h3>
       <ol className="rail">
         {visible.map((entry) => {

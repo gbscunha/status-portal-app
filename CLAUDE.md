@@ -61,10 +61,10 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - **Cliente** (`content/clients/<id>.json`): `id`, `name`, `contact?`, `slug`,
   `brandColor` (hex `#RRGGBB`), `vendor`, `whatsapp?` (E.164, canal da ITGraph),
-  `email?`, `projects[]` (`id`, `name`, `platform?`).
+  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`).
 - **Snapshot** (`content/snapshots/<clientId>/<projectId>/<data>.json`): `date`
   (YYYY-MM-DD), `phase?`, `title{text,highlight?}`, `subtitle?`,
-  `progress[]{label,percent,state}`, `nextSteps?{title,intro?,items[]{label,desc}}`,
+  `progress[]{label,percent,state,scopeId?}`, `nextSteps?{title,intro?,items[]{label,desc}}`,
   `pending?[]{label,desc,since?}` (ações do CLIENTE — bloco "Aguardando você"),
   `sections[]{number,title,cards[]{title,status,description,fullWidth?}}`.
 - **Estados** (`state`/`status`): só `done` (verde) · `prog` (âmbar) · `plan`
@@ -120,6 +120,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - NÃO adicionar OpenGraph/título que revele o cliente; NÃO listar clientes/slugs em
   rota pública.
 - NÃO sobrescrever snapshot existente — sempre arquivo novo datado.
+- NÃO renomear `id` de item de escopo publicado — quebra o vínculo dos snapshots.
 - NÃO reintroduzir Tailwind (o design é CSS puro portado); NÃO adicionar dependência
   sem perguntar.
 - NÃO fazer a skill commitar/pushar — ela para no preview.
