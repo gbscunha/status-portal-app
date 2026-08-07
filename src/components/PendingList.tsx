@@ -7,7 +7,7 @@ export function PendingList({ items }: { items: PendingItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="pending" aria-label="Aguardando você">
+    <section className="pending flow-block" aria-label="Aguardando você">
       <div className="kicker">Aguardando você</div>
       <p className="pending-intro">
         Para o projeto seguir no ritmo, precisamos de:

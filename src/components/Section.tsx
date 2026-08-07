@@ -16,7 +16,7 @@ export function Section({ number, title, cards }: SectionData) {
 
   if (allDone) {
     return (
-      <details className="section section-done">
+      <details className="section section-done flow-block">
         <summary>
           <span className="num">{number}</span>
           <h3>{title}</h3>
@@ -30,7 +30,7 @@ export function Section({ number, title, cards }: SectionData) {
   }
 
   return (
-    <section className="section">
+    <section className="section flow-block">
       <div className="section-head">
         <span className="num">{number}</span>
         <h3>{title}</h3>

@@ -6,6 +6,7 @@ import { ProgressList } from "./ProgressList";
 import { Legend } from "./Legend";
 import { NextSteps } from "./NextSteps";
 import { Section } from "./Section";
+import { ScopeMap } from "./ScopeMap";
 import { Timeline, type TimelineEntry } from "./Timeline";
 import { ContactCta } from "./ContactCta";
 import { Footer } from "./Footer";
@@ -31,6 +32,9 @@ export function StatusReport({ client, project, snapshot, history }: Props) {
         {snapshot.pending && <PendingList items={snapshot.pending} />}
         <ProgressList items={snapshot.progress} />
         <Legend />
+        {project.scope && (
+          <ScopeMap scope={project.scope} snapshot={snapshot} />
+        )}
         {snapshot.nextSteps && <NextSteps {...snapshot.nextSteps} />}
         {snapshot.sections.map((section) => (
           <Section key={section.number} {...section} />
