@@ -136,3 +136,73 @@ Manual (dev server):
   item D1 do estudo: aviso no build é fácil de ignorar; falha no PR, não.
 - Depois desta spec, a ordem que faz sentido é A2 (diff) → C2 (contratado ×
   entregue) → financeiro, todos já apoiados neste eixo.
+
+---
+
+## Anexo: escopo do CT, pronto para colar
+
+> **Isto é rascunho de documentação, não conteúdo publicado.** Está aqui porque
+> os snapshots são imutáveis: o mapa só acende quando um snapshot carrega
+> `scopeId`, e o de 2026-08-04 não pode ser retrofitado. Publicar o `scope`
+> sozinho mostraria os 13 itens como "Planejado" — pior que não mostrar nada.
+>
+> **Como usar:** na próxima entrega real do CT, cole o bloco 1 no
+> `content/clients/fgv.json` e os `scopeId` do bloco 2 no `progress[]` do
+> **snapshot novo** (nunca no de 04/08). Revise a linguagem antes — foi escrita
+> a partir das barras e das seções 02/03/04 do snapshot de 04/08, então não
+> inventa compromisso nenhum, mas o tom é seu.
+
+`baseline: 2026-07-22` = data do primeiro snapshot do CT. O painel analítico de
+vagas entra com `addedAt: 2026-07-29` porque é o único item que não existia no
+sistema antigo — nasceu depois da linha de base e aparece marcado como
+"acrescentado em", que é exatamente o registro de mudança de escopo que a A8
+quer.
+
+### Bloco 1 — `content/clients/fgv.json`, dentro do projeto `ct`
+
+```jsonc
+"scope": {
+  "baseline": "2026-07-22",
+  "items": [
+    { "id": "disponibilidade-vagas", "label": "Disponibilidade e vagas", "desc": "Grade de horários, janelas especiais e eventos que fecham o centro.", "group": "Operação diária" },
+    { "id": "consulta-agendamentos", "label": "Consulta de agendamentos", "desc": "Busca cruzada de candidatos e agendamentos, com filtros encadeados.", "group": "Operação diária" },
+    { "id": "administracao-pauta", "label": "Administração e pauta do dia", "desc": "Pauta de candidatos, ocorrências e preços por exame.", "group": "Operação diária" },
+    { "id": "provas", "label": "Provas e envio de arquivos", "desc": "Confirmados, consolidados e o envio dos arquivos de prova.", "group": "Operação diária" },
+    { "id": "acesso-login", "label": "Acesso e login unificado", "desc": "Entrada única e segura, com controle de perfis por pessoa.", "group": "Cadastro e acesso" },
+    { "id": "cadastro-centro", "label": "Cadastro do centro de testes", "desc": "Dados gerais, contrato, financeiro, estrutura técnica e equipe.", "group": "Cadastro e acesso" },
+    { "id": "notas-fiscais", "label": "Notas fiscais", "desc": "Envio pelos centros, aprovação, estatísticas e relatórios.", "group": "Financeiro e comunicação" },
+    { "id": "notificacoes", "label": "Notificações e comunicados", "desc": "Disparo por e-mail com editor, prévia de destinatários e histórico.", "group": "Financeiro e comunicação" },
+    { "id": "painel-vagas", "label": "Painel analítico de vagas", "desc": "Visão da saúde das vagas por período, região e tempo de espera.", "group": "Análise e treinamento", "addedAt": "2026-07-29" },
+    { "id": "treinamento", "label": "Treinamento da equipe", "desc": "Vídeos com acompanhamento, manuais e certificados de avaliação.", "group": "Análise e treinamento" },
+    { "id": "area-candidato", "label": "Área do candidato", "desc": "Inscrição, agendamento de prova e pagamento.", "group": "Fronteiras restantes" },
+    { "id": "integracoes-parceiros", "label": "Integrações com parceiros", "desc": "Trocas automáticas com ANAC, Anbima e o fornecedor de provas.", "group": "Fronteiras restantes" },
+    { "id": "documentos-lgpd", "label": "Documentos LGPD", "desc": "Publicação e atualização de termos de uso e aviso de cookies.", "group": "Fronteiras restantes" }
+  ]
+}
+```
+
+### Bloco 2 — `scopeId` no `progress[]` do snapshot novo
+
+| Rótulo da barra (como está hoje) | `scopeId` |
+| --- | --- |
+| Notas fiscais | `notas-fiscais` |
+| Notificações e comunicados | `notificacoes` |
+| Disponibilidade e vagas | `disponibilidade-vagas` |
+| Acesso e login unificado | `acesso-login` |
+| Consulta geral de agendamentos | `consulta-agendamentos` |
+| Painel analítico de vagas (novidade) | `painel-vagas` |
+| Cadastro do centro de testes | `cadastro-centro` |
+| Provas: confirmados, consolidados e envio de arquivos | `provas` |
+| Administração e pauta do dia | `administracao-pauta` |
+| Treinamento: vídeos, manuais e avaliações | `treinamento` |
+| Documentos LGPD (termos e cookies) | `documentos-lgpd` |
+| Área do candidato: inscrição, agendamento e pagamento | `area-candidato` |
+| Integrações com parceiros (ANAC, Anbima, provas) | `integracoes-parceiros` |
+
+### Conferido
+
+Este par foi renderizado de verdade (edição temporária, revertida sem tocar em
+snapshot commitado): saiu **"6 de 13 itens entregues"**, cinco grupos, a etiqueta
+"acrescentado em 29 Jul 2026" no painel de vagas, nenhum `scopeId` órfão no log
+do build, e o mapa apareceu em 1 dos 3 projetos da FGV — os outros dois saíram
+idênticos a hoje.
