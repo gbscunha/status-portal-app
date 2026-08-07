@@ -455,6 +455,17 @@ h1 .accent {
 .fill.plan {
   background: var(--plan-track);
 }
+/* Previsão de entrega: linha secundária DENTRO da célula do rótulo, para não
+   mexer nas 3 colunas fixas do .barrow (nem na variante do responsivo). */
+.label-eta {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .pct {
   font-size: 12px;
   font-variant-numeric: tabular-nums;
@@ -781,6 +792,26 @@ h1 .accent {
   display: flex;
   gap: 8px;
 }
+.mast-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* .cta nasceu para <a>; num <button> é preciso zerar a fonte do agente de
+   usuário. Preenchido como os CTAs de contato ao lado, para o mast falar uma
+   língua só. */
+.mast-actions > button.cta {
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.mast-actions > button.cta:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
+}
 /* No mast os CTAs vêm preenchidos (ink); hover puxa a cor da marca.
    O foco de teclado continua com outline via :focus-visible. */
 .contact-compact .cta {
@@ -957,6 +988,17 @@ h1 .accent {
 }
 
 /* ---- Rodapé ---- */
+
+.footer-link {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+}
+.footer-link:hover {
+  color: var(--brand);
+  text-decoration-color: var(--brand);
+}
 
 footer {
   margin-top: 40px;

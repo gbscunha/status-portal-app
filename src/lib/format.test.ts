@@ -1,4 +1,34 @@
 import { describe, expect, it } from "vitest";
+import { formatPtMonth } from "./format";
+
+describe("formatPtMonth", () => {
+  it("formats a YYYY-MM month in pt-BR", () => {
+    expect(formatPtMonth("2026-09")).toBe("Set 2026");
+    expect(formatPtMonth("2026-01")).toBe("Jan 2026");
+    expect(formatPtMonth("2026-12")).toBe("Dez 2026");
+  });
+
+  it("covers all twelve months without gaps", () => {
+    const all = Array.from({ length: 12 }, (_, i) =>
+      formatPtMonth(`2026-${String(i + 1).padStart(2, "0")}`),
+    );
+    expect(all).toEqual([
+      "Jan 2026",
+      "Fev 2026",
+      "Mar 2026",
+      "Abr 2026",
+      "Mai 2026",
+      "Jun 2026",
+      "Jul 2026",
+      "Ago 2026",
+      "Set 2026",
+      "Out 2026",
+      "Nov 2026",
+      "Dez 2026",
+    ]);
+  });
+});
+
 import {
   daysBetween,
   relativeDaysPt,

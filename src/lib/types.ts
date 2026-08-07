@@ -24,6 +24,13 @@ export const isoDateSchema = z
     );
   }, "data inexistente no calendário");
 
+// Previsão de entrega é MÊS, nunca dia. Prometer data exata ancora o cliente
+// num número que consultoria não controla — qualquer deslize de 48h vira
+// promessa quebrada. O mês comunica compromisso sem fingir precisão.
+export const isoMonthSchema = z
+  .string()
+  .regex(/^\d{4}-(0[1-9]|1[0-2])$/, "deve ser YYYY-MM");
+
 // ---- Config estável do cliente (content/clients/<id>.json) ----
 
 // O escopo é o denominador do progresso: sem ele, "78%" não diz de quê. Vive na
@@ -54,6 +61,11 @@ export const projectSchema = z.object({
   name: z.string().min(1),
   platform: z.string().optional(),
   scope: scopeSchema.optional(),
+  // Link para o contrato ASSINADO, na plataforma de assinatura — nunca um
+  // arquivo hospedado aqui. `public/` não herda o dynamicParams nem o 404
+  // anti-fishing, binário em git é permanente, e cópia hospedada envelhece
+  // depois de um aditivo. Ver A12 em docs/specs/estudo-funcionalidades.md.
+  contractUrl: z.url().optional(),
 });
 
 export const clientSchema = z.object({
@@ -91,6 +103,8 @@ export const progressItemSchema = z.object({
   // Vínculo opcional com um item do escopo do projeto. Ausente = o item é
   // texto livre, como antes; presente = o mapa do escopo herda este estado.
   scopeId: z.string().min(1).optional(),
+  // Previsão de entrega desta frente (YYYY-MM). Ver isoMonthSchema.
+  eta: isoMonthSchema.optional(),
 });
 
 export const nextStepItemSchema = z.object({
