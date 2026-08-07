@@ -9,7 +9,8 @@ function subscribeToHash(onChange: () => void) {
   return () => window.removeEventListener("hashchange", onChange);
 }
 
-// The only client-side island in the app (v2). Reports stay Server
+// One of three client islands (with AdminGreeting and PrintButton), and the
+// only one that owns page state. Reports stay Server
 // Components: the server renders them all as children and this component
 // only toggles which panel is visible. The URL hash is the single source of
 // truth (deep-linkable, back button navigates tabs, no routing dependency).

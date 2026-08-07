@@ -4,6 +4,7 @@ import { getProjectSnapshots } from "@/lib/content";
 import { StatusReport } from "./StatusReport";
 import { ProjectSwitcher } from "./ProjectSwitcher";
 import { ContactCta } from "./ContactCta";
+import { PrintButton } from "./PrintButton";
 
 // Page shell for a client: mast (vendor + contact) → client name (the only
 // h1) → one report per project behind the ProjectSwitcher tabs. Reports are
@@ -65,7 +66,10 @@ export function ProjectStack({ client }: { client: Client }) {
           <span className="mast-vendor" translate="no">
             {client.vendor} · Portal de acompanhamento
           </span>
-          <ContactCta client={client} variant="compact" />
+          <div className="mast-actions">
+            <PrintButton />
+            <ContactCta client={client} variant="compact" />
+          </div>
         </div>
       </header>
       <div className="wrap client-head">

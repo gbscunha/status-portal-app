@@ -792,6 +792,26 @@ h1 .accent {
   display: flex;
   gap: 8px;
 }
+.mast-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* .cta nasceu para <a>; num <button> é preciso zerar a fonte do agente de
+   usuário. Preenchido como os CTAs de contato ao lado, para o mast falar uma
+   língua só. */
+.mast-actions > button.cta {
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.mast-actions > button.cta:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
+}
 /* No mast os CTAs vêm preenchidos (ink); hover puxa a cor da marca.
    O foco de teclado continua com outline via :focus-visible. */
 .contact-compact .cta {
