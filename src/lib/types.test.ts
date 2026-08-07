@@ -68,6 +68,37 @@ describe("snapshotSchema pending items", () => {
   });
 });
 
+describe("isoDateSchema", () => {
+  it("rejects well-formed dates that do not exist in the calendar", () => {
+    for (const bad of [
+      "2026-13-45",
+      "2026-02-30",
+      "2026-02-29", // 2026 is not a leap year
+      "2026-00-10",
+      "2026-04-31", // April has 30 days
+    ]) {
+      const parsed = snapshotSchema.safeParse({ ...baseSnapshot, date: bad });
+      expect(parsed.success).toBe(false);
+    }
+  });
+
+  it("accepts a real leap day", () => {
+    const parsed = snapshotSchema.safeParse({
+      ...baseSnapshot,
+      date: "2024-02-29",
+    });
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects a pending since date that does not exist", () => {
+    const parsed = snapshotSchema.safeParse({
+      ...baseSnapshot,
+      pending: [{ label: "x", desc: "y", since: "2026-11-31" }],
+    });
+    expect(parsed.success).toBe(false);
+  });
+});
+
 describe("adminSchema", () => {
   it("accepts a valid admin config", () => {
     expect(adminSchema.safeParse({ slug: "admin-abc1234" }).success).toBe(true);

@@ -7,6 +7,23 @@ import { STATUS_STATES } from "./status";
 
 export const statusStateSchema = z.enum(STATUS_STATES);
 
+// Data ISO que existe de verdade no calendário. Só o regex aceita "2026-02-30"
+// e "2026-13-45", que passariam pelo parse defensivo e chegariam à tela do
+// cliente como lixo ("45  2026"). Validar na fronteira sai mais barato do que
+// tratar no meio: quem consome já pode confiar nas partes da string.
+export const isoDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "deve ser YYYY-MM-DD")
+  .refine((s) => {
+    const [y, m, d] = s.split("-").map(Number);
+    const utc = new Date(Date.UTC(y, m - 1, d));
+    return (
+      utc.getUTCFullYear() === y &&
+      utc.getUTCMonth() === m - 1 &&
+      utc.getUTCDate() === d
+    );
+  }, "data inexistente no calendário");
+
 // ---- Config estável do cliente (content/clients/<id>.json) ----
 
 export const projectSchema = z.object({
@@ -82,14 +99,11 @@ export const titleSchema = z.object({
 export const pendingItemSchema = z.object({
   label: z.string().min(1),
   desc: z.string().min(1),
-  since: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "since deve ser YYYY-MM-DD")
-    .optional(),
+  since: isoDateSchema.optional(),
 });
 
 export const snapshotSchema = z.object({
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "date deve ser YYYY-MM-DD"),
+  date: isoDateSchema,
   phase: z.string().optional(),
   title: titleSchema,
   subtitle: z.string().optional(),

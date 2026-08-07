@@ -30,17 +30,23 @@ const MONTHS_PT_LONG = [
   "Dezembro",
 ];
 
+/** ISO date parts as numbers. Every caller receives strings already validated
+ *  by isoDateSchema (types.ts), so a real month and day are guaranteed here —
+ *  the contract is enforced at the boundary, not patched in the middle. */
+function isoParts(iso: string): [number, number, number] {
+  const parts = iso.split("-").map(Number);
+  return [parts[0], parts[1], parts[2]];
+}
+
 export function formatPtDate(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  const month = MONTHS_PT[(m ?? 1) - 1] ?? "";
-  return `${d} ${month} ${y}`;
+  const [y, m, d] = isoParts(iso);
+  return `${d} ${MONTHS_PT[m - 1]} ${y}`;
 }
 
 /** Full pt-BR date, e.g. "17 de Julho de 2026". */
 export function formatPtDateLong(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  const month = MONTHS_PT_LONG[(m ?? 1) - 1] ?? "";
-  return `${d} de ${month} de ${y}`;
+  const [y, m, d] = isoParts(iso);
+  return `${d} de ${MONTHS_PT_LONG[m - 1]} de ${y}`;
 }
 
 const WEEKDAYS_PT = [
@@ -56,9 +62,8 @@ const WEEKDAYS_PT = [
 /** Weekday + full pt-BR date, e.g. "Sexta-feira, 17 de Julho de 2026".
  *  TZ-safe: weekday comes from Date.UTC over the ISO parts. */
 export function formatPtDateFull(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  const weekday =
-    WEEKDAYS_PT[new Date(Date.UTC(y ?? 0, (m ?? 1) - 1, d ?? 1)).getUTCDay()];
+  const [y, m, d] = isoParts(iso);
+  const weekday = WEEKDAYS_PT[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
   return `${weekday}, ${formatPtDateLong(iso)}`;
 }
 
@@ -66,8 +71,8 @@ export function formatPtDateFull(iso: string): string {
  *  the ISO parts with Date.UTC, never parsing the string as a Date. */
 export function daysBetween(aIso: string, bIso: string): number {
   const toUtcDays = (iso: string) => {
-    const [y, m, d] = iso.split("-").map(Number);
-    return Date.UTC(y ?? 0, (m ?? 1) - 1, d ?? 1) / 86_400_000;
+    const [y, m, d] = isoParts(iso);
+    return Date.UTC(y, m - 1, d) / 86_400_000;
   };
   return toUtcDays(bIso) - toUtcDays(aIso);
 }
