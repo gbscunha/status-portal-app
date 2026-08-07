@@ -20,7 +20,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 ```
 src/app/            — App Router. r/[slug]/ = página do cliente; a/[slug]/ = painel admin (interno); robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
-src/components/     — Server Components (ProjectStack → ProjectSwitcher* → StatusReport → …); *única ilha "use client"
+src/components/     — Server Components (ProjectStack → ProjectSwitcher* → StatusReport → …); *3 ilhas "use client" (ver Convenções)
 src/lib/            — types.ts (schema Zod), status.ts (estados), content.ts (loaders fs), format.ts (data TZ-safe)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
@@ -61,10 +61,12 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - **Cliente** (`content/clients/<id>.json`): `id`, `name`, `contact?`, `slug`,
   `brandColor` (hex `#RRGGBB`), `vendor`, `whatsapp?` (E.164, canal da ITGraph),
-  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`).
+  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`,
+  `contractUrl?` — link para o contrato ASSINADO, nunca arquivo hospedado).
 - **Snapshot** (`content/snapshots/<clientId>/<projectId>/<data>.json`): `date`
   (YYYY-MM-DD), `phase?`, `title{text,highlight?}`, `subtitle?`,
-  `progress[]{label,percent,state,scopeId?}`, `nextSteps?{title,intro?,items[]{label,desc}}`,
+  `progress[]{label,percent,state,scopeId?,eta?}` (`eta` é MÊS `YYYY-MM`, nunca
+  dia), `nextSteps?{title,intro?,items[]{label,desc}}`,
   `pending?[]{label,desc,since?}` (ações do CLIENTE — bloco "Aguardando você"),
   `sections[]{number,title,cards[]{title,status,description,fullWidth?}}`.
 - **Estados** (`state`/`status`): só `done` (verde) · `prog` (âmbar) · `plan`
@@ -77,8 +79,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - Código e comentários em **inglês**; conteúdo (UI e snapshots) em **pt-BR**, em
   **linguagem de cliente** — foco em benefício, ZERO jargão técnico.
 - **Server Components** por padrão. Ilhas `"use client"` só com justificativa
-  forte e mínimas — hoje existem DUAS (`ProjectSwitcher`, tabs via hash;
-  `AdminGreeting`, data da visita em página estática).
+  forte e mínimas — hoje são TRÊS: `ProjectSwitcher` (tabs via hash),
+  `AdminGreeting` (data da visita) e `PrintButton` (`window.print()`).
 - Cor da marca via CSS var `--brand`, setada por cliente no `ProjectStack`
   (`style={{ "--brand": brandColor }}`); o CSS usa `var(--brand)`.
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,
@@ -105,8 +107,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   repo do cliente** (que tem um `.status-portal.json` com `portalRepoPath`/`clientId`/
   `projectId`), lê o que avançou, gera o snapshot em linguagem de cliente, mostra o
   **preview e PARA**. O humano revisa e faz `git push` no portal.
-- Repos já configurados: `movi-web` (movi-web), `movi-checklist` (movi-app),
-  `movi_exporter_app` (movi-exporter).
+- Repos configurados: `movi-web`, `movi-checklist` (movi-app), `movi_exporter_app` (movi-exporter).
 
 ## Fluxos
 
@@ -127,10 +128,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Verificação
 
-1. `pnpm test` — Vitest verde.
-2. `pnpm build` — SSG + typecheck passam.
-3. `pnpm lint` — zero.
-4. `/r/<slug>` renderiza; `/r/<inexistente>` → 404; raiz não vaza cliente; `<meta
+1. `pnpm test && pnpm build && pnpm lint` — verde, SSG+typecheck OK, zero avisos.
+2. `/r/<slug>` renderiza; `/r/<inexistente>` → 404; raiz não vaza cliente; `<meta
    robots noindex>` + header `X-Robots-Tag` presentes.
 
 ## Estado atual

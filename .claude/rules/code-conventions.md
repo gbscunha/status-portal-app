@@ -8,7 +8,8 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
 - `src/app/` = rotas (App Router). `src/components/` = componentes de
   apresentação. `src/lib/` = lógica pura (schemas, loaders, formatação).
 - **Server Components por padrão.** Ilha `"use client"` só com justificativa
-  forte e mínima — hoje existem DUAS (`ProjectSwitcher`, tabs com hash como
+  forte e mínima — hoje são TRÊS. `PrintButton` (`window.print()`, sem
+  alternativa sem JS); (`ProjectSwitcher`, tabs com hash como
   fonte de verdade; `AdminGreeting`, relógio da visita via
   `useSyncExternalStore` com snapshot de servidor = data do build).
 - Um componente por arquivo, PascalCase, props tipadas com `type` inline ou
