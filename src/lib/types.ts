@@ -26,10 +26,34 @@ export const isoDateSchema = z
 
 // ---- Config estável do cliente (content/clients/<id>.json) ----
 
+// O escopo é o denominador do progresso: sem ele, "78%" não diz de quê. Vive na
+// config ESTÁVEL (não no snapshot) porque é a linha de base acordada. O que
+// muda com o tempo entra em addedAt/removedAt — item removido é MARCADO, nunca
+// apagado, porque a mudança de escopo é a conversa que sustenta o prazo.
+export const scopeItemSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  desc: z.string().min(1),
+  group: z.string().optional(),
+  addedAt: isoDateSchema.optional(),
+  removedAt: isoDateSchema.optional(),
+});
+
+export const scopeSchema = z
+  .object({
+    baseline: isoDateSchema,
+    items: z.array(scopeItemSchema),
+  })
+  .refine(
+    (s) => new Set(s.items.map((i) => i.id)).size === s.items.length,
+    "ids do escopo devem ser únicos (são a chave do vínculo com os snapshots)",
+  );
+
 export const projectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   platform: z.string().optional(),
+  scope: scopeSchema.optional(),
 });
 
 export const clientSchema = z.object({
@@ -64,6 +88,9 @@ export const progressItemSchema = z.object({
   label: z.string().min(1),
   percent: z.number().min(0).max(100),
   state: statusStateSchema,
+  // Vínculo opcional com um item do escopo do projeto. Ausente = o item é
+  // texto livre, como antes; presente = o mapa do escopo herda este estado.
+  scopeId: z.string().min(1).optional(),
 });
 
 export const nextStepItemSchema = z.object({
@@ -116,7 +143,9 @@ export const snapshotSchema = z.object({
   sections: z.array(sectionSchema),
 });
 
-export type StatusState = z.infer<typeof statusStateSchema>;
+export type { StatusState } from "./status";
+export type ScopeItem = z.infer<typeof scopeItemSchema>;
+export type Scope = z.infer<typeof scopeSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Client = z.infer<typeof clientSchema>;
 export type ProgressItem = z.infer<typeof progressItemSchema>;

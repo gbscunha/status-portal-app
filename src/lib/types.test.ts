@@ -99,6 +99,105 @@ describe("isoDateSchema", () => {
   });
 });
 
+describe("scopeSchema", () => {
+  const baseScope = {
+    baseline: "2026-07-22",
+    items: [
+      { id: "notas", label: "Notas fiscais", desc: "Envio e aprovação." },
+      { id: "vagas", label: "Vagas", desc: "Grade de horários." },
+    ],
+  };
+
+  const withScope = (scope: unknown) => ({
+    ...baseClient,
+    projects: [{ id: "p1", name: "Projeto 1", scope }],
+  });
+
+  it("accepts a project without scope (backward compatible)", () => {
+    expect(clientSchema.safeParse(baseClient).success).toBe(true);
+  });
+
+  it("accepts a project with a valid scope", () => {
+    expect(clientSchema.safeParse(withScope(baseScope)).success).toBe(true);
+  });
+
+  it("accepts optional group, addedAt and removedAt on an item", () => {
+    const parsed = clientSchema.safeParse(
+      withScope({
+        ...baseScope,
+        items: [
+          {
+            id: "novo",
+            label: "Item novo",
+            desc: "Entrou depois.",
+            group: "Operação",
+            addedAt: "2026-08-01",
+            removedAt: "2026-08-20",
+          },
+        ],
+      }),
+    );
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects duplicate item ids", () => {
+    const parsed = clientSchema.safeParse(
+      withScope({
+        ...baseScope,
+        items: [
+          { id: "notas", label: "Notas fiscais", desc: "a" },
+          { id: "notas", label: "Outra coisa", desc: "b" },
+        ],
+      }),
+    );
+    expect(parsed.success).toBe(false);
+  });
+
+  it("rejects scope dates that do not exist", () => {
+    expect(
+      clientSchema.safeParse(withScope({ ...baseScope, baseline: "2026-02-30" }))
+        .success,
+    ).toBe(false);
+    expect(
+      clientSchema.safeParse(
+        withScope({
+          ...baseScope,
+          items: [
+            { id: "x", label: "X", desc: "d", addedAt: "2026-13-01" },
+          ],
+        }),
+      ).success,
+    ).toBe(false);
+  });
+
+  it("rejects an item with an empty id", () => {
+    const parsed = clientSchema.safeParse(
+      withScope({ ...baseScope, items: [{ id: "", label: "X", desc: "d" }] }),
+    );
+    expect(parsed.success).toBe(false);
+  });
+});
+
+describe("progressItemSchema scopeId", () => {
+  it("accepts a progress item without scopeId (backward compatible)", () => {
+    const parsed = snapshotSchema.safeParse({
+      ...baseSnapshot,
+      progress: [{ label: "Notas fiscais", percent: 90, state: "done" }],
+    });
+    expect(parsed.success).toBe(true);
+  });
+
+  it("accepts a progress item linked to a scope item", () => {
+    const parsed = snapshotSchema.safeParse({
+      ...baseSnapshot,
+      progress: [
+        { label: "Notas fiscais", percent: 90, state: "done", scopeId: "notas" },
+      ],
+    });
+    expect(parsed.success).toBe(true);
+  });
+});
+
 describe("adminSchema", () => {
   it("accepts a valid admin config", () => {
     expect(adminSchema.safeParse({ slug: "admin-abc1234" }).success).toBe(true);
