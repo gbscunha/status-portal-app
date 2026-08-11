@@ -1,0 +1,160 @@
+{
+  "date": "2026-08-11",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "A entrada no portal e o fale conosco foram concluídos e já fazem parte do site. Toda a área do candidato — 14 telas — foi construída no novo visual e está em revisão.",
+  "milestone": "Área do candidato construída: 14 telas",
+  "progress": [
+    { "label": "Base visual (cabeçalho e rodapé)", "percent": 100, "state": "done" },
+    { "label": "Página inicial", "percent": 100, "state": "done" },
+    { "label": "Página de certificação", "percent": 100, "state": "done" },
+    { "label": "Página de cursos", "percent": 100, "state": "done" },
+    { "label": "Página de passo a passo", "percent": 100, "state": "done" },
+    { "label": "Página de locais de prova", "percent": 100, "state": "done" },
+    { "label": "Tela de fale conosco", "percent": 100, "state": "done" },
+    { "label": "Telas de acesso e senha", "percent": 100, "state": "done" },
+    { "label": "Área do candidato", "percent": 85, "state": "prog", "eta": "2026-08" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "Com as telas do candidato construídas, o foco passa a ser colocá-las em funcionamento com os dados reais.",
+    "items": [
+      { "label": "Revisar as telas da área do candidato", "desc": "As 14 telas estão disponíveis para conferência — textos, informações exibidas em cada etapa e a ordem do menu." },
+      { "label": "Ligar as telas ao sistema", "desc": "Cada tela passa a mostrar a inscrição, o pagamento, o agendamento e o resultado reais de quem entrou no portal, no lugar do conteúdo de exemplo." },
+      { "label": "Definir as próximas frentes", "desc": "Com o conteúdo público e a área do candidato cobertos, os próximos trechos do site entram conforme as prioridades forem definidas." }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Revisar as telas da área do candidato",
+      "desc": "As 14 telas do ambiente do candidato estão prontas para conferência e aguardam seu retorno antes de serem ligadas ao sistema.",
+      "since": "2026-08-10"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Conteúdo público do site concluído",
+          "status": "done",
+          "description": "Início, Certificação, Cursos, Passo a passo, Locais de Prova e Fale Conosco estão no novo visual e fazem parte da versão oficial do site. Com a entrada do Fale Conosco, todas as páginas abertas ao público foram migradas.",
+          "fullWidth": true
+        },
+        {
+          "title": "Entrada no portal e senhas",
+          "status": "done",
+          "description": "As seis telas de acesso — entrar, esqueci minha senha, redefinir, alterar, receber o código e conferir o código — foram construídas no novo visual e já estão em funcionamento. A entrada aceita usuário ou CPF, permite exibir a senha digitada e mostra de forma clara avisos como senha incorreta ou conta bloqueada.",
+          "fullWidth": true
+        },
+        {
+          "title": "Tela de fale conosco",
+          "status": "done",
+          "description": "Formulário de contato no novo visual: dados do candidato, mensagem, envio de anexo e aceite dos termos, com o encaminhamento para a equipe de atendimento funcionando como antes."
+        },
+        {
+          "title": "Telas internas voltaram a abrir",
+          "status": "done",
+          "description": "As telas antigas que haviam deixado de abrir na versão em desenvolvimento, após uma mudança na base do site, foram restauradas — tanto as do candidato quanto as da administração."
+        },
+        {
+          "title": "Página inicial",
+          "status": "done",
+          "description": "A porta de entrada do site: apresentação da certificação com foto de destaque, números do CRECI-RJ, o caminho em três passos até o registro profissional e chamadas diretas para a inscrição."
+        },
+        {
+          "title": "Página de certificação",
+          "status": "done",
+          "description": "Apresenta as modalidades de certificação e habilitação — técnica, avaliação imobiliária, inscrição profissional e registro de imobiliárias — cada uma com seus requisitos e um caminho direto para a inscrição."
+        },
+        {
+          "title": "Página de cursos",
+          "status": "done",
+          "description": "Catálogo dos cursos disponíveis, cada um com sua descrição e um caminho direto para a inscrição, além de um canal de contato para dúvidas."
+        },
+        {
+          "title": "Página de passo a passo",
+          "status": "done",
+          "description": "Guia que conduz o candidato do início ao fim da certificação, organizado em fases com os passos de cada etapa e um espaço para tirar dúvidas."
+        },
+        {
+          "title": "Página de locais de prova",
+          "status": "done",
+          "description": "Mapa interativo do Brasil onde o candidato encontra, de forma visual, as cidades e bairros com locais de prova — usando os dados reais do sistema."
+        },
+        {
+          "title": "Cabeçalho e rodapé",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) estão presentes em todas as páginas e ajustados para telas de celular."
+        },
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "O andamento do site é publicado nesta página a cada avanço relevante."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Área do candidato — 14 telas no novo visual",
+          "status": "prog",
+          "description": "Todo o ambiente que o candidato encontra depois de entrar no portal foi construído: um menu lateral que acompanha a inscrição escolhida e uma tela para cada etapa da jornada, do pagamento ao certificado. As telas já podem ser abertas e conferidas com conteúdo de exemplo; o passo seguinte é ligá-las às informações reais de cada candidato.",
+          "fullWidth": true
+        },
+        {
+          "title": "Minhas inscrições e visão geral",
+          "status": "prog",
+          "description": "Ao entrar, o candidato vê suas inscrições ativas e escolhe com qual quer trabalhar. A visão geral daquela inscrição mostra a situação atual e destaca o próximo passo — por exemplo, emitir o boleto."
+        },
+        {
+          "title": "Pagamento",
+          "status": "prog",
+          "description": "Escolha da forma de pagamento entre boleto e cartão de crédito, com valor, vencimento, situação e a linha digitável do boleto à mão."
+        },
+        {
+          "title": "Agendamento, cancelamento e ausência",
+          "status": "prog",
+          "description": "O agendamento da prova em etapas — aceite do termo, escolha do local, escolha da data e do horário e confirmação — mais as telas para cancelar um agendamento e para justificar a ausência na prova, com o acompanhamento da análise."
+        },
+        {
+          "title": "Resultado, recurso e certificado",
+          "status": "prog",
+          "description": "O desempenho na certificação com o grau obtido, o resultado por módulo e as estatísticas da prova; a relação dos recursos registrados durante o exame; e o certificado profissional, com visualização, download em PDF e link para compartilhar."
+        },
+        {
+          "title": "Dados, documentos e histórico",
+          "status": "prog",
+          "description": "Os dados pessoais da inscrição (com a opção de baixar uma cópia), os regulamentos e avisos de privacidade reunidos em um só lugar e o histórico de inscrições anteriores com seus certificados."
+        },
+        {
+          "title": "Menu adaptado ao celular",
+          "status": "prog",
+          "description": "No celular o menu lateral passa a ficar recolhido, abrindo ao toque, mas mantendo sempre visível a inscrição selecionada — assim o conteúdo da tela aparece logo de cara, sem precisar rolar por toda a lista de opções."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Área do candidato em funcionamento",
+          "status": "plan",
+          "description": "Depois da revisão, as telas passam a exibir as informações reais de cada candidato — inscrição, pagamento, agendamento, resultado e certificado — no lugar do conteúdo de exemplo."
+        },
+        {
+          "title": "Demais páginas do site",
+          "status": "plan",
+          "description": "Com o conteúdo público e a área do candidato cobertos, os próximos trechos do site entram conforme as prioridades forem definidas."
+        }
+      ]
+    }
+  ]
+}
