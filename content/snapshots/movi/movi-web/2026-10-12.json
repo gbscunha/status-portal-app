@@ -1,0 +1,256 @@
+{
+  "date": "2026-10-12",
+  "phase": "Rumo ao piloto",
+  "title": {
+    "text": "Painel Web",
+    "highlight": "Web"
+  },
+  "subtitle": "Visão geral do que já está entregue, o que está em desenvolvimento e o que ainda falta para o piloto em campo e a publicação do sistema de gestão de frotas e checklists veiculares.",
+  "milestone": "Questionário configurável e ficha chegando do celular",
+  "progress": [
+    {
+      "label": "Acesso e segurança",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Cadastros base",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Designação de motoristas",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Questionário configurável",
+      "percent": 70,
+      "state": "prog"
+    },
+    {
+      "label": "Checklists",
+      "percent": 85,
+      "state": "prog"
+    },
+    {
+      "label": "Fotos, assinatura e localização",
+      "percent": 10,
+      "state": "plan"
+    },
+    {
+      "label": "Relatórios e painéis",
+      "percent": 5,
+      "state": "plan"
+    },
+    {
+      "label": "Preparação p/ lançamento",
+      "percent": 60,
+      "state": "prog"
+    }
+  ],
+  "nextSteps": {
+    "title": "Fechar o motor do questionário, aplicar os ajustes da revisão e preparar o piloto",
+    "intro": "Desde agosto o caminho mudou: em vez de lançar com uma ficha fixa, fomos direto ao questionário que cada empresa monta sozinha. Ele já está no ar, a ficha preenchida no celular chega ao painel e a versão de teste do app está no seu aparelho desde setembro. A revisão de 2 de outubro trouxe nove ajustes, que entram na sequência. O piloto em campo e a publicação nas lojas vêm em seguida; as datas serão confirmadas com você. Na sequência:",
+    "items": [
+      {
+        "label": "Correções no aplicativo",
+        "desc": "lista de veículos e viagem em aberto disponíveis mesmo sem sinal, ficha recusada visível com reenvio e teste em aparelho Android de verdade."
+      },
+      {
+        "label": "Motor do questionário completo",
+        "desc": "itens padrão prontos para montar questionários mais rápido, as duas fichas de referência montadas como modelo, Sinistro como quarto tipo de ficha e fechamento de viagem em aberto pelo gestor."
+      },
+      {
+        "label": "Ajustes da revisão de 2 de outubro",
+        "desc": "motorista escolhe o tipo de ficha ao iniciar, quilometragem do veículo no cadastro, identificador livre, campo de atenção que exige foto e observação, foto de exemplo, seções reordenáveis e aprovação ou reprovação da ficha."
+      },
+      {
+        "label": "Importar o checklist em papel",
+        "desc": "uma foto ou PDF da ficha atual vira um rascunho de questionário, pronto para revisar no editor."
+      },
+      {
+        "label": "Fotos, assinatura e localização",
+        "desc": "foto só pela câmera, assinatura do motorista na tela e localização capturada ao enviar, com mapa no painel."
+      },
+      {
+        "label": "Ambiente definitivo e piloto",
+        "desc": "planos pagos de hospedagem e banco, backup com teste de restauração, monitoramento com alertas e política de privacidade publicada; depois, piloto com cerca de 10 veículos e 2 a 3 motoristas de um cliente real."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Questionário montado pela própria empresa",
+          "status": "done",
+          "description": "O administrador monta o questionário direto no painel, no estilo de um formulário: seções, itens, tipo de resposta, obrigatório, observação e espaço para foto. Publicar cria uma nova versão sem mexer nas fichas antigas, que continuam abrindo exatamente como foram preenchidas. A ficha oficial de inspeção diária, com 22 itens em 3 seções, já foi montada por essa tela.",
+          "fullWidth": true
+        },
+        {
+          "title": "Ficha do celular chegando ao painel",
+          "status": "done",
+          "description": "O caminho completo está fechado: o motorista escolhe o questionário no app, preenche mesmo sem sinal e a ficha chega ao painel quando a conexão volta. Entrada e saída se pareiam como viagem automaticamente, e a leitura destaca cada resposta: o esperado em verde, o que pede atenção em vermelho. A versão de teste do app está no seu celular desde 14 de setembro.",
+          "fullWidth": true
+        },
+        {
+          "title": "Rodada de testes automáticos e nove correções",
+          "status": "done",
+          "description": "Mais de 1.900 verificações automáticas foram revisadas e o painel passou a ser testado num navegador de verdade a cada alteração, antes de ir ao ar. A rodada encontrou e corrigiu nove falhas: a lista de motoristas de um veículo mostrava pessoas de outra empresa; o aviso de cadastro duplicado não dizia qual campo se repetia; um administrador conseguia alterar outro; trocar a senha não encerrava as sessões abertas; empresa inativa continuava com acesso; listas longas repetiam ou escondiam registros; o bloqueio do login não explicava o que fazer; quem entrava com a senha certa gastava as tentativas de toda a rede; e campos de formulário sem nome para leitor de tela.",
+          "fullWidth": true
+        },
+        {
+          "title": "Proteção contra entrada duplicada",
+          "status": "done",
+          "description": "Sem sinal, o motorista pode preencher a entrada duas vezes sem perceber. O painel recusa a segunda, e o veículo não fica preso em uma viagem que nunca fecha."
+        },
+        {
+          "title": "Painel não desloga mais sozinho",
+          "status": "done",
+          "description": "A sessão era encerrada 15 minutos depois do login, mesmo em uso. Agora o painel renova o acesso por conta própria, inclusive com várias abas abertas."
+        },
+        {
+          "title": "Troca da própria senha",
+          "status": "done",
+          "description": "Cada usuário troca a senha em Meu perfil. Quem esquece pede a redefinição ao administrador, que faz isso no cadastro de usuários; a tela de login explica esse caminho e, se houver bloqueio por excesso de tentativas, diz quanto tempo aguardar."
+        },
+        {
+          "title": "Listagem organizada por viagem",
+          "status": "done",
+          "description": "A tela de checklists mostra viagens, não registros soltos: entrada e saída lado a lado, situação da viagem (em aberto ou concluída) e a quilometragem rodada calculada automaticamente. Fica evidente qual veículo saiu e ainda não voltou."
+        },
+        {
+          "title": "Designação de motoristas por veículo",
+          "status": "done",
+          "description": "O gestor define, direto na tela de veículos, quem pode dirigir cada um, inclusive marcando ou desmarcando todos de uma vez. O app dos motoristas obedece na hora: cada um vê apenas os veículos designados a ele."
+        },
+        {
+          "title": "Telas de espera e mensagens de erro",
+          "status": "done",
+          "description": "O painel deixou de ficar em branco enquanto carrega e passou a explicar o que houve quando algo falha ou quando o endereço não existe, sempre com um caminho de volta."
+        },
+        {
+          "title": "Acesso ao sistema",
+          "status": "done",
+          "description": "Login seguro, quatro perfis (equipe da Movi, administrador, gestor e motorista) e várias empresas no mesmo painel. Um administrador cuida de gestores e motoristas, mas não altera nem exclui outro administrador."
+        },
+        {
+          "title": "Gestão de empresas",
+          "status": "done",
+          "description": "Cadastro, edição e desativação de empresas, com validação de CNPJ e isolamento total de dados entre clientes. Empresa inativa perde o acesso ao painel e ao app na hora."
+        },
+        {
+          "title": "Gestão de frota",
+          "status": "done",
+          "description": "Cadastro de veículos identificados por placa ou chassi, com modelo, marca, cor e ano. Listagem com busca, filtros, controle de status e coluna de motoristas designados."
+        },
+        {
+          "title": "Gestão de usuários",
+          "status": "done",
+          "description": "Cadastro de motoristas e gestores, com perfis definidos por empresa e redefinição de senha pelo administrador."
+        },
+        {
+          "title": "Atualizações de segurança contínuas",
+          "status": "done",
+          "description": "Os componentes de terceiros que o sistema usa foram atualizados de novo em outubro, cada um com suas notas de lançamento conferidas e a bateria de testes como guarda. A verificação de alertas roda toda semana sozinha e trava qualquer publicação com risco conhecido.",
+          "fullWidth": true
+        },
+        {
+          "title": "Rastreabilidade e auditoria",
+          "status": "done",
+          "description": "Toda ação importante fica registrada, inclusive quem designou ou removeu cada motorista de um veículo. Histórico preservado mesmo quando veículos ou motoristas saem da operação.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Ajustes da revisão de 2 de outubro",
+          "status": "prog",
+          "description": "Os nove pontos levantados na revisão do app e do painel já estão decididos e entram na sequência: o motorista escolhe o tipo de ficha ao iniciar (Início de viagem, Fim de viagem, Início e fim de viagem ou Sinistro), quilometragem e combustível fixos no cabeçalho por tipo, quilometragem do veículo no cadastro, identificador do veículo sem formato, campo de atenção que exige foto e observação, foto de exemplo para o motorista, seções reordenadas arrastando e aprovação ou reprovação da ficha.",
+          "fullWidth": true
+        },
+        {
+          "title": "Motor do questionário: itens padrão e Sinistro",
+          "status": "prog",
+          "description": "Catálogo de itens padrão para montar questionários mais rápido, as duas fichas de referência montadas como modelo, o Sinistro como ficha avulsa e o fechamento, pelo gestor, de uma viagem que ficou em aberto."
+        },
+        {
+          "title": "Preparação do ambiente definitivo",
+          "status": "prog",
+          "description": "Planos pagos de hospedagem e banco de dados, backup automático com teste de restauração, monitoramento com alertas e política de privacidade publicada, exigida pelas lojas. Tudo antes do piloto."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Importar o checklist em papel",
+          "status": "plan",
+          "description": "Uma foto ou PDF da ficha que a empresa usa hoje vira um rascunho de questionário, pronto para revisar e publicar no editor. Encurta a entrada de cada nova empresa."
+        },
+        {
+          "title": "Fotos, assinatura e localização",
+          "status": "plan",
+          "description": "Foto por item e em blocos, só pela câmera, comprimida no aparelho e enviada pela fila mesmo sem sinal; assinatura do motorista na tela; localização capturada ao enviar, sem passo extra, com mapa no painel."
+        },
+        {
+          "title": "Aprovar ou reprovar a ficha",
+          "status": "plan",
+          "description": "Toda ficha entra como Pendente. Reprovar exige motivo e define se o motorista refaz tudo ou revisa só alguns campos; ele recebe o aviso no celular, vê a ficha em destaque e o reenvio volta para Pendente."
+        },
+        {
+          "title": "Piloto em campo e aplicativo nas lojas",
+          "status": "plan",
+          "description": "Piloto com cerca de 10 veículos e 2 a 3 motoristas de um cliente real. Na sequência, envio à App Store e ao Google Play. As datas do piloto e da publicação serão confirmadas com você; o piloto não depende da loja.",
+          "fullWidth": true
+        },
+        {
+          "title": "Exportação para Excel",
+          "status": "plan",
+          "description": "Planilha com os mesmos filtros da lista (período, veículo, motorista, tipo e status) em duas abas: uma linha por ficha e uma linha por resposta. Prevista para a versão 1.1, depois do piloto."
+        },
+        {
+          "title": "Designação de motoristas em lote",
+          "status": "plan",
+          "description": "Marcar vários veículos e designar um motorista a todos de uma vez. Prevista para a versão 1.1."
+        },
+        {
+          "title": "Painel de indicadores",
+          "status": "plan",
+          "description": "Gráficos e estatísticas: volume de fichas, veículos com pendências, atividade por período. Depois do lançamento."
+        },
+        {
+          "title": "Refinamento visual",
+          "status": "plan",
+          "description": "Abas para alternar entre entrada e saída dentro da ficha, situação da viagem em destaque na lista e rótulos traduzidos onde ainda aparece texto técnico."
+        }
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "label": "Confirmar as decisões do escopo da versão 1",
+      "desc": "Reprovação da ficha, exportação para Excel, perfis de acesso, status das fichas e calendário do piloto aguardam o seu de acordo.",
+      "since": "2026-10-06"
+    },
+    {
+      "label": "Arte final do ícone do app",
+      "desc": "Enviar a arte final ou aprovar a nossa proposta para o ícone que vai às lojas.",
+      "since": "2026-07-14"
+    },
+    {
+      "label": "Escolher o cliente-piloto",
+      "desc": "Uma empresa com cerca de 10 veículos e 2 a 3 motoristas para o uso real.",
+      "since": "2026-10-06"
+    }
+  ]
+}
