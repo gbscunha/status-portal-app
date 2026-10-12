@@ -1,0 +1,242 @@
+{
+  "date": "2026-10-12",
+  "phase": "Em desenvolvimento",
+  "title": {
+    "text": "Site CRECI em construção",
+    "highlight": "em construção"
+  },
+  "subtitle": "A área do candidato passou a funcionar com as informações reais de cada pessoa, a inscrição foi refeita no novo visual e o pagamento — boleto e cartão — já é feito pelo sistema financeiro da FGV. Tudo isso já está no ar para os candidatos.",
+  "milestone": "Inscrição, pagamento e área do candidato no ar",
+  "progress": [
+    {
+      "label": "Base visual (cabeçalho e rodapé)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Página inicial",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Página de certificação",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Página de cursos",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Página de passo a passo",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Página de locais de prova",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Tela de fale conosco",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Telas de acesso e senha",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Inscrição do candidato",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Área do candidato",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Pagamento (boleto e cartão)",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Documentos e regulamento",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Visitantes online no painel administrativo",
+      "percent": 90,
+      "state": "prog"
+    }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "Com a jornada principal do candidato funcionando de ponta a ponta — inscrição, pagamento, agendamento e acompanhamento — os próximos passos fecham o que ainda falta.",
+    "items": [
+      {
+        "label": "Completar o conteúdo programático do Regulamento",
+        "desc": "A nova seção já traz o módulo comum e os blocos de temas; falta o conteúdo de Vendas para ficar completa."
+      },
+      {
+        "label": "Conferir o contador de visitantes no ambiente real",
+        "desc": "A tela já está construída; resta validar a contagem no ambiente de homologação e, depois, no site oficial."
+      },
+      {
+        "label": "Confirmar pagamentos automaticamente",
+        "desc": "Uma rotina que consulta o financeiro da FGV e marca como pagas as inscrições já quitadas, sem depender de conferência manual."
+      },
+      {
+        "label": "Levar as últimas telas ao novo visual",
+        "desc": "Resultado da prova, recursos e justificativa de ausência ainda aparecem no visual antigo e são as próximas candidatas a migrar, conforme a prioridade for definida."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Área do candidato no ar",
+          "status": "done",
+          "description": "Ao entrar no portal, o candidato já vê suas inscrições reais e navega pelas telas no novo visual: visão geral, minhas inscrições, meus dados, documentos, fale conosco, agendamento da prova, cancelamento e pagamento. Tudo ligado às informações de cada pessoa, no lugar do conteúdo de exemplo. O menu lateral se recolhe no celular e mantém a inscrição escolhida sempre à vista.",
+          "fullWidth": true
+        },
+        {
+          "title": "Inscrição refeita no novo visual",
+          "status": "done",
+          "description": "As nove etapas da inscrição — escolha da prova, regulamento, termo de aceite, validação do CPF, dados cadastrais, confirmação, criação da conta e conclusão — foram refeitas no novo visual e já funcionam. O CPF é conferido em tempo real na base de registros do CRECI-RJ, sem pedir o número do registro, e o termo de aceite oficial é exibido na etapa de termos. Por enquanto a inscrição aceita apenas a prova presencial; a modalidade online aparece como \"em breve\".",
+          "fullWidth": true
+        },
+        {
+          "title": "Pagamento por boleto e cartão",
+          "status": "done",
+          "description": "O boleto passou a ser emitido pelo sistema financeiro da FGV e entregue ao candidato em PDF, aberto na própria tela. O pagamento por cartão de crédito, em até 5 parcelas, leva ao ambiente de pagamento e tem a confirmação verificada automaticamente na volta. A tela mostra com clareza cada situação: boleto emitido, boleto pago, cartão pendente e cartão pago, com o aviso de que a forma escolhida não pode ser trocada depois."
+        },
+        {
+          "title": "Agendamento da prova com calendário",
+          "status": "done",
+          "description": "O agendamento presencial e o online foram ligados ao sistema: aceite do termo, escolha do local, calendário interativo com os horários disponíveis e confirmação. O mapa do local de prova abre em uma janela sobre a tela, sem sair do portal."
+        },
+        {
+          "title": "Cancelamento de agendamento",
+          "status": "done",
+          "description": "O candidato cancela o agendamento vendo as informações do agendamento atual e os horários disponíveis para remarcar, com aviso quando não há vagas e quando o limite de cancelamentos foi atingido."
+        },
+        {
+          "title": "Página de documentos",
+          "status": "done",
+          "description": "Regulamento, Termo de Agendamento, Termos de Uso, Política de Privacidade e Política de Cookies reunidos em uma página pública e abertos em janela sobre a tela — no site e dentro da área do candidato. O regulamento ganhou sumário e conteúdo atualizado."
+        },
+        {
+          "title": "Fale conosco do candidato",
+          "status": "done",
+          "description": "Dentro da área do candidato, o formulário de contato já usa os dados do perfil, aceita anexo e pede o mesmo aceite de privacidade do formulário público, com o encaminhamento para a equipe de atendimento."
+        },
+        {
+          "title": "Ajustes finos a partir da conferência",
+          "status": "done",
+          "description": "Dezenas de acertos vindos da revisão das telas: avisos de erro, alerta e sucesso destacados por cor, botões que cabem em telas menores, nomes dos documentos padronizados, textos de conclusão enxutos e orientações do agendamento alinhadas."
+        },
+        {
+          "title": "Conteúdo público do site concluído",
+          "status": "done",
+          "description": "Início, Certificação, Cursos, Passo a passo, Locais de Prova e Fale Conosco estão no novo visual e fazem parte da versão oficial do site. Por decisão da equipe, Certificação e Cursos ficam temporariamente fora do menu e do rodapé até a oferta estar definida.",
+          "fullWidth": true
+        },
+        {
+          "title": "Entrada no portal e senhas",
+          "status": "done",
+          "description": "As seis telas de acesso — entrar, esqueci minha senha, redefinir, alterar, receber o código e conferir o código — estão no novo visual e em funcionamento. A entrada aceita usuário ou CPF, permite exibir a senha digitada e mostra de forma clara avisos como senha incorreta ou conta bloqueada."
+        },
+        {
+          "title": "Tela de fale conosco",
+          "status": "done",
+          "description": "Formulário de contato público no novo visual: dados do candidato, mensagem, envio de anexo e aceite dos termos, com o encaminhamento para a equipe de atendimento funcionando como antes."
+        },
+        {
+          "title": "Página inicial",
+          "status": "done",
+          "description": "A porta de entrada do site, com o novo texto de apresentação aprovado, foto de destaque, números do CRECI-RJ, logos atualizados e chamadas diretas para a inscrição. As seções intermediárias foram simplificadas para deixar a entrada mais direta."
+        },
+        {
+          "title": "Página de certificação",
+          "status": "done",
+          "description": "Apresenta as modalidades de certificação e habilitação — técnica, avaliação imobiliária, inscrição profissional e registro de imobiliárias — cada uma com seus requisitos e um caminho direto para a inscrição."
+        },
+        {
+          "title": "Página de cursos",
+          "status": "done",
+          "description": "Catálogo dos cursos disponíveis, cada um com sua descrição e um caminho direto para a inscrição, além de um canal de contato para dúvidas."
+        },
+        {
+          "title": "Página de passo a passo",
+          "status": "done",
+          "description": "Guia que conduz o candidato do início ao fim da certificação, organizado em fases com os passos de cada etapa e um espaço para tirar dúvidas."
+        },
+        {
+          "title": "Página de locais de prova",
+          "status": "done",
+          "description": "Mapa interativo do Brasil onde o candidato encontra, de forma visual, as cidades e bairros com locais de prova — usando os dados reais do sistema."
+        },
+        {
+          "title": "Cabeçalho e rodapé",
+          "status": "done",
+          "description": "O topo (com logos, menu e acesso) e o rodapé (com contatos e links) estão presentes em todas as páginas e ajustados para telas de celular."
+        },
+        {
+          "title": "Acompanhamento iniciado",
+          "status": "done",
+          "description": "O andamento do site é publicado nesta página a cada avanço relevante."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Conteúdo programático no Regulamento",
+          "status": "prog",
+          "description": "O regulamento ganhou uma seção com o conteúdo programático da prova: o módulo comum e os blocos de temas, numerados como no documento oficial. Falta apenas o conteúdo de Vendas para a seção ficar completa."
+        },
+        {
+          "title": "Visitantes online no painel administrativo",
+          "status": "prog",
+          "description": "Uma nova tela, restrita aos administradores, mostra quantas pessoas estão navegando no site neste momento — sem rastrear ninguém e sem usar cookies. Já construída; falta a conferência no ambiente real."
+        },
+        {
+          "title": "Últimas telas da área do candidato",
+          "status": "prog",
+          "description": "Resultado da prova, recursos registrados e justificativa de ausência já funcionam, mas ainda no visual antigo. São as últimas telas do ambiente do candidato a receber o novo visual."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Confirmação automática dos pagamentos",
+          "status": "plan",
+          "description": "Uma rotina que consulta o financeiro da FGV e marca como pagas as inscrições já quitadas, sem depender de conferência manual, com uma tela de conciliação para a administração."
+        },
+        {
+          "title": "Prova online e cursos na inscrição",
+          "status": "plan",
+          "description": "A modalidade online da prova e a contratação de cursos pela inscrição entram quando a oferta estiver definida. Por isso a opção online aparece como \"em breve\" e Certificação e Cursos ficam fora do menu por enquanto."
+        },
+        {
+          "title": "Demais páginas do site",
+          "status": "plan",
+          "description": "Com o conteúdo público e a jornada do candidato cobertos, os próximos trechos do site entram conforme as prioridades forem definidas."
+        }
+      ]
+    }
+  ]
+}
