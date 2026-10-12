@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-12",
+  "phase": "Em teste no celular, rumo ao piloto",
+  "title": {
+    "text": "Checklist App",
+    "highlight": "App"
+  },
+  "subtitle": "O aplicativo que os motoristas usam em campo para preencher os checklists dos veículos. O motorista entra, escolhe o veículo e preenche a ficha montada no painel da empresa — com ou sem internet.",
+  "milestone": "Versão de teste no celular e ficha configurável",
+  "progress": [
+    {
+      "label": "Estrutura do aplicativo",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Acesso dos motoristas (login)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Seleção de veículo",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Funcionamento offline",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Ficha montada pelo questionário da empresa",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Versão de teste no seu celular",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Conforto de uso no dia a dia",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Preenchimento de checklists",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Ajustes da revisão de outubro",
+      "percent": 0,
+      "state": "plan"
+    },
+    {
+      "label": "Fotos, assinatura e localização",
+      "percent": 5,
+      "state": "plan"
+    },
+    {
+      "label": "Publicação nas lojas",
+      "percent": 20,
+      "state": "plan"
+    }
+  ],
+  "nextSteps": {
+    "title": "Do app em teste ao piloto em campo",
+    "intro": "A versão de teste está no celular e o escopo da primeira versão foi fechado num documento único no início de outubro, já com os ajustes da revisão. A ordem daqui para a frente:",
+    "items": [
+      {
+        "label": "Começar a ficha sem sinal e ver as fichas recusadas",
+        "desc": "guardar no aparelho a lista de veículos e a situação da rota, para abrir a ficha mesmo sem cobertura nenhuma; e mostrar ao motorista, com reenvio, uma ficha que o servidor tenha recusado. Junto, o primeiro teste em celular Android."
+      },
+      {
+        "label": "Ajustes da revisão de outubro",
+        "desc": "o motorista escolhe o tipo de checklist ao iniciar, quilometragem e combustível fixos por tipo, campo de Atenção com foto e observação obrigatórias, e aprovação ou reprovação da ficha pelo gestor com aviso no celular."
+      },
+      {
+        "label": "Fotos, assinatura e localização",
+        "desc": "foto só pela câmera, com foto de exemplo do gestor; assinatura do motorista na tela; localização registrada automaticamente no envio."
+      },
+      {
+        "label": "Piloto em campo e lojas",
+        "desc": "uso real com cerca de dez veículos e dois ou três motoristas de um cliente, e em paralelo a publicação na App Store e no Google Play. O piloto roda com a versão de teste e não depende das lojas."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "A ficha nasce do questionário montado no painel",
+          "status": "done",
+          "description": "O app deixou de ter uma ficha fixa: ele desenha no celular qualquer questionário que a empresa monta no painel — cabeçalho, seções, itens, tipos de resposta e campos obrigatórios — sem programação por cliente. A ficha fica ligada à versão do questionário que o motorista viu: se o gestor alterar o questionário depois, as fichas antigas continuam exatamente como foram preenchidas.",
+          "fullWidth": true
+        },
+        {
+          "title": "Testado de ponta a ponta: do celular ao painel",
+          "status": "done",
+          "description": "Uma ficha preenchida no app chegou ao painel como viagem concluída: a primeira ficha abriu a rota, a segunda fechou, e o gestor viu as respostas com as marcações coloridas (bom em verde, ruim em vermelho). Nenhum dos dois lados conhece as perguntas de antemão — é o questionário que manda.",
+          "fullWidth": true
+        },
+        {
+          "title": "Versão de teste no seu iPhone",
+          "status": "done",
+          "description": "A versão 1.0 do app está disponível pelo TestFlight, falando com o ambiente real do painel. Junto foi um roteiro de teste em três partes — montar o questionário no painel, preencher no celular, conferir no painel — para percorrer sem depender de ninguém."
+        },
+        {
+          "title": "Preenchimento rápido, com as marcações do painel",
+          "status": "done",
+          "description": "Um toque marca a seção inteira com a resposta esperada ('tudo em boas condições') e o motorista ajusta só as exceções. Nas opções marcadas como atenção no painel, o campo de observação abre sozinho — o gestor recebe o contexto junto com o apontamento."
+        },
+        {
+          "title": "Entrada e saída inteligentes",
+          "status": "done",
+          "description": "O app sabe sozinho se o veículo está saindo ou voltando: a primeira ficha abre a rota (km inicial) e a seguinte fecha (km final, conferido contra o inicial). O cabeçalho mostra qual é o caso e o nome do motorista que está preenchendo."
+        },
+        {
+          "title": "Quem está em rota, visível antes de abrir",
+          "status": "done",
+          "description": "Na lista de veículos, os que estão com rota aberta aparecem com a marcação EM ROTA. Se o veículo tiver mais de um questionário, o motorista escolhe no próprio cartão; sem questionário configurado, o app avisa e não deixa abrir a ficha."
+        },
+        {
+          "title": "Funciona sem internet",
+          "status": "done",
+          "description": "A ficha preenchida sem sinal fica guardada no aparelho — sobrevive até a fechar e reabrir o app — e é enviada sozinha assim que a conexão volta. Comprovado em teste real: nada se perde.",
+          "fullWidth": true
+        },
+        {
+          "title": "Feito para a mão do motorista",
+          "status": "done",
+          "description": "Duas rodadas de acabamento pensando em quem usa de pé, com pressa e às vezes de luva: todo botão responde na hora ao toque (com uma vibração leve de confirmação), os alvos ficaram maiores e mais espaçados, o botão de enviar mora fixo na base da tela, sempre ao alcance do polegar, e o teclado não cobre mais o campo que está sendo preenchido."
+        },
+        {
+          "title": "Difícil errar, difícil perder",
+          "status": "done",
+          "description": "Tentou enviar com algo faltando? A tela leva direto ao item pendente, com um aviso no aparelho. Saiu da ficha pela metade? O app pergunta antes de descartar. Salvou? Confirmação verde, clara e imediata."
+        },
+        {
+          "title": "Legível no sol, com a cara da Movi",
+          "status": "done",
+          "description": "Textos maiores e cores com contraste reforçado para leitura em ambiente externo. As esperas mostram a logo da Movi animada — e quem prefere menos movimento na tela tem essa escolha respeitada pelo app."
+        },
+        {
+          "title": "Lista de veículos sempre à mão",
+          "status": "done",
+          "description": "Basta puxar a lista para baixo para atualizá-la. Se a atualização falhar por falta de sinal, o app avisa e mantém a lista que já estava na tela — nunca troca informação boa por tela de erro."
+        },
+        {
+          "title": "Cada motorista vê só o que é dele",
+          "status": "done",
+          "description": "A empresa define quem dirige o quê e o app respeita isso automaticamente. Login seguro com a mesma conta do painel. Quem entra com conta de gestor recebe o aviso 'este aplicativo é para motoristas'; empresa com acesso suspenso ou senha redefinida volta ao login com a mensagem certa, em vez de um erro genérico."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Começar a ficha sem sinal e ver as fichas recusadas",
+          "status": "prog",
+          "description": "Próximo bloco de trabalho do app. Hoje o preenchimento e o envio já funcionam offline, mas a tela inicial precisa de conexão: a lista de veículos e a situação da rota passam a ficar guardadas no aparelho. E uma ficha que o servidor recuse passa a aparecer para o motorista, com o motivo e a opção de reenviar — hoje ela some do aviso de pendências sem ninguém saber."
+        },
+        {
+          "title": "Primeiro teste em celular Android",
+          "status": "prog",
+          "description": "Todo o desenvolvimento até aqui rodou em iPhone. O caminho de instalação por link, sem passar pela loja, está preparado; o teste em aparelho Android real entra neste bloco, para pegar cedo qualquer diferença de teclado ou de tela."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Motorista escolhe o tipo de checklist",
+          "status": "plan",
+          "description": "Em vez de o gestor designar um questionário por veículo, o motorista escolhe ao iniciar: Início de viagem, Fim de viagem, Início e fim de viagem ou Sinistro — cada um com uma linha dizendo o que faz com a viagem. Decidido na revisão de outubro."
+        },
+        {
+          "title": "Quilometragem e combustível fixos por tipo",
+          "status": "plan",
+          "description": "Km e nível de combustível passam a ser campos fixos do cabeçalho, definidos pelo tipo (Km inicial, Km final ou Km atual). O app não aceita km menor que o atual do veículo, e um ícone de ajuda ao lado do combustível abre a imagem de referência do medidor, para acabar com a confusão com o hodômetro parcial."
+        },
+        {
+          "title": "Campo de Atenção exige foto e observação",
+          "status": "plan",
+          "description": "O gestor marca o campo como Atenção no painel; no app, ele sempre pede foto e observação, qualquer que seja a resposta, e a ficha não sai sem isso. Essas fotos não contam no limite de fotos da ficha."
+        },
+        {
+          "title": "Aprovar ou reprovar a ficha, com aviso no celular",
+          "status": "plan",
+          "description": "Toda ficha entra como Pendente. Se o gestor reprovar, com motivo, o motorista recebe uma notificação e vê a ficha em destaque no app, refazendo tudo ou só os campos apontados. A situação de cada ficha — Pendente, Aprovada ou Reprovada — passa a aparecer também no app."
+        },
+        {
+          "title": "Fotos, assinatura e localização",
+          "status": "plan",
+          "description": "Fotografar itens só pela câmera, sem galeria, com uma foto de exemplo cadastrada pelo gestor mostrando como fotografar; assinatura do motorista na tela ao final da ficha; e localização registrada automaticamente no envio, sem passo extra. As fotos ficam guardadas no aparelho e sobem pela mesma fila que já garante que nada se perde sem sinal.",
+          "fullWidth": true
+        },
+        {
+          "title": "Publicação nas lojas",
+          "status": "plan",
+          "description": "App Store e Google Play, com conta de demonstração para os revisores e política de privacidade publicada. O cadastro do app na Apple já existe e a versão de teste já passou por lá; o Google Play começa junto com o teste em Android."
+        }
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "label": "Confirmar as decisões do escopo da versão 1",
+      "desc": "Reprovação da ficha, exportação para Excel, perfis de acesso, status das fichas e calendário do piloto aguardam o seu de acordo.",
+      "since": "2026-10-06"
+    },
+    {
+      "label": "Arte final do ícone do app",
+      "desc": "Enviar a arte final ou aprovar a nossa proposta para o ícone que vai às lojas.",
+      "since": "2026-07-14"
+    },
+    {
+      "label": "Escolher o cliente-piloto",
+      "desc": "Uma empresa com cerca de 10 veículos e 2 a 3 motoristas para o uso real.",
+      "since": "2026-10-06"
+    }
+  ]
+}
