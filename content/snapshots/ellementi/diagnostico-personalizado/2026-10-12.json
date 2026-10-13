@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-12",
+  "phase": "Fundação concluída",
+  "title": {
+    "text": "Status do Projeto",
+    "highlight": "Projeto"
+  },
+  "subtitle": "A base do sistema está pronta e o ambiente de testes está no ar. A partir de agora, o trabalho é o diagnóstico em si: regras, cálculo e telas.",
+  "milestone": "Fundação concluída e ambiente de testes no ar",
+  "progress": [
+    { "label": "Base do sistema e ambiente de testes", "percent": 100, "state": "done" },
+    { "label": "Estrutura de dados (do questionário à produção)", "percent": 100, "state": "done" },
+    { "label": "Acesso e painel da equipe", "percent": 20, "state": "prog" },
+    { "label": "Motor do diagnóstico (bio-código e fórmula)", "percent": 10, "state": "prog" },
+    { "label": "Questionário e resultado para a cliente", "percent": 0, "state": "plan" },
+    { "label": "Compra e ficha de produção", "percent": 0, "state": "plan" },
+    { "label": "Portal do profissional indicador", "percent": 0, "state": "plan" }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "Com a base pronta, o foco passa a ser o coração do produto: as regras do diagnóstico e o cálculo da fórmula.",
+    "items": [
+      {
+        "label": "Carregar o conteúdo do diagnóstico",
+        "desc": "Perguntas, faixas de cada eixo, os 12 shots e os portões de segurança entram no sistema como cadastro, não como programa. Isso permite ajustes futuros sem depender de desenvolvedor."
+      },
+      {
+        "label": "Cálculo do bio-código e da fórmula",
+        "desc": "A partir das respostas, o sistema calcula o bio-código, aplica os portões de segurança e monta a fórmula, registrando o motivo de cada decisão."
+      },
+      {
+        "label": "Primeira versão do questionário na tela",
+        "desc": "Triagem e perguntas dos eixos no ambiente de testes, para a equipe experimentar o percurso da cliente de ponta a ponta."
+      },
+      {
+        "label": "Painel da equipe",
+        "desc": "Telas para consultar e ajustar perguntas, faixas e mensagens, com histórico de quem alterou o quê."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Estrutura de dados completa",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Todo o percurso foi desenhado e já está na base do sistema: triagem, 17 perguntas, 4 eixos, bio-código, 12 shots e suas variantes, portões de segurança (gestante, medicamento contínuo, adolescente e 70+), regras de sobreposição de ativos, a história da pele por bio-código, pedido, ficha de produção com número de registro Anvisa, consentimentos conforme a LGPD e indicação por profissionais. Cada avaliação guarda a versão das regras que a produziu, então um resultado pode ser explicado e reproduzido a qualquer momento."
+        },
+        {
+          "title": "Ambiente de testes no ar",
+          "status": "done",
+          "description": "O sistema já tem um endereço de homologação, hospedado em São Paulo, onde cada avanço poderá ser visto e testado antes de ir ao ar."
+        },
+        {
+          "title": "Verificação automática a cada mudança",
+          "status": "done",
+          "description": "Toda alteração passa por uma bateria de testes antes de chegar ao ambiente de testes. Problemas são barrados antes de aparecerem para alguém."
+        },
+        {
+          "title": "Acesso da equipe",
+          "status": "done",
+          "description": "Login com e-mail e senha para a equipe Ellementti, com sessão segura que expira sozinha. O cadastro público fica fechado até a etapa do portal do profissional."
+        },
+        {
+          "title": "Monitoramento e aviso de erros",
+          "status": "done",
+          "description": "Falhas são capturadas e avisadas automaticamente, e há um sinal de saúde do sistema para acompanhamento contínuo."
+        },
+        {
+          "title": "Tarefas em segundo plano",
+          "status": "done",
+          "description": "Base pronta para e-mails, convites de reavaliação e integrações rodarem em segundo plano, com nova tentativa automática se algo falhar."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Motor do diagnóstico",
+          "status": "prog",
+          "description": "Cálculo do bio-código a partir das respostas, aplicação dos portões de segurança e montagem da fórmula, com o motivo de cada decisão registrado. O primeiro teste automatizado já passa; as regras completas vêm em seguida."
+        },
+        {
+          "title": "Painel da equipe",
+          "status": "prog",
+          "description": "A porta de entrada está pronta. As telas para consultar e ajustar as regras do diagnóstico são o próximo passo."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Questionário da cliente",
+          "status": "plan",
+          "description": "Triagem, perguntas dos eixos e de contexto, com aceite dos termos antes de qualquer dado. A cliente permanece anônima até a tela de resultado."
+        },
+        {
+          "title": "Resultado e história da pele",
+          "status": "plan",
+          "description": "Bio-código, leitura da pele e explicação da fórmula, no texto da Ellementti para cada combinação."
+        },
+        {
+          "title": "Compra e ficha de produção",
+          "status": "plan",
+          "description": "Compra na loja Shopify com a fórmula vinculada ao pedido e ficha para a fábrica com nome do rótulo e registros de cada item."
+        },
+        {
+          "title": "Portal do profissional indicador",
+          "status": "plan",
+          "description": "Cadastro com aprovação, links rastreáveis de indicação e materiais de apoio para download."
+        },
+        {
+          "title": "Convite de reavaliação",
+          "status": "plan",
+          "description": "90 dias após a compra, a cliente recebe um convite para refazer o diagnóstico e ajustar a fórmula."
+        }
+      ]
+    }
+  ]
+}
