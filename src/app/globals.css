@@ -941,9 +941,11 @@ h1 .accent {
 }
 /* .cta nasceu para <a>; num <button> é preciso zerar a fonte do agente de
    usuário. Preenchido como os CTAs de contato ao lado, para o mast falar uma
-   língua só. */
+   língua só. O line-height também não é herdado por <button> (fica "normal"),
+   e sem ele o botão sai ~5px mais baixo que os links ao lado. */
 .mast-actions > button.cta {
   font-family: inherit;
+  line-height: inherit;
   cursor: pointer;
   background: var(--ink);
   border-color: var(--ink);
