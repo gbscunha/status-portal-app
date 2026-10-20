@@ -1,0 +1,16 @@
+{
+  "id": "neon",
+  "name": "Neon",
+  "slug": "neon-k4wer99",
+  "brandColor": "#C9232C",
+  "vendor": "VERA",
+  "whatsapp": "+5521995890014",
+  "email": "gabriel@itgraph.com.br",
+  "projects": [
+    {
+      "id": "vera-erp",
+      "name": "VERA ERP",
+      "platform": "Sistema web"
+    }
+  ]
+}
