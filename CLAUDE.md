@@ -137,7 +137,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 ## Estado atual
 
 - **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare,
-  DNS-only; repo GitHub privado). Clientes: Movi, FGV, ITGraph, Ellementi. Painel
+  DNS-only; repo GitHub privado). Clientes: Movi, FGV, Ellementi, Neon. Painel
   admin interno em `/a/` (slug em `content/admin.json`).
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
