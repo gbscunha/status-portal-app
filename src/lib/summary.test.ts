@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countDelivered, overallPercent } from "./summary";
+import { countDelivered, overallPercent, timelineEntries } from "./summary";
 import type { Snapshot } from "./types";
 
 function snapshot(partial: Partial<Snapshot>): Snapshot {
@@ -65,5 +65,24 @@ describe("countDelivered", () => {
 
   it("returns 0 when there are no sections", () => {
     expect(countDelivered(snapshot({}))).toBe(0);
+  });
+});
+
+describe("timelineEntries", () => {
+  it("prefers milestone, then subtitle, then the title text", () => {
+    const entries = timelineEntries([
+      snapshot({ date: "2026-10-12", milestone: "m", subtitle: "s", title: { text: "t1" } }),
+      snapshot({ date: "2026-10-05", subtitle: "s", title: { text: "t2" } }),
+      snapshot({ date: "2026-09-28", title: { text: "t3" } }),
+    ]);
+    expect(entries).toEqual([
+      { date: "2026-10-12", title: "m" },
+      { date: "2026-10-05", title: "s" },
+      { date: "2026-09-28", title: "t3" },
+    ]);
+  });
+
+  it("returns an empty history for no snapshots", () => {
+    expect(timelineEntries([])).toEqual([]);
   });
 });

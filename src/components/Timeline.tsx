@@ -1,10 +1,5 @@
 import { formatPtDate, relativeDaysPt, todayIso } from "@/lib/format";
-
-export type TimelineEntry = {
-  date: string;
-  /** Title of that snapshot — what happened at this checkpoint. */
-  title: string;
-};
+import type { TimelineEntry } from "@/lib/summary";
 
 // Long histories collapse beyond this: the recent checkpoints tell the story,
 // the rest becomes a single "+ N atualizações anteriores" line.

@@ -263,3 +263,58 @@ describe("adminSchema", () => {
     expect(adminSchema.safeParse({ slug: "" }).success).toBe(false);
   });
 });
+
+describe("projectSchema lifecycle", () => {
+  const withLifecycle = (lifecycle: unknown) => ({
+    ...baseClient,
+    projects: [{ id: "p1", name: "Projeto 1", lifecycle }],
+  });
+
+  it("accepts a project without lifecycle (backward compatible)", () => {
+    const parsed = clientSchema.safeParse(baseClient);
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.projects[0].lifecycle).toBeUndefined();
+  });
+
+  it("accepts every state with its required fields", () => {
+    for (const good of [
+      { state: "active" },
+      { state: "paused", reason: "Aguardando o acesso ao servidor" },
+      { state: "paused", reason: "Aguardando aprovação", since: "2026-10-12" },
+      { state: "delivered", deliveredAt: "2026-10" },
+      { state: "closed", closedAt: "2026-09" },
+      { state: "closed", closedAt: "2026-09", reason: "Interrompido a pedido" },
+    ]) {
+      expect(clientSchema.safeParse(withLifecycle(good)).success).toBe(true);
+    }
+  });
+
+  it("rejects states outside the lifecycle set", () => {
+    for (const state of ["blocked", "done", "prog", ""]) {
+      const parsed = clientSchema.safeParse(withLifecycle({ state }));
+      expect(parsed.success).toBe(false);
+    }
+  });
+
+  it("rejects a state missing its required field", () => {
+    for (const bad of [
+      { state: "paused" },
+      { state: "paused", reason: "" },
+      { state: "delivered" },
+      { state: "closed" },
+    ]) {
+      expect(clientSchema.safeParse(withLifecycle(bad)).success).toBe(false);
+    }
+  });
+
+  it("rejects delivery and closing dates that are not a YYYY-MM month", () => {
+    for (const bad of [
+      { state: "delivered", deliveredAt: "2026-10-12" },
+      { state: "delivered", deliveredAt: "2026-13" },
+      { state: "closed", closedAt: "out/2026" },
+      { state: "paused", reason: "x", since: "2026-02-30" },
+    ]) {
+      expect(clientSchema.safeParse(withLifecycle(bad)).success).toBe(false);
+    }
+  });
+});

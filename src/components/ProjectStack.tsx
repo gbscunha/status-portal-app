@@ -1,98 +1,100 @@
-import type { CSSProperties } from "react";
 import type { Client } from "@/lib/types";
-import { getProjectSnapshots } from "@/lib/content";
+import { getProjectReports } from "@/lib/content";
+import {
+  LIFECYCLE_LABELS,
+  archivedProjects,
+  currentProjects,
+  lifecycleOf,
+} from "@/lib/lifecycle";
 import { StatusReport } from "./StatusReport";
 import { ProjectSwitcher } from "./ProjectSwitcher";
+import { ClientShell } from "./ClientShell";
 import { ContactCta } from "./ContactCta";
-import { PrintButton } from "./PrintButton";
 
-// Page shell for a client: mast (vendor + contact) → client name (the only
-// h1) → one report per project behind the ProjectSwitcher tabs. Reports are
-// Server Components rendered here; the switcher island only toggles panels.
+// Client page: shell (brand + mast) → client name (the only h1) → one report
+// per CURRENT project behind the ProjectSwitcher tabs (active first, then
+// paused). Delivered and closed projects live on /r/<slug>/anteriores, linked
+// only when there is at least one. Reports are Server Components rendered
+// here; the switcher island only toggles panels.
 export function ProjectStack({ client }: { client: Client }) {
-  const reports = client.projects
-    .map((project) => {
-      const snapshots = getProjectSnapshots(client.id, project.id);
-      const latest = snapshots[0];
-      if (!latest) return null;
-      return {
-        project,
-        snapshot: latest,
-        history: snapshots.map((s) => ({
-          date: s.date,
-          title: s.milestone ?? s.subtitle ?? s.title.text,
-        })),
-      };
-    })
-    .filter((r): r is NonNullable<typeof r> => r !== null);
+  const current = currentProjects(client.projects);
+  const reports = getProjectReports(client.id, current);
+  const { delivered, closed } = archivedProjects(client.projects);
+  const archivedCount = delivered.length + closed.length;
 
-  const brandStyle = { "--brand": client.brandColor } as CSSProperties;
+  const archiveLink = archivedCount > 0 && (
+    <a className="archive-link" href={`/r/${client.slug}/anteriores`}>
+      Projetos anteriores · {archivedCount}
+      <span aria-hidden="true"> →</span>
+    </a>
+  );
 
   if (reports.length === 0) {
+    const nothingRunning = current.length === 0;
     return (
-      <main className="client" style={brandStyle}>
-        <header className="mast">
-          <div className="wrap mast-row">
-            <span className="mast-vendor" translate="no">
-              {client.vendor} · Portal de acompanhamento
-            </span>
-            <ContactCta client={client} variant="compact" />
-          </div>
-        </header>
+      <ClientShell client={client} printable={false}>
         <div className="wrap">
           <header className="report-head empty-head">
             <div className="kicker" translate="no">
               {client.name}
             </div>
-            <h1 className="report-title">
-              Estamos preparando o seu{" "}
-              <span className="accent">relatório</span>
-            </h1>
-            <p className="sub">
-              O primeiro relatório de acompanhamento está sendo elaborado e
-              aparecerá aqui em breve. Guarde este link.
-            </p>
+            {nothingRunning ? (
+              <>
+                <h1 className="report-title">
+                  Nenhum projeto <span className="accent">em andamento</span>{" "}
+                  agora
+                </h1>
+                <p className="sub">
+                  Os projetos que já terminaram, com o último relatório de cada
+                  um, continuam disponíveis em Projetos anteriores.
+                </p>
+              </>
+            ) : (
+              <>
+                <h1 className="report-title">
+                  Estamos preparando o seu{" "}
+                  <span className="accent">relatório</span>
+                </h1>
+                <p className="sub">
+                  O primeiro relatório de acompanhamento está sendo elaborado e
+                  aparecerá aqui em breve. Guarde este link.
+                </p>
+              </>
+            )}
+            {archiveLink}
           </header>
           <ContactCta client={client} variant="footer" />
         </div>
-      </main>
+      </ClientShell>
     );
   }
 
   return (
-    <main className="client" style={brandStyle}>
-      <header className="mast">
-        <div className="wrap mast-row">
-          <span className="mast-vendor" translate="no">
-            {client.vendor} · Portal de acompanhamento
-          </span>
-          <div className="mast-actions">
-            <PrintButton />
-            <ContactCta client={client} variant="compact" />
-          </div>
-        </div>
-      </header>
+    <ClientShell client={client} printable>
       <div className="wrap client-head">
         <h1 className="client-name" translate="no">
           {client.name}
         </h1>
+        {archiveLink}
       </div>
       <ProjectSwitcher
-        tabs={reports.map(({ project }) => ({
+        panels={reports.map(({ project, snapshot, history }) => ({
           id: project.id,
           name: project.name,
+          note:
+            lifecycleOf(project).state === "paused"
+              ? { label: LIFECYCLE_LABELS.paused, state: "paused" }
+              : undefined,
+          content: (
+            <StatusReport
+              client={client}
+              project={project}
+              snapshot={snapshot}
+              history={history}
+            />
+          ),
         }))}
-      >
-        {reports.map(({ project, snapshot, history }) => (
-          <StatusReport
-            key={project.id}
-            client={client}
-            project={project}
-            snapshot={snapshot}
-            history={history}
-          />
-        ))}
-      </ProjectSwitcher>
-    </main>
+      />
+    </ClientShell>
   );
 }

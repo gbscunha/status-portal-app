@@ -10,18 +10,17 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 - Cada cliente acessa `/r/<slug>` e vê **só os projetos dele**. Sem auth — a
   diferenciação é por **slug não-adivinhável** + `noindex`.
-- Conteúdo é **dado** (JSON em `content/`), não código. Design system próprio
-  v2 "**rastreio de entrega**" (trilho na cor da marca, manifesto, tabs):
-  família única Archivo variable (eixo `wdth`), CSS puro. Ver DECISOES §14.
+- Conteúdo é **dado** (JSON em `content/`), não código. Design v2 "**rastreio de
+  entrega**" (trilho na cor da marca, tabs): família única Archivo, CSS puro (DECISOES §14).
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 
 ## Estrutura
 
 ```
-src/app/            — App Router. r/[slug]/ = página do cliente; a/[slug]/ = painel admin (interno); robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
-src/components/     — Server Components (ProjectStack → ProjectSwitcher* → StatusReport → …); *3 ilhas "use client" (ver Convenções)
-src/lib/            — types.ts (schema Zod), status.ts (estados), content.ts (loaders fs), format.ts (data TZ-safe)
+src/app/            — App Router. r/[slug]/ = página do cliente (+ anteriores/: concluídos e encerrados); a/[slug]/ = painel admin (interno); robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
+src/components/     — Server Components (ProjectStack | ArchiveStack, em ClientShell → ProjectSwitcher* → StatusReport → …); *3 ilhas "use client" (ver Convenções)
+src/lib/            — types.ts (schema Zod), status.ts (estados), lifecycle.ts (ciclo do projeto), content.ts (loaders fs), format.ts (data TZ-safe)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
 scripts/gen-slug.mjs — gera slug não-adivinhável (roda 1x por cliente)
@@ -61,8 +60,11 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - **Cliente** (`content/clients/<id>.json`): `id`, `name`, `contact?`, `slug`,
   `brandColor` (hex `#RRGGBB`), `vendor`, `whatsapp?` (E.164, canal da ITGraph),
-  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`,
+  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`, `lifecycle?`,
   `contractUrl?` — link para o contrato ASSINADO, nunca arquivo hospedado).
+- **Ciclo de vida** (`lifecycle`, na config, nunca no snapshot): ausente = em andamento ·
+  `paused{reason,since?}` ("Em espera") · `delivered{deliveredAt}` · `closed{closedAt,reason?}`
+  (mês `YYYY-MM`; encerrado ≠ entregue). Fonte única: `src/lib/lifecycle.ts`. DECISOES §17.
 - **Snapshot** (`content/snapshots/<clientId>/<projectId>/<data>.json`): `date`
   (YYYY-MM-DD), `phase?`, `title{text,highlight?}`, `subtitle?`,
   `progress[]{label,percent,state,scopeId?,eta?}` (`eta` é MÊS `YYYY-MM`, nunca
@@ -81,8 +83,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - **Server Components** por padrão. Ilhas `"use client"` só com justificativa
   forte e mínimas — hoje são TRÊS: `ProjectSwitcher` (tabs via hash),
   `AdminGreeting` (data da visita) e `PrintButton` (`window.print()`).
-- Cor da marca via CSS var `--brand`, setada por cliente no `ProjectStack`
-  (`style={{ "--brand": brandColor }}`); o CSS usa `var(--brand)`.
+- Cor da marca: CSS var `--brand`, setada só no `ClientShell`; o CSS usa `var(--brand)`.
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,
   **imutável** — nunca sobrescrever; novo status = novo arquivo (isso dá histórico).
 - **Next 16:** `params` é `Promise` (dar `await`). Ao usar APIs do Next, consultar
@@ -90,8 +91,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Segurança / privacidade
 
-- `export const dynamicParams = false` em `r/[slug]` → slug desconhecido dá **404**
-  (anti-fishing). NÃO habilitar Cache Components (desliga o `dynamicParams`).
+- `export const dynamicParams = false` em `r/[slug]` e `anteriores/` → slug desconhecido
+  dá **404** (anti-fishing). NÃO habilitar Cache Components (desliga o `dynamicParams`).
 - `noindex` em **3 camadas**: metadata (`layout` + `page`), `app/robots.ts`, e header
   `X-Robots-Tag` (`next.config.ts`).
 - **SEM OpenGraph rico** em `/r/[slug]` — o unfurl do link não pode vazar o cliente.
@@ -114,6 +115,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 - **Novo cliente:** `gen-slug` → criar `content/clients/<id>.json` → primeiro
   snapshot (skill ou à mão) → `git push`. A URL só existe após o redeploy.
 - **Novo projeto:** +objeto em `projects[]` do cliente → primeiro snapshot → push.
+- **Pausar/retomar/concluir/encerrar:** editar o `lifecycle` do projeto em `clients/<id>.json` → push.
 
 ## Não faça
 
@@ -134,13 +136,11 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Estado atual
 
-- **Live na Vercel**, domínio de produção **https://portal.itgraph.com.br**
-  (CNAME no Cloudflare, proxy DNS-only; repo GitHub privado próprio). Cliente
-  **Movi** (`movi-3xubgjr`) com 3 projetos: Painel Web, Checklist App, Movi
-  Exporter. Painel admin interno em `/a/` (slug em `content/admin.json`).
+- **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare,
+  DNS-only; repo GitHub privado). Clientes: Movi, FGV, ITGraph, Ellementi. Painel
+  admin interno em `/a/` (slug em `content/admin.json`).
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
-- **Backlog:** ver CHECKLIST local (cron de rebuild diário, Ellementi
-  `ellementi-emkr3tn`, analytics, v3).
+- **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
 
 ## Compactação
 

@@ -56,11 +56,34 @@ export const scopeSchema = z
     "ids do escopo devem ser únicos (são a chave do vínculo com os snapshots)",
   );
 
+// Lifecycle of the WHOLE project (states in lib/lifecycle.ts). Lives in the
+// stable config, not in the snapshot: changing state needs no new snapshot, and
+// a snapshot that forgets the field can't silently "unpause" the project; git
+// keeps the history of when it changed. Missing = active. End dates are MONTHS,
+// like eta (see isoMonthSchema). Rationale in DECISOES §17.
+export const lifecycleSchema = z.discriminatedUnion("state", [
+  z.object({ state: z.literal("active") }),
+  z.object({
+    state: z.literal("paused"),
+    // Short reason in client language; when the client owns the blocker, it
+    // pairs with the snapshot's "Aguardando você" block.
+    reason: z.string().min(1),
+    since: isoDateSchema.optional(),
+  }),
+  z.object({ state: z.literal("delivered"), deliveredAt: isoMonthSchema }),
+  z.object({
+    state: z.literal("closed"),
+    closedAt: isoMonthSchema,
+    reason: z.string().min(1).optional(),
+  }),
+]);
+
 export const projectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   platform: z.string().optional(),
   scope: scopeSchema.optional(),
+  lifecycle: lifecycleSchema.optional(),
   // Link para o contrato ASSINADO, na plataforma de assinatura — nunca um
   // arquivo hospedado aqui. `public/` não herda o dynamicParams nem o 404
   // anti-fishing, binário em git é permanente, e cópia hospedada envelhece
@@ -160,6 +183,7 @@ export const snapshotSchema = z.object({
 export type { StatusState } from "./status";
 export type ScopeItem = z.infer<typeof scopeItemSchema>;
 export type Scope = z.infer<typeof scopeSchema>;
+export type Lifecycle = z.infer<typeof lifecycleSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Client = z.infer<typeof clientSchema>;
 export type ProgressItem = z.infer<typeof progressItemSchema>;

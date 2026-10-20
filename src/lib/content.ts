@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import { timelineEntries, type TimelineEntry } from "./summary";
 import {
   adminSchema,
   clientSchema,
   snapshotSchema,
   type Client,
+  type Project,
   type Snapshot,
 } from "./types";
 
@@ -159,4 +161,25 @@ export function getLatestSnapshot(
   projectId: string,
 ): Snapshot | null {
   return getProjectSnapshots(clientId, projectId)[0] ?? null;
+}
+
+export type ProjectReport = {
+  project: Project;
+  snapshot: Snapshot;
+  history: TimelineEntry[];
+};
+
+// Latest snapshot + history of each project, in the order given. Projects
+// never published are left out: they have no report to show yet.
+export function getProjectReports(
+  clientId: string,
+  projects: Project[],
+): ProjectReport[] {
+  return projects.flatMap((project) => {
+    const snapshots = getProjectSnapshots(clientId, project.id);
+    const latest = snapshots[0];
+    return latest
+      ? [{ project, snapshot: latest, history: timelineEntries(snapshots) }]
+      : [];
+  });
 }

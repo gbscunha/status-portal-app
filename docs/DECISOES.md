@@ -253,6 +253,54 @@ leitura **não** é gatilho (Vercel Analytics resolve).
 
 ---
 
+## 17. Ciclo de vida do projeto — na config, quatro estados, página própria
+
+**Decisão (2026-10-20):** cada projeto ganha um `lifecycle` opcional em
+`content/clients/<id>.json`, com quatro estados: `active` (padrão quando o campo
+falta), `paused` ("Em espera", com motivo e `since?`), `delivered` (mês de
+entrega) e `closed` (mês de encerramento, motivo opcional). Na vista principal,
+ativos vêm antes dos em espera. Concluídos e encerrados saem das tabs e vão para
+`/r/<slug>/anteriores`, que só existe para quem tem ao menos um (o resto dá 404).
+Fonte única dos estados: `src/lib/lifecycle.ts`, separada de `done|prog|plan`.
+Spec: `docs/specs/ciclo-de-vida-do-projeto.md`.
+
+**Por quê:**
+
+- **Config, não snapshot.** O estado é do projeto, não de um checkpoint. No
+  snapshot, pausar ou concluir exigiria um snapshot novo mesmo sem trabalho no
+  repo, e cada snapshot seguinte precisaria repetir o estado. Um esquecimento da
+  skill "despausaria" o projeto em silêncio. Na config, mudar é um diff de uma
+  linha, revisado como qualquer outro, e o git guarda quando mudou. A regra do
+  snapshot imutável (§3) fica intocada. Os scripts de aviso fora do repo leem um
+  lugar só.
+- **"Em espera"**, e não "Pausado" ou "Bloqueado": não aponta quem parou. Quando
+  o bloqueio é do cliente, o aviso aponta para o bloco "Aguardando você", logo
+  abaixo, e o motivo e as pendências chegam como uma mensagem só.
+- **Encerrado ≠ concluído.** Um projeto interrompido sem entrega nunca pode
+  aparecer como "entregue". Ele continua visível em "Projetos anteriores", com o
+  último relatório, porque o cliente teve acesso a ele e o histórico é dele.
+- **Último relatório sem pedidos.** Concluídos e encerrados mostram o último
+  snapshot sem "Aguardando você", "Próximos passos" e previsões (`eta`): projeto
+  que terminou não pede ação nem promete data. O snapshot no disco não muda; o
+  filtro é `finishedReport` (`src/lib/lifecycle.ts`), aplicado na renderização.
+- **Rota própria + 404.** O `generateStaticParams` de baixo para cima (o segmento
+  filho preenche o `[slug]`) + `dynamicParams = false` dão o 404 por construção,
+  o mesmo mecanismo anti-fishing do §4. O link só aparece quando a página existe.
+  Não há ilha nova: as tabs dos anteriores reaproveitam o `ProjectSwitcher`, e o
+  índice linka `#<id>`.
+
+**Risco aceito:** um erro de digitação no `lifecycle` invalida o cliente, que é
+pulado com aviso no build (parse defensivo, igual a qualquer campo da config). A
+página dele dá 404 até a correção. Afrouxar só esse campo (inválido = em
+andamento) mostraria um projeto concluído como ativo, sem aviso.
+
+**Rejeitado:** estado no snapshot; aba "Concluídos" no seletor (os anteriores
+continuariam nas tabs); seção `<details>` na mesma página (o HTML fica mais
+pesado e os anteriores saem no PDF); página vazia para quem não tem anteriores
+(rota sem leitor).
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".
