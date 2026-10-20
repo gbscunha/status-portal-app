@@ -1,6 +1,8 @@
 import type { Client, Project, Snapshot } from "@/lib/types";
 import type { TimelineEntry } from "@/lib/summary";
+import { finishedReport, isArchived, lifecycleOf } from "@/lib/lifecycle";
 import { ReportHeader } from "./ReportHeader";
+import { LifecycleNotice } from "./LifecycleNotice";
 import { SummaryStrip } from "./SummaryStrip";
 import { PendingList } from "./PendingList";
 import { ProgressList } from "./ProgressList";
@@ -20,7 +22,10 @@ type Props = {
   history: TimelineEntry[];
 };
 
-export function StatusReport({ client, project, snapshot, history }: Props) {
+export function StatusReport({ client, project, snapshot: latest, history }: Props) {
+  // Delivered/closed projects show their last report without asks or promises.
+  const snapshot = isArchived(project) ? finishedReport(latest) : latest;
+
   return (
     <article className="report wrap">
       <ReportHeader
@@ -30,6 +35,10 @@ export function StatusReport({ client, project, snapshot, history }: Props) {
       />
       <SummaryStrip snapshot={snapshot} platform={project.platform} />
       <div className="flow">
+        <LifecycleNotice
+          lifecycle={lifecycleOf(project)}
+          hasPending={(snapshot.pending?.length ?? 0) > 0}
+        />
         {snapshot.pending && <PendingList items={snapshot.pending} />}
         <ProgressList items={snapshot.progress} />
         <Legend />

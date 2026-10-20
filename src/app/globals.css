@@ -21,6 +21,11 @@
   --plan: #8a8f9a;
   --plan-bg: #eef0f3;
   --plan-track: #d4d7dd;
+  /* Project lifecycle (lib/lifecycle.ts): "em espera" has its own slate blue,
+     apart from the done/prog/plan palette; delivered reuses --done and
+     closed reuses --plan. */
+  --hold: #2f5b86;
+  --hold-bg: #e8eff7;
   --rail-w: 2px;
 }
 
@@ -135,6 +140,30 @@ summary {
   margin-top: 14px;
   background: var(--brand);
 }
+/* Link between the main page and /anteriores: filled brand-tinted pill. */
+.archive-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--brand) 12%, var(--paper));
+  border-radius: 999px;
+  padding: 7px 14px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+.archive-link:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.empty-head .archive-link {
+  margin-top: 24px;
+}
 
 /* ---- Tabs de projeto (etiquetas) ---- */
 
@@ -171,6 +200,20 @@ summary {
   color: var(--paper);
   background: var(--ink);
   border-color: var(--ink);
+}
+.tab-note {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--hold);
+  background: var(--hold-bg);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+.tab.active .tab-note {
+  color: var(--ink);
+  background: var(--paper);
 }
 
 /* ---- Report ---- */
@@ -408,6 +451,101 @@ h1 .accent {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--prog);
+}
+
+/* ---- Ciclo de vida do projeto (em espera / concluído / encerrado) ---- */
+
+.lifecycle-notice {
+  --lc: var(--hold);
+  --lc-bg: var(--hold-bg);
+  background: var(--lc-bg);
+  border: 1px solid color-mix(in srgb, var(--lc) 35%, var(--lc-bg));
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+.lifecycle-notice.delivered {
+  --lc: var(--done);
+  --lc-bg: var(--done-bg);
+}
+.lifecycle-notice.closed {
+  --lc: var(--muted);
+  --lc-bg: var(--plan-bg);
+}
+.lifecycle-notice .kicker {
+  color: var(--lc);
+  font-weight: 600;
+}
+.lifecycle-since {
+  margin-left: 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+}
+.lifecycle-text {
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.lifecycle-hint {
+  margin-top: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ---- Projetos anteriores (índice da /anteriores) ---- */
+
+.archive-index {
+  padding-top: clamp(28px, 5vw, 44px);
+}
+.archive-title {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 650;
+  font-stretch: 112%;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.archive-group {
+  margin-top: 28px;
+}
+.archive-group .block-title {
+  margin-bottom: 10px;
+}
+.archive-group ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.archive-group li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--paper);
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.archive-group a {
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, var(--brand) 60%, transparent);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.archive-group a:hover {
+  color: var(--brand);
+}
+.archive-when {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* ---- Progresso por área ---- */
@@ -1055,6 +1193,7 @@ footer {
   }
   .mast,
   .tabs,
+  .archive-link,
   .contact-compact,
   .contact-footer {
     display: none;
@@ -1071,6 +1210,7 @@ footer {
   .overview,
   .next,
   .pending,
+  .lifecycle-notice,
   .scope-item {
     break-inside: avoid;
   }

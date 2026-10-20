@@ -2,8 +2,14 @@
 
 import { useRef, useSyncExternalStore, type ReactNode } from "react";
 
-/** One tab and its report, kept together so the pairing is structural. */
-export type Panel = { id: string; name: string; content: ReactNode };
+/** One tab and its report, kept together so the pairing is structural.
+ *  `note` is a short badge on the tab (e.g. "Em espera"). */
+export type Panel = {
+  id: string;
+  name: string;
+  note?: string;
+  content: ReactNode;
+};
 
 function subscribeToHash(onChange: () => void) {
   window.addEventListener("hashchange", onChange);
@@ -71,6 +77,7 @@ export function ProjectSwitcher({ panels }: { panels: Panel[] }) {
             onClick={() => select(i)}
           >
             {panel.name}
+            {panel.note && <span className="tab-note">{panel.note}</span>}
           </button>
         ))}
       </div>
