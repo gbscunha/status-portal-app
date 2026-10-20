@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-20",
+  "phase": "Desenvolvimento concluído",
+  "title": {
+    "text": "Prepona pronta para os testes",
+    "highlight": "pronta para os testes"
+  },
+  "subtitle": "O desenvolvimento do envio de provas foi concluído. Agora a Prepona testa a integração no ambiente de testes para liberarmos a entrega final.",
+  "milestone": "Desenvolvimento concluído, aguardando os testes da Prepona",
+  "progress": [
+    {
+      "label": "Recebimento e associação das provas",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Regras de validação das provas",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Acesso protegido",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Monitoramento de saúde do serviço",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Testes e aprovação da Prepona",
+      "percent": 0,
+      "state": "plan"
+    }
+  ],
+  "nextSteps": {
+    "title": "Para a entrega final",
+    "intro": "Com o desenvolvimento pronto, o caminho até o uso real é curto:",
+    "items": [
+      {
+        "label": "Testes da Prepona",
+        "desc": "a Prepona envia provas de teste pelo ambiente de testes e confere as respostas."
+      },
+      {
+        "label": "Ajustes do retorno",
+        "desc": "corrigimos o que os testes apontarem, sem refazer o que já está aprovado."
+      },
+      {
+        "label": "Entrega final",
+        "desc": "liberação para o uso real, com o monitoramento já ativo."
+      }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Combinar os testes com a Prepona",
+      "desc": "Alinhar com a Prepona quando ela testa a integração e nos passar o retorno.",
+      "since": "2026-07-15"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Recebimento do pacote de provas",
+          "status": "done",
+          "description": "O pacote enviado pela Prepona é lido automaticamente e cada prova é associada ao exame certo."
+        },
+        {
+          "title": "Validações automáticas",
+          "status": "done",
+          "description": "Provas vencidas ou de um agendamento já substituído são recusadas com um motivo claro."
+        },
+        {
+          "title": "Reenvio de provas",
+          "status": "done",
+          "description": "Uma prova pode ser reenviada quando necessário, sem duplicar o registro."
+        },
+        {
+          "title": "Acesso protegido",
+          "status": "done",
+          "description": "Só quem está autorizado consegue enviar e reenviar provas."
+        },
+        {
+          "title": "Ambiente de testes disponível",
+          "status": "done",
+          "description": "Um ambiente separado do uso real, onde a Prepona pode testar à vontade, sem risco para os dados verdadeiros."
+        },
+        {
+          "title": "Verificação automática de saúde",
+          "status": "done",
+          "description": "O serviço avisa sozinho quando algo sai do normal, inclusive se o banco de dados ficar indisponível."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Próxima etapa",
+      "cards": [
+        {
+          "title": "Testes e aprovação da Prepona",
+          "status": "plan",
+          "description": "A Prepona valida a integração no ambiente de testes; com o retorno positivo, seguimos para a entrega final.",
+          "fullWidth": true
+        }
+      ]
+    }
+  ]
+}

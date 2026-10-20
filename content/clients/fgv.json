@@ -20,7 +20,12 @@
     {
       "id": "prepona",
       "name": "Prepona",
-      "platform": "Serviço de Integração"
+      "platform": "Serviço de Integração",
+      "lifecycle": {
+        "state": "paused",
+        "reason": "Desenvolvimento concluído. Aguardando a Prepona testar a integração para a entrega final.",
+        "since": "2026-07-15"
+      }
     }
   ]
 }
