@@ -19,3 +19,18 @@ export function countDelivered(snapshot: Snapshot): number {
     0,
   );
 }
+
+export type TimelineEntry = {
+  date: string;
+  /** Title of that snapshot — what happened at this checkpoint. */
+  title: string;
+};
+
+/** Snapshot history for the Timeline, most recent first. Entry text falls back
+ *  milestone → subtitle → title (the milestone is written for the rail). */
+export function timelineEntries(snapshots: Snapshot[]): TimelineEntry[] {
+  return snapshots.map((s) => ({
+    date: s.date,
+    title: s.milestone ?? s.subtitle ?? s.title.text,
+  }));
+}

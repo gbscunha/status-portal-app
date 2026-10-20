@@ -1,4 +1,5 @@
 import type { Client, Project, Snapshot } from "@/lib/types";
+import type { TimelineEntry } from "@/lib/summary";
 import { ReportHeader } from "./ReportHeader";
 import { SummaryStrip } from "./SummaryStrip";
 import { PendingList } from "./PendingList";
@@ -7,7 +8,7 @@ import { Legend } from "./Legend";
 import { NextSteps } from "./NextSteps";
 import { Section } from "./Section";
 import { ScopeMap } from "./ScopeMap";
-import { Timeline, type TimelineEntry } from "./Timeline";
+import { Timeline } from "./Timeline";
 import { ContactCta } from "./ContactCta";
 import { Footer } from "./Footer";
 
