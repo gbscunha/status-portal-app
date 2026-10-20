@@ -21,7 +21,11 @@
     {
       "id": "movi-exporter",
       "name": "Movi Exporter",
-      "platform": "App Desktop (Windows)"
+      "platform": "App Desktop (Windows)",
+      "lifecycle": {
+        "state": "delivered",
+        "deliveredAt": "2026-09"
+      }
     }
   ]
 }

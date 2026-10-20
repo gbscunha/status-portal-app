@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-20",
+  "phase": "Em produção · v1.6.0",
+  "title": {
+    "text": "Movi Exporter entregue",
+    "highlight": "entregue"
+  },
+  "subtitle": "Aplicativo que extrai os dados mensais de rastreamento dos veículos e gera as planilhas de relatório, com envio automático ao Google Drive. Entregue e em uso em produção.",
+  "milestone": "Versão 1.6.0 entregue, com manual completo",
+  "progress": [
+    {
+      "label": "Extração de dados de rastreamento",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Exportação em planilha",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Envio ao Google Drive",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Motorista e localização",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Frotas grandes",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Manual do usuário",
+      "percent": 100,
+      "state": "done"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que foi entregue",
+      "cards": [
+        {
+          "title": "Extração mensal de rastreamento",
+          "status": "done",
+          "description": "Puxa automaticamente os dados de quilometragem e uso dos veículos do sistema de rastreamento."
+        },
+        {
+          "title": "Exportação em planilha",
+          "status": "done",
+          "description": "Gera relatórios em CSV e Excel prontos para prestação de contas."
+        },
+        {
+          "title": "Envio ao Google Drive",
+          "status": "done",
+          "description": "Sobe as planilhas geradas direto para o Google Drive, e a pasta escolhida fica guardada entre um uso e outro."
+        },
+        {
+          "title": "Motorista e endereço no relatório",
+          "status": "done",
+          "description": "Identifica o motorista de cada viagem e traduz a localização em endereço legível."
+        },
+        {
+          "title": "Frotas grandes sem travar",
+          "status": "done",
+          "description": "A exportação é feita em partes, então frotas com centenas de veículos saem sem o aplicativo travar."
+        },
+        {
+          "title": "Placa sempre identificada",
+          "status": "done",
+          "description": "Quando o rastreador não informa a placa, o relatório usa o nome do veículo, sem linhas em branco."
+        },
+        {
+          "title": "Conta identificada pelo nome",
+          "status": "done",
+          "description": "O seletor de contas mostra o nome do usuário conectado, evitando exportar pela conta errada."
+        },
+        {
+          "title": "Manual do usuário completo",
+          "status": "done",
+          "description": "Guia dentro do aplicativo, organizado em cinco partes com imagens, para operar com autonomia do primeiro uso ao envio ao Drive.",
+          "fullWidth": true
+        }
+      ]
+    }
+  ]
+}
