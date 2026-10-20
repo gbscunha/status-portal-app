@@ -1,10 +1,22 @@
 import type { CSSProperties } from "react";
-import { getAllClients, getProjectSnapshots } from "@/lib/content";
-import { daysBetween, formatPtDate, todayIso } from "@/lib/format";
-import { overallPercent } from "@/lib/summary";
+import type { Lifecycle } from "@/lib/types";
+import { getAllClients, getLatestSnapshot } from "@/lib/content";
+import { formatPtDate, formatPtMonth, todayIso } from "@/lib/format";
+import { adminProjectRow } from "@/lib/admin";
+import { LIFECYCLE_LABELS, endMonth, orderedProjects } from "@/lib/lifecycle";
 import { AdminGreeting } from "./AdminGreeting";
 
-const STALE_DAYS = 14;
+// Lifecycle badge for a project line; nothing for active projects.
+function LifecycleNote({ lifecycle }: { lifecycle: Lifecycle }) {
+  if (lifecycle.state === "active") return null;
+  const month = endMonth(lifecycle);
+  return (
+    <span className={`admin-note ${lifecycle.state}`}>
+      {LIFECYCLE_LABELS[lifecycle.state].toLowerCase()}
+      {month && ` · ${formatPtMonth(month)}`}
+    </span>
+  );
+}
 
 // Internal cockpit (owner only, never linked from anywhere). Direct wording
 // is fine here — this is not a client-facing page.
@@ -50,35 +62,40 @@ export function AdminDashboard() {
               <span className="admin-open">Abrir →</span>
             </div>
             <ul className="admin-projects">
-              {client.projects.map((project) => {
-                const latest = getProjectSnapshots(client.id, project.id)[0];
-                if (!latest) {
-                  return (
-                    <li key={project.id}>
-                      <span className="admin-project">{project.name}</span>
-                      <span className="admin-note plan">sem relatório</span>
-                    </li>
-                  );
-                }
-                const idleDays = daysBetween(latest.date, today);
-                const pendingCount = latest.pending?.length ?? 0;
+              {orderedProjects(client.projects).map((project) => {
+                const row = adminProjectRow(
+                  project,
+                  getLatestSnapshot(client.id, project.id),
+                  today,
+                );
+                const { lifecycle, report } = row;
                 return (
-                  <li key={project.id}>
-                    <span className="admin-project">{project.name}</span>
+                  <li key={row.id}>
+                    <span className="admin-project">{row.name}</span>
                     <span className="admin-meta">
-                      {formatPtDate(latest.date)} · {overallPercent(latest)}%
-                      {pendingCount > 0 && (
+                      {report ? (
+                        <>
+                          {formatPtDate(report.date)} · {report.percent}%
+                        </>
+                      ) : (
+                        <span className="admin-note plan">sem relatório</span>
+                      )}
+                      <LifecycleNote lifecycle={lifecycle} />
+                      {report && report.pendingCount > 0 && (
                         <span className="admin-note prog">
-                          {pendingCount}{" "}
-                          {pendingCount === 1 ? "pendência" : "pendências"}
+                          {report.pendingCount}{" "}
+                          {report.pendingCount === 1 ? "pendência" : "pendências"}
                         </span>
                       )}
-                      {idleDays > STALE_DAYS && (
+                      {report?.stale && (
                         <span className="admin-note stale">
-                          parado há {idleDays} dias
+                          parado há {report.idleDays} dias
                         </span>
                       )}
                     </span>
+                    {lifecycle.state === "paused" && (
+                      <span className="admin-reason">{lifecycle.reason}</span>
+                    )}
                   </li>
                 );
               })}
