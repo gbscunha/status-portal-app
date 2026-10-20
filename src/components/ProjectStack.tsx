@@ -83,7 +83,7 @@ export function ProjectStack({ client }: { client: Client }) {
           name: project.name,
           note:
             lifecycleOf(project).state === "paused"
-              ? LIFECYCLE_LABELS.paused
+              ? { label: LIFECYCLE_LABELS.paused, state: "paused" }
               : undefined,
           content: (
             <StatusReport

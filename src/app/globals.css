@@ -22,8 +22,8 @@
   --plan-bg: #eef0f3;
   --plan-track: #d4d7dd;
   /* Project lifecycle (lib/lifecycle.ts): "em espera" has its own slate blue,
-     apart from the done/prog/plan palette; delivered reuses --done and
-     closed reuses --plan. */
+     apart from the done/prog/plan palette; delivered reuses --done/--done-bg
+     and closed reads as --muted on --plan-bg. */
   --hold: #2f5b86;
   --hold-bg: #e8eff7;
   --rail-w: 2px;
@@ -210,6 +210,10 @@ summary {
   background: var(--hold-bg);
   border-radius: 999px;
   padding: 2px 7px;
+}
+.tab-note.closed {
+  color: var(--muted);
+  background: var(--plan-bg);
 }
 .tab.active .tab-note {
   color: var(--ink);

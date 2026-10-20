@@ -78,7 +78,7 @@ export function ArchiveStack({ client }: { client: Client }) {
           name: project.name,
           note:
             lifecycleOf(project).state === "closed"
-              ? LIFECYCLE_LABELS.closed
+              ? { label: LIFECYCLE_LABELS.closed, state: "closed" }
               : undefined,
           content: (
             <StatusReport
