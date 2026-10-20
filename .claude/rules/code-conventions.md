@@ -14,19 +14,22 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
   `useSyncExternalStore` com snapshot de servidor = data do build).
 - Um componente por arquivo, PascalCase, props tipadas com `type` inline ou
   importado de `@/lib/types`.
-- Composição segue a hierarquia `ProjectStack → ProjectSwitcher → StatusReport
-  → (ReportHeader, SummaryStrip, PendingList, ProgressList, Legend, NextSteps,
-  Section, Timeline, ContactCta, Footer)`.
+- Composição segue a hierarquia `ProjectStack | ArchiveStack` (cada um dentro
+  do `ClientShell`) `→ ProjectSwitcher → StatusReport → (ReportHeader,
+  SummaryStrip, LifecycleNotice, PendingList, ProgressList, Legend, NextSteps,
+  Section, Timeline, ContactCta, Footer)`. O `ProjectSwitcher` recebe
+  `panels[]` (aba + conteúdo juntos).
 
 ## Estilo
 
 - **CSS puro** em `src/app/globals.css` — sem Tailwind, sem CSS-in-JS, sem
   módulos. Classes semânticas kebab-case.
-- Cor de marca: CSS var `--brand` setada uma vez no `ProjectStack` via style
+- Cor de marca: CSS var `--brand` setada uma vez no `ClientShell` via style
   inline (precisa de cast `as CSSProperties` — o tipo padrão não aceita custom
   properties). Todo o resto usa `var(--brand)`.
 - Estados visuais: só as classes `.done`/`.prog`/`.plan`; valores canônicos em
-  `src/lib/status.ts`.
+  `src/lib/status.ts`. O ciclo de vida do projeto inteiro é outro conjunto
+  (`.paused`/`.delivered`/`.closed`, valores em `src/lib/lifecycle.ts`).
 
 ## Dados e validação
 
