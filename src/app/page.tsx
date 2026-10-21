@@ -1,3 +1,5 @@
+import "./globals.css";
+
 // Raiz institucional mínima. NUNCA listar clientes nem slugs aqui:
 // o acesso é só pelo link secreto /r/<slug>.
 export default function Home() {

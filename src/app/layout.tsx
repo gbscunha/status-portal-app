@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
-import "./globals.css";
+
+// No stylesheet here on purpose: each segment imports its own (v2 globals.css
+// in page.tsx and r/layout.tsx, the shadcn tailwind.css in a/layout.tsx).
+// Loading both on one page breaks Tailwind — globals.css rules are unlayered
+// and beat every @layer utility (DECISOES §19).
 
 // Single-family system: Archivo variable (wdth axis) covers display
 // (expanded), body and the small uppercase labels.
