@@ -57,7 +57,10 @@ por uma pessoa antes de publicar, e o histórico fica no git.
 
 - Nome da empresa: ITGraph.
 - Cada cliente tem a própria cor de marca, aplicada na página dele.
-- Família tipográfica única, Archivo (DECISOES §14).
+- Família tipográfica única por superfície: Archivo nas páginas de cliente
+  (DECISOES §14); no painel admin, shadcn/ui no tema padrão com Inter (escolha
+  do dono em 2026-10-21, DECISOES §19). As páginas de cliente migram para o
+  shadcn depois, num PR próprio.
 - Voz: pt-BR, foco em benefício, zero jargão nas páginas de cliente. Linguagem
   direta é aceita no painel interno.
 

@@ -1,6 +1,6 @@
 # Spec: Painel admin v2 — visão geral + página por projeto (shadcn/ui)
 
-- **Status:** aprovada
+- **Status:** implementada
 - **Data:** 2026-10-21
 
 ## Problema / motivação
@@ -26,11 +26,16 @@ etapas: esta (base + admin) e, depois, as páginas de cliente, num PR próprio.
    - as páginas de cliente e a raiz carregam só o `globals.css` da v2, sem mudança
      visual.
 2. **Shell do admin.**
-   - `Sidebar` do shadcn com:
+   - `Sidebar` do shadcn, só com ícones e sem esquema de cores (pedido do dono):
      - a marca "ITGraph · Painel interno";
      - "Visão geral";
-     - os clientes (ponto na cor da marca), com os projetos aninhados e um sinal de
-       estado em cada um.
+     - os clientes, cada um com um quadradinho monocromático com a inicial e a
+       lista de projetos recolhível;
+     - em cada projeto, um ícone monocromático cuja forma diz o estado (em dia,
+       pendência, parado, em espera, concluído, encerrado);
+     - a data do deploy no rodapé.
+   - Recolhe para uma faixa de ícones, com o nome no tooltip. Nessa faixa, o
+     cliente vira link para a seção dele na visão geral.
    - O item atual tem `isActive` e `aria-current="page"`.
    - No celular (<768px), a sidebar vira `Sheet`.
    - Barra superior com `SidebarTrigger`, `Breadcrumb` (Painel › Cliente › Projeto)
@@ -45,23 +50,28 @@ etapas: esta (base + admin) e, depois, as páginas de cliente, num PR próprio.
    - **"Precisa de atenção":**
      - ordem: parado ou sem relatório → mais pendências → menos pendências → em
        espera;
-     - cada item mostra o motivo e linka para o projeto;
+     - cada item mostra o motivo e linka para o projeto; nas pendências, a que
+       espera há mais tempo e há quantos dias;
      - estado vazio: "Nada pedindo ação agora".
-   - **"Todos os projetos"** numa tabela agrupada por cliente: projeto, fase, último
-     relatório, progresso e situação.
+   - **"Todos os projetos"** numa tabela agrupada por cliente: projeto, fase (a
+     partir de 1280px), último relatório, progresso e situação. Cada cliente tem
+     um link para a página dele.
 4. **Página do projeto (`/a/<slug>/<cliente>/<projeto>`).** SSG, com
    `dynamicParams = false`: qualquer outra combinação dá 404.
-   - **Hero** com fundo no tom da marca do cliente. Traz:
-     - o badge de ciclo de vida, "atualizado há N dias" e o primeiro relatório;
-     - o nome, a fase e o subtítulo;
-     - o progresso geral com "X de Y frentes concluídas".
+   - **Hero** com fundo e borda no tom da marca do cliente (a barra de progresso
+     fica preta: marcas vermelhas leriam como alerta). Traz:
+     - o nome com o badge de ciclo de vida ao lado (nenhum rótulo acima do
+       título);
+     - a fase e o subtítulo;
+     - o progresso geral com "X de Y frentes concluídas · atualizado há N dias ·
+       primeiro relatório em …".
    - **Indicadores:**
      - frentes concluídas;
      - pendências do cliente;
      - dias desde o último relatório;
      - avanço desde o relatório anterior, em tom neutro e com a variação de frentes
-       (ex.: "−8 pp · +2 frentes"; "—" quando não há relatório anterior
-       comparável).
+       (ex.: "−8 pp · +2 frentes no escopo"; "—" quando não há relatório
+       anterior comparável).
    - **Coluna principal:** Frentes, Aguardando o cliente, Próximos passos e
      Histórico.
    - **Coluna lateral ("Projeto"):** cliente, fornecedor, plataforma, fase, primeiro
@@ -105,6 +115,9 @@ Vitest (`src/lib/admin.test.ts`):
   motivo **QUANDO** monto a lista **ENTÃO** eles não entram.
 - **Sem relatório:** **DADO** um projeto em andamento sem relatório **QUANDO** monto
   a lista **ENTÃO** ele entra com o motivo "sem relatório".
+- **Pendência mais antiga:** **DADO** pendências com datas diferentes **QUANDO**
+  escolho a que aparece na atenção **ENTÃO** é a de `since` mais antigo; sem
+  nenhuma data, a primeira.
 - **Avanço:** **DADO** relatórios com 71% (mais novo) e 65% (anterior) **QUANDO**
   resumo o projeto **ENTÃO**:
   - o avanço é +6 e a variação de frentes é a diferença de contagem;
@@ -126,8 +139,10 @@ Manual (build + servidor local):
   - `/a/<slug>` e os 8 `/a/<slug>/<cliente>/<projeto>` renderizam;
   - dão 404: `/a/<slug>/x/y`, par trocado, `/a/<outro>` e `/r/<inexistente>`.
 - **Isolamento:**
-  - o CSS carregado por `/`, `/r/*`, `/anteriores` e `/_not-found` é idêntico ao de
-    antes da mudança;
+  - o CSS carregado por `/`, `/r/*` e `/anteriores` é idêntico ao de antes da
+    mudança, menos as regras `.admin*` removidas;
+  - o `/_not-found` (404 padrão do Next) perde a v2: fica só a fonte, sem o
+    `padding-bottom` de 64px;
   - nenhuma página fora de `/a` carrega Tailwind;
   - as capturas das páginas de cliente batem.
 - **Admin (1440, 1024 e 390):**

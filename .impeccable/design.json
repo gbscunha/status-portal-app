@@ -1,0 +1,627 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T14:45:27Z",
+  "title": "Design System: Portal de Status ITGraph",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Branco de Página",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Tinta Quase Preta",
+        "canonical": "oklch(0.145 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Branco de Página (card)",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "card-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta Quase Preta (card)",
+        "canonical": "oklch(0.145 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Grafite de Ação",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "primary-foreground": {
+        "role": "primary",
+        "displayName": "Branco de Contraste",
+        "canonical": "oklch(0.985 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Cinza Névoa (secondary)",
+        "canonical": "oklch(0.97 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "secondary-foreground": {
+        "role": "neutral",
+        "displayName": "Grafite (texto do secondary)",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Cinza Névoa",
+        "canonical": "oklch(0.97 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Cinza Legenda",
+        "canonical": "oklch(0.556 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Linha Fina",
+        "canonical": "oklch(0.922 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Anel Cinza",
+        "canonical": "oklch(0.708 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Papel da Lateral",
+        "canonical": "oklch(0.985 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta Quase Preta (sidebar)",
+        "canonical": "oklch(0.145 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-primary": {
+        "role": "primary",
+        "displayName": "Grafite de Ação (sidebar)",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-primary-foreground": {
+        "role": "primary",
+        "displayName": "Branco de Contraste (sidebar)",
+        "canonical": "oklch(0.985 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-accent": {
+        "role": "neutral",
+        "displayName": "Cinza Névoa (sidebar)",
+        "canonical": "oklch(0.97 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-accent-foreground": {
+        "role": "neutral",
+        "displayName": "Grafite (texto do item ativo)",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "sidebar-border": {
+        "role": "neutral",
+        "displayName": "Linha Fina (sidebar)",
+        "canonical": "oklch(0.922 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "done": {
+        "role": "semantic",
+        "displayName": "Verde Entregue",
+        "canonical": "#178a4c",
+        "tonalRamp": [
+          "oklch(0.15 0.136 153.2)",
+          "oklch(0.26 0.136 153.2)",
+          "oklch(0.37 0.136 153.2)",
+          "oklch(0.48 0.136 153.2)",
+          "oklch(0.6 0.136 153.2)",
+          "oklch(0.72 0.136 153.2)",
+          "oklch(0.84 0.136 153.2)",
+          "oklch(0.95 0.136 153.2)"
+        ]
+      },
+      "prog": {
+        "role": "semantic",
+        "displayName": "Âmbar em Curso",
+        "canonical": "#b25e00",
+        "tonalRamp": [
+          "oklch(0.15 0.138 57.1)",
+          "oklch(0.26 0.138 57.1)",
+          "oklch(0.37 0.138 57.1)",
+          "oklch(0.48 0.138 57.1)",
+          "oklch(0.6 0.138 57.1)",
+          "oklch(0.72 0.138 57.1)",
+          "oklch(0.84 0.138 57.1)",
+          "oklch(0.95 0.138 57.1)"
+        ]
+      },
+      "plan": {
+        "role": "semantic",
+        "displayName": "Cinza Planejado",
+        "canonical": "#8a8f9a",
+        "tonalRamp": [
+          "oklch(0.15 0.017 266.2)",
+          "oklch(0.26 0.017 266.2)",
+          "oklch(0.37 0.017 266.2)",
+          "oklch(0.48 0.017 266.2)",
+          "oklch(0.6 0.017 266.2)",
+          "oklch(0.72 0.017 266.2)",
+          "oklch(0.84 0.017 266.2)",
+          "oklch(0.95 0.017 266.2)"
+        ]
+      },
+      "hold": {
+        "role": "semantic",
+        "displayName": "Azul em Espera",
+        "canonical": "#2f5b86",
+        "tonalRamp": [
+          "oklch(0.15 0.086 249.7)",
+          "oklch(0.26 0.086 249.7)",
+          "oklch(0.37 0.086 249.7)",
+          "oklch(0.48 0.086 249.7)",
+          "oklch(0.6 0.086 249.7)",
+          "oklch(0.72 0.086 249.7)",
+          "oklch(0.84 0.086 249.7)",
+          "oklch(0.95 0.086 249.7)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "O h1 de cada página (saudação, nome do projeto); 1.875rem abaixo de 768px (hero) ou 1024px (saudação)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Valor de KPI e percentual do hero, com números tabulares."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Título de card, sempre envolvendo um h2."
+      },
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Subtítulo e fase no hero do projeto, até 65ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto de trabalho: descrições, células, trilha, itens da sidebar."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Botão, item ativo da sidebar, nome de projeto, título de item de lista."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "Texto de badge, percentual ao lado da barra, rótulo de grupo da sidebar."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Data relativa, nota de KPI, rodapé da sidebar, tooltip."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-ring",
+        "value": "0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent)",
+        "purpose": "Anel de 1px de todo card (ring-1 ring-foreground/10); não é sombra difusa."
+      },
+      {
+        "name": "hero-xs",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Única sombra em repouso: assenta o hero tingido do projeto."
+      },
+      {
+        "name": "sheet-lg",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Gaveta da sidebar no celular, sobre véu preto a 10% com backdrop-filter: blur(4px)."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent)",
+        "purpose": "Anel de foco do tema padrão (com borda em --ring); itens da sidebar usam 2px em --sidebar-ring."
+      }
+    ],
+    "motion": [
+      {
+        "name": "sidebar-collapse",
+        "value": "200ms linear",
+        "purpose": "Largura da sidebar entre 256px e o trilho de 48px; o rótulo de grupo some com opacidade no mesmo tempo."
+      },
+      {
+        "name": "sheet",
+        "value": "200ms ease-in-out (véu: 150ms)",
+        "purpose": "Gaveta do celular entra deslizando 2.5rem com fade."
+      },
+      {
+        "name": "tooltip",
+        "value": "fade-in + zoom-in-95, delay 0",
+        "purpose": "Tooltip do trilho de ícones, invertido (fundo Tinta)."
+      },
+      {
+        "name": "ease-standard",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Transições de botão, giro de 90° do chevron do cliente, largura da barra de progresso."
+      },
+      {
+        "name": "item-hover",
+        "value": "100ms",
+        "purpose": "Fundo de hover do item de \"Precisa de atenção\"."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px)",
+        "purpose": "Botão pressionado (exceto os que abrem popup)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A única ação preenchida da página, no fim da barra superior (\"Página do cliente\").",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Página do cliente<svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 8px 0 10px; border: 1px solid transparent; border-radius: 10px; background: var(--primary, oklch(0.205 0 0)); color: var(--primary-foreground, oklch(0.985 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 500; text-decoration: none; white-space: nowrap; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-btn-primary:hover { background: color-mix(in oklab, var(--primary, oklch(0.205 0 0)) 80%, transparent); } .ds-btn-primary:focus-visible { outline: none; border-color: var(--ring, oklch(0.708 0 0)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Ghost Icon Button",
+      "kind": "button",
+      "refersTo": "button-ghost-icon",
+      "description": "Gatilho da sidebar na barra superior; o único botão sem fundo do sistema.",
+      "html": "<button class=\"ds-btn-ghost-icon\" type=\"button\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M9 3v18\"/></svg><span class=\"ds-sr-only\">Mostrar ou ocultar a barra lateral</span></button>",
+      "css": ".ds-btn-ghost-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--foreground, oklch(0.145 0 0)); cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-ghost-icon svg { width: 16px; height: 16px; } .ds-btn-ghost-icon:hover { background: var(--muted, oklch(0.97 0 0)); } .ds-btn-ghost-icon:focus-visible { outline: none; border-color: var(--ring, oklch(0.708 0 0)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-btn-ghost-icon:active { transform: translateY(1px); } .ds-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }"
+    },
+    {
+      "name": "State Badge (outline + dot)",
+      "kind": "chip",
+      "refersTo": "badge-outline",
+      "description": "Ciclo de vida e motivo de atenção: pílula neutra, o estado mora no ponto.",
+      "html": "<div class=\"ds-badge-row\"><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-done\"></span>Em andamento</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-prog\"></span>3 pendências do cliente</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-alert\"></span>Parado há 20 dias</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-hold\"></span>Em espera</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-plan\"></span>Encerrado · Set 2026</span></div>",
+      "css": ".ds-badge-row { display: flex; flex-wrap: wrap; gap: 6px; } .ds-badge-outline { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid transparent; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.33; font-weight: 500; white-space: nowrap; border-color: var(--border, oklch(0.922 0 0)); color: var(--foreground, oklch(0.145 0 0)); } .ds-dot { display: inline-block; width: 8px; height: 8px; flex-shrink: 0; border-radius: 9999px; } .ds-dot-done { background: var(--done, #178a4c); } .ds-dot-prog { background: var(--prog, #b25e00); } .ds-dot-hold { background: var(--hold, #2f5b86); } .ds-dot-plan { background: color-mix(in oklab, var(--plan, #8a8f9a) 50%, transparent); } .ds-dot-alert { box-shadow: inset 0 0 0 2px var(--prog, #b25e00); }"
+    },
+    {
+      "name": "Secondary Badge",
+      "kind": "chip",
+      "refersTo": "badge-secondary",
+      "description": "Metadado neutro: \"Atual\" no histórico, \"Desde … · há N dias\" na pendência.",
+      "html": "<span class=\"ds-badge-secondary\">Desde 5 Out 2026 · há 16 dias</span>",
+      "css": ".ds-badge-secondary { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid transparent; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.33; font-weight: 500; white-space: nowrap; background: var(--secondary, oklch(0.97 0 0)); color: var(--secondary-foreground, oklch(0.205 0 0)); }"
+    },
+    {
+      "name": "KPI Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Card plano com anel de 1px; valor em Headline primeiro, rótulo embaixo; âmbar quando algo espera ação.",
+      "html": "<div class=\"ds-kpi-grid\"><div class=\"ds-card\"><dl class=\"ds-kpi\"><dt class=\"ds-kpi-label\">Em andamento</dt><dd class=\"ds-kpi-value\">6</dd></dl></div><div class=\"ds-card\"><dl class=\"ds-kpi\"><dt class=\"ds-kpi-label\">Pendências do cliente</dt><dd class=\"ds-kpi-value ds-kpi-alert\">8 <span class=\"ds-kpi-unit\">em 4 projetos</span></dd></dl></div><div class=\"ds-card\"><dl class=\"ds-kpi\"><dt class=\"ds-kpi-label\">Desde o último relatório<span class=\"ds-kpi-note\">12 Out 2026</span></dt><dd class=\"ds-kpi-value\">9 <span class=\"ds-kpi-unit\">dias</span></dd></dl></div></div>",
+      "css": ".ds-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; } .ds-card { display: flex; flex-direction: column; gap: 16px; padding: 16px; border-radius: 14px; background: var(--card, oklch(1 0 0)); color: var(--card-foreground, oklch(0.145 0 0)); box-shadow: 0 0 0 1px color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 10%, transparent); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; } .ds-kpi { display: flex; flex-direction: column-reverse; gap: 4px; margin: 0; } .ds-kpi-label { display: flex; flex-direction: column; gap: 2px; color: var(--muted-foreground, oklch(0.556 0 0)); font-size: 0.875rem; } .ds-kpi-note { font-size: 0.75rem; } .ds-kpi-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; margin: 0; font-size: 1.5rem; line-height: 1.33; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--foreground, oklch(0.145 0 0)); } .ds-kpi-alert { color: var(--prog, #b25e00); } .ds-kpi-unit { font-size: 0.875rem; font-weight: 400; color: var(--muted-foreground, oklch(0.556 0 0)); white-space: nowrap; }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "sidebar",
+      "description": "Sidebar monocromática: tile \"IT\", item ativo em Cinza Névoa, cliente com tile da inicial, projeto com ícone de estado.",
+      "html": "<nav class=\"ds-sidebar\" aria-label=\"Painel\"><a class=\"ds-sb-brand\" href=\"#\"><span class=\"ds-sb-logo\">IT</span><span class=\"ds-sb-brand-text\"><strong>ITGraph</strong><small>Painel interno</small></span></a><a class=\"ds-sb-item ds-sb-active\" href=\"#\" aria-current=\"page\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/></svg><span>Visão geral</span></a><div class=\"ds-sb-label\">Clientes</div><button class=\"ds-sb-item\" type=\"button\" aria-expanded=\"true\"><span class=\"ds-sb-tile\">F</span><span class=\"ds-sb-client\">FGV</span><svg class=\"ds-sb-chevron\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button><ul class=\"ds-sb-sub\"><li><a class=\"ds-sb-subitem\" href=\"#\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg><span>CT</span></a></li><li><a class=\"ds-sb-subitem\" href=\"#\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></svg><span>CRECI</span></a></li><li><a class=\"ds-sb-subitem\" href=\"#\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"10\" x2=\"10\" y1=\"15\" y2=\"9\"/><line x1=\"14\" x2=\"14\" y1=\"15\" y2=\"9\"/></svg><span>Prepona</span></a></li><li><a class=\"ds-sb-subitem\" href=\"#\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m16 9-5.5 5.5L8 12\"/></svg><span>Movi Exporter</span></a></li><li><a class=\"ds-sb-subitem\" href=\"#\"><svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg><span>Sem relatório</span></a></li></ul></nav>",
+      "css": ".ds-sidebar { display: flex; flex-direction: column; gap: 4px; width: 256px; padding: 8px; background: var(--sidebar, oklch(0.985 0 0)); color: var(--sidebar-foreground, oklch(0.145 0 0)); border-right: 1px solid var(--sidebar-border, oklch(0.922 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; } .ds-sb-brand { display: flex; align-items: center; gap: 8px; height: 48px; padding: 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-sb-logo { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; background: var(--sidebar-primary, oklch(0.205 0 0)); color: var(--sidebar-primary-foreground, oklch(0.985 0 0)); font-weight: 600; } .ds-sb-brand-text { display: grid; line-height: 1.25; } .ds-sb-brand-text small { font-size: 0.75rem; color: var(--muted-foreground, oklch(0.556 0 0)); } .ds-sb-label { display: flex; align-items: center; height: 32px; padding: 0 8px; font-size: 0.75rem; font-weight: 500; color: color-mix(in oklab, var(--sidebar-foreground, oklch(0.145 0 0)) 70%, transparent); } .ds-sb-item { display: flex; align-items: center; gap: 8px; width: 100%; height: 32px; padding: 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer; } .ds-sb-item svg, .ds-sb-subitem svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-sb-item:hover, .ds-sb-subitem:hover { background: var(--sidebar-accent, oklch(0.97 0 0)); } .ds-sb-item:focus-visible, .ds-sb-subitem:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--sidebar-ring, oklch(0.708 0 0)); } .ds-sb-active { background: var(--sidebar-accent, oklch(0.97 0 0)); color: var(--sidebar-accent-foreground, oklch(0.205 0 0)); font-weight: 500; } .ds-sb-tile { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; flex-shrink: 0; border-radius: 4px; background: color-mix(in oklab, var(--sidebar-foreground, oklch(0.145 0 0)) 10%, transparent); font-size: 10px; font-weight: 600; } .ds-sb-client { font-weight: 500; } .ds-sb-chevron { margin-left: auto; transform: rotate(90deg); transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sb-sub { display: flex; flex-direction: column; gap: 4px; margin: 0 14px; padding: 2px 10px; border-left: 1px solid var(--sidebar-border, oklch(0.922 0 0)); list-style: none; } .ds-sb-subitem { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-sb-subitem span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+    },
+    {
+      "name": "Progress Bar",
+      "kind": "custom",
+      "refersTo": "progress-track",
+      "description": "Trilho de 4px em Cinza Névoa com indicador Grafite e percentual tabular ao lado; nunca na cor do cliente.",
+      "html": "<div class=\"ds-progress-row\"><div class=\"ds-progress\" role=\"progressbar\" aria-valuenow=\"71\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progresso de CT\"><div class=\"ds-progress-indicator\" style=\"width:71%\"></div></div><span class=\"ds-progress-value\">71%</span></div>",
+      "css": ".ds-progress-row { display: flex; align-items: center; gap: 12px; width: 240px; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-progress { position: relative; flex: 1; height: 4px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-progress-indicator { height: 100%; background: var(--primary, oklch(0.205 0 0)); transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-progress-value { width: 36px; text-align: right; font-size: 0.75rem; line-height: 1.33; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--foreground, oklch(0.145 0 0)); }"
+    },
+    {
+      "name": "Project Hero",
+      "kind": "custom",
+      "refersTo": "project-hero",
+      "description": "Cabeçalho do projeto, a única superfície tingida: gradiente de 10% e borda de 20% na cor do cliente, texto secundário em Tinta a 75%.",
+      "html": "<section class=\"ds-hero\" style=\"--brand:#003A70\" aria-labelledby=\"ds-hero-title\"><div class=\"ds-hero-head\"><h1 id=\"ds-hero-title\" class=\"ds-hero-title\">CT</h1><span class=\"ds-hero-badge\"><span class=\"ds-hero-dot\"></span>Em andamento</span></div><p class=\"ds-hero-phase\">Migração do sistema legado</p><p class=\"ds-hero-sub\">O sistema de certificação está sendo reconstruído do zero em tecnologia moderna.</p><div class=\"ds-hero-meta\"><p>7 de 16 frentes concluídas · atualizado há 9 dias</p><span class=\"ds-hero-pct\">71%</span></div><div class=\"ds-hero-track\" role=\"progressbar\" aria-valuenow=\"71\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progresso geral\"><div class=\"ds-hero-bar\" style=\"width:71%\"></div></div></section>",
+      "css": ".ds-hero { display: flex; flex-direction: column; gap: 8px; padding: 28px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--brand) 20%, transparent); background: linear-gradient(to bottom right, color-mix(in oklab, var(--brand) 10%, transparent), var(--background, oklch(1 0 0)), var(--background, oklch(1 0 0))); box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); color: var(--foreground, oklch(0.145 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-hero-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; } .ds-hero-title { margin: 0; font-size: 2.25rem; line-height: 1.11; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; } .ds-hero-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid var(--border, oklch(0.922 0 0)); font-size: 0.75rem; font-weight: 500; } .ds-hero-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--done, #178a4c); } .ds-hero-phase { margin: 0; font-weight: 500; } .ds-hero-sub { margin: 0; max-width: 65ch; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); text-wrap: pretty; } .ds-hero-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: 12px; } .ds-hero-meta p { margin: 0; font-size: 0.875rem; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); } .ds-hero-pct { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-hero-track { height: 8px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-hero-bar { height: 100%; background: var(--primary, oklch(0.205 0 0)); }"
+    },
+    {
+      "name": "Attention Item",
+      "kind": "custom",
+      "refersTo": "attention-item",
+      "description": "Linha de \"Precisa de atenção\": o item inteiro é link, com cliente · projeto, badges de motivo, detalhe e chevron.",
+      "html": "<a class=\"ds-att\" href=\"#\"><span class=\"ds-att-content\"><span class=\"ds-att-title\"><span class=\"ds-att-client\">Movi Solutions ·</span>Painel Web</span><span class=\"ds-att-badges\"><span class=\"ds-att-badge\"><span class=\"ds-att-dot\"></span>3 pendências do cliente</span></span><span class=\"ds-att-desc\">Confirmar as decisões do escopo da versão 1 e mais 2 · há 15 dias</span></span><svg class=\"ds-att-chevron\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></a>",
+      "css": ".ds-att { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid transparent; border-radius: 10px; color: var(--foreground, oklch(0.145 0 0)); text-decoration: none; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; transition: background-color 100ms; } .ds-att:hover { background: color-mix(in oklab, var(--muted, oklch(0.97 0 0)) 50%, transparent); } .ds-att:focus-visible { outline: none; border-color: var(--ring, oklch(0.708 0 0)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-att-content { display: flex; flex: 1; flex-direction: column; gap: 6px; } .ds-att-title { display: flex; align-items: center; gap: 8px; font-weight: 500; line-height: 1.375; } .ds-att-client { font-weight: 400; color: var(--muted-foreground, oklch(0.556 0 0)); } .ds-att-badges { display: flex; flex-wrap: wrap; gap: 6px; } .ds-att-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid var(--border, oklch(0.922 0 0)); font-size: 0.75rem; font-weight: 500; white-space: nowrap; } .ds-att-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--prog, #b25e00); } .ds-att-desc { color: var(--muted-foreground, oklch(0.556 0 0)); text-wrap: pretty; } .ds-att-chevron { align-self: center; width: 16px; height: 16px; color: var(--muted-foreground, oklch(0.556 0 0)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Mesa de Triagem",
+    "overview": "O sistema é o vocabulário de produto da categoria (sidebar, trilha, cards, tabela) no tema padrão do shadcn/ui: estilo `base-nova`, primitivos Base UI, base `neutral`, com Inter. É escolha explícita do dono: numa tela de trabalho, um vocabulário de componentes conhecido vale mais do que um visual autoral, e uma prévia desenhada à mão no lugar dos primitivos foi rejeitada. A personalidade vem do conteúdo (estados, datas, a cor de cada cliente), não da moldura. A moldura é neutra, o primary é quase preto e há um único tom de ação.\n\nA leitura é por varredura, com densidade média. O olho acha primeiro o que pede ação (um número em âmbar, um badge com ponto) e só depois o detalhe. A cor tem duas funções e só duas: dizer o estado (quatro tons fixos) e marcar de quem é o projeto (a cor do cliente, como marcador). Todo o resto é cinza. As superfícies são planas e se separam por um anel de 1px, não por sombra.\n\nEscopo: este é o sistema-alvo do projeto inteiro (DECISOES §19), adotado em duas etapas. Hoje só o painel interno (`/a/…`) roda nele, carregado por `src/app/a/layout.tsx` e `src/app/tailwind.css`. As páginas de cliente (`/r/…`, `/anteriores` e a raiz) continuam no mundo v2 em CSS puro (`src/app/globals.css`, Archivo, DECISOES §14) até a migração delas, num PR próprio com prévia. Nada neste arquivo descreve a v2, e nenhuma regra da v2 vale aqui; na migração, as páginas de cliente entram neste sistema, e não o contrário. O único elo de propósito entre os dois mundos são os quatro tons de estado, com os mesmos valores e o mesmo significado.",
+    "keyCharacteristics": [
+      "Tema padrão do shadcn (`base-nova`, neutral), neutros sem croma e primary quase preto.",
+      "Inter como família única; a hierarquia vem de tamanho e peso, nunca de caixa-alta.",
+      "Cor só para estado (verde, âmbar, cinza, azul) e para marcar o cliente.",
+      "Superfícies planas com anel de 1px; raio de 14px nos containers e de 10px nos controles.",
+      "Sidebar monocromática, que se lê por forma de ícone e colapsa para um trilho de ícones.",
+      "Só tema claro: o bloco `.dark` veio do gerador e nenhuma página o liga."
+    ],
+    "rules": [
+      {
+        "name": "The Brand-as-Marker Rule",
+        "body": "A cor do cliente só marca: o ponto de 10px na tabela e nos fatos do projeto, o ponto do relatório atual no histórico, e o tingimento do hero do projeto (gradiente de 10% e borda de 20%). Ela nunca é cor de texto e nunca pinta barra de progresso, porque marcas vermelhas (Movi, Neon) leriam como alarme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Achromatic Frame Rule",
+        "body": "Todo neutro tem croma zero e o Grafite é o único tom de ação. Link dentro do conteúdo é texto com sublinhado no hover, não texto azul.",
+        "section": "colors"
+      },
+      {
+        "name": "The Four States Rule",
+        "body": "Estado tem quatro tons com significado fixo e igual ao das páginas de cliente: verde para feito, âmbar para em curso ou esperando ação, cinza para planejado ou encerrado, azul para em espera. Eles aparecem como ponto de 8px, ícone de 16px ou número de KPI em alerta, sempre ao lado da palavra (visível ou para leitor de tela).",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Inter em tudo. Não há mono decorativo, segunda família, caixa-alta nem tracking aberto; a hierarquia vem só do tamanho (de 12 a 36px) e do peso (400/500/600).",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Numbers Rule",
+        "body": "Todo número que se compara com outro (percentual, KPI, data em coluna, número de passo) usa `tabular-nums`.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Nenhum título tem rótulo acima dele. O contexto vai ao lado (o badge de ciclo de vida ao lado do h1) ou abaixo (a descrição de card, a linha de data da saudação).",
+        "section": "typography"
+      },
+      {
+        "name": "The Shell Rule",
+        "body": "Toda página nova entra pelo mesmo shell: sidebar, barra de 56px com trilha à esquerda e no máximo uma ação à direita, e coluna de até 1152px. Não existe página sem a sidebar.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Superfície em repouso se separa por anel ou borda de 1px, nunca por sombra difusa. Sombra grande só para o que flutua sobre a página.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Filled Button Rule",
+        "body": "Ação é botão preenchido (preferência do dono) e há no máximo um por página, no fim da barra superior. Os outros caminhos são links de texto, nunca botões outline concorrendo com ele.",
+        "section": "components"
+      },
+      {
+        "name": "The Dot Carries State Rule",
+        "body": "O estado mora no ponto, e o badge continua neutro. Não existe badge preenchido de verde, âmbar ou azul.",
+        "section": "components"
+      },
+      {
+        "name": "The Monochrome Sidebar Rule",
+        "body": "A sidebar se lê por forma, não por cor. Cliente é um tile da inicial em Tinta a 10%; projeto é um ícone lucide monocromático de 16px que diz o estado pela forma (círculo com ponto para em dia, alerta para pendência, relógio para parado ou sem relatório, pausa para em espera, check para concluído, X para encerrado), com o nome do estado só para leitor de tela.",
+        "section": "components"
+      },
+      {
+        "name": "The Tinted Surface Rule",
+        "body": "Sobre superfície tingida pela marca, o texto secundário deriva da Tinta a 75% (cerca de 8:1), nunca do Cinza Legenda, que cai para perto de 3,9:1 sobre o tingimento.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do montar toda página nova dentro do shell: sidebar de 256px, barra de 56px e coluna de até 1152px com 24px entre blocos.",
+      "Do partir dos primitivos gerados em `src/components/ui/` (Card, Badge, Item, Table, Progress, Empty, Sidebar, Tooltip, Breadcrumb) antes de escrever marcação própria, e registrar em DECISOES §19 qualquer edição neles.",
+      "Do marcar estado com o ponto de 8px dentro de um badge outline, ou com o ícone lucide de 16px, sempre junto da palavra (visível ou para leitor de tela).",
+      "Do usar um único botão preenchido em Grafite por página, à direita da barra superior.",
+      "Do usar `tabular-nums` em todo número comparável e Headline (600, 1.5rem) nos valores de KPI.",
+      "Do usar a Tinta a 75% para texto secundário sobre o hero tingido.",
+      "Do pôr o badge de ciclo de vida ao lado do h1, e a contagem de cada card como descrição embaixo do título."
+    ],
+    "donts": [
+      "Don't usar a cor do cliente como cor de texto nem para pintar barra de progresso; marcas vermelhas (Movi, Neon) leem como alarme.",
+      "Don't colorir a sidebar, nem por cliente nem por estado; ela usa tiles e ícones monocromáticos.",
+      "Don't pôr rótulo ou eyebrow acima de título.",
+      "Don't adicionar uma segunda família, mono decorativo ou caixa-alta com tracking aberto.",
+      "Don't usar Cinza Legenda sobre superfície tingida pela marca.",
+      "Don't dar hover de linha inteira numa linha de tabela cujo único link é o nome.",
+      "Don't carregar `tailwind.css` e `globals.css` na mesma página: a regra sem camada da v2 (`* { margin: 0; padding: 0 }`) anula todo utilitário do Tailwind.",
+      "Don't aplicar estas regras às páginas de cliente antes da migração delas, nem trazer regras da v2 (Archivo, trilho na cor da marca, CSS puro) para dentro deste sistema."
+    ]
+  }
+}

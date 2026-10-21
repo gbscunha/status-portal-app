@@ -36,7 +36,10 @@ direita, a barra com trilha e "Página do cliente", a saudação, os 4 indicador
 "Precisa de atenção". No projeto: o hero com progresso, os indicadores e as duas
 colunas em tela larga.
 
-FORM: composição da referência do dono (dashboard "Zaga"), fixada por ele; o roll
-não rodou. seed: none (composição fixada pela referência do dono).
+FORM: composição da referência do dono (dashboard "Zaga"), fixada por ele. O
+roll não rodou de propósito: new-work.md diz que "a user- or brief-pinned
+direction beats the roll, always" e que uma sessão com direção fixada lê o arquivo
+do modo (mode-operate.md). O mundo (shadcn padrão + Inter) e a composição foram
+fixados pelo dono. seed: none (direção fixada pelo dono; roll não aplicável).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

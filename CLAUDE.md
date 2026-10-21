@@ -10,17 +10,17 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 - Cada cliente acessa `/r/<slug>` e vê **só os projetos dele**. Sem auth — a
   diferenciação é por **slug não-adivinhável** + `noindex`.
-- Conteúdo é **dado** (JSON em `content/`), não código. Design v2 "**rastreio de
-  entrega**" (trilho na cor da marca, tabs): família única Archivo, CSS puro (DECISOES §14).
+- Conteúdo é **dado** (JSON em `content/`), não código. Cliente: design v2 "**rastreio de
+  entrega**", Archivo, CSS puro (§14). Admin: **shadcn/ui** + Tailwind, tema padrão + Inter (§19).
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 
 ## Estrutura
 
 ```
-src/app/            — App Router. r/[slug]/ = página do cliente (+ anteriores/: concluídos e encerrados); a/[slug]/ = painel admin (interno); robots.ts; layout (fontes + noindex); page.tsx (raiz institucional)
-src/components/     — Server Components (ProjectStack | ArchiveStack, em ClientShell → ProjectSwitcher* → StatusReport → …); *3 ilhas "use client" (ver Convenções)
-src/lib/            — types.ts (schema Zod), status.ts (estados), lifecycle.ts (ciclo do projeto), content.ts (loaders fs), format.ts (data TZ-safe)
+src/app/            — App Router. r/[slug]/ (+ anteriores/) = cliente, r/layout importa globals.css; a/[slug]/ (+ [clientId]/[projectId]/) = admin, a/layout importa tailwind.css; layout raiz SEM CSS (§19); robots.ts; page.tsx (raiz)
+src/components/     — Server Components. Cliente: ProjectStack | ArchiveStack → ClientShell → ProjectSwitcher (ilha client) → StatusReport. Admin: Admin* → AdminShell; ui/ = shadcn gerado (edições locais no §19)
+src/lib/            — types.ts (Zod), status.ts, lifecycle.ts, admin.ts (lógica do painel), content.ts (loaders fs), format.ts (data TZ-safe), utils.ts (cn)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
 scripts/gen-slug.mjs — gera slug não-adivinhável (roda 1x por cliente)
@@ -72,7 +72,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   `pending?[]{label,desc,since?}` (ações do CLIENTE — bloco "Aguardando você"),
   `sections[]{number,title,cards[]{title,status,description,fullWidth?}}`.
 - **Estados** (`state`/`status`): só `done` (verde) · `prog` (âmbar) · `plan`
-  (cinza). Fonte única: `src/lib/status.ts`. Cores vivem no CSS (`globals.css`).
+  (cinza). Fonte única: `src/lib/status.ts`. Cores no CSS (`globals.css`; tokens no `tailwind.css`).
 - Tudo validado com **Zod** em `src/lib/types.ts`. `src/lib/content.ts` faz **parse
   defensivo**: JSON/snapshot inválido é PULADO com aviso, nunca derruba o build.
 
@@ -80,10 +80,9 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - Código e comentários em **inglês**; conteúdo (UI e snapshots) em **pt-BR**, em
   **linguagem de cliente** — foco em benefício, ZERO jargão técnico.
-- **Server Components** por padrão. Ilhas `"use client"` só com justificativa
-  forte e mínimas — hoje são TRÊS: `ProjectSwitcher` (tabs via hash),
-  `AdminGreeting` (data da visita) e `PrintButton` (`window.print()`).
-- Cor da marca: CSS var `--brand`, setada só no `ClientShell`; o CSS usa `var(--brand)`.
+- **Server Components** por padrão. Ilhas `"use client"` próprias só com justificativa
+  forte — hoje TRÊS: `ProjectSwitcher`, `AdminGreeting`, `PrintButton`. Primitivos shadcn só no admin.
+- Cor da marca: CSS var `--brand` inline (no `ClientShell`; no admin, por bloco). No admin, nunca cor de texto (a v2 usa em acentos).
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,
   **imutável** — nunca sobrescrever; novo status = novo arquivo (isso dá histórico).
 - **Next 16:** `params` é `Promise` (dar `await`). Ao usar APIs do Next, consultar
@@ -91,8 +90,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Segurança / privacidade
 
-- `export const dynamicParams = false` em `r/[slug]` e `anteriores/` → slug desconhecido
-  dá **404** (anti-fishing). NÃO habilitar Cache Components (desliga o `dynamicParams`).
+- `export const dynamicParams = false` em TODAS as rotas dinâmicas (`r/` e `a/`) → slug ou par
+  desconhecido dá **404** (anti-fishing). NÃO habilitar Cache Components (desliga o `dynamicParams`).
 - `noindex` em **3 camadas**: metadata (`layout` + `page`), `app/robots.ts`, e header
   `X-Robots-Tag` (`next.config.ts`).
 - **SEM OpenGraph rico** em `/r/[slug]` — o unfurl do link não pode vazar o cliente.
@@ -124,21 +123,21 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   rota pública.
 - NÃO sobrescrever snapshot existente — sempre arquivo novo datado.
 - NÃO renomear `id` de item de escopo publicado — quebra o vínculo dos snapshots.
-- NÃO reintroduzir Tailwind (o design é CSS puro portado); NÃO adicionar dependência
-  sem perguntar.
+- NÃO carregar Tailwind/shadcn nas páginas de cliente antes da migração delas, nem CSS
+  no layout raiz (o `globals.css` anula o Tailwind, §19); NÃO adicionar dependência sem perguntar.
 - NÃO fazer a skill commitar/pushar — ela para no preview.
 
 ## Verificação
 
 1. `pnpm test && pnpm build && pnpm lint` — verde, SSG+typecheck OK, zero avisos.
-2. `/r/<slug>` renderiza; `/r/<inexistente>` → 404; raiz não vaza cliente; `<meta
-   robots noindex>` + header `X-Robots-Tag` presentes.
+2. `/r/<slug>` e `/a/<slug>/…` renderizam; `/r/<inexistente>` e par trocado → 404; raiz não vaza
+   cliente; noindex (meta + `X-Robots-Tag`); nenhuma página fora de `/a` carrega Tailwind.
 
 ## Estado atual
 
 - **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare,
-  DNS-only; repo GitHub privado). Clientes: Movi, FGV, Ellementi, Neon. Painel
-  admin interno em `/a/` (slug em `content/admin.json`).
+  DNS-only; repo GitHub privado). Clientes: Movi, FGV, Ellementi, Neon. Painel admin
+  em `/a/` (slug em `content/admin.json`), já em shadcn; o cliente migra num PR próprio.
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
 

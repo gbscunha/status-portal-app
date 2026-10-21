@@ -48,3 +48,6 @@ JOURNAL.md
 
 # impeccable skill: per-developer overrides (DECISOES §18)
 .impeccable/config.local.json
+
+# impeccable review captures (local only)
+.impeccable/review/
