@@ -10,17 +10,17 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 
 - Cada cliente acessa `/r/<slug>` e vê **só os projetos dele**. Sem auth — a
   diferenciação é por **slug não-adivinhável** + `noindex`.
-- Conteúdo é **dado** (JSON em `content/`), não código. Cliente: design v2 "**rastreio de
-  entrega**", Archivo, CSS puro (§14). Admin: **shadcn/ui** + Tailwind, tema padrão + Inter (§19).
+- Conteúdo é **dado** (JSON em `content/`), não código. Visual: **shadcn/ui** + Tailwind, tema
+  padrão + Inter, no admin e nas páginas de cliente (§19, §20; sistema no `DESIGN.md`).
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 
 ## Estrutura
 
 ```
-src/app/            — App Router. r/[slug]/ (+ anteriores/) = cliente, r/layout importa globals.css; a/[slug]/ (+ [clientId]/[projectId]/) = admin, a/layout importa tailwind.css; layout raiz SEM CSS (§19); robots.ts; page.tsx (raiz)
-src/components/     — Server Components. Cliente: ProjectStack | ArchiveStack → ClientShell → ProjectSwitcher (ilha client) → StatusReport. Admin: Admin* → AdminShell; ui/ = shadcn gerado (edições locais no §19)
-src/lib/            — types.ts (Zod), status.ts, lifecycle.ts, admin.ts (lógica do painel), content.ts (loaders fs), format.ts (data TZ-safe), utils.ts (cn)
+src/app/            — App Router. r/[slug]/ (+ anteriores/) = cliente; a/[slug]/ (+ [clientId]/[projectId]/) = admin; layout raiz importa o único CSS (tailwind.css) + Inter; not-found.tsx; robots.ts; page.tsx (raiz)
+src/components/     — Server Components. Cliente: ProjectStack | ArchiveStack → ClientShell (sidebar) → ProjectSwitcher (ilha, hash) → StatusReport. Admin: Admin* → AdminShell; ui/ = shadcn gerado (edições locais no §19)
+src/lib/            — types.ts (Zod), status.ts, lifecycle.ts, admin.ts (painel), client-nav.ts (navegação do cliente), content.ts (loaders fs), format.ts (data TZ-safe), utils.ts (cn)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
 scripts/gen-slug.mjs — gera slug não-adivinhável (roda 1x por cliente)
@@ -72,7 +72,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   `pending?[]{label,desc,since?}` (ações do CLIENTE — bloco "Aguardando você"),
   `sections[]{number,title,cards[]{title,status,description,fullWidth?}}`.
 - **Estados** (`state`/`status`): só `done` (verde) · `prog` (âmbar) · `plan`
-  (cinza). Fonte única: `src/lib/status.ts`. Cores no CSS (`globals.css`; tokens no `tailwind.css`).
+  (cinza). Fonte única: `src/lib/status.ts`. Cores nos tokens do `tailwind.css`.
 - Tudo validado com **Zod** em `src/lib/types.ts`. `src/lib/content.ts` faz **parse
   defensivo**: JSON/snapshot inválido é PULADO com aviso, nunca derruba o build.
 
@@ -80,9 +80,9 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - Código e comentários em **inglês**; conteúdo (UI e snapshots) em **pt-BR**, em
   **linguagem de cliente** — foco em benefício, ZERO jargão técnico.
-- **Server Components** por padrão. Ilhas `"use client"` próprias só com justificativa
-  forte — hoje TRÊS: `ProjectSwitcher`, `AdminGreeting`, `PrintButton`. Primitivos shadcn só no admin.
-- Cor da marca: CSS var `--brand` inline (no `ClientShell`; no admin, por bloco). No admin, nunca cor de texto (a v2 usa em acentos).
+- **Server Components** por padrão. Ilhas `"use client"` próprias só com justificativa forte — hoje
+  CINCO: `ProjectSwitcher`, `ProjectNavItem` e `ProjectCrumb` (o hash), `AdminGreeting`, `PrintButton`.
+- Cor da marca: CSS var `--brand` inline (no `ClientShell`; no admin, por bloco). Só marca: nunca cor de texto nem barra.
 - Datas em **America/Sao_Paulo**. Arquivo de snapshot `YYYY-MM-DD[-N].json`,
   **imutável** — nunca sobrescrever; novo status = novo arquivo (isso dá histórico).
 - **Next 16:** `params` é `Promise` (dar `await`). Ao usar APIs do Next, consultar
@@ -124,15 +124,15 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   rota pública.
 - NÃO sobrescrever snapshot existente — sempre arquivo novo datado.
 - NÃO renomear `id` de item de escopo publicado — quebra o vínculo dos snapshots.
-- NÃO carregar Tailwind/shadcn nas páginas de cliente antes da migração delas, nem CSS
-  no layout raiz (o `globals.css` anula o Tailwind, §19); NÃO adicionar dependência sem perguntar.
+- NÃO importar CSS fora do layout raiz nem criar regra sem camada além do bloco de impressão (ela
+  vence todo utilitário do Tailwind, §19); NÃO adicionar dependência sem perguntar.
 - NÃO fazer a skill commitar/pushar — ela para no preview.
 
 ## Verificação
 
 1. `pnpm test && pnpm build && pnpm lint` — verde, SSG+typecheck OK, zero avisos.
 2. `/r/<slug>` e `/a/<slug>/…` renderizam; `/r/<inexistente>` e par trocado → 404; raiz não vaza
-   cliente; noindex (meta + `X-Robots-Tag`); nenhuma página fora de `/a` carrega Tailwind.
+   cliente; noindex (meta + `X-Robots-Tag`); o hash troca o projeto e o PDF sai com todos.
 
 ## Estado atual
 
