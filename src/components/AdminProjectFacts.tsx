@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AdminLifecycleBadge } from "./AdminLifecycleBadge";
+import { LifecycleBadge } from "./LifecycleBadge";
 
 // Side column: what the project is and who sees it. WhatsApp and e-mail are
 // ITGraph's channels shown on the client page, not the client's contacts.
@@ -90,7 +90,7 @@ export function AdminProjectFacts({
           <div className="flex flex-col gap-2 py-2.5 last:pb-0">
             <dt className="text-muted-foreground">Ciclo de vida</dt>
             <dd className="flex flex-col items-start gap-1.5">
-              <AdminLifecycleBadge lifecycle={lifecycle} />
+              <LifecycleBadge lifecycle={lifecycle} />
               {note && <p className="text-muted-foreground">{note}</p>}
             </dd>
           </div>

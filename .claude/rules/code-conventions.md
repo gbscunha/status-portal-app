@@ -8,55 +8,71 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
 - `src/app/` = rotas (App Router). `src/components/` = componentes de
   apresentação. `src/lib/` = lógica pura (schemas, loaders, formatação).
 - **Server Components por padrão.** Ilha `"use client"` própria só com
-  justificativa forte e mínima — hoje são TRÊS: `PrintButton` (`window.print()`,
-  sem alternativa sem JS), `ProjectSwitcher` (tabs com hash como fonte de
-  verdade) e `AdminGreeting` (relógio da visita via `useSyncExternalStore`, com
-  snapshot de servidor = data do build). Os primitivos do shadcn em
-  `src/components/ui/` só são usados no admin; a maioria é client (badge, item e
-  breadcrumb receberam `"use client"` local, §19), e button, card, empty, input
-  e skeleton não são.
+  justificativa forte e mínima. Hoje são CINCO:
+  - `PrintButton`: `window.print()`, sem alternativa sem JS.
+  - `ProjectSwitcher`: os painéis de projeto, com o hash como fonte de verdade.
+  - `ProjectNavItem` e `ProjectCrumb`: o item da sidebar e a trilha leem o
+    mesmo hash, por `src/hooks/use-location-hash.ts`. O item também fecha a
+    gaveta do celular.
+  - `AdminGreeting`: relógio da visita via `useSyncExternalStore`, com snapshot
+    de servidor = data do build.
+
+  As ilhas recebem dados e elementos, nunca funções nem componentes (o sinal
+  vai como string, e o ícone é escolhido dentro da ilha). Os
+  primitivos do shadcn em `src/components/ui/` servem às duas superfícies. A
+  maioria é client (badge, item e breadcrumb receberam `"use client"` local,
+  §19); button, card, empty, input e skeleton não são.
 - Um componente por arquivo, PascalCase, props tipadas com `type` inline ou
   importado de `@/lib/types`.
 - **Páginas de cliente:** a composição segue a hierarquia
-  `ProjectStack | ArchiveStack` (cada um dentro do `ClientShell`)
-  `→ ProjectSwitcher → StatusReport → (ReportHeader, SummaryStrip,
-  LifecycleNotice, PendingList, ProgressList, Legend, NextSteps, Section,
-  Timeline, ContactCta, Footer)`. O `ProjectSwitcher` recebe `panels[]` (aba +
-  conteúdo juntos).
+  `ProjectStack | ArchiveStack` (cada um dentro do `ClientShell`, que monta a
+  `ClientSidebar`, a trilha e as ações) `→ ProjectSwitcher → StatusReport →
+  (ReportHeader, LifecycleNotice, PendingList, ProgressList (com a Legend),
+  ScopeMap, NextSteps, Section, Timeline, ContactCta, Footer)`.
+  - O `ProjectSwitcher` recebe `panels[]`.
+  - A navegação vem de `clientNav` (`src/lib/client-nav.ts`).
+  - O item ativo sai do hash, no navegador: é um projeto por vez, sem rota por
+    projeto (§14).
 - **Admin:** `AdminOverview | AdminProjectView` → `AdminShell` (sidebar, trilha
-  e ação principal) → blocos `Admin*`. Eles são Server Components que compõem os
-  primitivos de `components/ui` e passam só dados e elementos, nunca funções. O
-  item ativo é calculado no servidor (prop `current`); o shell não é um
-  `layout.tsx` (o `a/layout.tsx` só carrega o CSS e a fonte).
+  e ação principal) → blocos `Admin*`.
+  - Os blocos são Server Components que compõem os primitivos de
+    `components/ui` e passam só dados e elementos, nunca funções.
+  - O item ativo é calculado no servidor (prop `current`).
+  - O shell não é um `layout.tsx`: o CSS e a fonte vêm do layout raiz.
 
 ## Estilo
 
-- **Dois mundos até a migração das páginas de cliente (DECISOES §19).**
-  - Cliente e raiz: **CSS puro** em `src/app/globals.css` (v2), sem Tailwind,
-    sem CSS-in-JS e sem módulos. Classes semânticas kebab-case.
-  - Admin: **shadcn/ui + Tailwind v4**, tema em `src/app/tailwind.css`. Use
-    componentes de `@/components/ui` antes de markup próprio, tokens semânticos
-    (`bg-background`, `text-muted-foreground`, `text-done`…) e nunca cores
-    cruas. Classes condicionais com `cn()` (`@/lib/utils`). Siga a skill
-    `shadcn` do projeto.
-  - O layout raiz não importa CSS. Cada segmento importa o seu, e os dois nunca
-    carregam na mesma página: o `globals.css` tem regras fora de camada que
-    anulariam o Tailwind.
+- **Um sistema só (DECISOES §19 e §21):** **shadcn/ui + Tailwind v4**, com o
+  tema em `src/app/tailwind.css`, importado só pelo layout raiz junto com a
+  Inter.
+  - Use componentes de `@/components/ui` antes de markup próprio.
+  - Use tokens semânticos (`bg-background`, `text-muted-foreground`,
+    `text-done`…), nunca cores cruas.
+  - Classes condicionais com `cn()` (`@/lib/utils`).
+  - Siga a skill `shadcn` do projeto e o `DESIGN.md`.
+- **Nenhum CSS fora do `tailwind.css`**, sem CSS-in-JS e sem módulos. Nada de
+  regra própria sem camada, fora as variáveis do tema e o bloco de impressão,
+  porque ela vence todo utilitário.
+- **Impressão:**
+  - use `print:` nos componentes;
+  - o bloco `@media print` do `tailwind.css` cobre só o que nenhum utilitário
+    alcança (o wrapper da sidebar e o conteúdo do `<details>`);
+  - painel oculto usa `hidden print:block`, nunca o atributo `hidden`, que o
+    preflight esconde com `!important`.
 - **Componentes gerados:** `components/ui` e `hooks/use-mobile.ts` saem do CLI
   fixado (`pnpm dlx shadcn@4.21.4 add …`). As edições locais estão listadas no
   §19. Depois de um `add --overwrite`, refaça-as.
 - Cor de marca: CSS var `--brand` via style inline (precisa de cast
   `as CSSProperties` — o tipo padrão não aceita custom properties). Nas
-  páginas de cliente ela é setada uma vez no `ClientShell`, e o resto usa
-  `var(--brand)`. No admin, ela vai em cada bloco que mostra o cliente, e as
-  classes usam `bg-(--brand)` ou `border-(--brand)/20`. Nunca vira cor de texto
-  (contraste).
+  páginas de cliente ela é setada uma vez no `ClientShell`; no admin, em cada
+  bloco que mostra o cliente. As classes usam `bg-(--brand)` ou
+  `border-(--brand)/20`. A cor só marca: nunca vira cor de texto (contraste)
+  nem pinta barra.
 - Estados visuais: só `done`/`prog`/`plan`, com valores canônicos em
-  `src/lib/status.ts`. Na v2 são as classes `.done`/`.prog`/`.plan`; no admin,
-  os tokens `done`/`prog`/`plan` do `tailwind.css`, com os mesmos valores. O
-  ciclo de vida do projeto inteiro é outro conjunto: `.paused`/`.delivered`/
-  `.closed` na v2, token `hold` no admin, e os valores ficam em
-  `src/lib/lifecycle.ts`.
+  `src/lib/status.ts` e os tokens `done`/`prog`/`plan` no `tailwind.css`. O
+  ciclo de vida do projeto inteiro é outro conjunto, com os valores em
+  `src/lib/lifecycle.ts`. O ponto usa `hold` para em espera, `done` para
+  concluído e `plan` para encerrado.
 
 ## Dados e validação
 

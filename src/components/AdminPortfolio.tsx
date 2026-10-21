@@ -19,7 +19,7 @@ import {
 import { type ClientGroup, adminProjectHref } from "@/lib/admin";
 import { formatPtDate, relativeDaysPt } from "@/lib/format";
 import { LIFECYCLE_LABELS } from "@/lib/lifecycle";
-import { AdminLifecycleBadge } from "./AdminLifecycleBadge";
+import { LifecycleBadge } from "./LifecycleBadge";
 
 // "Todos os projetos": one table, a tbody (with a header row) per client. Narrow screens keep
 // project and progress; the date and state fold under the project name.
@@ -147,7 +147,7 @@ export function AdminPortfolio({
                     )}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    <AdminLifecycleBadge lifecycle={row.lifecycle} />
+                    <LifecycleBadge lifecycle={row.lifecycle} />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,85 +1,91 @@
+import { ArchiveIcon } from "lucide-react";
 import type { Client, Project } from "@/lib/types";
 import { getProjectReports } from "@/lib/content";
 import { formatPtMonth } from "@/lib/format";
 import {
-  LIFECYCLE_LABELS,
   archivedProjects,
+  currentProjects,
   endMonth,
   lifecycleOf,
 } from "@/lib/lifecycle";
+import { clientNav } from "@/lib/client-nav";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import { StatusReport } from "./StatusReport";
 import { ProjectSwitcher } from "./ProjectSwitcher";
 import { ClientShell } from "./ClientShell";
 
-// /r/<slug>/anteriores: delivered and closed projects, grouped, each with its
-// end month and its last report. Same tabs as the main page (the index links
-// set the hash the switcher already reads), so no new client island. A
-// closed project is never labeled as delivered.
+// /r/<slug>/anteriores: delivered and closed projects, each with its last
+// report, one at a time through the same hash panels as the main page (the
+// sidebar groups them and the header badge carries the end month). A closed
+// project is never labeled as delivered.
 export function ArchiveStack({ client }: { client: Client }) {
   const { delivered, closed } = archivedProjects(client.projects);
-  const reports = getProjectReports(client.id, [...delivered, ...closed]);
-  // Index links only switch tabs, so they exist only when there are tabs.
-  const linkable = new Set(
-    reports.length > 1 ? reports.map((r) => r.project.id) : [],
+  const archived = [...delivered, ...closed];
+  const reports = getProjectReports(client.id, archived);
+  const nav = clientNav(
+    client,
+    [...getProjectReports(client.id, currentProjects(client.projects)), ...reports],
+    "archive",
   );
+  const crumbs = [
+    { label: client.name, href: `/r/${client.slug}` },
+    { label: "Projetos anteriores", href: `/r/${client.slug}/anteriores` },
+  ];
 
-  const groups = [
-    { title: "Concluídos", verb: "Entregue", projects: delivered },
-    { title: "Encerrados", verb: "Encerrado", projects: closed },
-  ].filter((group) => group.projects.length > 0);
-
-  const ended = (project: Project) => {
-    const month = endMonth(lifecycleOf(project));
-    return month ? formatPtMonth(month) : "";
-  };
+  // Archived projects with no report at all: list them with their end month
+  // instead of an empty panel.
+  if (reports.length === 0) {
+    const ended = (project: Project) => {
+      const month = endMonth(lifecycleOf(project));
+      const verb = lifecycleOf(project).state === "delivered" ? "Entregue" : "Encerrado";
+      return month ? `${verb} em ${formatPtMonth(month)}` : verb;
+    };
+    return (
+      <ClientShell client={client} nav={nav} crumbs={crumbs} projects={[]} printable={false}>
+        <Empty className="border">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <ArchiveIcon />
+            </EmptyMedia>
+            <EmptyTitle>
+              <h1>Projetos anteriores</h1>
+            </EmptyTitle>
+            <EmptyDescription>Projetos que já terminaram.</EmptyDescription>
+          </EmptyHeader>
+          <ul className="flex flex-col gap-1 text-sm">
+            {archived.map((project) => (
+              <li key={project.id}>
+                <span className="font-medium">{project.name}</span>
+                <span className="text-muted-foreground"> · {ended(project)}</span>
+              </li>
+            ))}
+          </ul>
+        </Empty>
+      </ClientShell>
+    );
+  }
 
   return (
-    <ClientShell client={client} printable={reports.length > 0}>
-      <div className="wrap client-head">
-        <h1 className="client-name" translate="no">
-          {client.name}
-        </h1>
-        <a className="archive-link" href={`/r/${client.slug}`}>
-          <span aria-hidden="true">← </span>
-          Voltar ao acompanhamento
-        </a>
-      </div>
-      <section className="wrap archive-index" aria-labelledby="archive-title">
-        <h2 id="archive-title" className="archive-title">
-          Projetos anteriores
-        </h2>
-        <p className="sub">
-          Projetos que já terminaram. O último relatório de cada um continua
-          disponível aqui.
-        </p>
-        {groups.map((group) => (
-          <div key={group.title} className="archive-group">
-            <h3 className="block-title">{group.title}</h3>
-            <ul>
-              {group.projects.map((project) => (
-                <li key={project.id}>
-                  {linkable.has(project.id) ? (
-                    <a href={`#${project.id}`}>{project.name}</a>
-                  ) : (
-                    <span>{project.name}</span>
-                  )}
-                  <span className="archive-when">
-                    {group.verb} em {ended(project)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
+    <ClientShell
+      client={client}
+      nav={nav}
+      crumbs={crumbs}
+      projects={reports.map(({ project }) => ({ id: project.id, name: project.name }))}
+      printable
+    >
+      <p className="max-w-prose text-sm text-pretty text-muted-foreground">
+        Projetos que já terminaram. O último relatório de cada um continua
+        disponível aqui.
+      </p>
       <ProjectSwitcher
         panels={reports.map(({ project, snapshot, history }) => ({
           id: project.id,
-          name: project.name,
-          note:
-            lifecycleOf(project).state === "closed"
-              ? { label: LIFECYCLE_LABELS.closed, state: "closed" }
-              : undefined,
           content: (
             <StatusReport
               client={client}

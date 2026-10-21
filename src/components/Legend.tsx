@@ -1,17 +1,20 @@
-import { STATUS_LABELS } from "@/lib/status";
+import { STATUS_LABELS, STATUS_STATES } from "@/lib/status";
+import { StateIcon } from "./StateIcon";
 
+// Key to the state icons, under the progress card's title. Hidden from screen
+// readers: every row already says its state in words.
 export function Legend() {
   return (
-    <div className="legend">
-      <span>
-        <span className="dot done" /> {STATUS_LABELS.done}
-      </span>
-      <span>
-        <span className="dot prog" /> {STATUS_LABELS.prog}
-      </span>
-      <span>
-        <span className="dot plan" /> {STATUS_LABELS.plan}
-      </span>
-    </div>
+    <ul
+      aria-hidden="true"
+      className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground"
+    >
+      {STATUS_STATES.map((state) => (
+        <li key={state} className="flex items-center gap-1.5">
+          <StateIcon state={state} className="size-3.5" />
+          {STATUS_LABELS[state]}
+        </li>
+      ))}
+    </ul>
   );
 }

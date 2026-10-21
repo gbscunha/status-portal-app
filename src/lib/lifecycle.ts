@@ -2,7 +2,7 @@ import type { Client, Lifecycle, Project, Snapshot } from "./types";
 
 // Single source of truth for the WHOLE-PROJECT lifecycle — a set kept apart
 // from done/prog/plan (status.ts), which apply to bars and cards. Colors live
-// in the CSS (.paused/.delivered/.closed classes in globals.css).
+// in the CSS (the dot tones of LifecycleBadge, tokens in tailwind.css).
 
 export const LIFECYCLE_STATES = ["active", "paused", "delivered", "closed"] as const;
 

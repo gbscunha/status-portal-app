@@ -1,6 +1,7 @@
-/* shadcn/ui theme (base-nova). Loaded only by the admin (src/app/a/layout.tsx);
-   client pages keep the v2 globals.css until their own migration. source()
-   limits class scanning to src/, so docs/, content/ and .claude/ are ignored. */
+/* shadcn/ui theme (base-nova), the app's only stylesheet: imported once by the
+   root layout, for the admin and the client pages alike (DECISOES §19, §21).
+   source() limits class scanning to src/, so docs/, content/ and .claude/ are
+   ignored. */
 @import "tailwindcss" source("../");
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -48,8 +49,8 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
-    /* Project states (lib/status.ts, lib/lifecycle.ts): same meaning and
-       values as the v2 client pages. */
+    /* Project states (lib/status.ts, lib/lifecycle.ts): one meaning and one
+       value on every page, admin and client. */
     --color-done: var(--done);
     --color-done-bg: var(--done-bg);
     --color-prog: var(--prog);
@@ -154,5 +155,28 @@
   }
   [data-slot="sidebar-content"] {
     scrollbar-width: thin;
+  }
+}
+/* Print (Salvar PDF). Unlayered on purpose — besides the theme's variable
+   blocks, the only unlayered rules of our own: no utility reaches the sidebar's
+   outer wrapper (its className goes to an inner div) or a closed <details>'
+   content, and inside @layer base these would lose to md:block. Everything
+   else prints through print: utilities. These rules also apply to the admin's
+   PDF (no sidebar, backgrounds kept). */
+@media print {
+  /* Bars, dots and the header tint are backgrounds: keep them in the PDF. */
+  html {
+    print-color-adjust: exact;
+  }
+  /* The outer wrapper holds the gap and the fixed container (the mobile
+     drawer carries the same slot). */
+  [data-slot="sidebar"] {
+    display: none;
+  }
+  /* Fully delivered sections print open (Chrome; older Safari and Firefox
+     print them closed). */
+  details::details-content {
+    content-visibility: visible;
+    display: block;
   }
 }
