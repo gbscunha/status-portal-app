@@ -301,6 +301,47 @@ pesado e os anteriores saem no PDF); página vazia para quem não tem anteriores
 
 ---
 
+## 18. Skill de design `impeccable` — para ajustes, com o repo no comando
+
+**Decisão (2026-10-21):** a skill externa `impeccable` (pbakaus/impeccable,
+Apache-2.0, variante Claude Code em `.claude/skills/impeccable/`) entra como
+ferramenta de ajuste de layout do admin e das páginas de cliente, ao lado de
+`frontend-design` e `web-design-guidelines`. Escolha do dono entre as auditadas.
+
+**Por quê:** é a mais completa das avaliadas. Trata o painel como tela de uso
+(modo Operate) e o relatório do cliente como leitura (modo Read), com comandos
+`layout`, `audit`, `critique`, `adapt` e `polish` e um detector próprio de
+problemas de layout e contraste.
+
+**Regras de uso:**
+
+- **O repo vence a skill** (skills-policy §4). Aqui o trabalho é **refinamento**
+  da v2 (§14), nunca redesign: família única Archivo, CSS puro em `globals.css`,
+  sem Tailwind, sem dependência nova, estados em `status.ts`/`lifecycle.ts`.
+- **Motor fora do repo.** O launcher baixa um binário compilado pela CI do autor
+  (GitHub Releases `engine-v<versão>`, sha256 conferido) para `~/.impeccable/bin/`.
+  O sha256 vem da mesma origem: garante integridade, não autoria. O binário nunca
+  é commitado.
+- **Telemetria desligada em duas camadas:** `IMPECCABLE_NO_TELEMETRY=1` em
+  `.claude/settings.json` (versionado, vale em qualquer máquina) e
+  `impeccable telemetry off` na máquina do dono.
+- **Hook de edição não instalado.** Ligar é decisão explícita
+  (`/impeccable hooks on`).
+- **Modo `live` só em branch descartável.** Ele injeta um `<script>` de localhost
+  em `src/app/layout.tsx`. Antes de qualquer commit,
+  `git diff src/app/layout.tsx next.config.ts` precisa estar limpo. Hoje não há
+  CSP no projeto, então o `next.config.ts` não é tocado; se um dia houver, o patch
+  de CSP da skill pede consentimento.
+- **Artefatos:** `.impeccable/config.local.json` é gitignorado. O resto de
+  `.impeccable/` se decide quando aparecer.
+
+**Rejeitado:** `npx impeccable install` (instala o hook do Claude Code junto); a
+variante genérica `.agents/` que o CLI do skills.sh escolhe por padrão (caminhos e
+sintaxe de comando do Codex); as alternativas só-texto `better-*` (jakubkrehel) e
+`interface-design`.
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".

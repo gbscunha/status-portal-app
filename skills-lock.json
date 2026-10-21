@@ -1,12 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "design-guide": {
-      "source": "getpaperclipai/paperclip",
-      "sourceType": "github",
-      "skillPath": ".claude/skills/design-guide/SKILL.md",
-      "computedHash": "8e63de4c4ee0bd816ef430507acad167006f09e4ac21314fbe5abd988db55845"
-    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
@@ -18,6 +12,13 @@
       "sourceType": "github",
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/impeccable/SKILL.md",
+      "computedHash": "a77720d4ff3dc61c157b002bc3cdfdd95e247288e8735213d58898c2d6e42e40"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
