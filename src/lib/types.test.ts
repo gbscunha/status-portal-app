@@ -43,6 +43,29 @@ describe("clientSchema contact channels", () => {
   });
 });
 
+describe("clientSchema offline", () => {
+  it("accepts a client without the flag (page online, as before)", () => {
+    const parsed = clientSchema.safeParse(baseClient);
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.offline).toBeUndefined();
+  });
+
+  it("accepts true and false", () => {
+    for (const offline of [true, false]) {
+      const parsed = clientSchema.safeParse({ ...baseClient, offline });
+      expect(parsed.success).toBe(true);
+      expect(parsed.data?.offline).toBe(offline);
+    }
+  });
+
+  it("rejects anything but a boolean", () => {
+    for (const bad of ["sim", "true", 1]) {
+      const parsed = clientSchema.safeParse({ ...baseClient, offline: bad });
+      expect(parsed.success).toBe(false);
+    }
+  });
+});
+
 describe("snapshotSchema pending items", () => {
   it("accepts a snapshot without pending (backward compatible)", () => {
     expect(snapshotSchema.safeParse(baseSnapshot).success).toBe(true);

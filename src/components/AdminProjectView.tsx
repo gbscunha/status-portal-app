@@ -7,7 +7,7 @@ import {
   getProjectSnapshots,
 } from "@/lib/content";
 import { formatPtDate, todayIso } from "@/lib/format";
-import { isArchived, lifecycleOf } from "@/lib/lifecycle";
+import { isArchived, isOnline, lifecycleOf } from "@/lib/lifecycle";
 import {
   STALE_DAYS,
   clientPageHref,
@@ -65,10 +65,14 @@ export function AdminProjectView({
         { label: client.name, href: `/a/${adminSlug}#cliente-${client.id}` },
         { label: project.name },
       ]}
-      action={{
-        href: clientPageHref(client.slug, project, summary !== null),
-        label: "Página do cliente",
-      }}
+      action={
+        isOnline(client)
+          ? {
+              href: clientPageHref(client.slug, project, summary !== null),
+              label: "Página do cliente",
+            }
+          : undefined
+      }
       buildDate={today}
     >
       <div
@@ -80,6 +84,7 @@ export function AdminProjectView({
           lifecycle={lifecycle}
           summary={summary}
           today={today}
+          clientOnline={isOnline(client)}
         />
 
         {summary ? (

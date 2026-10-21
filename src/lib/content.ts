@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { clientSlugs, isOnline } from "./lifecycle";
 import { timelineEntries, type TimelineEntry } from "./summary";
 import {
   adminSchema,
@@ -90,12 +91,16 @@ export function getAllClients(): Client[] {
   return clients;
 }
 
+// Slugs and lookup for the client pages (/r): an offline client is left out,
+// so its routes are a 404. The admin reads getAllClients and still sees it.
 export function getAllSlugs(): string[] {
-  return getAllClients().map((c) => c.slug);
+  return clientSlugs(getAllClients());
 }
 
 export function getClientBySlug(slug: string): Client | null {
-  return getAllClients().find((c) => c.slug === slug) ?? null;
+  return (
+    getAllClients().find((c) => c.slug === slug && isOnline(c)) ?? null
+  );
 }
 
 // ---- Snapshots ----

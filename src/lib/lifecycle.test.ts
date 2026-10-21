@@ -4,10 +4,12 @@ import {
   LIFECYCLE_STATES,
   archiveSlugs,
   archivedProjects,
+  clientSlugs,
   currentProjects,
   endMonth,
   finishedReport,
   isArchived,
+  isOnline,
   lifecycleOf,
   orderedProjects,
 } from "./lifecycle";
@@ -155,16 +157,36 @@ describe("orderedProjects", () => {
   });
 });
 
-describe("archiveSlugs", () => {
-  const client = (slug: string, projects: Project[]): Client => ({
-    id: slug,
-    name: slug,
-    slug,
-    brandColor: "#112233",
-    vendor: "ITGraph",
-    projects,
-  });
+const client = (slug: string, projects: Project[], offline?: boolean): Client => ({
+  id: slug,
+  name: slug,
+  slug,
+  brandColor: "#112233",
+  vendor: "ITGraph",
+  projects,
+  ...(offline !== undefined && { offline }),
+});
 
+describe("isOnline", () => {
+  it("is true unless the client is flagged offline", () => {
+    expect(isOnline(client("a", [project("a1")]))).toBe(true);
+    expect(isOnline(client("a", [project("a1")], false))).toBe(true);
+    expect(isOnline(client("a", [project("a1")], true))).toBe(false);
+  });
+});
+
+describe("clientSlugs", () => {
+  it("lists every client still online, in config order", () => {
+    const clients = [
+      client("one", [project("a1")]),
+      client("gone", [project("c1", closed("2026-10"))], true),
+      client("two", [project("a1")], false),
+    ];
+    expect(clientSlugs(clients)).toEqual(["one", "two"]);
+  });
+});
+
+describe("archiveSlugs", () => {
   it("lists only clients with at least one delivered or closed project", () => {
     const clients = [
       client("only-active", [project("a1"), project("p1", paused)]),
@@ -176,6 +198,14 @@ describe("archiveSlugs", () => {
 
   it("returns nothing when no client has archived projects", () => {
     expect(archiveSlugs([client("x", [project("a1")])])).toEqual([]);
+  });
+
+  it("leaves out an offline client, even with archived projects", () => {
+    const clients = [
+      client("gone", [project("d1", delivered("2026-09"))], true),
+      client("here", [project("c1", closed("2026-08"))]),
+    ];
+    expect(archiveSlugs(clients)).toEqual(["here"]);
   });
 });
 

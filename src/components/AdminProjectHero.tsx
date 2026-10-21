@@ -15,15 +15,24 @@ export function AdminProjectHero({
   lifecycle,
   summary,
   today,
+  clientOnline,
 }: {
   project: Project;
   lifecycle: Lifecycle;
   summary: ProjectSummary | null;
   today: string;
+  clientOnline: boolean;
 }) {
   const latest = summary?.latest;
   const finished =
     lifecycle.state === "delivered" || lifecycle.state === "closed";
+  const ended = lifecycle.state === "delivered" ? "concluído" : "encerrado";
+  // What the client sees of this project, when it differs from a live report.
+  const pageNote = !clientOnline
+    ? `${finished ? `Projeto ${ended}. ` : ""}A página do cliente está fora do ar.`
+    : finished && summary
+      ? `Projeto ${ended}: a página do cliente mostra o último relatório, sem pendências nem próximos passos.`
+      : null;
 
   return (
     <section
@@ -46,12 +55,9 @@ export function AdminProjectHero({
             ? (latest.subtitle ?? latest.title.text)
             : "Nenhum relatório publicado ainda."}
         </p>
-        {finished && summary && (
+        {pageNote && (
           <p className="max-w-prose text-sm text-pretty text-foreground/75">
-            Projeto{" "}
-            {lifecycle.state === "delivered" ? "concluído" : "encerrado"}: a
-            página do cliente mostra o último relatório, sem pendências nem
-            próximos passos.
+            {pageNote}
           </p>
         )}
       </div>

@@ -106,6 +106,10 @@ export const clientSchema = z.object({
     .regex(/^\+[1-9]\d{7,14}$/, "whatsapp deve ser E.164 (+5511999999999)")
     .optional(),
   email: z.string().email().optional(),
+  // Client page taken down: /r/<slug> and /anteriores are 404, while the config
+  // and snapshots stay in the repo and in the admin. Missing = online.
+  // DECISOES §20.
+  offline: z.boolean().optional(),
   projects: z.array(projectSchema).min(1),
 });
 

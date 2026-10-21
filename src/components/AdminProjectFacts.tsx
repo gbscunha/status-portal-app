@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Client, Lifecycle, Project } from "@/lib/types";
 import type { ProjectSummary } from "@/lib/admin";
 import { formatPtDate } from "@/lib/format";
+import { isOnline } from "@/lib/lifecycle";
 import {
   Card,
   CardContent,
@@ -65,7 +66,11 @@ export function AdminProjectFacts({
     ]);
   }
   if (client.contact) facts.push(["Pessoa de contato", client.contact]);
-  facts.push(["Canais na página do cliente", channels || "nenhum"]);
+  facts.push(
+    isOnline(client)
+      ? ["Canais na página do cliente", channels || "nenhum"]
+      : ["Página do cliente", "fora do ar"],
+  );
 
   return (
     <Card>
