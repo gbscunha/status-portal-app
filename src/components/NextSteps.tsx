@@ -12,7 +12,7 @@ export function NextSteps({ title, intro, items }: NextStepsData) {
     <Card>
       <CardHeader>
         <CardTitle>
-          <h2>{title}</h2>
+          <h2 className="text-balance">{title}</h2>
         </CardTitle>
         {intro && (
           <CardDescription className="max-w-prose text-[15px]/6 text-pretty">
@@ -35,7 +35,7 @@ export function NextSteps({ title, intro, items }: NextStepsData) {
               </span>
               <div className="flex flex-col gap-1 text-[15px]/6">
                 <p className="font-medium text-pretty">{item.label}</p>
-                <p className="max-w-prose text-pretty text-muted-foreground">{item.desc}</p>
+                <p className="max-w-prose text-pretty text-foreground/80">{item.desc}</p>
               </div>
             </li>
           ))}

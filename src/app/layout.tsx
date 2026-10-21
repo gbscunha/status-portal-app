@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./tailwind.css";
 
-// The only stylesheet of the app (shadcn/ui theme, DECISOES §19 and §20): no
+// The only stylesheet of the app (shadcn/ui theme, DECISOES §19 and §21): no
 // other file imports CSS. Inter is the single family; its variable sits on
 // <html>, where tailwind.css resolves --font-sans, so the portaled mobile
 // drawer inherits it too.

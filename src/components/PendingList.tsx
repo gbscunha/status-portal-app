@@ -35,7 +35,7 @@ export function PendingList({ items }: { items: PendingItem[] }) {
               <StatusDot tone="prog" className="mt-2" />
               <div className="flex flex-col items-start gap-1 text-[15px]/6">
                 <p className="font-medium text-pretty">{item.label}</p>
-                <p className="max-w-prose text-pretty text-muted-foreground">{item.desc}</p>
+                <p className="max-w-prose text-pretty text-foreground/80">{item.desc}</p>
                 {item.since && (
                   <Badge variant="secondary" className="mt-1">
                     desde {formatPtDate(item.since)}

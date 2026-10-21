@@ -1,4 +1,4 @@
-import { formatPtDate, relativeDaysPt, todayIso } from "@/lib/format";
+import { formatPtDate } from "@/lib/format";
 import type { TimelineEntry } from "@/lib/summary";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,8 @@ const MAX_ENTRIES = 6;
 
 // The tracking line: every published report, most recent first. The current
 // one carries the client's color (a marker, never text) and "Você está aqui".
+// Absolute dates only: the page is static and only rebuilt on publish, so a
+// "hoje" or "há N dias" computed at build time would turn false the next day.
 export function Timeline({
   entries,
   currentDate,
@@ -17,7 +19,6 @@ export function Timeline({
   entries: TimelineEntry[];
   currentDate: string;
 }) {
-  const today = todayIso();
   const visible = entries.slice(0, MAX_ENTRIES);
   const hidden = entries.length - visible.length;
 
@@ -49,12 +50,9 @@ export function Timeline({
                   <span className="font-medium tabular-nums">
                     {formatPtDate(entry.date)}
                   </span>
-                  <span className="text-muted-foreground">
-                    {relativeDaysPt(entry.date, today)}
-                  </span>
                   {current && <Badge variant="secondary">Você está aqui</Badge>}
                 </div>
-                <p className="max-w-prose text-pretty text-muted-foreground">{entry.title}</p>
+                <p className="max-w-prose text-pretty text-foreground/80">{entry.title}</p>
               </li>
             );
           })}

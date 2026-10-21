@@ -1,5 +1,5 @@
 /* shadcn/ui theme (base-nova), the app's only stylesheet: imported once by the
-   root layout, for the admin and the client pages alike (DECISOES §19, §20).
+   root layout, for the admin and the client pages alike (DECISOES §19, §21).
    source() limits class scanning to src/, so docs/, content/ and .claude/ are
    ignored. */
 @import "tailwindcss" source("../");

@@ -26,7 +26,7 @@ export function StatusCard({
         </CardAction>
       </CardHeader>
       <CardContent>
-        <p className="max-w-prose text-pretty text-muted-foreground">{description}</p>
+        <p className="max-w-prose text-[15px]/6 text-pretty text-foreground/80">{description}</p>
       </CardContent>
     </Card>
   );

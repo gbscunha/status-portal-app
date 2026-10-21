@@ -11,9 +11,12 @@ import {
 import { LIFECYCLE_TONE } from "./LifecycleBadge";
 import { StatusDot } from "./StatusDot";
 
-// Whole-project state, first block under the header. Active projects render
-// nothing. A paused project points at "Aguardando você" (right below) when the
-// client has pending actions — the reason and the asks read as one message.
+// Whole-project state, first block under the header, for the states that need
+// words: paused (the reason) and closed (when, and why). Active projects render
+// nothing, and so do delivered ones: on /anteriores the header badge already
+// says "Concluído · <mês>" and the page intro says this is the last report. A
+// paused project points at "Aguardando você" (right below) when the client has
+// pending actions — the reason and the asks read as one message.
 export function LifecycleNotice({
   lifecycle,
   hasPending,
@@ -21,7 +24,7 @@ export function LifecycleNotice({
   lifecycle: Lifecycle;
   hasPending: boolean;
 }) {
-  if (lifecycle.state === "active") return null;
+  if (lifecycle.state === "active" || lifecycle.state === "delivered") return null;
 
   const heading = `Projeto ${LIFECYCLE_LABELS[lifecycle.state].toLowerCase()}`;
   const month = endMonth(lifecycle);
@@ -52,12 +55,10 @@ export function LifecycleNotice({
         ) : (
           <>
             <p>
-              {lifecycle.state === "delivered" ? "Entregue" : "Encerrado"} em{" "}
+              Encerrado em{" "}
               <span className="font-medium">{month && formatPtMonth(month)}</span>.
             </p>
-            {lifecycle.state === "closed" && lifecycle.reason && (
-              <p>{lifecycle.reason}</p>
-            )}
+            {lifecycle.reason && <p>{lifecycle.reason}</p>}
             <p className="text-muted-foreground">
               Este é o último relatório do projeto.
             </p>

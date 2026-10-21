@@ -77,7 +77,12 @@ export function ScopeMap({
                       {STATUS_LABELS[item.state]}
                     </span>
                   </span>
-                  <span className="text-pretty text-muted-foreground">
+                  <span
+                    className={cn(
+                      "max-w-prose text-pretty",
+                      item.removed ? "text-muted-foreground" : "text-foreground/80",
+                    )}
+                  >
                     {item.desc}
                   </span>
                   {item.removed && item.removedAt ? (
