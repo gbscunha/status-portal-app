@@ -11,7 +11,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 - Cada cliente acessa `/r/<slug>` e vê **só os projetos dele**. Sem auth — a
   diferenciação é por **slug não-adivinhável** + `noindex`.
 - Conteúdo é **dado** (JSON em `content/`), não código. Visual: **shadcn/ui** + Tailwind, tema
-  padrão + Inter, no admin e nas páginas de cliente (§19, §20; sistema no `DESIGN.md`).
+  padrão + Inter, no admin e nas páginas de cliente (§19, §21; sistema no `DESIGN.md`).
 - **SSG puro.** Deploy = `git push` → Vercel redeploya. Sem backend/banco/CMS/ISR.
 - O humano revisa e publica (a skill nunca commita/pusha).
 
@@ -21,6 +21,7 @@ repos dos clientes. Substitui o antigo HTML de status feito à mão.
 src/app/            — App Router. r/[slug]/ (+ anteriores/) = cliente; a/[slug]/ (+ [clientId]/[projectId]/) = admin; layout raiz importa o único CSS (tailwind.css) + Inter; not-found.tsx; robots.ts; page.tsx (raiz)
 src/components/     — Server Components. Cliente: ProjectStack | ArchiveStack → ClientShell (sidebar) → ProjectSwitcher (ilha, hash) → StatusReport. Admin: Admin* → AdminShell; ui/ = shadcn gerado (edições locais no §19)
 src/lib/            — types.ts (Zod), status.ts, lifecycle.ts, admin.ts (painel), client-nav.ts (navegação do cliente), content.ts (loaders fs), format.ts (data TZ-safe), utils.ts (cn)
+src/hooks/          — use-location-hash.ts (o hash como estado), use-mobile.ts (gerado pelo shadcn)
 content/clients/    — <id>.json: config estável do cliente
 content/snapshots/  — <cliente>/<projeto>/<AAAA-MM-DD>.json: status datado, imutável
 scripts/gen-slug.mjs — gera slug não-adivinhável (roda 1x por cliente)
@@ -124,8 +125,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   rota pública.
 - NÃO sobrescrever snapshot existente — sempre arquivo novo datado.
 - NÃO renomear `id` de item de escopo publicado — quebra o vínculo dos snapshots.
-- NÃO importar CSS fora do layout raiz nem criar regra sem camada além do bloco de impressão (ela
-  vence todo utilitário do Tailwind, §19); NÃO adicionar dependência sem perguntar.
+- NÃO importar CSS fora do layout raiz nem criar regra própria sem camada (fora as variáveis do
+  tema e o bloco de impressão; ela vence todo utilitário, §19); NÃO adicionar dependência sem perguntar.
 - NÃO fazer a skill commitar/pushar — ela para no preview.
 
 ## Verificação
@@ -136,9 +137,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 ## Estado atual
 
-- **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare,
-  DNS-only; repo GitHub privado). Clientes no ar: FGV, Ellementi, Neon (Movi fora do ar). Painel admin
-  em `/a/` (slug em `content/admin.json`), já em shadcn; o cliente migra num PR próprio.
+- **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare, DNS-only; repo privado). Clientes
+  no ar: FGV, Ellementi, Neon (Movi fora do ar, §20). Painel em `/a/` (slug em `content/admin.json`). Tudo em shadcn (§21).
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
 

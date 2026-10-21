@@ -127,6 +127,10 @@ retrabalho. shadcn não faz sentido num site read-only, sem formulários.
 **Descartamos:** manter Tailwind/shadcn (padrão do `movi-web`) só por consistência —
 não compensava o retrabalho aqui.
 
+> **Revogado (2026-10-21):** o dono adotou shadcn/ui + Tailwind no projeto todo,
+> primeiro no admin (§19) e depois nas páginas de cliente (§21). O `globals.css` foi
+> removido.
+
 ---
 
 ## 10. Reaproveitar a base do `movi-web`, sem o peso
@@ -195,7 +199,9 @@ necessidade.
 
 > **Atualização (2026-10-21):** no admin, o CSS puro e o limite de uma ilha
 > client foram substituídos por shadcn/ui + Tailwind (§19). As páginas de cliente
-> seguem este parágrafo até a migração delas.
+> seguiram este parágrafo até a migração delas, no mesmo dia (§21). Do §14 fica a
+> troca de projeto pelo hash, sem rota por projeto. O trilho, as abas e a Archivo
+> saíram.
 
 ---
 
@@ -346,6 +352,12 @@ sintaxe de comando do Codex); as alternativas só-texto `better-*` (jakubkrehel)
 
 ## 19. shadcn/ui + Tailwind no admin, com o CSS isolado por segmento
 
+> **Atualização (2026-10-21, §21):** as páginas de cliente migraram no mesmo dia.
+> O isolamento por segmento e a parte "Fonte" abaixo valeram só durante a
+> transição. Hoje o layout raiz importa o único CSS (`tailwind.css`) e carrega a
+> Inter na `<html>`. O resto deste § (dependências, edições locais, tema, rotas do
+> admin) continua valendo.
+
 **Decisão (2026-10-21):** o painel admin foi refeito com **shadcn/ui** (preset `nova`,
 base **Base UI**, tema padrão neutral) e **Tailwind v4**, com a fonte **Inter**.
 A estrutura agora é visão geral + uma página por projeto (spec `admin-layout.md`).
@@ -409,7 +421,9 @@ depois de atualizar):
   estático, e cada link recarrega a página. O `SidebarMenuSkeleton` (com
   `Math.random`) ficou como veio, porque não é usado.
 - Textos para leitor de tela em pt-BR em `ui/sheet.tsx`, `ui/sidebar.tsx` e
-  `ui/breadcrumb.tsx`.
+  `ui/breadcrumb.tsx`. A descrição da gaveta em `ui/sidebar.tsx` é neutra
+  ("Navegação."), porque a mesma gaveta serve ao painel e às páginas de cliente
+  (§21).
 
 **Tema:**
 - Os tokens de estado (`done`, `prog`, `plan` e `hold`, com os fundos) entraram no
@@ -502,6 +516,141 @@ painel da Vercel.
 - Trocar o slug: a página continua existindo, só muda de endereço.
 - Derivar de "todos os projetos terminados": a Movi tem um concluído, e encerrar
   não é tirar do ar (§17).
+
+---
+
+## 21. Páginas de cliente no sistema do admin (etapa 2 do shadcn)
+
+**Decisão (2026-10-21):** as páginas de cliente (`/r/<slug>` e `/anteriores`), a raiz e
+o 404 entraram no sistema do `DESIGN.md`. Isso quer dizer shadcn/ui, Tailwind v4,
+Inter e a marca só como marcador. Spec em `cliente-shadcn.md`.
+
+Com isso o projeto ficou com um CSS só, o `tailwind.css`, importado pelo layout raiz.
+O isolamento por segmento do §19 acabou, e este §21 encerra, também para o cliente, o
+"CSS puro" e a Archivo do §14.
+
+**Decisões do dono (por pergunta interativa):**
+- **Identidade:** entrar no sistema do admin. Recusado: manter a v2 refeita em
+  shadcn, com duas famílias e duas regras de cor.
+- **Navegação:** a sidebar como no admin, com os projetos do cliente. Recusado: abas
+  no topo.
+- **Troca de projeto:** pelo hash, um projeto por vez. O §14 continua valendo:
+  nenhuma URL nova, e o PDF sai com todos os projetos. Recusado: uma página por
+  projeto.
+- **Projeto em espera com pendência do cliente:** o sinal é "aguardando você", na
+  mesma ordem do admin (`rowSignal`).
+- **Tela larga:** duas colunas a partir de 1280px. A linha do tempo e o contato
+  ficam numa lateral fixa ao rolar, como na página de projeto do admin.
+  - Recusado: uma coluna de leitura de 672px, que zerava o detector da impeccable.
+  - Custo aceito: a lateral mais alta (804px, no Checklist App da Movi) passa da
+    janela em telas baixas, e o contato, que é o fim dela, só aparece no fim da
+    página. O WhatsApp e o E-mail continuam na barra do topo, que é fixa. Medido em
+    todos os painéis antes de decidir. Com a Movi fora do ar (§20), a mais alta
+    passou a ser a do CT, com 704px.
+
+**Como funciona:**
+- **Hash:**
+  - O `src/hooks/use-location-hash.ts` (`useSyncExternalStore`, com servidor `""`)
+    é lido por três ilhas:
+    - o `ProjectSwitcher`, que mostra os painéis;
+    - o `ProjectNavItem`, o item da sidebar, que também fecha a gaveta do celular;
+    - o `ProjectCrumb`, o fim da trilha.
+  - A lógica pura fica em `src/lib/client-nav.ts`, com TDD.
+  - As ilhas próprias passam de 3 para 5. Elas recebem dados e elementos, nunca
+    funções nem componentes: o sinal vai como string, e o ícone é escolhido dentro
+    da ilha.
+  - **Um link direto não conta como troca.** O foco e a rolagem reagem ao evento
+    `hashchange`, que dispara só em clique, voltar e avançar, nunca na carga.
+    Comparar renders falhava no StrictMode do `next dev`.
+- **Rolagem e foco:**
+  - Os ids têm prefixo (`painel-`, `titulo-`), então nenhum elemento tem o id igual
+    ao hash e o navegador não rola a página sozinho.
+  - Quando o usuário troca de projeto, a página volta ao topo e o foco vai para o
+    título.
+  - Num link direto, a hidratação mostra o primeiro painel e logo troca para o do
+    hash, sem roubar o foco.
+- **Impressão:**
+  - Os painéis ocultos usam `hidden print:block`. O atributo `hidden` não serve,
+    porque o preflight o esconde com `!important`.
+  - O `tailwind.css` ganhou um bloco `@media print` fora de camada. É a única
+    regra própria sem camada, fora as variáveis do tema. Ele:
+    - esconde o wrapper da sidebar, que nenhum utilitário alcança;
+    - abre os `<details>` com `::details-content`. O Safari anterior à 18.4 e o
+      Firefox anterior à 143 imprimem as seções fechadas;
+    - mantém barras, pontos e o tingido com `print-color-adjust`.
+  - Cada projeto começa em página nova.
+  - O `break-inside-avoid` fica só nos blocos curtos e nas linhas. Nos cards
+    longos, ele empurrava o card inteiro e deixava o cabeçalho sozinho na página.
+  - O título de seção e as duas últimas linhas do progresso não ficam sozinhos no
+    fim ou no começo de uma página (`break-after: avoid`).
+  - O bloco também vale para o PDF do admin, que agora sai sem a sidebar e com os
+    fundos.
+- **404:**
+  - O `app/not-found.tsx` atende todos os casos: slug errado, par trocado e
+    qualquer URL. Usa o título e o noindex do layout raiz.
+  - Saiu o `r/[slug]/not-found.tsx`. Ele nunca rodou em produção, porque com
+    `fallback: false` a resposta é o `/_not-found`.
+  - A raiz e o 404 ficam fora da moldura, porque não há cliente nem navegação.
+- **Fonte:** a Inter vem de `next/font` com `variable: "--font-sans"` na `<html>`.
+  A variável sem camada da `next/font` vence a referência cíclica do
+  `@theme inline`. Num wrapper ou no `<body>`, a fonte cai para o padrão do
+  navegador.
+- **Admin:** não mudou visualmente. As 6 capturas (visão geral, CT e Movi Exporter,
+  em 1440 e 390) ficaram idênticas byte a byte. `AdminStatusDot` e
+  `AdminLifecycleBadge` viraram `StatusDot` e `LifecycleBadge`, compartilhados.
+  - O separador vertical da barra do topo usa `self-stretch` com altura fixa e
+    gruda no topo. No cliente ele foi centralizado com `my-auto`. No admin fica
+    igual, para um `fix` próprio.
+- **Textos:**
+  - São os de hoje.
+  - O cabeçalho reaproveita os rótulos da antiga faixa-resumo: "Fase atual",
+    "Atualizado", "Plataforma", "Progresso geral" e "Entregas concluídas". Não usa
+    o "frentes" do admin.
+  - Saíram os kickers em caixa-alta da v2 ("Aguardando você" acima do bloco,
+    "Próximos passos imediatos", "Fale com a gente"). O craft-floor proíbe rótulo
+    acima de título, e o título de cada card já diz o mesmo.
+  - O único rótulo novo é o grupo "Projetos" da sidebar, aprovado no plano.
+    "Projetos anteriores" já existia.
+  - Saíram também, por decisão do dono na revisão final:
+    - o aviso "Projeto concluído / Entregue em <mês>", porque o badge
+      "Concluído · <mês>" e a frase de `/anteriores` já dizem o mesmo;
+    - as datas relativas da linha do tempo ("hoje", "há N dias"). Elas eram
+      calculadas no build e ficavam falsas no dia seguinte, num site que só
+      rebuilda ao publicar. Ficam só as datas absolutas. O admin segue com o
+      relativo, porque é interno e mostra a data do deploy.
+
+**Revisão final da impeccable (21-10), em duas rodadas:**
+- **Cabeçalho:** o badge de ciclo de vida fica escondido no projeto ativo (decisão
+  do dono). O ponto verde dele contradizia a legenda logo abaixo, onde verde quer
+  dizer concluído.
+- **Leitura:** as descrições dos cards de status, os passos e as pendências ficam
+  em 15px. Os títulos da linha do tempo e as descrições do escopo ficam em 14px.
+  Todos usam a Tinta a 80% e `max-w-prose`. O cinza fica só para datas e
+  metadados.
+- **`text-pretty`:** mantido, com o trade-off aceito pelo dono. Sem ele, o detector
+  apontou 12 (1280) e 16 (390) palavras sozinhas na última linha. O custo é um
+  parágrafo com bordas irregulares no celular.
+- **Seções:** o número virou texto cinza antes do título, sem o círculo dos passos
+  numerados que vêm logo acima.
+- **Ficaram abertos:**
+  - o sorteio de direção (`concept-seed`), recusado pelo dono, como no admin; o
+    brief registra `seed: none`;
+  - a sidebar sem rodapé, porque "{cliente} · {vendor}" já aparece no topo dela e
+    no rodapé de cada relatório.
+
+**Prova:**
+- Gate verde.
+- 16 rotas com o status, o noindex (meta e header) e o título certos, sem
+  OpenGraph e com um CSS só. A raiz e o 404 não têm nome nem slug de cliente.
+- Hash conferido via CDP: link direto, clique, voltar, hash desconhecido e a gaveta
+  no celular.
+- PDF A4 da FGV com os 3 projetos.
+
+**Rejeitado:**
+- Manter dois mundos de CSS depois da migração: o isolamento só existia por causa
+  da v2.
+- Uma página por projeto: reverteria o §14 e mudaria o PDF e os links já enviados.
+- Abas no topo: o dono quis a mesma moldura do admin.
 
 ---
 

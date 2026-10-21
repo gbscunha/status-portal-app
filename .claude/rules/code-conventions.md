@@ -17,7 +17,8 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
   - `AdminGreeting`: relógio da visita via `useSyncExternalStore`, com snapshot
     de servidor = data do build.
 
-  As ilhas recebem só dados (o sinal como string, nunca um componente). Os
+  As ilhas recebem dados e elementos, nunca funções nem componentes (o sinal
+  vai como string, e o ícone é escolhido dentro da ilha). Os
   primitivos do shadcn em `src/components/ui/` servem às duas superfícies. A
   maioria é client (badge, item e breadcrumb receberam `"use client"` local,
   §19); button, card, empty, input e skeleton não são.
@@ -26,8 +27,8 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
 - **Páginas de cliente:** a composição segue a hierarquia
   `ProjectStack | ArchiveStack` (cada um dentro do `ClientShell`, que monta a
   `ClientSidebar`, a trilha e as ações) `→ ProjectSwitcher → StatusReport →
-  (ReportHeader, LifecycleNotice, PendingList, ProgressList, Legend, ScopeMap,
-  NextSteps, Section, Timeline, ContactCta, Footer)`.
+  (ReportHeader, LifecycleNotice, PendingList, ProgressList (com a Legend),
+  ScopeMap, NextSteps, Section, Timeline, ContactCta, Footer)`.
   - O `ProjectSwitcher` recebe `panels[]`.
   - A navegação vem de `clientNav` (`src/lib/client-nav.ts`).
   - O item ativo sai do hash, no navegador: é um projeto por vez, sem rota por
@@ -41,7 +42,7 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
 
 ## Estilo
 
-- **Um sistema só (DECISOES §19 e §20):** **shadcn/ui + Tailwind v4**, com o
+- **Um sistema só (DECISOES §19 e §21):** **shadcn/ui + Tailwind v4**, com o
   tema em `src/app/tailwind.css`, importado só pelo layout raiz junto com a
   Inter.
   - Use componentes de `@/components/ui` antes de markup próprio.
@@ -50,7 +51,8 @@ que diverge, não "corrija" em massa — mude só com motivo e no escopo da tare
   - Classes condicionais com `cn()` (`@/lib/utils`).
   - Siga a skill `shadcn` do projeto e o `DESIGN.md`.
 - **Nenhum CSS fora do `tailwind.css`**, sem CSS-in-JS e sem módulos. Nada de
-  regra sem camada além do bloco de impressão, porque ela vence todo utilitário.
+  regra própria sem camada, fora as variáveis do tema e o bloco de impressão,
+  porque ela vence todo utilitário.
 - **Impressão:**
   - use `print:` nos componentes;
   - o bloco `@media print` do `tailwind.css` cobre só o que nenhum utilitário

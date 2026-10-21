@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T14:45:27Z",
+  "generatedAt": "2026-10-21T20:12:54Z",
   "title": "Design System: Portal de Status ITGraph",
   "extensions": {
     "colorMeta": {
@@ -353,35 +353,43 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "O h1 de cada página (saudação, nome do projeto); 1.875rem abaixo de 768px (hero) ou 1024px (saudação)."
+        "purpose": "O h1 de cada página com moldura: saudação e nome do projeto (admin), título do relatório (cliente); 1.875rem abaixo de 768px (cabeçalho do projeto) ou 1024px (saudação)."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Valor de KPI e percentual do hero, com números tabulares."
+        "purpose": "Valor de KPI e percentual do progresso geral, com números tabulares; no mesmo tamanho, o h1 da raiz e do 404."
+      },
+      "section-title": {
+        "displayName": "Section Title",
+        "purpose": "h2 das seções numeradas do relatório do cliente; o número vem antes em 500 Cinza Legenda tabular."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Título de card, sempre envolvendo um h2."
+        "purpose": "Título de card, sempre envolvendo um h2 (h3 no card de status)."
       },
       "body-lg": {
         "displayName": "Body Large",
-        "purpose": "Subtítulo e fase no hero do projeto, até 65ch."
+        "purpose": "Subtítulo do cabeçalho do projeto, até 65ch; fase no hero do admin."
+      },
+      "body-read": {
+        "displayName": "Body Read",
+        "purpose": "Corpo de leitura do cliente, 15px/24px, em Tinta a 80%, até 65ch, com text-pretty."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Texto de trabalho: descrições, células, trilha, itens da sidebar."
+        "purpose": "Texto de trabalho do admin; no cliente, descrição sob título de card, título da linha do tempo e descrição do item de escopo."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Botão, item ativo da sidebar, nome de projeto, título de item de lista."
+        "purpose": "Botão, item ativo da sidebar, nome de projeto, título de item, data da linha do tempo, valor de fato e a linha \"Cliente · Projeto\"."
       },
       "label-sm": {
         "displayName": "Label Small",
-        "purpose": "Texto de badge, percentual ao lado da barra, rótulo de grupo da sidebar."
+        "purpose": "Texto de badge, percentual ao lado da barra, número de passo, rótulo de grupo da sidebar."
       },
       "caption": {
         "displayName": "Caption",
-        "purpose": "Data relativa, nota de KPI, rodapé da sidebar, tooltip."
+        "purpose": "Rótulo de fato, previsão, legenda dos estados, rodapé do relatório, tooltip; no admin, data relativa e nota de KPI."
       }
     },
     "shadows": [
@@ -393,7 +401,7 @@
       {
         "name": "hero-xs",
         "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "purpose": "Única sombra em repouso: assenta o hero tingido do projeto."
+        "purpose": "Única sombra em repouso: assenta o cabeçalho tingido do projeto (hero do admin e cabeçalho do relatório do cliente)."
       },
       {
         "name": "sheet-lg",
@@ -425,7 +433,7 @@
       {
         "name": "ease-standard",
         "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
-        "purpose": "Transições de botão, giro de 90° do chevron do cliente, largura da barra de progresso."
+        "purpose": "Transições de botão, giro de 90° do chevron (cliente do admin, seção concluída do relatório) e largura da barra de progresso."
       },
       {
         "name": "item-hover",
@@ -462,9 +470,9 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "A única ação preenchida da página, no fim da barra superior (\"Página do cliente\").",
-      "html": "<a class=\"ds-btn-primary\" href=\"#\">Página do cliente<svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 8px 0 10px; border: 1px solid transparent; border-radius: 10px; background: var(--primary, oklch(0.205 0 0)); color: var(--primary-foreground, oklch(0.985 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 500; text-decoration: none; white-space: nowrap; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-btn-primary:hover { background: color-mix(in oklab, var(--primary, oklch(0.205 0 0)) 80%, transparent); } .ds-btn-primary:focus-visible { outline: none; border-color: var(--ring, oklch(0.708 0 0)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-btn-primary:active { transform: translateY(1px); }"
+      "description": "Botão preenchido em Grafite. No cliente, os três da barra superior (ícone no começo); abaixo de 640px viram quadrados de 32px só com ícone. No admin, um só (\"Página do cliente\" ↗).",
+      "html": "<div class=\"ds-btn-stack\"><nav class=\"ds-btn-row\" aria-label=\"Ações\"><button class=\"ds-btn-primary\" type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2\"/><path d=\"M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6\"/><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"/></svg><span>Salvar PDF</span></button><a class=\"ds-btn-primary\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/></svg><span>WhatsApp</span></a><a class=\"ds-btn-primary\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg><span>E-mail</span></a></nav><nav class=\"ds-btn-row\" aria-label=\"Ações no celular\"><button class=\"ds-btn-primary ds-btn-icon\" type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2\"/><path d=\"M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6\"/><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"/></svg><span class=\"ds-sr-only\">Salvar PDF</span></button><a class=\"ds-btn-primary ds-btn-icon\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/></svg><span class=\"ds-sr-only\">WhatsApp</span></a><a class=\"ds-btn-primary ds-btn-icon\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg><span class=\"ds-sr-only\">E-mail</span></a></nav></div>",
+      "css": ".ds-btn-stack { display: flex; flex-direction: column; gap: 12px; } .ds-btn-row { display: flex; align-items: center; gap: 8px; } .ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; padding: 0 10px; border: 1px solid transparent; border-radius: 10px; background: var(--primary, oklch(0.205 0 0)); color: var(--primary-foreground, oklch(0.985 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 500; text-decoration: none; white-space: nowrap; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-btn-primary:hover { background: color-mix(in oklab, var(--primary, oklch(0.205 0 0)) 80%, transparent); } .ds-btn-primary:focus-visible { outline: none; border-color: var(--ring, oklch(0.708 0 0)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-icon { width: 32px; padding: 0; gap: 0; } .ds-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }"
     },
     {
       "name": "Ghost Icon Button",
@@ -478,17 +486,17 @@
       "name": "State Badge (outline + dot)",
       "kind": "chip",
       "refersTo": "badge-outline",
-      "description": "Ciclo de vida e motivo de atenção: pílula neutra, o estado mora no ponto.",
-      "html": "<div class=\"ds-badge-row\"><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-done\"></span>Em andamento</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-prog\"></span>3 pendências do cliente</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-alert\"></span>Parado há 20 dias</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-hold\"></span>Em espera</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-plan\"></span>Encerrado · Set 2026</span></div>",
+      "description": "Estado do card, ciclo de vida, contagem da seção concluída e motivo de atenção (admin): pílula neutra, o estado mora no ponto.",
+      "html": "<div class=\"ds-badge-row\"><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-done\"></span>Concluído</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-prog\"></span>Em andamento</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-plan\"></span>Planejado</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-hold\"></span>Em espera</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-done\"></span>Concluído · Set 2026</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-done\"></span>8 entregas</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-prog\"></span>3 pendências do cliente</span><span class=\"ds-badge-outline\"><span class=\"ds-dot ds-dot-alert\"></span>Parado há 20 dias</span></div>",
       "css": ".ds-badge-row { display: flex; flex-wrap: wrap; gap: 6px; } .ds-badge-outline { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid transparent; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.33; font-weight: 500; white-space: nowrap; border-color: var(--border, oklch(0.922 0 0)); color: var(--foreground, oklch(0.145 0 0)); } .ds-dot { display: inline-block; width: 8px; height: 8px; flex-shrink: 0; border-radius: 9999px; } .ds-dot-done { background: var(--done, #178a4c); } .ds-dot-prog { background: var(--prog, #b25e00); } .ds-dot-hold { background: var(--hold, #2f5b86); } .ds-dot-plan { background: color-mix(in oklab, var(--plan, #8a8f9a) 50%, transparent); } .ds-dot-alert { box-shadow: inset 0 0 0 2px var(--prog, #b25e00); }"
     },
     {
       "name": "Secondary Badge",
       "kind": "chip",
       "refersTo": "badge-secondary",
-      "description": "Metadado neutro: \"Atual\" no histórico, \"Desde … · há N dias\" na pendência.",
-      "html": "<span class=\"ds-badge-secondary\">Desde 5 Out 2026 · há 16 dias</span>",
-      "css": ".ds-badge-secondary { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid transparent; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.33; font-weight: 500; white-space: nowrap; background: var(--secondary, oklch(0.97 0 0)); color: var(--secondary-foreground, oklch(0.205 0 0)); }"
+      "description": "Metadado neutro: \"Você está aqui\" (cliente) e \"Atual\" (admin) na linha do tempo, \"desde <data>\" na pendência, \"acrescentado em\" no escopo.",
+      "html": "<div class=\"ds-badge-row\"><span class=\"ds-badge-secondary\">Você está aqui</span><span class=\"ds-badge-secondary\">desde 15 Jul 2026</span><span class=\"ds-badge-secondary\">acrescentado em 4 Ago 2026</span></div>",
+      "css": ".ds-badge-row { display: flex; flex-wrap: wrap; gap: 6px; } .ds-badge-secondary { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid transparent; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.33; font-weight: 500; white-space: nowrap; background: var(--secondary, oklch(0.97 0 0)); color: var(--secondary-foreground, oklch(0.205 0 0)); }"
     },
     {
       "name": "KPI Card",
@@ -507,20 +515,44 @@
       "css": ".ds-sidebar { display: flex; flex-direction: column; gap: 4px; width: 256px; padding: 8px; background: var(--sidebar, oklch(0.985 0 0)); color: var(--sidebar-foreground, oklch(0.145 0 0)); border-right: 1px solid var(--sidebar-border, oklch(0.922 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; } .ds-sb-brand { display: flex; align-items: center; gap: 8px; height: 48px; padding: 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-sb-logo { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; background: var(--sidebar-primary, oklch(0.205 0 0)); color: var(--sidebar-primary-foreground, oklch(0.985 0 0)); font-weight: 600; } .ds-sb-brand-text { display: grid; line-height: 1.25; } .ds-sb-brand-text small { font-size: 0.75rem; color: var(--muted-foreground, oklch(0.556 0 0)); } .ds-sb-label { display: flex; align-items: center; height: 32px; padding: 0 8px; font-size: 0.75rem; font-weight: 500; color: color-mix(in oklab, var(--sidebar-foreground, oklch(0.145 0 0)) 70%, transparent); } .ds-sb-item { display: flex; align-items: center; gap: 8px; width: 100%; height: 32px; padding: 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer; } .ds-sb-item svg, .ds-sb-subitem svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-sb-item:hover, .ds-sb-subitem:hover { background: var(--sidebar-accent, oklch(0.97 0 0)); } .ds-sb-item:focus-visible, .ds-sb-subitem:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--sidebar-ring, oklch(0.708 0 0)); } .ds-sb-active { background: var(--sidebar-accent, oklch(0.97 0 0)); color: var(--sidebar-accent-foreground, oklch(0.205 0 0)); font-weight: 500; } .ds-sb-tile { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; flex-shrink: 0; border-radius: 4px; background: color-mix(in oklab, var(--sidebar-foreground, oklch(0.145 0 0)) 10%, transparent); font-size: 10px; font-weight: 600; } .ds-sb-client { font-weight: 500; } .ds-sb-chevron { margin-left: auto; transform: rotate(90deg); transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sb-sub { display: flex; flex-direction: column; gap: 4px; margin: 0 14px; padding: 2px 10px; border-left: 1px solid var(--sidebar-border, oklch(0.922 0 0)); list-style: none; } .ds-sb-subitem { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-sb-subitem span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
     },
     {
-      "name": "Progress Bar",
-      "kind": "custom",
-      "refersTo": "progress-track",
-      "description": "Trilho de 4px em Cinza Névoa com indicador Grafite e percentual tabular ao lado; nunca na cor do cliente.",
-      "html": "<div class=\"ds-progress-row\"><div class=\"ds-progress\" role=\"progressbar\" aria-valuenow=\"71\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progresso de CT\"><div class=\"ds-progress-indicator\" style=\"width:71%\"></div></div><span class=\"ds-progress-value\">71%</span></div>",
-      "css": ".ds-progress-row { display: flex; align-items: center; gap: 12px; width: 240px; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-progress { position: relative; flex: 1; height: 4px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-progress-indicator { height: 100%; background: var(--primary, oklch(0.205 0 0)); transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-progress-value { width: 36px; text-align: right; font-size: 0.75rem; line-height: 1.33; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--foreground, oklch(0.145 0 0)); }"
+      "name": "Client Sidebar",
+      "kind": "nav",
+      "refersTo": "sidebar-brand-tile",
+      "description": "Sidebar do cliente: tile Grafite com a inicial, \"{fornecedor} · Portal de acompanhamento\" (quebra linha), grupos \"Projetos\" e \"Projetos anteriores\", estado pela forma do ícone.",
+      "html": "<nav class=\"ds-csb\" aria-label=\"Projetos\"><a class=\"ds-csb-brand\" href=\"#\"><span class=\"ds-csb-tile\" aria-hidden=\"true\">M</span><span class=\"ds-csb-brand-text\"><strong>Movi Solutions</strong><small>ITGraph · Portal de acompanhamento</small></span></a><div class=\"ds-csb-label\">Projetos</div><a class=\"ds-csb-item\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg><span>Painel Web<span class=\"ds-sr-only\">, aguardando você</span></span></a><a class=\"ds-csb-item\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg><span>Checklist App<span class=\"ds-sr-only\">, aguardando você</span></span></a><div class=\"ds-csb-label\">Projetos anteriores</div><a class=\"ds-csb-item ds-csb-active\" href=\"#movi-exporter\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m9 12 2 2 4-4\"/></svg><span>Movi Exporter<span class=\"ds-sr-only\">, concluído</span></span></a></nav>",
+      "css": ".ds-csb { display: flex; flex-direction: column; gap: 4px; width: 256px; padding: 8px; background: var(--sidebar, oklch(0.985 0 0)); color: var(--sidebar-foreground, oklch(0.145 0 0)); border-right: 1px solid var(--sidebar-border, oklch(0.922 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; } .ds-csb-brand { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-csb-brand:hover { background: var(--sidebar-accent, oklch(0.97 0 0)); } .ds-csb-tile { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 10px; background: var(--sidebar-primary, oklch(0.205 0 0)); color: var(--sidebar-primary-foreground, oklch(0.985 0 0)); font-size: 0.875rem; font-weight: 600; } .ds-csb-brand-text { display: grid; line-height: 1.25; } .ds-csb-brand-text strong { font-weight: 600; } .ds-csb-brand-text small { font-size: 0.75rem; color: var(--muted-foreground, oklch(0.556 0 0)); text-wrap: pretty; } .ds-csb-label { display: flex; align-items: center; height: 32px; padding: 0 8px; margin-top: 8px; font-size: 0.75rem; font-weight: 500; color: color-mix(in oklab, var(--sidebar-foreground, oklch(0.145 0 0)) 70%, transparent); } .ds-csb-item { display: flex; align-items: center; gap: 8px; height: 32px; padding: 8px; border-radius: 8px; color: inherit; text-decoration: none; } .ds-csb-item svg { width: 16px; height: 16px; flex-shrink: 0; } .ds-csb-item:hover { background: var(--sidebar-accent, oklch(0.97 0 0)); } .ds-csb-item:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--sidebar-ring, oklch(0.708 0 0)); } .ds-csb-active { background: var(--sidebar-accent, oklch(0.97 0 0)); font-weight: 500; } .ds-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }"
     },
     {
-      "name": "Project Hero",
+      "name": "Progress Row",
       "kind": "custom",
-      "refersTo": "project-hero",
-      "description": "Cabeçalho do projeto, a única superfície tingida: gradiente de 10% e borda de 20% na cor do cliente, texto secundário em Tinta a 75%.",
-      "html": "<section class=\"ds-hero\" style=\"--brand:#003A70\" aria-labelledby=\"ds-hero-title\"><div class=\"ds-hero-head\"><h1 id=\"ds-hero-title\" class=\"ds-hero-title\">CT</h1><span class=\"ds-hero-badge\"><span class=\"ds-hero-dot\"></span>Em andamento</span></div><p class=\"ds-hero-phase\">Migração do sistema legado</p><p class=\"ds-hero-sub\">O sistema de certificação está sendo reconstruído do zero em tecnologia moderna.</p><div class=\"ds-hero-meta\"><p>7 de 16 frentes concluídas · atualizado há 9 dias</p><span class=\"ds-hero-pct\">71%</span></div><div class=\"ds-hero-track\" role=\"progressbar\" aria-valuenow=\"71\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progresso geral\"><div class=\"ds-hero-bar\" style=\"width:71%\"></div></div></section>",
-      "css": ".ds-hero { display: flex; flex-direction: column; gap: 8px; padding: 28px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--brand) 20%, transparent); background: linear-gradient(to bottom right, color-mix(in oklab, var(--brand) 10%, transparent), var(--background, oklch(1 0 0)), var(--background, oklch(1 0 0))); box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); color: var(--foreground, oklch(0.145 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-hero-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; } .ds-hero-title { margin: 0; font-size: 2.25rem; line-height: 1.11; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; } .ds-hero-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid var(--border, oklch(0.922 0 0)); font-size: 0.75rem; font-weight: 500; } .ds-hero-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--done, #178a4c); } .ds-hero-phase { margin: 0; font-weight: 500; } .ds-hero-sub { margin: 0; max-width: 65ch; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); text-wrap: pretty; } .ds-hero-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: 12px; } .ds-hero-meta p { margin: 0; font-size: 0.875rem; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); } .ds-hero-pct { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-hero-track { height: 8px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-hero-bar { height: 100%; background: var(--primary, oklch(0.205 0 0)); }"
+      "refersTo": "progress-track",
+      "description": "Linha de \"Progresso por área\": ícone de estado, rótulo em 15px, previsão por mês, trilho de 4px Grafite e percentual tabular. A barra nunca muda de cor.",
+      "html": "<ul class=\"ds-prog-list\"><li class=\"ds-prog-row\"><span class=\"ds-prog-icon ds-prog-done\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m9 12 2 2 4-4\"/></svg></span><span class=\"ds-prog-label\">Notas fiscais<span class=\"ds-sr-only\">, Concluído</span></span><span class=\"ds-prog-track\" role=\"progressbar\" aria-valuenow=\"95\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Notas fiscais\"><span class=\"ds-prog-bar\" style=\"width:95%\"></span></span><span class=\"ds-prog-pct\">95%</span></li><li class=\"ds-prog-row\"><span class=\"ds-prog-icon ds-prog-prog\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></svg></span><span class=\"ds-prog-label\">Relatórios gerados pela plataforma nova<span class=\"ds-sr-only\">, Em andamento</span><span class=\"ds-prog-eta\">previsão: Dez 2026</span></span><span class=\"ds-prog-track\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Relatórios gerados pela plataforma nova\"><span class=\"ds-prog-bar\" style=\"width:45%\"></span></span><span class=\"ds-prog-pct\">45%</span></li><li class=\"ds-prog-row\"><span class=\"ds-prog-icon ds-prog-plan\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg></span><span class=\"ds-prog-label\">Integrações com parceiros<span class=\"ds-sr-only\">, Planejado</span></span><span class=\"ds-prog-track\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Integrações com parceiros\"><span class=\"ds-prog-bar\" style=\"width:0%\"></span></span><span class=\"ds-prog-pct\">0%</span></li></ul>",
+      "css": ".ds-prog-list { display: flex; flex-direction: column; width: 560px; max-width: 100%; margin: 0; padding: 0; list-style: none; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); color: var(--foreground, oklch(0.145 0 0)); } .ds-prog-row { display: grid; grid-template-columns: auto minmax(0, 1fr) 160px 40px; align-items: center; column-gap: 12px; padding: 12px 0; border-top: 1px solid var(--border, oklch(0.922 0 0)); } .ds-prog-row:first-child { border-top: 0; padding-top: 0; } .ds-prog-icon svg { display: block; width: 16px; height: 16px; } .ds-prog-done { color: var(--done, #178a4c); } .ds-prog-prog { color: var(--prog, #b25e00); } .ds-prog-plan { color: var(--muted-foreground, oklch(0.556 0 0)); } .ds-prog-label { font-size: 15px; line-height: 24px; text-wrap: pretty; } .ds-prog-eta { display: block; font-size: 0.75rem; line-height: 1.33; color: var(--muted-foreground, oklch(0.556 0 0)); } .ds-prog-track { position: relative; display: block; height: 4px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-prog-bar { display: block; height: 100%; background: var(--primary, oklch(0.205 0 0)); transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-prog-pct { text-align: right; font-size: 0.75rem; line-height: 1.33; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }"
+    },
+    {
+      "name": "Project Header (tinted)",
+      "kind": "custom",
+      "refersTo": "report-header",
+      "description": "Cabeçalho do relatório do cliente, a única superfície tingida (gradiente de 10%, borda de 20%, sombra mínima). O hero do projeto no admin é a mesma superfície. Destaque sublinhado, texto secundário em Tinta a 75%, badge de ciclo só fora de \"em andamento\".",
+      "html": "<section class=\"ds-hero\" style=\"--brand:#003A70\" aria-labelledby=\"ds-hero-title\"><div class=\"ds-hero-intro\"><div class=\"ds-hero-head\"><h1 id=\"ds-hero-title\" class=\"ds-hero-title\">Prepona <span class=\"ds-hero-hl\">pronta para os testes</span></h1><span class=\"ds-hero-badge\"><span class=\"ds-hero-dot\"></span>Em espera</span></div><p class=\"ds-hero-who\">FGV · Prepona</p><p class=\"ds-hero-sub\">O desenvolvimento do envio de provas foi concluído. Agora a Prepona testa a integração no ambiente de testes para liberarmos a entrega final.</p></div><dl class=\"ds-hero-facts\"><div><dt>Fase atual</dt><dd>Desenvolvimento concluído</dd></div><div><dt>Atualizado</dt><dd>20 Out 2026</dd></div><div><dt>Plataforma</dt><dd>Serviço de Integração</dd></div><div><dt>Entregas concluídas</dt><dd>6</dd></div></dl><div class=\"ds-hero-progress\"><div class=\"ds-hero-meta\"><span>Progresso geral</span><span class=\"ds-hero-pct\">80%</span></div><div class=\"ds-hero-track\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progresso geral\"><div class=\"ds-hero-bar\" style=\"width:80%\"></div></div></div></section>",
+      "css": ".ds-hero { display: flex; flex-direction: column; gap: 24px; padding: 28px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--brand) 20%, transparent); background: linear-gradient(to bottom right, color-mix(in oklab, var(--brand) 10%, transparent), var(--background, oklch(1 0 0)), var(--background, oklch(1 0 0))); box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); color: var(--foreground, oklch(0.145 0 0)); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-hero-intro { display: flex; flex-direction: column; gap: 12px; } .ds-hero-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; } .ds-hero-title { margin: 0; font-size: 2.25rem; line-height: 1.11; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; } .ds-hero-hl { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; } .ds-hero-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 2px 8px; border-radius: 26px; border: 1px solid var(--border, oklch(0.922 0 0)); font-size: 0.75rem; font-weight: 500; white-space: nowrap; } .ds-hero-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--hold, #2f5b86); } .ds-hero-who { margin: 0; font-size: 0.875rem; font-weight: 500; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); } .ds-hero-sub { margin: 0; max-width: 65ch; font-size: 1rem; line-height: 1.5; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); text-wrap: pretty; } .ds-hero-facts { display: flex; flex-wrap: wrap; gap: 16px 40px; margin: 0; } .ds-hero-facts div { display: flex; flex-direction: column; gap: 2px; } .ds-hero-facts dt { font-size: 0.75rem; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); } .ds-hero-facts dd { margin: 0; font-size: 0.875rem; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-hero-progress { display: flex; flex-direction: column; gap: 8px; } .ds-hero-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; font-size: 0.875rem; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 75%, transparent); } .ds-hero-pct { font-size: 1.5rem; line-height: 1.33; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--foreground, oklch(0.145 0 0)); } .ds-hero-track { height: 8px; overflow: hidden; border-radius: 9999px; background: var(--muted, oklch(0.97 0 0)); } .ds-hero-bar { height: 100%; background: var(--primary, oklch(0.205 0 0)); }"
+    },
+    {
+      "name": "Report Section Heading",
+      "kind": "custom",
+      "refersTo": "section-title",
+      "description": "Seção numerada do relatório: número em Cinza Legenda tabular antes do h2 (nunca num círculo). A seção toda concluída é um <details> fechado com o badge \"N entregas\" e um chevron.",
+      "html": "<div class=\"ds-sec-stack\"><details class=\"ds-sec\"><summary class=\"ds-sec-summary\"><span class=\"ds-sec-num\">02</span><h2 class=\"ds-sec-title\">Já migrado — funcionando na plataforma nova</h2><span class=\"ds-sec-badge\"><span class=\"ds-sec-dot\"></span>8 entregas</span><svg class=\"ds-sec-chevron\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></summary><p class=\"ds-sec-body\">Os cards de status aparecem aqui.</p></details><div class=\"ds-sec-head\"><span class=\"ds-sec-num\">03</span><h2 class=\"ds-sec-title\">Em migração agora</h2></div></div>",
+      "css": ".ds-sec-stack { display: flex; flex-direction: column; gap: 24px; width: 560px; max-width: 100%; font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); color: var(--foreground, oklch(0.145 0 0)); } .ds-sec-summary, .ds-sec-head { display: flex; align-items: baseline; gap: 12px; } .ds-sec-summary { cursor: pointer; list-style: none; border-radius: 10px; outline: none; } .ds-sec-summary::-webkit-details-marker { display: none; } .ds-sec-summary:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring, oklch(0.708 0 0)) 50%, transparent); } .ds-sec-num { font-size: 1.125rem; line-height: 1.56; font-weight: 500; color: var(--muted-foreground, oklch(0.556 0 0)); font-variant-numeric: tabular-nums; } .ds-sec-title { margin: 0; font-size: 1.125rem; line-height: 1.56; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; } .ds-sec-badge { display: inline-flex; align-items: center; gap: 4px; height: 20px; margin-left: auto; align-self: center; padding: 2px 8px; border-radius: 26px; border: 1px solid var(--border, oklch(0.922 0 0)); font-size: 0.75rem; font-weight: 500; white-space: nowrap; } .ds-sec-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--done, #178a4c); } .ds-sec-chevron { width: 16px; height: 16px; flex-shrink: 0; align-self: center; color: var(--muted-foreground, oklch(0.556 0 0)); transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sec[open] .ds-sec-chevron { transform: rotate(90deg); } .ds-sec-body { margin: 16px 0 0; font-size: 0.875rem; color: var(--muted-foreground, oklch(0.556 0 0)); }"
+    },
+    {
+      "name": "Timeline",
+      "kind": "card",
+      "refersTo": "timeline-dot",
+      "description": "\"Linha do tempo\": linha de 1px com pontos de 10px; o relatório atual leva a cor do cliente e \"Você está aqui\". Só datas absolutas no cliente.",
+      "html": "<div class=\"ds-tl-card\" style=\"--brand:#003A70\"><h2 class=\"ds-tl-heading\">Linha do tempo</h2><ol class=\"ds-tl\"><li aria-current=\"true\"><span class=\"ds-tl-dot ds-tl-current\" aria-hidden=\"true\"></span><span class=\"ds-tl-when\"><span class=\"ds-tl-date\">21 Out 2026</span><span class=\"ds-tl-badge\">Você está aqui</span></span><p>Envio ao CAP Studio pronto para teste</p></li><li><span class=\"ds-tl-dot\" aria-hidden=\"true\"></span><span class=\"ds-tl-when\"><span class=\"ds-tl-date\">12 Out 2026</span></span><p>Agendamentos começam a chegar ao CAP Studio</p></li><li><span class=\"ds-tl-dot\" aria-hidden=\"true\"></span><span class=\"ds-tl-when\"><span class=\"ds-tl-date\">4 Ago 2026</span></span><p>Painel de vagas agora alerta pelo prazo da próxima vaga</p></li></ol><p class=\"ds-tl-more\">+ 3 atualizações anteriores</p></div>",
+      "css": ".ds-tl-card { display: flex; flex-direction: column; gap: 16px; width: 360px; max-width: 100%; padding: 16px; border-radius: 14px; background: var(--card, oklch(1 0 0)); color: var(--foreground, oklch(0.145 0 0)); box-shadow: 0 0 0 1px color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 10%, transparent); font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.43; } .ds-tl-heading { margin: 0; font-size: 1rem; line-height: 1.375; font-weight: 500; } .ds-tl { position: relative; display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0 0 0 20px; border-left: 1px solid var(--border, oklch(0.922 0 0)); list-style: none; } .ds-tl li { position: relative; display: flex; flex-direction: column; gap: 4px; } .ds-tl-dot { position: absolute; top: 6px; left: -25px; width: 10px; height: 10px; box-sizing: border-box; border-radius: 9999px; border: 2px solid var(--card, oklch(1 0 0)); background: var(--border, oklch(0.922 0 0)); } .ds-tl-current { background: var(--brand); } .ds-tl-when { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; } .ds-tl-date { font-weight: 500; font-variant-numeric: tabular-nums; } .ds-tl-badge { display: inline-flex; align-items: center; height: 20px; padding: 2px 8px; border-radius: 26px; background: var(--secondary, oklch(0.97 0 0)); color: var(--secondary-foreground, oklch(0.205 0 0)); font-size: 0.75rem; font-weight: 500; white-space: nowrap; } .ds-tl p { margin: 0; max-width: 65ch; color: color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 80%, transparent); text-wrap: pretty; } .ds-tl-card .ds-tl-more { margin: 0; font-size: 0.75rem; color: var(--muted-foreground, oklch(0.556 0 0)); }"
     },
     {
       "name": "Attention Item",
@@ -533,19 +565,21 @@
   ],
   "narrative": {
     "northStar": "A Mesa de Triagem",
-    "overview": "O sistema é o vocabulário de produto da categoria (sidebar, trilha, cards, tabela) no tema padrão do shadcn/ui: estilo `base-nova`, primitivos Base UI, base `neutral`, com Inter. É escolha explícita do dono: numa tela de trabalho, um vocabulário de componentes conhecido vale mais do que um visual autoral, e uma prévia desenhada à mão no lugar dos primitivos foi rejeitada. A personalidade vem do conteúdo (estados, datas, a cor de cada cliente), não da moldura. A moldura é neutra, o primary é quase preto e há um único tom de ação.\n\nA leitura é por varredura, com densidade média. O olho acha primeiro o que pede ação (um número em âmbar, um badge com ponto) e só depois o detalhe. A cor tem duas funções e só duas: dizer o estado (quatro tons fixos) e marcar de quem é o projeto (a cor do cliente, como marcador). Todo o resto é cinza. As superfícies são planas e se separam por um anel de 1px, não por sombra.\n\nEscopo: este é o sistema-alvo do projeto inteiro (DECISOES §19), adotado em duas etapas. Hoje só o painel interno (`/a/…`) roda nele, carregado por `src/app/a/layout.tsx` e `src/app/tailwind.css`. As páginas de cliente (`/r/…`, `/anteriores` e a raiz) continuam no mundo v2 em CSS puro (`src/app/globals.css`, Archivo, DECISOES §14) até a migração delas, num PR próprio com prévia. Nada neste arquivo descreve a v2, e nenhuma regra da v2 vale aqui; na migração, as páginas de cliente entram neste sistema, e não o contrário. O único elo de propósito entre os dois mundos são os quatro tons de estado, com os mesmos valores e o mesmo significado.",
+    "overview": "O sistema é o vocabulário de produto da categoria (sidebar, trilha, cards, tabela) no tema padrão do shadcn/ui: estilo `base-nova`, primitivos Base UI, base `neutral`, com Inter. É escolha explícita do dono: um vocabulário de componentes conhecido vale mais do que um visual autoral, e uma prévia desenhada à mão no lugar dos primitivos foi rejeitada. A personalidade vem do conteúdo (estados, datas, a cor de cada cliente), não da moldura. A moldura é neutra, o primary é quase preto e há um único tom de ação.\n\nAs duas superfícies leem de jeitos diferentes dentro da mesma moldura. O painel interno é lido por varredura, com densidade média: o olho acha primeiro o que pede ação (um número em âmbar, um badge com ponto) e só depois o detalhe. O relatório do cliente é lido em ordem: o título e o progresso geral, o que espera por ele, o que vem depois e o detalhe por seção, com um corpo de leitura um pouco maior. Nas duas, a cor tem duas funções e só duas: dizer o estado (quatro tons fixos) e marcar de quem é o projeto (a cor do cliente, como marcador). Todo o resto é cinza. As superfícies são planas e se separam por um anel de 1px, não por sombra.\n\nEscopo: um sistema só para o projeto inteiro (DECISOES §19 e §21). O painel interno (`/a/…`), as páginas de cliente (`/r/…` e `/r/…/anteriores`), a raiz e o 404 rodam nele, com uma folha de estilo só, `src/app/tailwind.css`, importada pelo layout raiz junto com a Inter (variável na `<html>`). Nenhum outro arquivo importa CSS. A v2 (CSS puro, Archivo, trilho na cor da marca, kickers em caixa-alta) saiu do projeto e não é referência para nada. Os quatro tons de estado e o significado deles são os mesmos nas duas superfícies.",
     "keyCharacteristics": [
       "Tema padrão do shadcn (`base-nova`, neutral), neutros sem croma e primary quase preto.",
       "Inter como família única; a hierarquia vem de tamanho e peso, nunca de caixa-alta.",
       "Cor só para estado (verde, âmbar, cinza, azul) e para marcar o cliente.",
+      "Uma moldura para tudo: sidebar, barra de 56px e coluna de conteúdo, no admin e no cliente; só a raiz e o 404 ficam fora.",
       "Superfícies planas com anel de 1px; raio de 14px nos containers e de 10px nos controles.",
       "Sidebar monocromática, que se lê por forma de ícone e colapsa para um trilho de ícones.",
+      "O PDF faz parte do sistema: o relatório do cliente imprime todos os projetos, sem moldura e com os fundos.",
       "Só tema claro: o bloco `.dark` veio do gerador e nenhuma página o liga."
     ],
     "rules": [
       {
         "name": "The Brand-as-Marker Rule",
-        "body": "A cor do cliente só marca: o ponto de 10px na tabela e nos fatos do projeto, o ponto do relatório atual no histórico, e o tingimento do hero do projeto (gradiente de 10% e borda de 20%). Ela nunca é cor de texto e nunca pinta barra de progresso, porque marcas vermelhas (Movi, Neon) leriam como alarme.",
+        "body": "A cor do cliente só marca: o tingimento do cabeçalho do projeto (gradiente de 10% e borda de 20%), nas duas superfícies; o ponto do relatório atual na linha do tempo, nas duas; e o ponto de 10px na tabela e nos fatos do projeto, no admin. Ela nunca é cor de texto (nem o destaque do título, que é sublinhado) e nunca pinta barra de progresso nem a sidebar, porque marcas vermelhas (Movi, Neon) leriam como alarme.",
         "section": "colors"
       },
       {
@@ -555,7 +589,7 @@
       },
       {
         "name": "The Four States Rule",
-        "body": "Estado tem quatro tons com significado fixo e igual ao das páginas de cliente: verde para feito, âmbar para em curso ou esperando ação, cinza para planejado ou encerrado, azul para em espera. Eles aparecem como ponto de 8px, ícone de 16px ou número de KPI em alerta, sempre ao lado da palavra (visível ou para leitor de tela).",
+        "body": "Estado tem quatro tons com significado fixo e igual nas duas superfícies: verde para feito, âmbar para em curso ou esperando ação, cinza para planejado ou encerrado, azul para em espera. Eles aparecem como ponto de 8px, ícone de 16px ou número de KPI em alerta, sempre ao lado da palavra (visível ou para leitor de tela).",
         "section": "colors"
       },
       {
@@ -565,17 +599,32 @@
       },
       {
         "name": "The Tabular Numbers Rule",
-        "body": "Todo número que se compara com outro (percentual, KPI, data em coluna, número de passo) usa `tabular-nums`.",
+        "body": "Todo número que se compara com outro (percentual, KPI, data em coluna ou na linha do tempo, número de passo, número de seção, valor de fato) usa `tabular-nums`.",
         "section": "typography"
       },
       {
         "name": "The No Eyebrow Rule",
-        "body": "Nenhum título tem rótulo acima dele. O contexto vai ao lado (o badge de ciclo de vida ao lado do h1) ou abaixo (a descrição de card, a linha de data da saudação).",
+        "body": "Nenhum título tem rótulo acima dele. O contexto vai ao lado (o badge de ciclo de vida ao lado do h1) ou abaixo (a linha \"Cliente · Projeto\" sob o título do relatório, a descrição de card, a linha de data da saudação).",
+        "section": "typography"
+      },
+      {
+        "name": "The Underlined Highlight Rule",
+        "body": "A palavra de destaque de um h1 (a saudação do admin, o `highlight` do título do relatório) ganha sublinhado de 3px com offset de 6px, na cor do próprio texto. Destaque nunca é cor, nem a do cliente.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reading Body Rule",
+        "body": "No cliente, o texto que o cliente veio ler fica em Body Read, na Tinta a 80%, até 65ch e com `text-pretty`. O Cinza Legenda fica para a descrição sob o título de card, datas, previsões, a legenda e o rodapé, nunca para o parágrafo do relatório.",
         "section": "typography"
       },
       {
         "name": "The Shell Rule",
-        "body": "Toda página nova entra pelo mesmo shell: sidebar, barra de 56px com trilha à esquerda e no máximo uma ação à direita, e coluna de até 1152px. Não existe página sem a sidebar.",
+        "body": "Toda página com cliente ou navegação entra pelo mesmo shell: sidebar, barra de 56px com a trilha à esquerda e as ações à direita, e coluna de até 1152px. Isso vale para o admin e para o cliente. As únicas páginas sem a moldura são a raiz e o 404, que não têm cliente nem navegação: são um estado vazio centrado na tela inteira, com 16px de margem.",
+        "section": "layout"
+      },
+      {
+        "name": "The Whole Report Prints Rule",
+        "body": "\"Salvar PDF\" imprime todos os projetos da página, e cada um começa em página nova. A sidebar, a barra superior e o card de contato ficam de fora, as seções concluídas saem abertas e os fundos (barras, pontos e o tingido) são mantidos com `print-color-adjust: exact`. O título de seção e as duas últimas linhas do progresso nunca ficam sozinhos numa quebra. `break-inside-avoid` vale só para blocos curtos e linhas, nunca para um card longo, que seria empurrado inteiro e deixaria o título sozinho. O mesmo bloco de impressão vale para o PDF do admin.",
         "section": "layout"
       },
       {
@@ -585,7 +634,7 @@
       },
       {
         "name": "The One Filled Button Rule",
-        "body": "Ação é botão preenchido (preferência do dono) e há no máximo um por página, no fim da barra superior. Os outros caminhos são links de texto, nunca botões outline concorrendo com ele.",
+        "body": "Ação é botão preenchido em Grafite (gosto do dono desde a v2), nunca outline. No admin há no máximo um por página, no fim da barra superior. No cliente a exceção é fixa: três na barra (\"Salvar PDF\", \"WhatsApp\" e \"E-mail\") e dois no card \"Ficou com alguma dúvida?\" (WhatsApp e E-mail); numa página sem relatório, o estado vazio leva também \"Projetos anteriores · N\". Os outros caminhos são links de texto, nunca botões outline concorrendo com eles.",
         "section": "components"
       },
       {
@@ -595,33 +644,47 @@
       },
       {
         "name": "The Monochrome Sidebar Rule",
-        "body": "A sidebar se lê por forma, não por cor. Cliente é um tile da inicial em Tinta a 10%; projeto é um ícone lucide monocromático de 16px que diz o estado pela forma (círculo com ponto para em dia, alerta para pendência, relógio para parado ou sem relatório, pausa para em espera, check para concluído, X para encerrado), com o nome do estado só para leitor de tela.",
+        "body": "A sidebar se lê por forma, não por cor. O tile de marca do topo é Grafite (o \"IT\" no admin, a inicial no cliente); na lista do admin, cliente é um tile da inicial em Tinta a 10%. Projeto é um ícone lucide monocromático de 16px que diz o estado pela forma: círculo com ponto para em dia ou em andamento, alerta para pendência ou \"aguardando você\", pausa para em espera, check para concluído e X para encerrado; o relógio, de parado ou sem relatório, só existe no admin. O nome do estado fica só para leitor de tela. A cor do cliente nunca entra na sidebar.",
         "section": "components"
       },
       {
         "name": "The Tinted Surface Rule",
         "body": "Sobre superfície tingida pela marca, o texto secundário deriva da Tinta a 75% (cerca de 8:1), nunca do Cinza Legenda, que cai para perto de 3,9:1 sobre o tingimento.",
         "section": "components"
+      },
+      {
+        "name": "The Plain Section Number Rule",
+        "body": "O número de seção é texto simples, em Cinza Legenda e tabular, no tamanho do título e antes do h2. Ele nunca fica num círculo, que é dos passos numerados logo acima: os dois não podem parecer a mesma sequência.",
+        "section": "components"
+      },
+      {
+        "name": "The Absolute Dates Rule",
+        "body": "Página de cliente mostra só data absoluta (\"21 Out 2026\"; a previsão por mês, \"Jan 2027\"). O site só é reconstruído quando um relatório é publicado, então um \"hoje\" ou \"há N dias\" calculado no build fica falso no dia seguinte. O admin pode usar a data relativa porque é interno e mostra a data do deploy.",
+        "section": "components"
       }
     ],
     "dos": [
-      "Do montar toda página nova dentro do shell: sidebar de 256px, barra de 56px e coluna de até 1152px com 24px entre blocos.",
-      "Do partir dos primitivos gerados em `src/components/ui/` (Card, Badge, Item, Table, Progress, Empty, Sidebar, Tooltip, Breadcrumb) antes de escrever marcação própria, e registrar em DECISOES §19 qualquer edição neles.",
+      "Do montar toda página com cliente ou navegação dentro do shell: sidebar de 256px, barra de 56px e coluna de até 1152px com 24px entre blocos. Só a raiz e o 404 ficam fora, como estado vazio centrado.",
+      "Do partir dos primitivos gerados em `src/components/ui/` (Card, Badge, Button, Item, Table, Progress, Empty, Sidebar, Tooltip, Breadcrumb, Separator) antes de escrever marcação própria, e registrar em DECISOES §19 qualquer edição neles.",
       "Do marcar estado com o ponto de 8px dentro de um badge outline, ou com o ícone lucide de 16px, sempre junto da palavra (visível ou para leitor de tela).",
-      "Do usar um único botão preenchido em Grafite por página, à direita da barra superior.",
-      "Do usar `tabular-nums` em todo número comparável e Headline (600, 1.5rem) nos valores de KPI.",
-      "Do usar a Tinta a 75% para texto secundário sobre o hero tingido.",
-      "Do pôr o badge de ciclo de vida ao lado do h1, e a contagem de cada card como descrição embaixo do título."
+      "Do usar botão preenchido em Grafite para toda ação: um por página no admin; no cliente, os três da barra (só ícone abaixo de 640px) e os dois do card de contato.",
+      "Do usar `tabular-nums` em todo número comparável e Headline (600, 1.5rem) nos valores de KPI e no progresso geral.",
+      "Do usar a Tinta a 75% para texto secundário sobre o cabeçalho tingido.",
+      "Do escrever o corpo de leitura do cliente em Body Read (15px, entrelinha de 24px), na Tinta a 80%, até 65ch e com `text-pretty`.",
+      "Do pôr o badge de ciclo de vida ao lado do h1 (no cliente, só para em espera, concluído e encerrado), e a contagem de cada card como descrição embaixo do título.",
+      "Do conferir a impressão a cada mudança no relatório: todos os projetos, cada um em página nova, sem sidebar, barra nem contato, com as seções abertas e os fundos mantidos."
     ],
     "donts": [
-      "Don't usar a cor do cliente como cor de texto nem para pintar barra de progresso; marcas vermelhas (Movi, Neon) leem como alarme.",
+      "Don't usar a cor do cliente como cor de texto (nem no destaque do título), para pintar barra de progresso ou na sidebar; marcas vermelhas (Movi, Neon) leem como alarme.",
       "Don't colorir a sidebar, nem por cliente nem por estado; ela usa tiles e ícones monocromáticos.",
-      "Don't pôr rótulo ou eyebrow acima de título.",
+      "Don't pôr rótulo ou eyebrow acima de título, nem kicker em caixa-alta acima de bloco.",
       "Don't adicionar uma segunda família, mono decorativo ou caixa-alta com tracking aberto.",
-      "Don't usar Cinza Legenda sobre superfície tingida pela marca.",
+      "Don't usar Cinza Legenda sobre superfície tingida pela marca, nem no parágrafo que o cliente veio ler.",
+      "Don't mostrar o badge de ciclo de vida num projeto em andamento na página do cliente: o ponto verde contradiz a legenda, onde verde quer dizer concluído.",
+      "Don't mostrar data relativa (\"hoje\", \"há N dias\") em página de cliente.",
+      "Don't pôr o número de seção num círculo; o círculo é do passo numerado.",
       "Don't dar hover de linha inteira numa linha de tabela cujo único link é o nome.",
-      "Don't carregar `tailwind.css` e `globals.css` na mesma página: a regra sem camada da v2 (`* { margin: 0; padding: 0 }`) anula todo utilitário do Tailwind.",
-      "Don't aplicar estas regras às páginas de cliente antes da migração delas, nem trazer regras da v2 (Archivo, trilho na cor da marca, CSS puro) para dentro deste sistema."
+      "Don't importar CSS fora do layout raiz nem criar uma segunda folha de estilo; a única regra própria fora de camada no `tailwind.css` é o bloco de impressão."
     ]
   }
 }

@@ -1,6 +1,6 @@
 # Spec: Páginas de cliente no sistema do admin (shadcn/ui, etapa 2)
 
-- **Status:** aprovada
+- **Status:** implementada
 - **Data:** 2026-10-21
 
 ## Problema / motivação
