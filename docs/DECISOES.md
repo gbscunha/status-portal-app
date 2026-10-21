@@ -460,6 +460,51 @@ calculado no servidor.
 
 ---
 
+## 20. Cliente fora do ar — flag na config, dados preservados
+
+**Decisão (2026-10-21):** o cliente ganha um `offline` opcional em
+`content/clients/<id>.json`. Com `true`, `/r/<slug>` e `/r/<slug>/anteriores` dão
+404, porque o slug sai do `generateStaticParams` das duas rotas
+(`clientSlugs`/`archiveSlugs`, em `src/lib/lifecycle.ts`) e o `getClientBySlug`
+ignora o cliente. Config, snapshots e o cliente no admin ficam. O admin troca o
+link "Página do cliente" por "Página fora do ar". Primeiro uso: a Movi, que
+encerrou o contrato em 2026-10 (Painel Web e Checklist App `closed`; o Movi
+Exporter continua `delivered`). Spec: `docs/specs/cliente-fora-do-ar.md`.
+
+**Por quê:**
+
+- **Tirar do ar ≠ encerrar.** O §17 mantém os encerrados visíveis em "Projetos
+  anteriores", porque o histórico é do cliente, e esse continua sendo o padrão.
+  Tirar a página do ar é uma decisão do dono sobre o acesso, separada do estado de
+  cada projeto. Por isso mora no cliente, não no `lifecycle`.
+- **Os dados ficam.** Apagar o JSON derrubaria a página, mas tiraria o cliente do
+  admin. Com a flag, a mudança é um diff de uma linha, revisado como qualquer
+  outro, e o git guarda quando mudou (o mesmo argumento do §17). Para voltar ao
+  ar, é só tirar o campo.
+- **404 por construção.** É o mesmo mecanismo do §4 e do §17: o slug não é gerado
+  e o `dynamicParams = false` responde 404. Esse 404 é idêntico ao de um slug que
+  nunca existiu, então quem testa o link não descobre que ele existiu. A busca por
+  slug também ignora o cliente (defesa em profundidade).
+- **Lista vazia é válida.** Sem nenhum cliente no ar com projeto arquivado, o
+  `generateStaticParams` de `/anteriores` devolve `[]`. No Next 16, isso vale com
+  `dynamicParams = false` e dá 404 em todo slug. Só daria erro com Cache
+  Components, que o projeto não usa.
+
+**Risco aceito:** deployments antigos da Vercel (`*.vercel.app` com hash)
+continuam servindo a página como era quando foram gerados. O cliente só recebeu o
+domínio de produção. Para fechar isso, a saída é a Deployment Protection, no
+painel da Vercel.
+
+**Rejeitado:**
+- Apagar o `clients/<id>.json`: o cliente some do admin.
+- Mover para outra pasta: o conteúdo passa a ter dois lugares para ler, e o admin
+  precisa conhecer os dois.
+- Trocar o slug: a página continua existindo, só muda de endereço.
+- Derivar de "todos os projetos terminados": a Movi tem um concluído, e encerrar
+  não é tirar do ar (§17).
+
+---
+
 ## Pegadinhas encontradas (para a próxima pessoa)
 
 - **Next 16 mudou.** O `AGENTS.md` avisa: "This is NOT the Next.js you know".
