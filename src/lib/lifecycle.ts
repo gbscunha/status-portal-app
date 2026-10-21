@@ -76,7 +76,19 @@ export function finishedReport(snapshot: Snapshot): Snapshot {
   };
 }
 
+/** Offline client: its pages are a 404, its data stays (DECISOES §20). */
+export function isOnline(client: Client): boolean {
+  return client.offline !== true;
+}
+
+/** Slugs that get a /r/<slug> page; every other slug is a 404. */
+export function clientSlugs(clients: Client[]): string[] {
+  return clients.filter(isOnline).map((c) => c.slug);
+}
+
 /** Slugs that get a /r/<slug>/anteriores page; every other slug is a 404. */
 export function archiveSlugs(clients: Client[]): string[] {
-  return clients.filter((c) => c.projects.some(isArchived)).map((c) => c.slug);
+  return clients
+    .filter((c) => isOnline(c) && c.projects.some(isArchived))
+    .map((c) => c.slug);
 }

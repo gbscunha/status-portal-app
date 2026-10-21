@@ -156,6 +156,25 @@ describe("portfolioRows / groupByClient", () => {
       ["a", ["a1"]],
     ]);
   });
+
+  it("keeps every project of an offline client and flags its page as down", () => {
+    const withOffline = [
+      { ...client("m", [project(closed, "m1"), project(delivered, "m2")]), offline: true },
+      client("a", [project(undefined, "a1")]),
+    ];
+    const rows = portfolioRows(withOffline, latestOf, today);
+    expect(rows.map((r) => [r.id, r.clientOnline])).toEqual([
+      ["m2", false],
+      ["m1", false],
+      ["a1", true],
+    ]);
+    expect(
+      groupByClient(rows).map((g) => [g.clientId, g.clientOnline]),
+    ).toEqual([
+      ["m", false],
+      ["a", true],
+    ]);
+  });
 });
 
 describe("portfolioStats", () => {

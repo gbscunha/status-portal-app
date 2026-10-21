@@ -60,8 +60,8 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 
 - **Cliente** (`content/clients/<id>.json`): `id`, `name`, `contact?`, `slug`,
   `brandColor` (hex `#RRGGBB`), `vendor`, `whatsapp?` (E.164, canal da ITGraph),
-  `email?`, `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`, `lifecycle?`,
-  `contractUrl?` — link para o contrato ASSINADO, nunca arquivo hospedado).
+  `email?`, `offline?` (§20), `projects[]` (`id`, `name`, `platform?`, `scope?{baseline,items[]}`,
+  `lifecycle?`, `contractUrl?` — link para o contrato ASSINADO, nunca arquivo hospedado).
 - **Ciclo de vida** (`lifecycle`, na config, nunca no snapshot): ausente = em andamento ·
   `paused{reason,since?}` ("Em espera") · `delivered{deliveredAt}` · `closed{closedAt,reason?}`
   (mês `YYYY-MM`; encerrado ≠ entregue). Fonte única: `src/lib/lifecycle.ts`. DECISOES §17.
@@ -107,7 +107,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   repo do cliente** (que tem um `.status-portal.json` com `portalRepoPath`/`clientId`/
   `projectId`), lê o que avançou, gera o snapshot em linguagem de cliente, mostra o
   **preview e PARA**. O humano revisa e faz `git push` no portal.
-- Repos configurados: `movi-web`, `movi-checklist` (movi-app), `movi_exporter_app` (movi-exporter).
+- Repos configurados: `creci`, `ct-bff`, `ct-react`, `prepona-api` (FGV), `diagnostico` (Ellementi), `veraerp` (Neon).
 
 ## Fluxos
 
@@ -115,6 +115,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   snapshot (skill ou à mão) → `git push`. A URL só existe após o redeploy.
 - **Novo projeto:** +objeto em `projects[]` do cliente → primeiro snapshot → push.
 - **Pausar/retomar/concluir/encerrar:** editar o `lifecycle` do projeto em `clients/<id>.json` → push.
+- **Tirar a página do ar:** `"offline": true` no cliente → push (404; dados ficam no admin, §20).
 
 ## Não faça
 
@@ -136,14 +137,13 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 ## Estado atual
 
 - **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare,
-  DNS-only; repo GitHub privado). Clientes: Movi, FGV, Ellementi, Neon. Painel admin
+  DNS-only; repo GitHub privado). Clientes no ar: FGV, Ellementi, Neon (Movi fora do ar). Painel admin
   em `/a/` (slug em `content/admin.json`), já em shadcn; o cliente migra num PR próprio.
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
 
 ## Compactação
 
-Ao resumir o contexto, preservar: decisões explícitas do usuário na sessão; as
-invariantes de Segurança/privacidade e a lista "Não faça"; a etapa atual do
-ciclo xp-cycle (e o passo corrente do CHECKLIST); comandos/arquivos ainda não
-commitados.
+Ao resumir o contexto, preservar: decisões explícitas do usuário na sessão; as invariantes de
+Segurança/privacidade e a lista "Não faça"; a etapa atual do ciclo xp-cycle (e o passo corrente
+do CHECKLIST); comandos/arquivos ainda não commitados.

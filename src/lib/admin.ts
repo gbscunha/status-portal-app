@@ -4,6 +4,7 @@ import {
   endMonth,
   finishedReport,
   isArchived,
+  isOnline,
   lifecycleOf,
   orderedProjects,
 } from "./lifecycle";
@@ -61,6 +62,8 @@ export type PortfolioRow = AdminProjectRow & {
   clientId: string;
   clientName: string;
   clientSlug: string;
+  /** false = client page taken down (404); the rows stay. */
+  clientOnline: boolean;
   brandColor: string;
 };
 
@@ -77,6 +80,7 @@ export function portfolioRows(
       clientId: client.id,
       clientName: client.name,
       clientSlug: client.slug,
+      clientOnline: isOnline(client),
       brandColor: client.brandColor,
     })),
   );
@@ -86,6 +90,7 @@ export type ClientGroup = {
   clientId: string;
   clientName: string;
   clientSlug: string;
+  clientOnline: boolean;
   brandColor: string;
   rows: PortfolioRow[];
 };
@@ -97,6 +102,7 @@ export function groupByClient(rows: PortfolioRow[]): ClientGroup[] {
       clientId: row.clientId,
       clientName: row.clientName,
       clientSlug: row.clientSlug,
+      clientOnline: row.clientOnline,
       brandColor: row.brandColor,
       rows: [],
     };

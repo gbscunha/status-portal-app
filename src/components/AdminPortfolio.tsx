@@ -73,13 +73,19 @@ export function AdminPortfolio({
                     <span className="font-semibold text-foreground">
                       {group.clientName}
                     </span>
-                    <a
-                      href={`/r/${group.clientSlug}`}
-                      className="ml-auto inline-flex items-center gap-1 text-xs font-normal text-muted-foreground hover:text-foreground hover:underline"
-                    >
-                      Página do cliente
-                      <ArrowUpRightIcon className="size-3.5" />
-                    </a>
+                    {group.clientOnline ? (
+                      <a
+                        href={`/r/${group.clientSlug}`}
+                        className="ml-auto inline-flex items-center gap-1 text-xs font-normal text-muted-foreground hover:text-foreground hover:underline"
+                      >
+                        Página do cliente
+                        <ArrowUpRightIcon className="size-3.5" />
+                      </a>
+                    ) : (
+                      <span className="ml-auto text-xs font-normal text-muted-foreground">
+                        Página fora do ar
+                      </span>
+                    )}
                   </div>
                 </TableHead>
               </TableRow>
