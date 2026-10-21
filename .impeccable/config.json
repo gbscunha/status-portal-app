@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-21T13:35:22.386Z",
+        "reason": "dono (2026-10-21): escolheu o tema padrão do shadcn + Inter para o admin"
+      }
+    ]
+  }
+}

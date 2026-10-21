@@ -12,7 +12,9 @@ function PhraseTitle({ text, highlight }: { text: string; highlight: string }) {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="admin-accent">{highlight}</span>
+      <span className="underline decoration-[3px] underline-offset-[6px]">
+        {highlight}
+      </span>
       {text.slice(idx + highlight.length)}
     </>
   );
@@ -32,10 +34,12 @@ export function AdminGreeting({ buildDateIso }: { buildDateIso: string }) {
   return (
     <>
       {/* Greeting must work at any hour — no "bom dia"/"boa tarde". */}
-      <h1 className="report-title">
+      <h1 className="text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
         <PhraseTitle {...dailyPhrase(today)} />
       </h1>
-      <p className="admin-today">{formatPtDateFull(today)}</p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        {formatPtDateFull(today)}
+      </p>
     </>
   );
 }

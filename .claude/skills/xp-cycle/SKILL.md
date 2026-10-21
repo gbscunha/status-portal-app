@@ -49,8 +49,11 @@ Verificação manual das rotas: `pnpm dev` → `/r/<slug>` renderiza; `/r/<inexi
 
 ## Invariantes (nenhuma mudança pode violar)
 
-- [ ] `export const dynamicParams = false` intacto em `r/[slug]`; Cache
-      Components NUNCA habilitado.
+- [ ] `export const dynamicParams = false` intacto em todas as rotas dinâmicas
+      (`r/[slug]`, `r/[slug]/anteriores`, `a/[slug]`,
+      `a/[slug]/[clientId]/[projectId]`); Cache Components NUNCA habilitado.
+- [ ] CSS isolado por segmento (DECISOES §19): o layout raiz não importa CSS;
+      páginas de cliente só com `globals.css`, admin só com `tailwind.css`.
 - [ ] `noindex` nas 3 camadas: metadata (layout + page), `app/robots.ts`,
       header `X-Robots-Tag` (`next.config.ts`).
 - [ ] Nenhum OpenGraph rico ou título que revele o cliente em `/r/[slug]`.

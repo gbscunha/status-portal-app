@@ -193,6 +193,10 @@ sujeito — a Movi é de logística; a ITGraph "entrega" software rastreável).
 secretas a gerenciar; biblioteca de tabs/estado — dependência proibida sem
 necessidade.
 
+> **Atualização (2026-10-21):** no admin, o CSS puro e o limite de uma ilha
+> client foram substituídos por shadcn/ui + Tailwind (§19). As páginas de cliente
+> seguem este parágrafo até a migração delas.
+
 ---
 
 ## 15. Painel admin (`/a/<slug>`) — exceção consciente ao "não listar slugs"
@@ -339,6 +343,120 @@ problemas de layout e contraste.
 variante genérica `.agents/` que o CLI do skills.sh escolhe por padrão (caminhos e
 sintaxe de comando do Codex); as alternativas só-texto `better-*` (jakubkrehel) e
 `interface-design`.
+
+## 19. shadcn/ui + Tailwind no admin, com o CSS isolado por segmento
+
+**Decisão (2026-10-21):** o painel admin foi refeito com **shadcn/ui** (preset `nova`,
+base **Base UI**, tema padrão neutral) e **Tailwind v4**, com a fonte **Inter**.
+A estrutura agora é visão geral + uma página por projeto (spec `admin-layout.md`).
+A adoção vale para o projeto todo, em duas etapas: primeiro o admin, depois as
+páginas de cliente, num PR próprio com prévia. Até lá, as páginas de cliente seguem
+na v2 em CSS puro (§14), sem nenhuma mudança visual.
+
+**Por quê:** o dono rejeitou uma prévia do admin feita à mão no mundo da v2 e quer
+componentes de biblioteca, mais fiéis à referência que trouxe (um dashboard com
+cara de shadcn). Para uma tela de uso interno, um vocabulário de componentes
+conhecido (sidebar, trilha, cards, tabela) vale mais do que um visual autoral. Este
+§19 revoga, só para o admin, o "CSS puro" e o "três ilhas" do §14.
+
+**Como o CSS fica isolado (e por quê):**
+
+- **O conflito:** o `globals.css` da v2 tem regras fora de camada, como
+  `* { margin: 0; padding: 0 }`. Pelo spec de cascade layers, uma regra fora de
+  camada vence qualquer regra em `@layer`, e os utilitários do Tailwind ficam em
+  camadas. Carregar os dois na mesma página anula o shadcn.
+- **A solução: o layout raiz não importa CSS nenhum.**
+  - `src/app/page.tsx` e `src/app/r/layout.tsx` importam o `globals.css`.
+  - `src/app/a/layout.tsx` importa o `src/app/tailwind.css`.
+- **Por que não vaza:** todos os links são `<a>` comuns, então não há navegação
+  client-side entre `/a` e `/r` que levasse o CSS de um para o outro.
+- **Prova:** na migração, o CSS de `/`, `/r/*` e `/anteriores` ficou idêntico ao
+  de antes, menos as regras `.admin*` removidas. As capturas das páginas de
+  cliente ficaram idênticas byte a byte. Nenhum HTML fora de `/a` carrega Tailwind.
+- **Rejeitado:** vários layouts raiz por route group. Exigiria o
+  `global-not-found`, que é experimental, justamente no 404 anti-fishing.
+- **Efeito no 404:** o `/_not-found` é o 404 padrão do Next e continua igual, só
+  que sem a v2. Perde o `padding-bottom` de 64px e o antialiasing.
+
+**Fonte:**
+- A Inter vem de `next/font` dentro do `a/layout.tsx` e entra como
+  `<style href precedence>` com `:root{--font-sans: …}`. Ela não pode ficar num
+  `<div>`, porque a Sheet do celular é renderizada no `<body>`.
+- O `@theme inline { --font-sans: var(--font-sans) }` gerado pelo shadcn é cíclico
+  e só funciona porque esse `<style>` sem camada vence. Se ele sumir, a fonte cai
+  para o padrão do navegador.
+- A Archivo continua no layout raiz, porque o `globals.css` lê `--font-display` do
+  `<html>`. Por isso o admin também pré-carrega o woff2 dela, que não usa (custo
+  aceito).
+
+**Dependências** (aprovadas pelo dono, versões exatas):
+- Runtime: `@base-ui/react` 1.9.0, `class-variance-authority` 0.7.1, `cn` 0.5.0 (o
+  merge de classes que os componentes gerados importam) e `lucide-react` 1.60.0.
+- Dev: `tailwindcss` e `@tailwindcss/postcss` 4.3.3, `shadcn` 4.21.4 e
+  `tw-animate-css` 1.4.0.
+- O `shadcn` é necessário no build, porque o `tailwind.css` faz
+  `@import "shadcn/tailwind.css"`.
+- Os componentes foram gerados com o CLI fixado (`pnpm dlx shadcn@4.21.4`). O
+  `init` reescreveu o layout raiz para injetar a Geist, e isso foi revertido.
+
+**Edições locais nos arquivos gerados** (um `shadcn add --overwrite` desfaz; refazer
+depois de atualizar):
+- `"use client"` em `ui/badge.tsx`, `ui/breadcrumb.tsx` e `ui/item.tsx`: eles usam
+  `useRender` (que chama `useRef`) e quebram quando usados por Server Component.
+- `hooks/use-mobile.ts` reescrito com `useSyncExternalStore`. A versão do registry
+  faz setState dentro de effect e falha no lint (`react-hooks/set-state-in-effect`).
+- `ui/sidebar.tsx` não grava mais o cookie `sidebar_state`: nada o lê num site
+  estático, e cada link recarrega a página. O `SidebarMenuSkeleton` (com
+  `Math.random`) ficou como veio, porque não é usado.
+- Textos para leitor de tela em pt-BR em `ui/sheet.tsx`, `ui/sidebar.tsx` e
+  `ui/breadcrumb.tsx`.
+
+**Tema:**
+- Os tokens de estado (`done`, `prog`, `plan` e `hold`, com os fundos) entraram no
+  `tailwind.css` com os mesmos valores da v2. O significado das cores é o mesmo no
+  admin e nas páginas de cliente.
+- O anel de foco é o do tema padrão (`ring/50`, cerca de 1,5:1 sobre branco).
+  Fica registrado; subir o tom é uma decisão de tema para depois.
+- No hero tingido, o texto secundário vem do `foreground` (75%), porque o cinza
+  `muted` fica abaixo de 4,5:1.
+- O detector da impeccable ignora "fonte batida" para a Inter
+  (`.impeccable/config.json`), por ser escolha do dono.
+
+**Revisão final da impeccable (21-10), o que mudou:**
+- **Barra lateral só com ícones (pedido do dono):** sem esquema de cores. Os
+  clientes têm um quadradinho monocromático com a inicial e uma lista de
+  projetos recolhível (`ui/collapsible`). Nos projetos, um ícone cuja forma diz
+  o estado: o círculo com ponto é "em dia", com o mesmo sentido de "em andamento"
+  nas frentes. A barra recolhe para uma faixa de ícones com tooltip, onde o
+  cliente vira link para a seção dele (troca só por CSS). A data do deploy fica
+  no rodapé da barra lateral.
+- **Hero:** o badge fica ao lado do h1, sem rótulo acima do título (proibido pelo
+  craft-floor). A cor da marca vai só no fundo e na borda; a barra de progresso
+  fica preta e mais grossa, porque marcas vermelhas leriam como alerta.
+- **Atenção:** sem o ponto da marca. Cada linha mostra a pendência que espera há
+  mais tempo (`oldestPending`) e há quantos dias.
+- **Avanço:** escrito como "+N frentes no escopo", porque "+N frentes" sozinho se
+  lia como N concluídas.
+- **Tabela:** só o nome é link e a linha não muda de cor no hover. Não dava para
+  garantir `position: relative` em `<tr>` no Safari.
+- **Divergência consciente:** o revisor da skill pede o sorteio de direção
+  (`concept-seed`) e um `seed` no brief. O dono decidiu não rodar, porque o mundo
+  (shadcn padrão + Inter) e a composição (a referência dele) estão fixados por
+  ele, e o `new-work.md` diz que uma direção fixada vence o sorteio. Rodar
+  abriria uma rodada de direção cujo resultado essa fixação anula. O brief
+  registra `seed: none` com esse motivo.
+
+**Rotas:** `/a/[slug]/[clientId]/[projectId]` gera os params de baixo para cima,
+com `dynamicParams = false`. Qualquer combinação fora das geradas dá 404,
+inclusive um par cliente/projeto trocado. O shell é um Server Component por página,
+e não um `layout.tsx`, porque o layout não conhece a rota filha e o item ativo é
+calculado no servidor.
+
+**Rejeitado:**
+- shadcn só no admin, isolado para sempre: o dono quer o projeto todo, em etapas.
+- Prévia em CSS puro no mundo da v2: rejeitada pelo dono.
+- `npx impeccable install`: ele instala um hook junto, e a skill foi instalada
+  manualmente (§18).
 
 ---
 

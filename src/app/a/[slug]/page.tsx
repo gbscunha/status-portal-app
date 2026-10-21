@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAdminSlug } from "@/lib/content";
-import { AdminDashboard } from "@/components/AdminDashboard";
+import { AdminOverview } from "@/components/AdminOverview";
 
 // Cockpit interno do dono. Mesma segurança das páginas de cliente: só o slug
 // de content/admin.json existe (404 para o resto) e nada linka para cá.
@@ -26,5 +26,5 @@ export default async function AdminPage({
   const { slug } = await params;
   if (slug !== getAdminSlug()) notFound();
 
-  return <AdminDashboard />;
+  return <AdminOverview adminSlug={slug} />;
 }
