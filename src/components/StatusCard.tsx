@@ -1,4 +1,12 @@
 import type { StatusCard as StatusCardData } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { StatusPill } from "./StatusPill";
 
 export function StatusCard({
@@ -8,12 +16,18 @@ export function StatusCard({
   fullWidth,
 }: StatusCardData) {
   return (
-    <div className={`card${fullWidth ? " full" : ""}`}>
-      <div className="top">
-        <span className="title">{title}</span>
-        <StatusPill status={status} />
-      </div>
-      <p className="desc">{description}</p>
-    </div>
+    <Card className={cn("break-inside-avoid", fullWidth && "sm:col-span-2")}>
+      <CardHeader>
+        <CardTitle>
+          <h3 className="text-balance">{title}</h3>
+        </CardTitle>
+        <CardAction>
+          <StatusPill status={status} />
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <p className="max-w-prose text-pretty text-muted-foreground">{description}</p>
+      </CardContent>
+    </Card>
   );
 }

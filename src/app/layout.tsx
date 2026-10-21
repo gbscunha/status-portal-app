@@ -1,18 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Inter } from "next/font/google";
+import "./tailwind.css";
 
-// No stylesheet here on purpose: each segment imports its own (v2 globals.css
-// in page.tsx and r/layout.tsx, the shadcn tailwind.css in a/layout.tsx).
-// Loading both on one page breaks Tailwind — globals.css rules are unlayered
-// and beat every @layer utility (DECISOES §19).
-
-// Single-family system: Archivo variable (wdth axis) covers display
-// (expanded), body and the small uppercase labels.
-const archivo = Archivo({
-  variable: "--font-display",
+// The only stylesheet of the app (shadcn/ui theme, DECISOES §19 and §20): no
+// other file imports CSS. Inter is the single family; its variable sits on
+// <html>, where tailwind.css resolves --font-sans, so the portaled mobile
+// drawer inherits it too.
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
-  axes: ["wdth"],
 });
 
 // Título genérico de propósito: nenhuma página deve revelar o cliente
@@ -23,9 +20,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Matches --wash in globals.css (mobile browser chrome color).
+// Mobile browser chrome matches the page background.
 export const viewport: Viewport = {
-  themeColor: "#f4f5f7",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -34,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={archivo.variable}>
+    <html lang="pt-BR" className={inter.variable}>
       <body>{children}</body>
     </html>
   );

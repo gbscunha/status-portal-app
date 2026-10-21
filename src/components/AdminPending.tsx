@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AdminStatusDot } from "./AdminStatusDot";
+import { StatusDot } from "./StatusDot";
 
 // "Aguardando o cliente": the latest report's pending items (the client's
 // actions, shown as "Aguardando você" on their page).
@@ -39,7 +39,7 @@ export function AdminPending({
                 key={`${i}-${item.label}`}
                 className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 py-3 first:pt-0 last:pb-0"
               >
-                <AdminStatusDot tone="prog" className="mt-1.5" />
+                <StatusDot tone="prog" className="mt-1.5" />
                 <div className="flex flex-col items-start gap-1">
                   <p className="text-sm font-medium text-pretty">{item.label}</p>
                   <p className="text-sm text-pretty text-muted-foreground">{item.desc}</p>

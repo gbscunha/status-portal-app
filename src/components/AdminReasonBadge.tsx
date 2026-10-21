@@ -1,6 +1,6 @@
 import type { AttentionReason } from "@/lib/admin";
 import { Badge } from "@/components/ui/badge";
-import { AdminStatusDot, type DotTone } from "./AdminStatusDot";
+import { StatusDot, type DotTone } from "./StatusDot";
 
 function label(reason: AttentionReason): string {
   switch (reason.kind) {
@@ -26,7 +26,7 @@ const TONE: Record<AttentionReason["kind"], DotTone> = {
 export function AdminReasonBadge({ reason }: { reason: AttentionReason }) {
   return (
     <Badge variant="outline">
-      <AdminStatusDot tone={TONE[reason.kind]} />
+      <StatusDot tone={TONE[reason.kind]} />
       {label(reason)}
     </Badge>
   );

@@ -33,8 +33,9 @@ export type ClientNavItem = {
 export type ClientNav = {
   projects: ClientNavItem[];
   /** Null when nothing is archived. With archived projects but no report, the
-   *  group still links to the page, which then shows its empty state. */
-  archive: { href: string; items: ClientNavItem[] } | null;
+   *  group still links to the page, which then shows its empty state; `here`
+   *  marks that link as the current page on /anteriores. */
+  archive: { href: string; here: boolean; items: ClientNavItem[] } | null;
 };
 
 type Report = { project: Project; snapshot: Snapshot };
@@ -72,7 +73,11 @@ export function clientNav(
     projects: items(currentProjects(client.projects), mainHref, page === "current"),
     archive:
       archived.length > 0
-        ? { href: archiveHref, items: items(archived, archiveHref, page === "archive") }
+        ? {
+            href: archiveHref,
+            here: page === "archive",
+            items: items(archived, archiveHref, page === "archive"),
+          }
         : null,
   };
 }

@@ -1,11 +1,19 @@
 import type { Lifecycle } from "@/lib/types";
 import { LIFECYCLE_LABELS, endMonth } from "@/lib/lifecycle";
 import { formatPtDate, formatPtMonth } from "@/lib/format";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { LIFECYCLE_TONE } from "./LifecycleBadge";
+import { StatusDot } from "./StatusDot";
 
-// Whole-project state, first block of the rail. Active projects render
-// nothing, so reports without a lifecycle look exactly as before. A paused
-// project points at "Aguardando você" (right below) when the client has
-// pending actions — the reason and the asks read as one message.
+// Whole-project state, first block under the header. Active projects render
+// nothing. A paused project points at "Aguardando você" (right below) when the
+// client has pending actions — the reason and the asks read as one message.
 export function LifecycleNotice({
   lifecycle,
   hasPending,
@@ -19,39 +27,43 @@ export function LifecycleNotice({
   const month = endMonth(lifecycle);
 
   return (
-    <section
-      className={`lifecycle-notice flow-block ${lifecycle.state}`}
-      aria-label={heading}
-    >
-      <div className="kicker">
-        {heading}
+    <Card className="break-inside-avoid">
+      <CardHeader>
+        <CardTitle>
+          <h2 className="flex items-center gap-2">
+            <StatusDot tone={LIFECYCLE_TONE[lifecycle.state]} />
+            {heading}
+          </h2>
+        </CardTitle>
         {lifecycle.state === "paused" && lifecycle.since && (
-          <span className="lifecycle-since">
-            desde {formatPtDate(lifecycle.since)}
-          </span>
+          <CardDescription>desde {formatPtDate(lifecycle.since)}</CardDescription>
         )}
-      </div>
-      {lifecycle.state === "paused" ? (
-        <>
-          <p className="lifecycle-text">{lifecycle.reason}</p>
-          {hasPending && (
-            <p className="lifecycle-hint">
-              Veja logo abaixo o que precisamos de você.
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2 text-[15px]/6 text-pretty">
+        {lifecycle.state === "paused" ? (
+          <>
+            <p>{lifecycle.reason}</p>
+            {hasPending && (
+              <p className="text-muted-foreground">
+                Veja logo abaixo o que precisamos de você.
+              </p>
+            )}
+          </>
+        ) : (
+          <>
+            <p>
+              {lifecycle.state === "delivered" ? "Entregue" : "Encerrado"} em{" "}
+              <span className="font-medium">{month && formatPtMonth(month)}</span>.
             </p>
-          )}
-        </>
-      ) : (
-        <>
-          <p className="lifecycle-text">
-            {lifecycle.state === "delivered" ? "Entregue" : "Encerrado"} em{" "}
-            <b className="semibold">{month && formatPtMonth(month)}</b>.
-          </p>
-          {lifecycle.state === "closed" && lifecycle.reason && (
-            <p className="lifecycle-text">{lifecycle.reason}</p>
-          )}
-          <p className="lifecycle-hint">Este é o último relatório do projeto.</p>
-        </>
-      )}
-    </section>
+            {lifecycle.state === "closed" && lifecycle.reason && (
+              <p>{lifecycle.reason}</p>
+            )}
+            <p className="text-muted-foreground">
+              Este é o último relatório do projeto.
+            </p>
+          </>
+        )}
+      </CardContent>
+    </Card>
   );
 }

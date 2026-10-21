@@ -82,6 +82,7 @@ describe("clientNav", () => {
     const nav = clientNav(c, reports, "current");
     expect(nav.archive).toEqual({
       href: "/r/cliente-slug/anteriores",
+      here: false,
       items: [
         {
           id: "done",
@@ -109,6 +110,7 @@ describe("clientNav", () => {
   it("flips which group is local on the archive page", () => {
     const nav = clientNav(c, reports, "archive");
     expect(nav.archive?.href).toBe("/r/cliente-slug/anteriores");
+    expect(nav.archive?.here).toBe(true);
     expect(nav.projects.map((item) => [item.href, item.local])).toEqual([
       ["/r/cliente-slug#run", false],
       ["/r/cliente-slug#wait", false],
@@ -130,7 +132,11 @@ describe("clientNav", () => {
 
   it("keeps the archive link when archived projects have no report", () => {
     const nav = clientNav(c, [report(waiting), report(running)], "current");
-    expect(nav.archive).toEqual({ href: "/r/cliente-slug/anteriores", items: [] });
+    expect(nav.archive).toEqual({
+      href: "/r/cliente-slug/anteriores",
+      here: false,
+      items: [],
+    });
   });
 
   it("lists delivered projects (newest first) before closed ones", () => {

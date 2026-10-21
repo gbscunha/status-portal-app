@@ -195,7 +195,7 @@ function Sidebar({
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Barra lateral</SheetTitle>
-            <SheetDescription>Navegação do painel.</SheetDescription>
+            <SheetDescription>Navegação.</SheetDescription>
           </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>

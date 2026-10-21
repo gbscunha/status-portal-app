@@ -2,9 +2,10 @@ import type { Lifecycle } from "@/lib/types";
 import { LIFECYCLE_LABELS, endMonth } from "@/lib/lifecycle";
 import { formatPtMonth } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
-import { AdminStatusDot, type DotTone } from "./AdminStatusDot";
+import { StatusDot, type DotTone } from "./StatusDot";
 
-const TONE: Record<Lifecycle["state"], DotTone> = {
+/** Dot tone of each lifecycle state, shared with the client's lifecycle notice. */
+export const LIFECYCLE_TONE: Record<Lifecycle["state"], DotTone> = {
   active: "done",
   paused: "hold",
   delivered: "done",
@@ -12,11 +13,11 @@ const TONE: Record<Lifecycle["state"], DotTone> = {
 };
 
 // Whole-project lifecycle, with the month for finished projects.
-export function AdminLifecycleBadge({ lifecycle }: { lifecycle: Lifecycle }) {
+export function LifecycleBadge({ lifecycle }: { lifecycle: Lifecycle }) {
   const month = endMonth(lifecycle);
   return (
     <Badge variant="outline">
-      <AdminStatusDot tone={TONE[lifecycle.state]} />
+      <StatusDot tone={LIFECYCLE_TONE[lifecycle.state]} />
       {LIFECYCLE_LABELS[lifecycle.state]}
       {month && ` · ${formatPtMonth(month)}`}
     </Badge>

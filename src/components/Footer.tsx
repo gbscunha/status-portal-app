@@ -8,13 +8,13 @@ export function Footer({
   project?: Project;
 }) {
   return (
-    <footer>
+    <footer className="flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground">
       <span translate="no">
         {client.name} · {client.vendor}
       </span>
       {project?.contractUrl ? (
         <a
-          className="footer-link"
+          className="font-medium text-foreground underline-offset-4 hover:underline"
           href={project.contractUrl}
           target="_blank"
           rel="noopener"

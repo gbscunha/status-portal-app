@@ -2,7 +2,7 @@ import type { Lifecycle, Project } from "@/lib/types";
 import type { ProjectSummary } from "@/lib/admin";
 import { formatPtDate, relativeDaysPt } from "@/lib/format";
 import { Progress } from "@/components/ui/progress";
-import { AdminLifecycleBadge } from "./AdminLifecycleBadge";
+import { LifecycleBadge } from "./LifecycleBadge";
 
 // Project header, tinted with the client's color (--brand is set by the
 // caller) in the background and border only. The progress bar stays primary
@@ -47,7 +47,7 @@ export function AdminProjectHero({
           >
             {project.name}
           </h1>
-          <AdminLifecycleBadge lifecycle={lifecycle} />
+          <LifecycleBadge lifecycle={lifecycle} />
         </div>
         {latest?.phase && <p className="font-medium">{latest.phase}</p>}
         <p className="max-w-prose text-pretty text-foreground/75">

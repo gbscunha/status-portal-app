@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 
 export type DotTone = "done" | "prog" | "hold" | "plan" | "alert";
 
-// Small state dot shared by the admin badges. "alert" is the
-// hollow amber ring (stale, never published).
+// Small state dot shared by the admin and client badges. "alert" is the
+// hollow amber ring (stale, never published; admin only).
 const TONES: Record<DotTone, string> = {
   done: "bg-done",
   prog: "bg-prog",
@@ -12,7 +12,7 @@ const TONES: Record<DotTone, string> = {
   alert: "ring-2 ring-prog ring-inset",
 };
 
-export function AdminStatusDot({
+export function StatusDot({
   tone,
   className,
 }: {
