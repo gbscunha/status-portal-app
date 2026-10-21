@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { ChevronRightIcon, CircleCheckIcon } from "lucide-react";
 import {
   Card,
@@ -20,7 +19,6 @@ import {
   ItemContent,
   ItemDescription,
   ItemGroup,
-  ItemMedia,
   ItemTitle,
 } from "@/components/ui/item";
 import {
@@ -29,14 +27,18 @@ import {
   type PortfolioRow,
   adminProjectHref,
 } from "@/lib/admin";
-import { formatPtDate } from "@/lib/format";
+import { formatPtDate, relativeDaysPt } from "@/lib/format";
 import { AdminReasonBadge } from "./AdminReasonBadge";
 
-// One line of context for the main reason.
+export type PendingItem = { label: string; since?: string };
+
+// One line of context for the main reason; for pending items, the one that
+// waited longest and how long.
 function detail(
   row: PortfolioRow,
   reason: AttentionReason,
-  firstPending: string | undefined,
+  oldest: PendingItem | undefined,
+  today: string,
 ): string {
   if (reason.kind === "none") return "Nenhum relatório publicado ainda.";
   if (reason.kind === "stale") {
@@ -44,7 +46,11 @@ function detail(
   }
   if (reason.kind === "pending") {
     const more = reason.count - 1;
-    return `${firstPending ?? "Pendência do cliente"}${more > 0 ? ` e mais ${more}` : ""}.`;
+    // Non-breaking spaces keep "· há 98 dias" on one line.
+    const age = oldest?.since
+      ? `\u00a0· ${relativeDaysPt(oldest.since, today).replaceAll(" ", "\u00a0")}`
+      : "";
+    return `${oldest?.label ?? "Pendência do cliente"}${more > 0 ? ` e mais\u00a0${more}` : ""}${age}.`;
   }
   return reason.reason;
 }
@@ -53,12 +59,14 @@ function detail(
 export function AdminAttention({
   adminSlug,
   items,
-  firstPendingOf,
+  oldestPendingOf,
+  today,
 }: {
   adminSlug: string;
   items: AttentionItem<PortfolioRow>[];
-  /** Label of each project's first pending item, keyed by "client/project". */
-  firstPendingOf: Record<string, string | undefined>;
+  /** Each project's longest-waiting pending item, keyed by "client/project". */
+  oldestPendingOf: Record<string, PendingItem | undefined>;
+  today: string;
 }) {
   return (
     <Card>
@@ -90,14 +98,7 @@ export function AdminAttention({
                 key={`${row.clientId}/${row.id}`}
                 render={<a href={adminProjectHref(adminSlug, row.clientId, row.id)} />}
                 className="items-start hover:bg-muted/50"
-                style={{ "--brand": row.brandColor } as CSSProperties}
               >
-                <ItemMedia className="pt-1.5">
-                  <span
-                    aria-hidden="true"
-                    className="size-2.5 rounded-full bg-(--brand)"
-                  />
-                </ItemMedia>
                 <ItemContent className="gap-1.5">
                   <ItemTitle>
                     <span className="font-normal text-muted-foreground">
@@ -111,7 +112,12 @@ export function AdminAttention({
                     ))}
                   </div>
                   <ItemDescription className="text-pretty">
-                    {detail(row, reasons[0], firstPendingOf[`${row.clientId}/${row.id}`])}
+                    {detail(
+                      row,
+                      reasons[0],
+                      oldestPendingOf[`${row.clientId}/${row.id}`],
+                      today,
+                    )}
                   </ItemDescription>
                 </ItemContent>
                 <ItemActions className="self-center">

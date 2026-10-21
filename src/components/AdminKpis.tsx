@@ -43,7 +43,7 @@ export function AdminKpis({ items }: { items: Kpi[] }) {
                 >
                   {kpi.value}
                   {kpi.unit && (
-                    <span className="text-sm font-normal text-muted-foreground">
+                    <span className="text-sm font-normal whitespace-nowrap text-muted-foreground">
                       {kpi.unit}
                     </span>
                   )}

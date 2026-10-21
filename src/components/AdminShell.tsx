@@ -17,14 +17,13 @@ import {
 } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { ClientGroup } from "@/lib/admin";
-import { formatPtDate } from "@/lib/format";
 import { AdminSidebar, type AdminCurrent } from "./AdminSidebar";
 
 export type Crumb = { label: string; href?: string };
 
-// Frame of every admin page: sidebar, top bar (trail + the one primary
-// action) and the content column. No cookies: the sidebar starts open and the
-// page stays fully static.
+// Frame of every admin page: sidebar (with the deploy date in its footer),
+// top bar (trail + the one primary action) and the content column. No
+// cookies: the sidebar starts open and the page stays fully static.
 export function AdminShell({
   adminSlug,
   groups,
@@ -45,7 +44,12 @@ export function AdminShell({
   return (
     <TooltipProvider>
       <SidebarProvider defaultOpen>
-        <AdminSidebar adminSlug={adminSlug} groups={groups} current={current} />
+        <AdminSidebar
+          adminSlug={adminSlug}
+          groups={groups}
+          current={current}
+          buildDate={buildDate}
+        />
         <SidebarInset>
           <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6">
             <SidebarTrigger className="-ml-1" />
@@ -82,9 +86,6 @@ export function AdminShell({
           <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 p-4 lg:p-8">
             {children}
           </div>
-          <footer className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-muted-foreground lg:px-8">
-            Dados do último deploy - {formatPtDate(buildDate)}.
-          </footer>
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>

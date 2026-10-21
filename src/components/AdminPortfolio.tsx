@@ -47,13 +47,13 @@ export function AdminPortfolio({
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className="hover:bg-transparent">
               <TableHead>Projeto</TableHead>
               <TableHead className="hidden xl:table-cell">Fase</TableHead>
               <TableHead className="hidden md:table-cell">
                 Último relatório
               </TableHead>
-              <TableHead className="w-40 sm:w-48">Progresso</TableHead>
+              <TableHead className="w-28 sm:w-48">Progresso</TableHead>
               <TableHead className="hidden md:table-cell">Situação</TableHead>
             </TableRow>
           </TableHeader>
@@ -84,17 +84,25 @@ export function AdminPortfolio({
                 </TableHead>
               </TableRow>
               {group.rows.map((row) => (
-                <TableRow key={row.id}>
+                // Only the name is the link, so the row has no hover fill that
+                // would promise a whole-row click.
+                <TableRow key={row.id} className="hover:bg-transparent">
                   <TableCell className="whitespace-normal">
                     <a
                       href={adminProjectHref(adminSlug, group.clientId, row.id)}
-                      className="font-medium hover:underline"
+                      className="font-medium underline-offset-4 hover:underline"
                     >
                       {row.name}
                     </a>
-                    <span className="block text-xs text-muted-foreground md:hidden">
-                      {row.report ? `${formatPtDate(row.report.date)} · ` : ""}
-                      {LIFECYCLE_LABELS[row.lifecycle.state]}
+                    <span className="flex flex-wrap gap-x-1 text-xs text-muted-foreground md:hidden">
+                      {row.report && (
+                        <span className="whitespace-nowrap">
+                          {formatPtDate(row.report.date)} ·
+                        </span>
+                      )}
+                      <span className="whitespace-nowrap">
+                        {LIFECYCLE_LABELS[row.lifecycle.state]}
+                      </span>
                     </span>
                   </TableCell>
                   <TableCell className="hidden whitespace-normal text-muted-foreground xl:table-cell">

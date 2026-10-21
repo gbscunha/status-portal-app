@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export type DotTone = "done" | "prog" | "hold" | "plan" | "alert";
 
-// Small state dot shared by the admin badges and the sidebar. "alert" is the
+// Small state dot shared by the admin badges. "alert" is the
 // hollow amber ring (stale, never published).
 const TONES: Record<DotTone, string> = {
   done: "bg-done",

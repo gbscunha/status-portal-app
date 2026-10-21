@@ -191,6 +191,19 @@ export function attentionList<T extends AdminProjectRow>(
     });
 }
 
+/** The pending item that has waited longest (oldest `since`), so the
+ *  attention list shows the worst case. Undated items only win when none is
+ *  dated; then the first one. ISO dates compare correctly as strings. */
+export function oldestPending<T extends { label: string; since?: string }>(
+  pending: T[],
+): T | undefined {
+  const dated = pending.filter((item) => item.since !== undefined);
+  if (dated.length === 0) return pending[0];
+  return dated.reduce((oldest, item) =>
+    item.since! < oldest.since! ? item : oldest,
+  );
+}
+
 export type RowSignal =
   | "active"
   | "pending"
@@ -342,11 +355,13 @@ export function formatDeltaPp(delta: number | null): string {
   return "0 pp";
 }
 
-/** "+2 frentes", "−1 frente", "mesmas frentes"; empty without a comparison. */
+/** "+2 frentes no escopo", "−1 frente no escopo", "mesmas frentes"; empty
+ *  without a comparison. It counts scope, so the words say so — "+4 frentes"
+ *  alone read as four delivered. */
 export function formatFrontsDelta(delta: number | null): string {
   if (delta === null) return "";
   if (delta === 0) return "mesmas frentes";
   const n = Math.abs(delta);
   const noun = n === 1 ? "frente" : "frentes";
-  return `${delta > 0 ? "+" : MINUS}${n} ${noun}`;
+  return `${delta > 0 ? "+" : MINUS}${n} ${noun} no escopo`;
 }

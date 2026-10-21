@@ -4,6 +4,7 @@ import {
   STALE_DAYS,
   attentionList,
   groupByClient,
+  oldestPending,
   portfolioRows,
   portfolioStats,
 } from "@/lib/admin";
@@ -22,10 +23,11 @@ export function AdminOverview({ adminSlug }: { adminSlug: string }) {
   const groups = groupByClient(rows);
   const stats = portfolioStats(rows);
   const attention = attentionList(rows);
-  const firstPendingOf = Object.fromEntries(
+  // The pending item that waited longest, so the list shows the worst case.
+  const oldestPendingOf = Object.fromEntries(
     attention.map(({ row }) => [
       `${row.clientId}/${row.id}`,
-      getLatestSnapshot(row.clientId, row.id)?.pending?.[0]?.label,
+      oldestPending(getLatestSnapshot(row.clientId, row.id)?.pending ?? []),
     ]),
   );
 
@@ -67,7 +69,8 @@ export function AdminOverview({ adminSlug }: { adminSlug: string }) {
           <AdminAttention
             adminSlug={adminSlug}
             items={attention}
-            firstPendingOf={firstPendingOf}
+            oldestPendingOf={oldestPendingOf}
+            today={today}
           />
           <AdminPortfolio adminSlug={adminSlug} groups={groups} today={today} />
         </>

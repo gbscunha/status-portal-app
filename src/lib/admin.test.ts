@@ -11,6 +11,7 @@ import {
   findAdminProject,
   formatDeltaPp,
   formatFrontsDelta,
+  oldestPending,
   groupByClient,
   portfolioRows,
   portfolioStats,
@@ -261,6 +262,30 @@ describe("attentionList", () => {
   });
 });
 
+describe("oldestPending", () => {
+  it("picks the item waiting longest, not the first one", () => {
+    expect(
+      oldestPending([
+        { label: "novo", since: "2026-10-06" },
+        { label: "antigo", since: "2026-07-14" },
+        { label: "meio", since: "2026-09-01" },
+      ])?.label,
+    ).toBe("antigo");
+  });
+
+  it("prefers a dated item over undated ones", () => {
+    expect(
+      oldestPending([{ label: "sem data" }, { label: "datado", since: "2026-10-01" }])
+        ?.label,
+    ).toBe("datado");
+  });
+
+  it("falls back to the first item when none is dated, and to nothing when empty", () => {
+    expect(oldestPending([{ label: "a" }, { label: "b" }])?.label).toBe("a");
+    expect(oldestPending([])).toBeUndefined();
+  });
+});
+
 describe("rowSignal", () => {
   it("maps each row to the sidebar signal", () => {
     expect(rowSignal(row("ok"))).toBe("active");
@@ -442,10 +467,12 @@ describe("change formatting", () => {
     expect(formatDeltaPp(null)).toBe("—");
   });
 
-  it("formats the change in the number of fronts", () => {
-    expect(formatFrontsDelta(2)).toBe("+2 frentes");
-    expect(formatFrontsDelta(1)).toBe("+1 frente");
-    expect(formatFrontsDelta(-1)).toBe("−1 frente");
+  // It counts scope (fronts in the report), not fronts done: "+4 frentes"
+  // alone read as four delivered.
+  it("formats the change in the number of fronts as scope", () => {
+    expect(formatFrontsDelta(2)).toBe("+2 frentes no escopo");
+    expect(formatFrontsDelta(1)).toBe("+1 frente no escopo");
+    expect(formatFrontsDelta(-1)).toBe("−1 frente no escopo");
     expect(formatFrontsDelta(0)).toBe("mesmas frentes");
     expect(formatFrontsDelta(null)).toBe("");
   });
