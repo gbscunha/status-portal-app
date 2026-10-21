@@ -45,3 +45,6 @@ AI-DEV-SETUP.md
 CHECKLIST.md
 JOURNAL.md
 .claude/settings.local.json
+
+# impeccable skill: per-developer overrides (DECISOES §18)
+.impeccable/config.local.json
