@@ -3,6 +3,7 @@
   "name": "Movi Solutions",
   "contact": "Matheus",
   "slug": "movi-3xubgjr",
+  "offline": true,
   "brandColor": "#FF0E10",
   "vendor": "ITGraph",
   "whatsapp": "+5521995890014",
@@ -11,12 +12,20 @@
     {
       "id": "movi-web",
       "name": "Painel Web",
-      "platform": "Painel Web"
+      "platform": "Painel Web",
+      "lifecycle": {
+        "state": "closed",
+        "closedAt": "2026-10"
+      }
     },
     {
       "id": "movi-app",
       "name": "Checklist App",
-      "platform": "Aplicativo (iOS e Android)"
+      "platform": "Aplicativo (iOS e Android)",
+      "lifecycle": {
+        "state": "closed",
+        "closedAt": "2026-10"
+      }
     },
     {
       "id": "movi-exporter",
