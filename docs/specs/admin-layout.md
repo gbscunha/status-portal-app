@@ -110,8 +110,8 @@ Vitest (`src/lib/admin.test.ts`):
   - o avanço é +6 e a variação de frentes é a diferença de contagem;
   - o primeiro relatório é o mais antigo;
   - as frentes concluídas são as `done`.
-- **Sem base de comparação:** **DADO** um relatório único, ou um anterior sem
-  frentes, **QUANDO** resumo **ENTÃO** o avanço é `null`. **DADO** nenhum relatório
+- **Sem base de comparação:** **DADO** um relatório único, ou um dos dois
+  relatórios sem frentes, **QUANDO** resumo **ENTÃO** o avanço é `null`. **DADO** nenhum relatório
   **ENTÃO** o resumo é `null`.
 - **Params estáticos:** **DADO** os clientes **QUANDO** gero os params **ENTÃO** sai
   um trio slug/cliente/projeto por projeto, inclusive os sem relatório; sem slug
