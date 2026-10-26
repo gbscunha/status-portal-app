@@ -92,7 +92,7 @@ export function getAllClients(): Client[] {
 }
 
 // Slugs and lookup for the client pages (/r): an offline client is left out,
-// so its routes are a 404. The admin reads getAllClients and still sees it.
+// so its routes are a 404. The admin filters it out in src/lib/admin.ts (§22).
 export function getAllSlugs(): string[] {
   return clientSlugs(getAllClients());
 }
