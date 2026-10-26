@@ -485,6 +485,11 @@ link "Página do cliente" por "Página fora do ar". Primeiro uso: a Movi, que
 encerrou o contrato em 2026-10 (Painel Web e Checklist App `closed`; o Movi
 Exporter continua `delivered`). Spec: `docs/specs/cliente-fora-do-ar.md`.
 
+> **Atualização (2026-10-26, §22):** o cliente fora do ar também saiu do admin.
+> Config e snapshots continuam no repo, mas o painel não mostra mais o cliente nem
+> gera as páginas de projeto dele. O "Página fora do ar" e o "fora do ar" do card
+> de fatos saíram junto.
+
 **Por quê:**
 
 - **Tirar do ar ≠ encerrar.** O §17 mantém os encerrados visíveis em "Projetos
@@ -651,6 +656,47 @@ O isolamento por segmento do §19 acabou, e este §21 encerra, também para o cl
   da v2.
 - Uma página por projeto: reverteria o §14 e mudaria o PDF e os links já enviados.
 - Abas no topo: o dono quis a mesma moldura do admin.
+
+---
+
+## 22. Cliente fora do ar sai também do admin
+
+**Decisão (2026-10-26):** um cliente com `"offline": true` some do painel
+inteiro: sidebar, visão geral (lista de atenção, tabela e indicadores) e as
+páginas `/a/<slug>/<cliente>/<projeto>`, que deixam de ser geradas e dão 404. A
+regra vale para todo cliente `offline`, não só para a Movi. Config e snapshots
+continuam no repo, e para trazer o cliente de volta (página e admin) basta tirar
+o campo. Spec: `docs/specs/cliente-fora-do-ar.md` (seção "Admin, 2026-10-26").
+
+**Como funciona:** o filtro mora num lugar só, `adminClients` em
+`src/lib/admin.ts`, e as três entradas do admin passam por ele: `portfolioRows`
+(sidebar e visão geral), `adminProjectParams` (`generateStaticParams` das
+páginas de projeto) e `findAdminProject` (defesa em profundidade). As páginas
+continuam lendo `getAllClients`, e quem decide é a lib, com Vitest. O 404 vem do
+mesmo mecanismo do §4 e do §20 (`dynamicParams = false`).
+
+**Por quê:**
+
+- **O painel é para agir.** A Movi encerrou o contrato, e os projetos dela
+  (`closed`/`delivered`) já não entravam na lista de atenção nem nos
+  indicadores. Na sidebar e na tabela, ela só ocupava espaço com um aviso de
+  "Página fora do ar".
+- **Uma regra, não uma exceção.** Filtrar pelo slug da Movi seria uma exceção
+  escondida no código. A flag do §20 já diz "este cliente saiu", e o próximo
+  cliente que sair segue o mesmo diff de uma linha.
+- **Os dados ficam.** O argumento do §20 continua: o git guarda o conteúdo e
+  quando ele mudou, e voltar é tirar o campo.
+
+**Revisa o §20:** lá o cliente fora do ar ficava no admin, com "Página fora do
+ar" no lugar do link. Esse texto da UI saiu, junto com o `clientOnline` do
+portfólio e o aviso no hero e no card de fatos da página de projeto.
+
+**Rejeitado:**
+- Tirar só da sidebar: a tabela da visão geral continuaria mostrando o cliente.
+- Manter as páginas de projeto acessíveis pela URL: o dono quer o cliente fora
+  do painel, e uma página sem nenhum link para ela seria só um resto.
+- Uma flag separada para o admin (`hiddenInAdmin`): dois estados para
+  combinar sem caso de uso. Se um dia aparecer, a flag entra aí.
 
 ---
 

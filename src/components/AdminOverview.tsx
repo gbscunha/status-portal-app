@@ -18,8 +18,7 @@ import { AdminShell } from "./AdminShell";
 // fine here — this is not a client-facing page.
 export function AdminOverview({ adminSlug }: { adminSlug: string }) {
   const today = todayIso();
-  const clients = getAllClients();
-  const rows = portfolioRows(clients, getLatestSnapshot, today);
+  const rows = portfolioRows(getAllClients(), getLatestSnapshot, today);
   const groups = groupByClient(rows);
   const stats = portfolioStats(rows);
   const attention = attentionList(rows);
@@ -43,9 +42,9 @@ export function AdminOverview({ adminSlug }: { adminSlug: string }) {
         <AdminGreeting buildDateIso={today} />
       </header>
 
-      {clients.length === 0 ? (
+      {groups.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          Nenhum cliente configurado ainda.
+          Nenhum cliente no ar.
         </p>
       ) : (
         <>

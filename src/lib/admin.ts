@@ -56,31 +56,37 @@ export function adminProjectRow(
   };
 }
 
+// ---- Clients the admin knows ----
+
+/** An offline client leaves the admin too: no sidebar, overview or project
+ *  page. Its config and snapshots stay in the repo (DECISOES §22). */
+function adminClients(clients: Client[]): Client[] {
+  return clients.filter(isOnline);
+}
+
 // ---- Portfolio (overview + sidebar) ----
 
 export type PortfolioRow = AdminProjectRow & {
   clientId: string;
   clientName: string;
   clientSlug: string;
-  /** false = client page taken down (404); the rows stay. */
-  clientOnline: boolean;
   brandColor: string;
 };
 
-/** Every project of every client, in client order and each client's display
- *  order. The snapshot reader is injected so this stays pure. */
+/** Every project of every client in the admin, in client order and each
+ *  client's display order. The snapshot reader is injected so this stays
+ *  pure. */
 export function portfolioRows(
   clients: Client[],
   latestOf: (clientId: string, projectId: string) => Snapshot | null,
   today: string,
 ): PortfolioRow[] {
-  return clients.flatMap((client) =>
+  return adminClients(clients).flatMap((client) =>
     orderedProjects(client.projects).map((project) => ({
       ...adminProjectRow(project, latestOf(client.id, project.id), today),
       clientId: client.id,
       clientName: client.name,
       clientSlug: client.slug,
-      clientOnline: isOnline(client),
       brandColor: client.brandColor,
     })),
   );
@@ -90,7 +96,6 @@ export type ClientGroup = {
   clientId: string;
   clientName: string;
   clientSlug: string;
-  clientOnline: boolean;
   brandColor: string;
   rows: PortfolioRow[];
 };
@@ -102,7 +107,6 @@ export function groupByClient(rows: PortfolioRow[]): ClientGroup[] {
       clientId: row.clientId,
       clientName: row.clientName,
       clientSlug: row.clientSlug,
-      clientOnline: row.clientOnline,
       brandColor: row.brandColor,
       rows: [],
     };
@@ -302,14 +306,15 @@ export type AdminProjectParams = {
   projectId: string;
 };
 
-/** Static params of /a/[slug]/[clientId]/[projectId]: one triple per project,
- *  published or not. No admin slug, no pages (every URL is a 404). */
+/** Static params of /a/[slug]/[clientId]/[projectId]: one triple per project
+ *  of the admin's clients, published or not. No admin slug, no pages (every
+ *  URL is a 404). */
 export function adminProjectParams(
   adminSlug: string | null,
   clients: Client[],
 ): AdminProjectParams[] {
   if (!adminSlug) return [];
-  return clients.flatMap((client) =>
+  return adminClients(clients).flatMap((client) =>
     client.projects.map((project) => ({
       slug: adminSlug,
       clientId: client.id,
@@ -323,7 +328,7 @@ export function findAdminProject(
   clientId: string,
   projectId: string,
 ): { client: Client; project: Project } | null {
-  const client = clients.find((c) => c.id === clientId);
+  const client = adminClients(clients).find((c) => c.id === clientId);
   const project = client?.projects.find((p) => p.id === projectId);
   return client && project ? { client, project } : null;
 }
