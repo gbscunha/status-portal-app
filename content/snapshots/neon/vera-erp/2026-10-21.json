@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-21",
+  "phase": "Nova versão em validação",
+  "title": {
+    "text": "Nova versão do VERA em validação",
+    "highlight": "em validação"
+  },
+  "subtitle": "Vendas, compras, estoque, calibração e cobrança avançaram e estão sendo validados no ambiente de testes antes de entrar no uso do dia a dia da Neon.",
+  "milestone": "Cotações e compras chegam ao ambiente de testes",
+  "progress": [
+    {
+      "label": "Área B2B: propostas e agenda",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Orçamentos, vendas e estoque",
+      "percent": 75,
+      "state": "prog"
+    },
+    {
+      "label": "Compras e cotações com fornecedores",
+      "percent": 70,
+      "state": "prog"
+    },
+    {
+      "label": "Calibração e certificados",
+      "percent": 80,
+      "state": "prog"
+    },
+    {
+      "label": "Etiqueta com QR",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Cobrança bancária",
+      "percent": 60,
+      "state": "prog"
+    },
+    {
+      "label": "Notas fiscais integradas",
+      "percent": 30,
+      "state": "prog"
+    },
+    {
+      "label": "Nova versão no uso real",
+      "percent": 40,
+      "state": "prog"
+    }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "O foco agora é validar o que já está pronto e levar a nova versão para o uso real:",
+    "items": [
+      {
+        "label": "Aprovação de vendas e estoque",
+        "desc": "conferência final das telas de orçamento, venda e estoque frente ao desenho aprovado."
+      },
+      {
+        "label": "Conferência de compras e cotações",
+        "desc": "testar no ambiente de testes as rodadas de cotação, o reaproveitamento de propostas e a compra gerada a partir da cotação escolhida."
+      },
+      {
+        "label": "Prova de impressão da etiqueta",
+        "desc": "imprimir pelo sistema, uma a uma e em lote, e ler o QR no celular."
+      },
+      {
+        "label": "Primeiro banco da cobrança",
+        "desc": "definir o banco e o convênio para começar a emitir boletos de verdade."
+      },
+      {
+        "label": "Entrada no uso real",
+        "desc": "com as validações concluídas, a nova versão substitui a atual no dia a dia."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Área B2B com propostas e agenda",
+          "status": "done",
+          "description": "Propostas, emitentes e agenda dos clientes validados e em uso."
+        },
+        {
+          "title": "Ambiente exclusivo da Neon",
+          "status": "done",
+          "description": "O sistema em uso roda em um banco de dados só da Neon, separado do ambiente de testes, sem risco de um interferir no outro."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Orçamentos, vendas e estoque",
+          "status": "prog",
+          "description": "Do orçamento à venda, com o estoque atualizado a cada movimentação e o histórico preservado. Em ajustes finais de tela, incluindo a impressão da proposta com e sem valores e o envio por link, WhatsApp ou e-mail."
+        },
+        {
+          "title": "Compras e cotações com fornecedores",
+          "status": "prog",
+          "description": "Cotação com vários fornecedores em rodadas, comparando o menor custo e o menor desembolso. Propostas de uma rodada anterior podem ser reaproveitadas, e a compra sai direto da cotação escolhida, respeitando a embalagem do fornecedor. Em validação no ambiente de testes."
+        },
+        {
+          "title": "Cálculo de calibração pelo padrão",
+          "status": "prog",
+          "description": "O certificado traz todos os padrões usados, e o cálculo fica preservado mesmo se o padrão for editado depois. A calibração passa a ficar na nova área Serviços, que reúne as ferramentas contratadas pela Neon; as etiquetas já impressas continuam funcionando."
+        },
+        {
+          "title": "Etiqueta 40×30 com QR",
+          "status": "prog",
+          "description": "Pronta no sistema, individual ou em lote. Falta a prova de impressão na impressora e a leitura do QR no celular."
+        },
+        {
+          "title": "Notas fiscais integradas",
+          "status": "prog",
+          "description": "A venda já prepara as notas de produto e de serviço, com os valores travados na venda e os dados fiscais vindos do cadastro do produto. Falta ligar o envio oficial das notas e o recebimento das notas de compra."
+        },
+        {
+          "title": "Cobrança bancária",
+          "status": "prog",
+          "description": "Boletos gerados na confirmação da venda e retorno do banco lido automaticamente, com suporte aos principais bancos. Falta definir o primeiro banco."
+        },
+        {
+          "title": "Nova versão no uso real",
+          "status": "prog",
+          "description": "Tudo o que está acima já roda no ambiente de testes. A nova versão entra no uso do dia a dia depois das validações finais, com plano de volta pronto.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Faturas dos seus clientes",
+          "status": "plan",
+          "description": "Faturas e pagamentos dos clientes da Neon controlados no sistema, sem cobrança em dobro."
+        },
+        {
+          "title": "Cobrança automática pelo Inter",
+          "status": "plan",
+          "description": "Emissão e baixa automática de boletos pelo Banco Inter."
+        },
+        {
+          "title": "Telas renovadas",
+          "status": "plan",
+          "description": "Nova aparência das áreas B2B e de gestão, mais simples de usar no dia a dia."
+        },
+        {
+          "title": "Várias lojas e emitentes",
+          "status": "plan",
+          "description": "Preparação para operar lojas, emitentes e contas bancárias separados no mesmo sistema.",
+          "fullWidth": false
+        }
+      ]
+    }
+  ]
+}

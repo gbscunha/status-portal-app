@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-21",
+  "phase": "Migração do sistema legado",
+  "title": {
+    "text": "Mapa da migração do CT",
+    "highlight": "Mapa da migração"
+  },
+  "subtitle": "O sistema de certificação está sendo reconstruído do zero em tecnologia moderna. Este é o retrato consolidado: o que já vive na plataforma nova, o que está em migração agora e o que ainda roda no sistema antigo.",
+  "milestone": "Envio ao CAP Studio pronto para teste",
+  "progress": [
+    {
+      "label": "Notas fiscais",
+      "percent": 95,
+      "state": "done"
+    },
+    {
+      "label": "Notificações e comunicados",
+      "percent": 80,
+      "state": "done"
+    },
+    {
+      "label": "Disponibilidade e vagas",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Acesso e login unificado",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Consulta geral de agendamentos",
+      "percent": 95,
+      "state": "done"
+    },
+    {
+      "label": "Painel analítico de vagas (novidade)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Relatórios de clientes: Cliente Mensal, ANAC, Petrobras, Sicoob (novidade)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Relatórios gerados pela plataforma nova (sem o servidor antigo)",
+      "percent": 45,
+      "state": "prog"
+    },
+    {
+      "label": "Envio de agendamentos à plataforma de provas CAP Studio (novidade)",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Cadastro do centro de testes",
+      "percent": 95,
+      "state": "prog"
+    },
+    {
+      "label": "Provas: confirmados, consolidados e envio de arquivos",
+      "percent": 90,
+      "state": "prog"
+    },
+    {
+      "label": "Administração e pauta do dia",
+      "percent": 80,
+      "state": "prog"
+    },
+    {
+      "label": "Treinamento: vídeos, manuais e avaliações",
+      "percent": 60,
+      "state": "prog"
+    },
+    {
+      "label": "Documentos LGPD (termos e cookies)",
+      "percent": 20,
+      "state": "plan"
+    },
+    {
+      "label": "Área do candidato: inscrição, agendamento e pagamento",
+      "percent": 0,
+      "state": "plan"
+    },
+    {
+      "label": "Integrações com parceiros (ANAC, Anbima)",
+      "percent": 0,
+      "state": "plan"
+    }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "Com as quatro etapas da integração com o CAP Studio prontas, o foco é testar o envio com agendamentos reais e levar os últimos relatórios à produção.",
+    "items": [
+      {
+        "label": "Testar o envio ao CAP Studio com agendamentos reais",
+        "desc": "No ambiente de homologação, um agendamento completo deve chegar ao CAP Studio e voltar com o protocolo gravado; um agendamento sem tempo de prova ou sem código externo deve ficar bloqueado. A primeira prova da ANAC passou para janeiro de 2027, ainda sem data definida."
+      },
+      {
+        "label": "Definir como automatizar o envio",
+        "desc": "Hoje a equipe envia pela tela. O próximo passo é decidir se o envio acontece sozinho na confirmação do agendamento ou numa varredura periódica."
+      },
+      {
+        "label": "Retomar as telas em migração",
+        "desc": "Preços por exame, pauta do dia e vagas ainda usam dados provisórios na tela nova; são as próximas a receber a ligação definitiva com a plataforma."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "number": "01",
+      "title": "O tamanho do desafio",
+      "cards": [
+        {
+          "title": "De onde partimos",
+          "status": "done",
+          "description": "O sistema original soma 17 áreas de negócio, mais de 130 telas e 8 integrações com parceiros externos, construído em tecnologia de mais de uma década atrás. A plataforma nova já cobre a maior parte da operação diária dos centros de teste, gera os principais relatórios por conta própria e começou a conversar com a nova plataforma de provas — com visual moderno, mais segurança e base pronta para evoluir.",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Já migrado — funcionando na plataforma nova",
+      "cards": [
+        {
+          "title": "Relatórios de clientes — novidade",
+          "status": "done",
+          "description": "Novo menu Relatórios com a página Cliente Mensal: apuração de agendamentos confirmados por organização, com filtros por certificação, exame e categoria de inscrição, tabelas na tela e exportação em PDF e Excel. Cada cliente tem o seu formato: Ancord (com taxas de gestão e total final), ANAC (por certificação, em aba própria), Petrobras (cinco listagens por ciclo) e Sicoob (financeiro e consolidados por cooperativa, em aba própria). Ancord, ANAC, Petrobras, Sicoob e Sistema OCB já estão em produção. Os portais das organizações passaram a receber os mesmos relatórios da plataforma nova, garantindo um número só em qualquer lugar.",
+          "fullWidth": true
+        },
+        {
+          "title": "Relatórios sem o servidor antigo",
+          "status": "done",
+          "description": "Nota fiscal modelo, consolidados e não consolidados do centro, relatório de clientes e a exportação de notas fiscais para o financeiro agora são gerados pela própria plataforma nova, em PDF e Excel, com o mesmo layout de sempre. O sistema antigo já usa a plataforma nova para emitir a nota fiscal, os consolidados e a planilha do financeiro em produção."
+        },
+        {
+          "title": "Painel analítico de vagas — novidade",
+          "status": "done",
+          "description": "Visão consolidada da saúde das vagas por centro, com totais por período, demanda do dia e distribuição por estado e região. Após três rodadas de ajustes, o status de cada centro passou a considerar quanto tempo quem chega nos próximos dias espera por uma vaga, e a lista de centros sem vaga mostra todos, sem corte. A versão atual está em produção."
+        },
+        {
+          "title": "Consulta geral de agendamentos",
+          "status": "done",
+          "description": "Busca cruzada de candidatos e agendamentos concluída: filtros encadeados por organização, certificação e exame, busca dentro das listas, chips dos filtros ativos e consulta por situação e ocorrência — mais precisa e rápida que a do sistema antigo."
+        },
+        {
+          "title": "Notas fiscais",
+          "status": "done",
+          "description": "Ciclo completo: os centros enviam suas notas, a equipe aprova ou devolve com justificativa, com estatísticas, avisos automáticos de pendência e exportação de relatórios. A planilha enviada ao financeiro agora sai da plataforma nova, registrando quem a gerou."
+        },
+        {
+          "title": "Notificações e comunicados",
+          "status": "done",
+          "description": "Criação e disparo de comunicados por e-mail para centros de teste e organizações, com editor de texto, prévia dos destinatários e histórico de envios."
+        },
+        {
+          "title": "Disponibilidade e vagas",
+          "status": "done",
+          "description": "Grade semanal de horários, janelas especiais por data, habilitações por exame e eventos que indisponibilizam o centro (feriados, manutenções) — tudo na plataforma nova."
+        },
+        {
+          "title": "Acesso e login unificado",
+          "status": "done",
+          "description": "Entrada única e segura na plataforma, com controle de perfis por pessoa e integração com o servidor central de identidade."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Em migração agora",
+      "cards": [
+        {
+          "title": "Envio de agendamentos à plataforma de provas CAP Studio — novidade",
+          "status": "prog",
+          "description": "Integração nova que substitui o envio ao fornecedor de provas anterior. As quatro etapas estão prontas: a conexão segura entre os sistemas, a criação do agendamento no CAP Studio (sem risco de duplicar o mesmo agendamento), o retorno automático do protocolo gerado e, agora, a página Enviar, em Administração, onde a equipe escolhe os agendamentos confirmados e os envia ao CAP Studio. Agendamentos sem tempo de prova ou sem código externo da inscrição ficam bloqueados, para não chegarem incompletos. Falta o teste com agendamentos reais em homologação; a primeira prova da ANAC passou para janeiro de 2027.",
+          "fullWidth": true
+        },
+        {
+          "title": "Aposentadoria do servidor de relatórios",
+          "status": "prog",
+          "description": "Dos 11 relatórios que o sistema antigo ainda pedia ao servidor de relatórios, 5 já são gerados pela plataforma nova. Os 6 restantes (relatórios anuais e consolidados de clientes, saldo do centro e resultado PSI) são peças independentes e serão migrados um a um."
+        },
+        {
+          "title": "Cadastro do centro de testes",
+          "status": "prog",
+          "description": "Dados gerais, contrato, financeiro, fotos, estrutura técnica e equipe do centro já estão na plataforma nova, incluindo a edição de perfis e habilitações das pessoas. Faltam a validação final desse fluxo e as ações de acesso (expirar senha, reenviar e-mail de acesso, redefinir autenticação em dois fatores)."
+        },
+        {
+          "title": "Administração e pauta do dia",
+          "status": "prog",
+          "description": "A operação diária — pauta de candidatos, ocorrências e preços por exame — já roda na plataforma nova; pauta e preços ainda recebem os últimos ajustes de ligação com os dados definitivos."
+        },
+        {
+          "title": "Treinamento da equipe",
+          "status": "prog",
+          "description": "Vídeos de treinamento com acompanhamento de progresso já funcionam; manuais e certificados de avaliação estão em construção."
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Ainda no sistema antigo — próximas fronteiras",
+      "cards": [
+        {
+          "title": "Área do candidato",
+          "status": "plan",
+          "description": "Inscrição, agendamento de prova e pagamento (boletos e PagTesouro) seguem no sistema antigo. É o maior bloco restante da migração e envolve os fluxos mais críticos do negócio."
+        },
+        {
+          "title": "Integrações com parceiros",
+          "status": "plan",
+          "description": "As trocas automáticas com ANAC e Anbima continuam operando no sistema antigo até que a nova plataforma assuma esses fluxos com segurança. A integração com a plataforma de provas já está em andamento na plataforma nova (ver CAP Studio acima)."
+        },
+        {
+          "title": "Documentos LGPD",
+          "status": "plan",
+          "description": "As telas de termos de uso e aviso de cookies já existem na plataforma nova; falta o mecanismo de publicação e atualização dos documentos."
+        }
+      ]
+    }
+  ]
+}
