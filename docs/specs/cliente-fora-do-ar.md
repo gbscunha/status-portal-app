@@ -1,7 +1,7 @@
 # Spec: cliente fora do ar
 
 - **Status:** implementada
-- **Data:** 2026-10-21
+- **Data:** 2026-10-21 (admin revisto em 2026-10-26, ver o fim)
 
 ## Problema / motivação
 
@@ -102,3 +102,44 @@ Vercel, configurada no painel dela); mudanças na skill `atualizar-status-portal
   (`isOnline`, `clientSlugs`, `clientOnline` no portfólio) tem Vitest.
 - O 404 da Movi é idêntico ao de um slug que nunca existiu (o padrão do Next, que
   já era assim): quem testa o link não descobre que ele existiu.
+
+## Admin, 2026-10-26 (DECISOES §22)
+
+Revisa o critério "Admin" acima: o cliente fora do ar também sai do painel.
+
+### Decisões (tomadas com o dono em 2026-10-26)
+
+- Sai da sidebar **e** da visão geral (lista de atenção, tabela e indicadores).
+- As páginas de projeto do cliente no admin deixam de existir (404).
+- A regra vale para todo cliente `offline`, não só para a Movi.
+
+**Fora:** apagar `clients/<id>.json` ou os snapshots; mudar as rotas `/r`.
+
+### Critérios de aceitação
+
+#### Lógica (Vitest, `src/lib/admin.test.ts`)
+
+- **DADO** um cliente fora do ar e um no ar **QUANDO** monto as linhas do
+  portfólio **ENTÃO** só entram as do cliente no ar, nos grupos e nos
+  indicadores.
+- **DADO** um cliente fora do ar **QUANDO** gero os params das páginas de
+  projeto **ENTÃO** nenhum par dele entra, e `findAdminProject` devolve `null`
+  para ele.
+
+#### Rotas (verificação manual, `pnpm build` + `next start`)
+
+- **DADO** a Movi com `offline: true` **QUANDO** abro `/a/<slug>` **ENTÃO** ela
+  não aparece na sidebar, na lista de atenção, na tabela nem nos indicadores (o
+  HTML não cita "Movi"). FGV, Ellementi e Neon aparecem como antes.
+- **DADO** a Movi fora do ar **QUANDO** abro
+  `/a/<slug>/movi/{movi-web,movi-app,movi-exporter}` **ENTÃO** as três dão 404, e
+  o build não lista essas rotas.
+- **DADO** um projeto de outro cliente **QUANDO** abro a página dele no admin
+  **ENTÃO** ela renderiza com o link "Página do cliente", como antes.
+
+### Impacto nas invariantes
+
+- `dynamicParams = false` intacto em `a/[slug]/[clientId]/[projectId]`; o 404
+  vem de o par não estar no `generateStaticParams`.
+- O admin continua sendo a única rota que lista clientes (§15), agora só os que
+  estão no ar.

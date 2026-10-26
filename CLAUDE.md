@@ -116,7 +116,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
   snapshot (skill ou à mão) → `git push`. A URL só existe após o redeploy.
 - **Novo projeto:** +objeto em `projects[]` do cliente → primeiro snapshot → push.
 - **Pausar/retomar/concluir/encerrar:** editar o `lifecycle` do projeto em `clients/<id>.json` → push.
-- **Tirar a página do ar:** `"offline": true` no cliente → push (404; dados ficam no admin, §20).
+- **Tirar o cliente do ar:** `"offline": true` no cliente → push (404 em `/r` e no admin; dados ficam no repo, §20, §22).
 
 ## Não faça
 
@@ -138,7 +138,7 @@ node scripts/gen-slug.mjs <nome>   # gera um slug (fixar no clients/<id>.json)
 ## Estado atual
 
 - **Live na Vercel** em **https://portal.itgraph.com.br** (CNAME no Cloudflare, DNS-only; repo privado). Clientes
-  no ar: FGV, Ellementi, Neon (Movi fora do ar, §20). Painel em `/a/` (slug em `content/admin.json`). Tudo em shadcn (§21).
+  no ar: FGV, Ellementi, Neon (Movi fora do ar e fora do painel, §20, §22). Painel em `/a/` (slug em `content/admin.json`). Tudo em shadcn (§21).
 - Runbook (Notion): https://app.notion.com/p/39d605785fb9816a8a7fcdbeac05844b
 - **Backlog:** ver CHECKLIST local (cron de rebuild diário, analytics, v3).
 
