@@ -157,23 +157,15 @@ describe("portfolioRows / groupByClient", () => {
     ]);
   });
 
-  it("keeps every project of an offline client and flags its page as down", () => {
+  it("leaves an offline client out of the portfolio (DECISOES §22)", () => {
     const withOffline = [
-      { ...client("m", [project(closed, "m1"), project(delivered, "m2")]), offline: true },
+      { ...client("m", [project(closed, "m1"), project(undefined, "m2")]), offline: true },
       client("a", [project(undefined, "a1")]),
     ];
     const rows = portfolioRows(withOffline, latestOf, today);
-    expect(rows.map((r) => [r.id, r.clientOnline])).toEqual([
-      ["m2", false],
-      ["m1", false],
-      ["a1", true],
-    ]);
-    expect(
-      groupByClient(rows).map((g) => [g.clientId, g.clientOnline]),
-    ).toEqual([
-      ["m", false],
-      ["a", true],
-    ]);
+    expect(rows.map((r) => r.id)).toEqual(["a1"]);
+    expect(groupByClient(rows).map((g) => g.clientId)).toEqual(["a"]);
+    expect(portfolioStats(rows).active).toBe(1);
   });
 });
 
@@ -456,6 +448,15 @@ describe("static params and links", () => {
     expect(findAdminProject(clients, "fgv", "ct")?.project.id).toBe("ct");
     expect(findAdminProject(clients, "fgv", "web")).toBeNull();
     expect(findAdminProject(clients, "x", "y")).toBeNull();
+  });
+
+  it("generates no page for an offline client and does not find it", () => {
+    const withOffline = [{ ...clients[0], offline: true }, clients[1]];
+    expect(adminProjectParams("adm", withOffline)).toEqual([
+      { slug: "adm", clientId: "fgv", projectId: "ct" },
+    ]);
+    expect(findAdminProject(withOffline, "movi", "web")).toBeNull();
+    expect(findAdminProject(withOffline, "fgv", "ct")?.project.id).toBe("ct");
   });
 
   it("builds the admin project path", () => {
