@@ -1,0 +1,198 @@
+{
+  "date": "2026-11-11",
+  "phase": "Rumo à versão de testes",
+  "title": {
+    "text": "Status do Projeto",
+    "highlight": "Projeto"
+  },
+  "subtitle": "O roteiro até a versão de testes está fechado em duas etapas: 27/11 e 11/12. O cálculo do diagnóstico já começou a sair do papel.",
+  "milestone": "Motor do diagnóstico ganha o bio-código",
+  "progress": [
+    {
+      "label": "Base do sistema e ambiente de testes",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Estrutura de dados (do questionário à produção)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Acesso e painel da equipe",
+      "percent": 25,
+      "state": "prog"
+    },
+    {
+      "label": "Motor do diagnóstico (bio-código e fórmula)",
+      "percent": 35,
+      "state": "prog"
+    },
+    {
+      "label": "Questionário e resultado para a cliente",
+      "percent": 0,
+      "state": "plan"
+    },
+    {
+      "label": "Compra e ficha de produção",
+      "percent": 0,
+      "state": "plan"
+    },
+    {
+      "label": "Portal do profissional indicador",
+      "percent": 0,
+      "state": "plan"
+    }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "A primeira etapa, em 27/11, coloca o questionário e o resultado no ambiente de testes. A segunda, em 11/12, traz o acesso da cliente pela loja, a prévia do rótulo e o painel da equipe.",
+    "items": [
+      {
+        "label": "Fórmula a partir do bio-código",
+        "desc": "Escolha dos shots de cada eixo e o tratamento da acne, já com a fórmula montada a partir das respostas."
+      },
+      {
+        "label": "Portões de segurança e regras de ativos",
+        "desc": "Gestante, amamentação, medicamento contínuo, adolescente e 70+ com a orientação certa para cada caso, e as regras que evitam combinar ativos que não devem ir juntos."
+      },
+      {
+        "label": "Identidade visual da jornada",
+        "desc": "Cores, fontes e a moldura das telas que a cliente vai ver, do aceite dos termos ao resultado."
+      },
+      {
+        "label": "Textos e regras oficiais da Ellementti",
+        "desc": "Perguntas, faixas de cada eixo, shots e textos da história da pele passados para dentro do sistema, a partir do material da Ellementti."
+      },
+      {
+        "label": "Questionário e resultado no ambiente de testes (27/11)",
+        "desc": "Aceite dos termos, perguntas, cálculo e tela de resultado funcionando de ponta a ponta, para a equipe da Ellementti experimentar."
+      }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Liberar nosso acesso à loja na Shopify",
+      "desc": "Acesso de colaborador à loja, com permissão para apps e canais. É o que permite a cliente entrar pelo login da própria loja na etapa de 11/12.",
+      "since": "2026-11-11"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Estrutura de dados completa",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Todo o percurso já está na base do sistema: triagem, perguntas, 4 eixos, bio-código, shots e suas variantes, portões de segurança, regras de sobreposição de ativos, história da pele, pedido, ficha de produção com registro Anvisa, consentimentos conforme a LGPD e indicação por profissionais. Agora também guarda a data de nascimento (só dentro da avaliação, protegida), as faixas de idade, a triagem de amamentação e um código de exibição para o rótulo. Cada avaliação guarda a versão das regras que a produziu, então um resultado pode ser explicado e reproduzido a qualquer momento."
+        },
+        {
+          "title": "Roteiro até a versão de testes",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Plano em duas etapas, com cada parte em ordem e com responsável. Em 27/11, questionário, cálculo e resultado no ambiente de testes. Em 11/12, a cliente entra pelo login da loja, vê a prévia do rótulo com o seu código, e a equipe ganha o painel para acompanhar as avaliações."
+        },
+        {
+          "title": "Bio-código calculado a partir das respostas",
+          "status": "done",
+          "description": "O sistema já soma as respostas de cada eixo, encaixa o resultado nas faixas definidas pela Ellementti e monta o bio-código. Faixas, perguntas e pesos ficam guardados como regras editáveis, não fixos no sistema."
+        },
+        {
+          "title": "Triagem e faixa de idade",
+          "status": "done",
+          "description": "A triagem identifica gestação, amamentação, medicamentos e outras situações que pedem cuidado, e a data de nascimento define a faixa de idade que libera ou trava as perguntas sobre envelhecimento. A idade é calculada na hora e nunca fica guardada."
+        },
+        {
+          "title": "Conferência automática das regras",
+          "status": "done",
+          "description": "Antes de uma versão das regras valer, o sistema confere se ela fecha: faixas de cada eixo sem sobreposição nem buracos, toda pontuação possível com um resultado e as perguntas dos eixos obrigatórias. Se algo não fecha, aponta onde está o problema."
+        },
+        {
+          "title": "Ambiente de testes no ar",
+          "status": "done",
+          "description": "O sistema tem um endereço de homologação, hospedado em São Paulo, onde cada avanço é visto e testado antes de ir ao ar."
+        },
+        {
+          "title": "Verificação automática a cada mudança",
+          "status": "done",
+          "description": "Toda alteração passa por uma bateria de testes antes de chegar ao ambiente de testes. Problemas são barrados antes de aparecerem para alguém."
+        },
+        {
+          "title": "Acesso da equipe",
+          "status": "done",
+          "description": "Login com e-mail e senha para a equipe Ellementti, com sessão segura que expira sozinha e uma tela de entrada com visual novo. O cadastro público fica fechado até a etapa do portal do profissional."
+        },
+        {
+          "title": "Monitoramento e aviso de erros",
+          "status": "done",
+          "description": "Falhas são capturadas e avisadas automaticamente, e há um sinal de saúde do sistema para acompanhamento contínuo."
+        },
+        {
+          "title": "Tarefas em segundo plano",
+          "status": "done",
+          "description": "Base pronta para e-mails, convites de reavaliação e integrações rodarem em segundo plano, com nova tentativa automática se algo falhar."
+        },
+        {
+          "title": "Cronograma e ajustes do questionário alinhados",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Na reunião de 27/10 ficaram definidos os ajustes do questionário: idade como trava das perguntas sobre envelhecimento, explicações para os termos técnicos, triagem clínica com orientação para cada caso e imagens nas perguntas-chave."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Motor do diagnóstico",
+          "status": "prog",
+          "description": "Bio-código e triagem prontos. Agora vêm a fórmula de cada eixo e da acne, os portões de segurança, as regras de sobreposição de ativos e a explicação de cada decisão, para fechar o cálculo completo até 27/11."
+        },
+        {
+          "title": "Painel da equipe",
+          "status": "prog",
+          "description": "A porta de entrada está pronta. A lista de avaliações, o detalhe de cada uma com o motivo de cada decisão e a consulta das regras chegam na etapa de 11/12."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Questionário da cliente",
+          "status": "plan",
+          "description": "Triagem, perguntas dos eixos e de contexto, com aceite dos termos antes de qualquer dado. Inclui a idade como trava, explicações e ilustrações para os termos técnicos e alertas de interação com medicamentos. A cliente permanece anônima até a tela de resultado. Previsto para 27/11."
+        },
+        {
+          "title": "Resultado e história da pele",
+          "status": "plan",
+          "description": "Bio-código, leitura da pele e explicação da fórmula, no texto da Ellementti para cada combinação. Previsto para 27/11."
+        },
+        {
+          "title": "Acesso da cliente pela loja e prévia do rótulo",
+          "status": "plan",
+          "description": "Na tela de resultado, a cliente se identifica com a mesma conta da loja Ellementti, escolhe o nome que vai no rótulo e vê a prévia com o seu código. Previsto para 11/12."
+        },
+        {
+          "title": "Compra e ficha de produção",
+          "status": "plan",
+          "description": "Compra na loja virtual com a fórmula vinculada ao pedido. A produção é sob demanda: a fábrica mistura só depois do pedido confirmado, e o rótulo sai com o nome da cliente e a identificação do profissional que indicou."
+        },
+        {
+          "title": "Portal do profissional indicador",
+          "status": "plan",
+          "description": "Cadastro com aprovação, links rastreáveis de indicação e materiais de apoio para download."
+        },
+        {
+          "title": "Convite de reavaliação",
+          "status": "plan",
+          "description": "90 dias após a compra, a cliente recebe um convite para refazer o diagnóstico e ajustar a fórmula."
+        }
+      ]
+    }
+  ]
+}
