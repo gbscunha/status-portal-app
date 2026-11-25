@@ -5,8 +5,8 @@
     "text": "Status do Projeto",
     "highlight": "Projeto"
   },
-  "subtitle": "As regras oficiais da Ellementti já estão no sistema e as telas ganharam o visual novo. A cliente aceita os termos e começa a avaliação, ainda anônima.",
-  "milestone": "Regras oficiais carregadas e visual novo aplicado",
+  "subtitle": "Questionário, cálculo e resultado já funcionam de ponta a ponta no ambiente de testes, com as regras oficiais e o visual novo. O link para a equipe experimentar chega até 27/11.",
+  "milestone": "Questionário e resultado funcionando de ponta a ponta",
   "progress": [
     {
       "label": "Base do sistema e ambiente de testes",
@@ -30,7 +30,7 @@
     },
     {
       "label": "Questionário e resultado para a cliente",
-      "percent": 60,
+      "percent": 90,
       "state": "prog"
     },
     {
@@ -46,27 +46,27 @@
   ],
   "nextSteps": {
     "title": "Próximos passos",
-    "intro": "A primeira etapa, em 27/11, coloca o questionário e o resultado no ambiente de testes. A segunda, em 11/12, traz o acesso da cliente pela loja, a prévia do rótulo e o painel da equipe.",
+    "intro": "A primeira etapa já funciona no ambiente de testes, e o link para a equipe da Ellementti experimentar chega até 27/11. A segunda, em 11/12, traz o acesso da cliente pela loja, a prévia do rótulo e o painel da equipe.",
     "items": [
       {
-        "label": "Respostas guardadas a cada etapa",
-        "desc": "Conforme a cliente avança, cada etapa do questionário fica salva. Já em andamento."
+        "label": "Página de abertura nova",
+        "desc": "Uma abertura mais marcante, já no visual Taupe, no lugar da versão atual. Até 27/11."
       },
       {
-        "label": "Tela de resultado com o visual novo",
-        "desc": "Bio-código em destaque, os quatro eixos, a leitura da pele, a fórmula ilustrada no frasco e as orientações de segurança quando a triagem pedir."
+        "label": "Conferência final no celular",
+        "desc": "Três percursos completos, de uma cliente adulta, de uma adolescente e de quem usa medicamento contínuo, com o resultado esperado de cada um já preparado e conferido contra o cálculo."
       },
       {
-        "label": "Resultado calculado e guardado",
-        "desc": "Ao terminar o questionário, o sistema calcula a fórmula com as regras oficiais e guarda o resultado com a versão das regras que o produziu."
-      },
-      {
-        "label": "Questionário e resultado no ambiente de testes (27/11)",
-        "desc": "Página de abertura, aceite dos termos, perguntas, cálculo e resultado funcionando de ponta a ponta, para a equipe da Ellementti experimentar."
+        "label": "Link para a equipe experimentar (27/11)",
+        "desc": "A equipe da Ellementti recebe o endereço e os percursos sugeridos para fazer o diagnóstico inteiro, com respostas fictícias."
       },
       {
         "label": "Apresentação e alinhamento (semana de 30/11)",
         "desc": "Depois da Black Friday: o visual, a revisão das perguntas e dos textos (que vira a versão 2 das regras), os textos e fotos oficiais da página de abertura, os termos de uso e a privacidade, e a conversa com quem cuida da loja."
+      },
+      {
+        "label": "Segunda etapa (11/12)",
+        "desc": "A cliente se identifica com a conta da loja na tela de resultado, vê a prévia do rótulo com o seu código, e a equipe ganha o painel para acompanhar as avaliações."
       }
     ]
   },
@@ -87,6 +87,18 @@
       "number": "01",
       "title": "O que já está pronto",
       "cards": [
+        {
+          "title": "Questionário, cálculo e resultado de ponta a ponta",
+          "status": "done",
+          "fullWidth": true,
+          "description": "A cliente aceita os termos, responde, e cada etapa fica guardada conforme avança. Ao terminar, o sistema calcula a fórmula com as regras oficiais e guarda o resultado com a versão das regras que o produziu. Se ela voltar ao endereço, encontra o próprio resultado, sem refazer nada."
+        },
+        {
+          "title": "Tela de resultado",
+          "status": "done",
+          "fullWidth": true,
+          "description": "O bio-código em destaque num cartão, os quatro eixos, a leitura da pele no texto da Ellementti, a fórmula ilustrada no frasco e as orientações de segurança quando a triagem pede. No computador, a tela se organiza em duas colunas."
+        },
         {
           "title": "Regras oficiais da Ellementti no sistema",
           "status": "done",
@@ -134,7 +146,7 @@
         {
           "title": "Página de abertura",
           "status": "done",
-          "description": "A entrada do diagnóstico, com uma frase de abertura e o botão para começar. As fotos são provisórias até chegarem as oficiais da Ellementti."
+          "description": "A entrada do diagnóstico, com uma frase de abertura e o botão para começar. Ganha uma versão nova, mais marcante, até 27/11; as fotos oficiais da Ellementti entram depois."
         },
         {
           "title": "Aceite dos termos e início anônimo",
@@ -145,7 +157,7 @@
           "title": "Questionário em uma pergunta por tela",
           "status": "done",
           "fullWidth": true,
-          "description": "Cada pergunta aparece sozinha, desliza ao avançar e ao voltar, com barra de progresso e a resposta anterior já marcada quando a cliente volta. As perguntas têm escolha, escala, idade, explicação dos termos técnicos e espaço para imagem. O enunciado se adapta à faixa de idade, e quem prefere menos movimento no celular vê tudo pronto, sem animação."
+          "description": "Cada pergunta aparece sozinha e surge palavra por palavra, numa fonte de leitura fácil, com barra de progresso e a resposta anterior já marcada quando a cliente volta. As perguntas têm escolha, escala, idade e espaço para imagem, e os termos técnicos ganham um \"Saiba mais\". O enunciado se adapta à faixa de idade, e quem prefere menos movimento no celular vê tudo pronto, sem animação."
         },
         {
           "title": "Dicionário revisado pela Ellementti aplicado",
@@ -208,14 +220,9 @@
       "title": "Em desenvolvimento",
       "cards": [
         {
-          "title": "Questionário da cliente",
+          "title": "Publicação da primeira etapa",
           "status": "prog",
-          "description": "Página de abertura, aceite gravado e as telas das perguntas, já com o conteúdo oficial, prontos. Falta guardar as respostas a cada etapa (em andamento) e ligar o questionário ao cálculo, até 27/11."
-        },
-        {
-          "title": "Resultado e história da pele",
-          "status": "prog",
-          "description": "A tela está pronta e ganha agora o visual novo: bio-código em destaque, os eixos, a leitura da pele no texto da Ellementti e a fórmula ilustrada no frasco. Previsto para 27/11."
+          "description": "Tudo funcionando no ambiente de testes, com o link de acesso da equipe já criado. Faltam a página de abertura nova e a conferência final no celular. O link chega até 27/11."
         },
         {
           "title": "Painel da equipe",
