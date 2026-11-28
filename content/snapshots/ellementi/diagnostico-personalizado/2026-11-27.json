@@ -1,0 +1,285 @@
+{
+  "date": "2026-11-27",
+  "phase": "Rumo à versão de testes",
+  "title": {
+    "text": "Status do Projeto",
+    "highlight": "Projeto"
+  },
+  "subtitle": "A primeira etapa está entregue: da página de abertura ao resultado, tudo funciona no ambiente de testes e foi conferido no celular. O link para a equipe experimentar chega no grupo em 28/11.",
+  "milestone": "Primeira etapa entregue no ambiente de testes",
+  "progress": [
+    {
+      "label": "Base do sistema e ambiente de testes",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Estrutura de dados (do questionário à produção)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Acesso e painel da equipe",
+      "percent": 35,
+      "state": "prog"
+    },
+    {
+      "label": "Motor do diagnóstico (bio-código e fórmula)",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Questionário e resultado para a cliente",
+      "percent": 100,
+      "state": "done"
+    },
+    {
+      "label": "Compra e ficha de produção",
+      "percent": 0,
+      "state": "plan"
+    },
+    {
+      "label": "Portal do profissional indicador",
+      "percent": 0,
+      "state": "plan"
+    }
+  ],
+  "nextSteps": {
+    "title": "Próximos passos",
+    "intro": "A primeira etapa está entregue no ambiente de testes, e o link com os percursos sugeridos chega no grupo em 28/11. A segunda, em 11/12, traz o acesso da cliente pela loja, a prévia do rótulo e o painel da equipe.",
+    "items": [
+      {
+        "label": "Link e percursos para a equipe (28/11)",
+        "desc": "A equipe da Ellementti recebe no grupo o endereço e três percursos sugeridos para fazer o diagnóstico inteiro, com respostas fictícias."
+      },
+      {
+        "label": "Apresentação e alinhamento (semana de 30/11)",
+        "desc": "Depois da Black Friday, a apresentação de tudo o que foi feito. Na mesma reunião: o visual, a página de abertura, as perguntas e o resultado, as ilustrações, a revisão das perguntas e dos textos (que vira uma nova versão das regras), as fotos oficiais, os termos de uso e a privacidade, e a conversa com quem cuida da loja."
+      },
+      {
+        "label": "Teste do acesso pela loja",
+        "desc": "Uma loja de testes da Shopify prova que a cliente consegue entrar com a conta da loja, sem mexer na loja real da Ellementti."
+      },
+      {
+        "label": "Segunda etapa (11/12)",
+        "desc": "A cliente se identifica com a conta da loja na tela de resultado, vê a prévia do rótulo com o seu código, e a equipe ganha o painel para acompanhar as avaliações."
+      }
+    ]
+  },
+  "pending": [
+    {
+      "label": "Conversa com quem cuida da loja",
+      "desc": "30 minutos com o responsável pela loja virtual e o acesso de colaborador a ela. É o que libera a cliente entrar com a mesma conta da loja, previsto para 11/12.",
+      "since": "2026-11-09"
+    },
+    {
+      "label": "Confirmar o visual da jornada",
+      "desc": "As telas já usam o Taupe, a mais suave das três cores propostas e a mais próxima do manual da marca, e a página de abertura, as perguntas e o resultado ganharam um desenho novo. Se preferirem outra cor ou outro caminho, os ajustes são rápidos: dá para decidir na apresentação de 30/11.",
+      "since": "2026-11-17"
+    },
+    {
+      "label": "Ilustrações das perguntas",
+      "desc": "As 17 alternativas das perguntas-chave já aparecem com ilustrações provisórias. Aprovar essas ou enviar as oficiais; dá para tratar na apresentação de 30/11.",
+      "since": "2026-11-27"
+    },
+    {
+      "label": "Experimentar o diagnóstico",
+      "desc": "Fazer o diagnóstico pelo link enviado no grupo, com respostas fictícias, seguindo os percursos sugeridos, e contar o que acharam.",
+      "since": "2026-11-28"
+    }
+  ],
+  "sections": [
+    {
+      "number": "01",
+      "title": "O que já está pronto",
+      "cards": [
+        {
+          "title": "Primeira etapa entregue",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Página de abertura, aceite dos termos, perguntas, cálculo com as regras oficiais e resultado funcionam de ponta a ponta no ambiente de testes. Os três percursos de teste foram feitos no celular, nos modos claro e escuro, antes do envio para a equipe."
+        },
+        {
+          "title": "Perguntas num cartão",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Cada pergunta aparece num cartão sobre um fundo claro, com as alternativas em linha e um marcador redondo, o \"sim ou não\" lado a lado e a idade escolhida com botões de menos e mais. Entre as etapas, telas curtas de carregamento dão ritmo à jornada."
+        },
+        {
+          "title": "Ilustrações nas alternativas",
+          "status": "done",
+          "description": "As 17 alternativas das perguntas-chave ganharam ilustrações, nos modos claro e escuro, para a cliente reconhecer a própria pele com mais facilidade. Por enquanto são provisórias e entraram como uma nova versão das regras, sem alterar as avaliações já feitas."
+        },
+        {
+          "title": "Página de abertura nova",
+          "status": "done",
+          "fullWidth": true,
+          "description": "A entrada do diagnóstico tem o mesmo cabeçalho da loja, com o menu levando de volta a ela, uma abertura com a foto de um sérum (no celular, o texto vem antes da foto) e seções que mostram o que a cliente recebe: o bio-código, a fórmula feita para ela e as dúvidas mais comuns, com movimento suave na rolagem. Ela promete o resultado sem revelar como o método funciona por dentro, para não entregá-lo à concorrência. As fotos oficiais da Ellementti entram depois."
+        },
+        {
+          "title": "Resultado em formato de laudo",
+          "status": "done",
+          "fullWidth": true,
+          "description": "O bio-código aparece grande, com as letras girando ao abrir, e cada parte dele ganha uma linha com o nome do eixo, a faixa da pele e uma barra que mostra onde ela está na escala. A leitura da pele vem como um texto corrido, no tom da Ellementti, com a data da avaliação e as orientações de segurança quando a triagem pede."
+        },
+        {
+          "title": "Percursos de teste prontos",
+          "status": "done",
+          "description": "Três percursos completos, de uma cliente adulta, de uma adolescente e de quem usa medicamento contínuo, cada um com o resultado esperado. Uma conferência automática garante que eles continuam batendo com o cálculo a cada mudança."
+        },
+        {
+          "title": "Questionário, cálculo e resultado de ponta a ponta",
+          "status": "done",
+          "fullWidth": true,
+          "description": "A cliente aceita os termos, responde, e cada etapa fica guardada conforme avança. Ao terminar, o sistema calcula a fórmula com as regras oficiais e guarda o resultado com a versão das regras que o produziu. Se ela voltar ao endereço, encontra o próprio resultado, sem refazer nada."
+        },
+        {
+          "title": "Regras oficiais da Ellementti no sistema",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Perguntas, opções, pesos, faixas, shots, orientações de segurança e os textos de cada combinação do Esboço já são a versão 1 das regras, publicada no ambiente de testes. O sistema confere que tudo fecha antes de publicar, e a revisão da apresentação de 30/11 entra como uma nova versão, sem mexer nos resultados já calculados."
+        },
+        {
+          "title": "Visual Taupe aplicado",
+          "status": "done",
+          "fullWidth": true,
+          "description": "As telas ganharam uma cor de destaque, o Taupe, na barra de progresso e na resposta marcada, com os títulos em Jost como na loja e um texto corrido mais moderno e legível. Os botões seguem em grafite para leitura confortável, inclusive no modo escuro do celular."
+        },
+        {
+          "title": "Cálculo conferido em todas as situações",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Uma bateria automática passa por mais de 2.300 situações (todas as combinações de pele, cada faixa de idade e cada resposta da triagem) e confere, uma a uma, que a fórmula e as orientações de segurança saem exatamente como as regras da Ellementti mandam. Qualquer mudança que quebre uma delas é barrada antes de chegar ao ambiente de testes."
+        },
+        {
+          "title": "Explicação de cada decisão",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Cada avaliação guarda o caminho completo: a fórmula de partida, cada troca feita por uma orientação de segurança e o motivo dela, as mensagens para a cliente e as observações das perguntas de contexto. A equipe vai poder ver no painel por que cada fórmula saiu como saiu."
+        },
+        {
+          "title": "Bio-código calculado a partir das respostas",
+          "status": "done",
+          "description": "O sistema soma as respostas de cada eixo, encaixa o resultado nas faixas definidas pela Ellementti e monta o bio-código. Faixas, perguntas e pesos ficam guardados como regras editáveis, não fixos no sistema."
+        },
+        {
+          "title": "Fórmula montada a partir do bio-código",
+          "status": "done",
+          "description": "Para cada eixo da pele, o sistema escolhe o shot certo pela regra da Ellementti e acrescenta o tratamento de acne quando a triagem aponta acne ativa. Um item por categoria, sempre na mesma ordem."
+        },
+        {
+          "title": "Portões de segurança na fórmula",
+          "status": "done",
+          "description": "Gestante, amamentação, adolescente, medicamento contínuo e as demais situações da triagem ajustam a fórmula na ordem de prioridade definida, trocando o shot ou a versão dele e mostrando a orientação certa. Medicamento contínuo agora ajusta a fórmula em vez de bloqueá-la, como a Ellementti pediu."
+        },
+        {
+          "title": "Idade digitada e longevidade pela idade",
+          "status": "done",
+          "description": "A cliente digita só a idade, sem data de nascimento, o que é mais rápido no celular e protege mais quem responde. A faixa de idade escolhe o shot de longevidade e libera ou trava as perguntas sobre envelhecimento. Adolescentes de 12 a 17 anos também são atendidas."
+        },
+        {
+          "title": "Aceite dos termos e início anônimo",
+          "status": "done",
+          "description": "A primeira tela pede o aceite dos termos, sem cadastro nenhum, e só depois dele a avaliação começa, guardada sem nome nem e-mail. Nada é perguntado antes do aceite, como manda a LGPD, e quem não aceitou não chega ao questionário. O texto jurídico definitivo entra quando chegar."
+        },
+        {
+          "title": "Questionário em uma pergunta por tela",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Cada pergunta aparece sozinha e surge palavra por palavra, numa fonte de leitura fácil, com barra de progresso e a resposta anterior já marcada quando a cliente volta. As perguntas têm escolha, escala, idade e espaço para imagem, e os termos técnicos ganham um \"Saiba mais\". O enunciado se adapta à faixa de idade, e quem prefere menos movimento no celular vê tudo pronto, sem animação."
+        },
+        {
+          "title": "Dicionário revisado pela Ellementti aplicado",
+          "status": "done",
+          "fullWidth": true,
+          "description": "As respostas de 13/11 já estão funcionando no cálculo: medicamento contínuo ajusta a fórmula em vez de bloquear, as fórmulas não usam regras de sobreposição de ativos nesta primeira etapa, a idade escolhe o shot de longevidade e adolescentes também são atendidas."
+        },
+        {
+          "title": "Estrutura de dados completa",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Todo o percurso está na base do sistema: triagem, perguntas, 4 eixos, bio-código, shots e suas variantes, portões de segurança, história da pele, pedido, ficha de produção com registro Anvisa, consentimentos conforme a LGPD e indicação por profissionais. Cada avaliação guarda a versão das regras que a produziu, então um resultado pode ser explicado e reproduzido a qualquer momento."
+        },
+        {
+          "title": "Roteiro até a versão de testes",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Plano em duas etapas, com cada parte em ordem e com responsável. Em 27/11, questionário, cálculo e resultado no ambiente de testes. Em 11/12, a cliente entra pelo login da loja, vê a prévia do rótulo com o seu código, e a equipe ganha o painel para acompanhar as avaliações."
+        },
+        {
+          "title": "Conferência automática das regras",
+          "status": "done",
+          "description": "Antes de uma versão das regras valer, o sistema confere se ela fecha: faixas sem sobreposição nem buracos, toda pontuação possível com um resultado, perguntas dos eixos obrigatórias e orientações de segurança sem conflito de prioridade. Se algo não fecha, aponta onde está o problema."
+        },
+        {
+          "title": "Ambiente de testes no ar",
+          "status": "done",
+          "description": "O sistema tem um endereço de homologação, hospedado em São Paulo, onde cada avanço é visto e testado antes de ir ao ar."
+        },
+        {
+          "title": "Verificação automática a cada mudança",
+          "status": "done",
+          "description": "Toda alteração passa por uma bateria de testes antes de chegar ao ambiente de testes. Problemas são barrados antes de aparecerem para alguém."
+        },
+        {
+          "title": "Acesso da equipe",
+          "status": "done",
+          "description": "Login com e-mail e senha para a equipe Ellementti, com sessão segura que expira sozinha. O cadastro público fica fechado até a etapa do portal do profissional."
+        },
+        {
+          "title": "Monitoramento e aviso de erros",
+          "status": "done",
+          "description": "Falhas são capturadas e avisadas automaticamente, e há um sinal de saúde do sistema para acompanhamento contínuo."
+        },
+        {
+          "title": "Tarefas em segundo plano",
+          "status": "done",
+          "description": "Base pronta para e-mails, convites de reavaliação e integrações rodarem em segundo plano, com nova tentativa automática se algo falhar."
+        },
+        {
+          "title": "Cronograma e ajustes do questionário alinhados",
+          "status": "done",
+          "fullWidth": true,
+          "description": "Na reunião de 27/10 ficaram definidos os ajustes do questionário: idade como trava das perguntas sobre envelhecimento, explicações para os termos técnicos, triagem clínica com orientação para cada caso e imagens nas perguntas-chave."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Em desenvolvimento",
+      "cards": [
+        {
+          "title": "Painel da equipe",
+          "status": "prog",
+          "description": "A porta de entrada e a moldura do painel, com o menu e o visual novo, estão prontas, e só a equipe autorizada entra. A lista de avaliações, o detalhe de cada uma com o motivo de cada decisão, a contagem de acessos e a consulta das regras chegam na etapa de 11/12."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Planejado",
+      "cards": [
+        {
+          "title": "Acesso da cliente pela loja e prévia do rótulo",
+          "status": "plan",
+          "description": "Na tela de resultado, a cliente se identifica com a mesma conta da loja Ellementti, escolhe o nome que vai no rótulo e vê a prévia com o seu código. Previsto para 11/12."
+        },
+        {
+          "title": "Compra e ficha de produção",
+          "status": "plan",
+          "description": "Compra na loja virtual com a fórmula vinculada ao pedido. A produção é sob demanda: a fábrica mistura só depois do pedido confirmado, e o rótulo sai com o nome da cliente e a identificação do profissional que indicou."
+        },
+        {
+          "title": "Portal do profissional indicador",
+          "status": "plan",
+          "description": "Cadastro com aprovação, links rastreáveis de indicação e materiais de apoio para download."
+        },
+        {
+          "title": "Convite de reavaliação",
+          "status": "plan",
+          "description": "90 dias após a compra, a cliente recebe um convite para refazer o diagnóstico e ajustar a fórmula."
+        }
+      ]
+    }
+  ]
+}
